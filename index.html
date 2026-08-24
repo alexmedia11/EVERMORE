@@ -1,435 +1,551 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evermore — Next-Gen AI Platform, Remote Opportunities & Skills Academy</title>
-    <meta name="description" content="Evermore is a digital AI and opportunity ecosystem. Access powerful AI tools, learn professional digital skills, and explore qualified remote opportunities.">
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        canvas: '#07090e',
-                        surface: '#0d1322',
-                        'surface-hover': '#131b31',
-                        brand: {
-                            50: '#ecfdf5',
-                            400: '#34d399',
-                            500: '#10b981',
-                            600: '#059669',
-                            700: '#047857'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif']
-                    }
-                }
-            }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evermore — AI, Skills & Digital Opportunities</title>
+  <meta name="description" content="Evermore is a premium AI and digital opportunity ecosystem combining EverAI, AI training tasks, remote opportunities and Skills Academy.">
+  <meta name="theme-color" content="#f7f8fa">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: '#0b1020',
+            muted: '#64748b',
+            brand: '#2563eb',
+            violet: '#7c3aed',
+            line: '#e7eaf0',
+            soft: '#f7f8fa'
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif']
+          },
+          boxShadow: {
+            premium: '0 24px 70px rgba(15, 23, 42, .10)',
+            card: '0 12px 35px rgba(15, 23, 42, .07)'
+          }
         }
-    </script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <style>
+    body { background:#fff; color:#0b1020; }
+    .hero-grid {
+      background-image: linear-gradient(rgba(15,23,42,.045) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(15,23,42,.045) 1px, transparent 1px);
+      background-size: 42px 42px;
+    }
+    .text-gradient {
+      background: linear-gradient(100deg,#111827 0%,#2563eb 48%,#7c3aed 100%);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .aurora {
+      background:
+        radial-gradient(circle at 20% 10%, rgba(37,99,235,.14), transparent 32%),
+        radial-gradient(circle at 80% 5%, rgba(124,58,237,.12), transparent 28%);
+    }
+    .shine { position:relative; overflow:hidden; }
+    .shine:after {
+      content:""; position:absolute; inset:-120% 35% auto -80%;
+      width:45%; height:350%; transform:rotate(20deg);
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);
+      transition:transform .8s ease;
+    }
+    .shine:hover:after { transform:translateX(260%) rotate(20deg); }
+    .float { animation:float 5s ease-in-out infinite; }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    .reveal { opacity:0; transform:translateY(18px); transition:opacity .7s ease,transform .7s ease; }
+    .reveal.show { opacity:1; transform:none; }
+  </style>
 </head>
-<body class="bg-canvas text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-white relative overflow-x-hidden">
 
-    <!-- Subtle Ambient Lighting System -->
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[500px] bg-gradient-to-b from-brand-500/10 via-indigo-500/5 to-transparent blur-[120px] pointer-events-none -z-10"></div>
+<body class="font-sans antialiased overflow-x-hidden selection:bg-blue-600 selection:text-white">
 
-    <!-- Navigation Header -->
-    <header class="sticky top-0 z-50 backdrop-blur-xl bg-canvas/80 border-b border-slate-800/60 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="#" class="flex items-center space-x-3 group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-emerald-400 flex items-center justify-center shadow-lg shadow-brand-500/20 group-hover:scale-105 transition">
-                    <i class="fa-solid fa-cube text-white text-base"></i>
-                </div>
-                <span class="text-xl font-extrabold tracking-wider bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">EVERMORE</span>
+  <!-- Top announcement -->
+  <div class="bg-ink text-white text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex items-center justify-center gap-2">
+      <span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+      <span>Evermore is building the next generation of AI-powered digital work.[span_1](start_span)[span_1](end_span)</span>
+      <a href="#platform" class="font-bold underline underline-offset-2">Explore platform</a>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[76px] flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-2xl bg-ink text-white flex items-center justify-center shadow-card">
+          <i class="fa-solid fa-a text-lg"></i>
+        </div>
+        <div>
+          <div class="font-extrabold tracking-[.16em] text-sm">EVERMORE</div>
+          <div class="text-[9px] font-semibold text-slate-400 tracking-[.18em] uppercase">AI ecosystem[span_2](start_span)[span_2](end_span)</div>
+        </div>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-7 text-sm font-semibold text-slate-600">
+        <a href="#platform" class="hover:text-blue-600 transition">Platform</a>
+        <a href="#everai" class="hover:text-blue-600 transition">EverAI</a>
+        <a href="#opportunities" class="hover:text-blue-600 transition">Opportunities</a>
+        <a href="#academy" class="hover:text-blue-600 transition">Academy</a>
+        <a href="#pricing" class="hover:text-blue-600 transition">Pricing</a>
+        <a href="#faq" class="hover:text-blue-600 transition">FAQ</a>
+      </nav>
+
+      <div class="hidden md:flex items-center gap-3">
+        <a href="signin.html" class="text-sm font-bold text-slate-600 px-4 py-2.5 hover:text-ink transition">Sign in</a>
+        <a href="signup.html" class="shine bg-ink text-white text-sm font-bold px-5 py-3 rounded-xl hover:bg-slate-800 transition shadow-lg">Get started <i class="fa-solid fa-arrow-right ml-1"></i></a>
+      </div>
+
+      <button id="menu-toggle" class="md:hidden w-10 h-10 rounded-xl border border-slate-200 text-ink" aria-label="Open menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 bg-white px-5 py-5 space-y-1 shadow-lg">
+      <a href="#platform" class="block px-3 py-3 rounded-xl hover:bg-soft">Platform</a>
+      <a href="#everai" class="block px-3 py-3 rounded-xl hover:bg-soft">EverAI</a>
+      <a href="#opportunities" class="block px-3 py-3 rounded-xl hover:bg-soft">Opportunities</a>
+      <a href="#academy" class="block px-3 py-3 rounded-xl hover:bg-soft">Academy</a>
+      <a href="#pricing" class="block px-3 py-3 rounded-xl hover:bg-soft">Pricing</a>
+      <a href="#faq" class="block px-3 py-3 rounded-xl hover:bg-soft">FAQ</a>
+      <div class="pt-3 mt-2 border-t border-slate-200 grid grid-cols-2 gap-3">
+        <a href="signin.html" class="text-center py-3 rounded-xl bg-soft font-bold">Sign in</a>
+        <a href="signup.html" class="text-center py-3 rounded-xl bg-ink text-white font-bold">Get started</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main>
+    <section class="relative overflow-hidden aurora">
+      <div class="absolute inset-0 hero-grid opacity-70 pointer-events-none"></div>
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-24 pb-20 lg:pb-28 grid lg:grid-cols-12 gap-14 items-center">
+        <div class="lg:col-span-7 reveal">
+          <div class="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white px-4 py-2 text-xs font-bold text-blue-700 shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
+            AI • Skills • Opportunities[span_3](start_span)[span_3](end_span)
+          </div>
+
+          <h1 class="mt-7 text-5xl sm:text-6xl lg:text-[76px] leading-[.98] tracking-[-.055em] font-extrabold text-ink max-w-4xl">
+            Build your digital future with <span class="text-gradient">AI.</span>[span_4](start_span)[span_4](end_span)
+          </h1>
+
+          <p class="mt-7 text-base sm:text-lg text-slate-600 max-w-2xl leading-8">
+            Evermore brings intelligent AI tools, practical skills, AI training tasks and qualified remote opportunities into one modern ecosystem.[span_5](start_span)[span_5](end_span)
+          </p>
+
+          <div class="mt-9 flex flex-col sm:flex-row gap-3">
+            <a href="signup.html" class="shine inline-flex items-center justify-center gap-2 bg-ink text-white font-bold px-7 py-4 rounded-xl hover:bg-slate-800 transition shadow-premium">
+              Start with Evermore <i class="fa-solid fa-arrow-right"></i>
             </a>
-            
-            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
-                <a href="#platform" class="hover:text-brand-400 transition">Platform</a>
-                <a href="#everai" class="hover:text-brand-400 transition">EverAI</a>
-                <a href="#tasks" class="hover:text-brand-400 transition">Tasks</a>
-                <a href="#academy" class="hover:text-brand-400 transition">Academy</a>
-                <a href="#pricing" class="hover:text-brand-400 transition">Pricing</a>
-                <a href="#faq" class="hover:text-brand-400 transition">FAQ</a>
-            </nav>
+            <a href="#platform" class="inline-flex items-center justify-center gap-2 bg-white border border-slate-200 text-ink font-bold px-7 py-4 rounded-xl hover:border-slate-300 hover:shadow-card transition">
+              See how it works <i class="fa-solid fa-play text-xs"></i>
+            </a>
+          </div>
 
-            <div class="hidden md:flex items-center space-x-4">
-                <a href="signin.html" class="text-sm font-semibold text-slate-300 hover:text-white px-4 py-2 transition">Sign In</a>
-                <a href="signup.html" class="bg-brand-500 hover:bg-brand-600 text-white text-sm font-bold px-5 py-2.5 rounded-xl shadow-lg shadow-brand-500/25 transition transform hover:-translate-y-0.5">Get Started</a>
-            </div>
-
-            <!-- Mobile Menu Toggle Button -->
-            <button id="menu-toggle" aria-label="Toggle Navigation Menu" class="md:hidden text-slate-300 hover:text-white p-2">
-                <i class="fa-solid fa-bars text-xl"></i>
-            </button>
+          <div class="mt-9 flex flex-wrap items-center gap-x-7 gap-y-3 text-xs text-slate-500 font-semibold">
+            <span><i class="fa-solid fa-circle-check text-blue-600 mr-1"></i>AI workspace</span>
+            <span><i class="fa-solid fa-circle-check text-blue-600 mr-1"></i>Skills Academy</span>
+            <span><i class="fa-solid fa-circle-check text-blue-600 mr-1"></i>Opportunity access</span>
+          </div>
         </div>
 
-        <!-- Mobile Drawer Menu -->
-        <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-0 w-full bg-surface border-b border-slate-800 p-6 space-y-4 shadow-2xl">
-            <a href="#platform" class="block text-slate-300 hover:text-brand-400 font-medium">Platform</a>
-            <a href="#everai" class="block text-slate-300 hover:text-brand-400 font-medium">EverAI</a>
-            <a href="#tasks" class="block text-slate-300 hover:text-brand-400 font-medium">Tasks</a>
-            <a href="#academy" class="block text-slate-300 hover:text-brand-400 font-medium">Academy</a>
-            <a href="#pricing" class="block text-slate-300 hover:text-brand-400 font-medium">Pricing</a>
-            <a href="#faq" class="block text-slate-300 hover:text-brand-400 font-medium">FAQ</a>
-            <div class="pt-4 border-t border-slate-800 flex flex-col space-y-3">
-                <a href="signin.html" class="w-full text-center py-2.5 rounded-xl bg-surface-hover text-slate-200 font-semibold">Sign In</a>
-                <a href="signup.html" class="w-full text-center py-2.5 rounded-xl bg-brand-500 text-white font-bold">Get Started</a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="relative pt-24 pb-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        <div class="lg:col-span-7 space-y-8">
-            <div class="inline-flex items-center space-x-2 bg-surface border border-slate-800/80 px-4 py-2 rounded-full text-xs font-semibold text-brand-400 shadow-inner">
-                <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
-                <span>Next-Gen AI Technology & Workforce Ecosystem</span>
-            </div>
-            
-            <h1 class="text-4xl sm:text-6xl font-black tracking-tight leading-[1.08]">
-                The future of digital work is here: <span class="bg-gradient-to-r from-brand-400 via-emerald-300 to-teal-200 bg-clip-text text-transparent">AI tools, real skills & new opportunities.</span>
-            </h1>
-            
-            <p class="text-slate-300 text-lg max-w-xl font-normal leading-relaxed">
-                Evermore is a unified digital ecosystem where users access advanced artificial intelligence, master professional skills, and explore qualified training tasks and remote opportunities.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row items-stretch sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
-                <a href="signup.html" class="bg-brand-500 hover:bg-brand-600 text-white font-bold text-center px-8 py-4 rounded-xl shadow-xl shadow-brand-500/25 transition">Get Started</a>
-                <a href="#platform" class="bg-surface hover:bg-surface-hover border border-slate-700/80 font-semibold text-center px-8 py-4 rounded-xl transition text-slate-200">Explore Evermore</a>
-            </div>
-
-            <!-- Trust Metrics Footer -->
-            <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-800/80">
-                <div>
-                    <div class="text-xl sm:text-2xl font-black text-white">EverAI</div>
-                    <div class="text-xs text-slate-400 mt-0.5">Intelligence & Creation</div>
+        <!-- Product visual -->
+        <div class="lg:col-span-5 reveal">
+          <div class="relative float">
+            <div class="absolute -inset-8 bg-blue-500/10 blur-3xl rounded-full"></div>
+            <div class="relative rounded-[30px] bg-white border border-slate-200 shadow-premium overflow-hidden">
+              <div class="h-12 border-b border-slate-200 px-5 flex items-center justify-between">
+                <div class="flex gap-1.5">
+                  <span class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
                 </div>
-                <div>
-                    <div class="text-xl sm:text-2xl font-black text-white">$18 / hr</div>
-                    <div class="text-xs text-slate-400 mt-0.5">Max Remote Rate</div>
-                </div>
-                <div>
-                    <div class="text-xl sm:text-2xl font-black text-white">100%</div>
-                    <div class="text-xs text-slate-400 mt-0.5">Structured Academy</div>
-                </div>
-            </div>
-        </div>
+                <span class="text-[10px] font-bold text-slate-400 tracking-widest">EVERMORE OS</span>
+              </div>
 
-        <!-- Hero UI Product Preview Mockup -->
-        <div class="lg:col-span-5 relative">
-            <div class="absolute -inset-1 bg-gradient-to-r from-brand-600 to-teal-500 rounded-3xl blur-2xl opacity-15"></div>
-            <div class="relative bg-surface border border-slate-800 p-6 rounded-3xl shadow-2xl space-y-6">
-                <div class="flex items-center justify-between border-b border-slate-800 pb-4">
-                    <div class="flex items-center space-x-2">
-                        <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
-                        <div class="w-3 h-3 rounded-full bg-amber-500/80"></div>
-                        <div class="w-3 h-3 rounded-full bg-emerald-500/80"></div>
-                    </div>
-                    <span class="text-xs font-mono text-slate-400">evermore-os v2.6</span>
-                </div>
+              <div class="p-5 bg-slate-50/80">
+                <div class="grid grid-cols-[72px_1fr] gap-4">
+                  <div class="bg-ink rounded-2xl p-3 text-white space-y-4">
+                    <i class="fa-solid fa-house text-xs"></i>
+                    <i class="fa-solid fa-wand-magic-sparkles text-xs text-blue-300"></i>
+                    <i class="fa-solid fa-list-check text-xs text-slate-400"></i>
+                    <i class="fa-solid fa-graduation-cap text-xs text-slate-400"></i>
+                  </div>
 
-                <div class="space-y-4">
-                    <div class="bg-surface-hover border border-slate-800 p-4 rounded-2xl space-y-2">
-                        <div class="flex items-center justify-between text-xs text-slate-400">
-                            <span><i class="fa-solid fa-robot text-brand-400 mr-1.5"></i> EverAI Assistant</span>
-                            <span class="text-brand-400 font-mono">Active</span>
-                        </div>
-                        <p class="text-sm text-slate-200 font-medium">"Generate full single-page Tailwind UI layout for automotive service workflow."</p>
-                    </div>
-
-                    <div class="bg-canvas border border-brand-500/30 p-4 rounded-2xl space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs font-bold text-brand-400 uppercase tracking-wider">Opportunity Qualified</span>
-                            <span class="text-xs bg-brand-500/10 text-brand-400 px-2.5 py-1 rounded font-bold">$16.8/hr</span>
-                        </div>
-                        <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                            <div class="bg-brand-500 h-full w-3/4 rounded-full"></div>
-                        </div>
-                        <div class="text-[11px] text-slate-400 flex justify-between">
-                            <span>Task Evaluation Module</span>
-                            <span class="text-slate-200">75% Complete</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Platform Ecosystem Overview -->
-    <section id="platform" class="py-24 bg-surface/40 border-y border-slate-800/60">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-            <div class="text-center space-y-4 max-w-2xl mx-auto">
-                <h2 class="text-3xl sm:text-4xl font-black">One ecosystem. Multiple possibilities.</h2>
-                <p class="text-slate-400">Designed to bridge advanced artificial intelligence, structured digital education, and qualified task opportunities.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- EverAI -->
-                <div id="everai" class="bg-surface border border-slate-800 p-8 rounded-3xl space-y-5 hover:border-brand-500/50 transition group">
-                    <div class="w-14 h-14 rounded-2xl bg-brand-500/10 text-brand-400 flex items-center justify-center text-2xl group-hover:bg-brand-500 group-hover:text-white transition duration-300">
-                        <i class="fa-solid fa-brain"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white">EverAI Workspace</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Your intelligent assistant for advanced text generation, multi-media creation, research, and automated code building.</p>
-                    <div class="pt-2 flex items-center text-xs font-bold text-brand-400">
-                        <span>Explore AI Suite</span>
-                        <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition"></i>
-                    </div>
-                </div>
-
-                <!-- AI Tasks -->
-                <div id="tasks" class="bg-surface border border-slate-800 p-8 rounded-3xl space-y-5 hover:border-brand-500/50 transition group">
-                    <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl group-hover:bg-emerald-500 group-hover:text-white transition duration-300">
-                        <i class="fa-solid fa-list-check"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white">AI Training Tasks</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Participate in supervised evaluation workflows, content testing, and data annotation tasks subject to qualification.</p>
-                    <div class="pt-2 flex items-center text-xs font-bold text-brand-400">
-                        <span>View Task Rates</span>
-                        <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition"></i>
-                    </div>
-                </div>
-
-                <!-- Skills Academy -->
-                <div id="academy" class="bg-surface border border-slate-800 p-8 rounded-3xl space-y-5 hover:border-brand-500/50 transition group">
-                    <div class="w-14 h-14 rounded-2xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-2xl group-hover:bg-indigo-500 group-hover:text-white transition duration-300">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white">Skills Academy</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Learn practical digital skills, web development, and professional workflows with structured curriculum and mentorship.</p>
-                    <div class="pt-2 flex items-center text-xs font-bold text-brand-400">
-                        <span>Browse Academy</span>
-                        <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works Section -->
-    <section class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-        <div class="text-center space-y-4">
-            <h2 class="text-3xl sm:text-4xl font-black">How Ever Works</h2>
-            <p class="text-slate-400">A streamlined path from registration to professional growth.</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div class="bg-surface border border-slate-800 p-6 rounded-2xl space-y-3">
-                <div class="text-brand-400 font-mono text-sm font-bold">01</div>
-                <h3 class="text-base font-bold text-white">Create Account</h3>
-                <p class="text-slate-400 text-xs leading-relaxed">Register securely and access your centralized Evermore dashboard.</p>
-            </div>
-            <div class="bg-surface border border-slate-800 p-6 rounded-2xl space-y-3">
-                <div class="text-brand-400 font-mono text-sm font-bold">02</div>
-                <h3 class="text-base font-bold text-white">Choose Access Tier</h3>
-                <p class="text-slate-400 text-xs leading-relaxed">Select between Trial or Crown Premium to unlock specific tools and task rates.</p>
-            </div>
-            <div class="bg-surface border border-slate-800 p-6 rounded-2xl space-y-3">
-                <div class="text-brand-400 font-mono text-sm font-bold">03</div>
-                <h3 class="text-base font-bold text-white">Learn & Create</h3>
-                <p class="text-slate-400 text-xs leading-relaxed">Leverage EverAI capabilities and complete courses in the Skills Academy.</p>
-            </div>
-            <div class="bg-surface border border-slate-800 p-6 rounded-2xl space-y-3">
-                <div class="text-brand-400 font-mono text-sm font-bold">04</div>
-                <h3 class="text-base font-bold text-white">Explore Opportunities</h3>
-                <p class="text-slate-400 text-xs leading-relaxed">Participate in available AI training tasks and remote opportunities based on eligibility.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing / Packages Section -->
-    <section id="pricing" class="py-24 bg-surface/30 border-y border-slate-800/60">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-            <div class="text-center space-y-4 max-w-xl mx-auto">
-                <h2 class="text-3xl sm:text-4xl font-black">Transparent Access Packages</h2>
-                <p class="text-slate-400">Choose a membership tier structured to scale your access to AI tools, task rates, and academy resources.</p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                <!-- Crown Premium Package -->
-                <div class="bg-surface border-2 border-brand-500/80 rounded-3xl p-8 space-y-8 relative shadow-2xl shadow-brand-500/10 flex flex-col justify-between">
-                    <div class="absolute -top-4 right-8 bg-brand-500 text-white text-xs font-black uppercase tracking-wider px-4 py-1.5 rounded-full shadow-lg">Most Popular 👑</div>
-                    
-                    <div class="space-y-6">
+                  <div class="space-y-3">
+                    <div class="bg-white rounded-2xl border border-slate-200 p-4">
+                      <div class="flex justify-between items-center">
                         <div>
-                            <h3 class="text-2xl font-black text-white">Crown Premium Package</h3>
-                            <div class="mt-4 flex items-baseline space-x-2">
-                                <span class="text-4xl font-black text-brand-400">$10</span>
-                                <span class="text-slate-400 text-sm font-semibold">/ N13,992</span>
-                            </div>
-                            <p class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-calendar-days text-brand-400 mr-1"></i> Validity: 6 Months validity</p>
+                          <div class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">EverAI</div>
+                          <div class="font-extrabold text-sm mt-1">What are you building?</div>
                         </div>
-
-                        <ul class="space-y-4 text-sm text-slate-300">
-                            <li class="flex items-start space-x-3">
-                                <i class="fa-solid fa-circle-check text-brand-400 mt-1"></i>
-                                <span><strong>AI Training Tasks:</strong> Consistent AI Training tasks (<strong class="text-white">$16.8/hr</strong>)</span>
-                            </li>
-                            <li class="flex items-start space-x-3">
-                                <i class="fa-solid fa-circle-check text-brand-400 mt-1"></i>
-                                <span><strong>Remote Jobs:</strong> Priority in receiving AI outsourced Jobs (<strong class="text-white">$18/hr</strong>)</span>
-                            </li>
-                            <li class="flex items-start space-x-3">
-                                <i class="fa-solid fa-circle-check text-brand-400 mt-1"></i>
-                                <span><strong>AI Capabilities:</strong> Unlimited prompt response from EverAI</span>
-                            </li>
-                            <li class="flex items-start space-x-3">
-                                <i class="fa-solid fa-circle-check text-brand-400 mt-1"></i>
-                                <span><strong>Media & Creation:</strong> Unlimited video, image, PDFs, and flyers generation</span>
-                            </li>
-                            <li class="flex items-start space-x-3">
-                                <i class="fa-solid fa-circle-check text-brand-400 mt-1"></i>
-                                <span><strong>Development:</strong> Can write code and build websites</span>
-                            </li>
-                            <li class="flex items-start space-x-3">
-                                <i class="fa-solid fa-circle-check text-brand-400 mt-1"></i>
-                                <span><strong>Academy:</strong> Full access to Evermore Skills Academy</span>
-                            </li>
-                        </ul>
+                        <div class="w-8 h-8 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center"><i class="fa-solid fa-sparkles text-xs"></i></div>
+                      </div>
+                      <div class="mt-3 rounded-xl bg-slate-50 border border-slate-200 px-3 py-2 text-[10px] text-slate-500">
+                        Build a premium landing page...
+                      </div>
                     </div>
 
-                    <a href="signup.html" class="w-full bg-brand-500 hover:bg-brand-600 text-white font-bold py-4 rounded-xl text-center transition shadow-lg shadow-brand-500/20 block">Get Crown Premium</a>
-                </div>
-
-                <!-- Trial Package -->
-                <div class="bg-surface border border-slate-800 rounded-3xl p-8 space-y-8 flex flex-col justify-between">
-                    <div class="space-y-6">
-                        <div>
-                            <h3 class="text-2xl font-black text-white">Trial Package</h3>
-                            <div class="mt-4 flex items-baseline space-x-2">
-                                <span class="text-4xl font-black text-slate-200">$5</span>
-                                <span class="text-slate-400 text-sm font-semibold">/ N6,991</span>
-                            </div>
-                            <p class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-calendar-days text-slate-400 mr-1"></i> Validity: 2 Months validity</p>
-                        </div>
-
-                        <ul class="space-y-4 text-sm text-slate-300">
-                            <li class="flex items-start space-x-3">
-                                <i class="fa-solid fa-circle-check text-brand-400 mt-1"></i>
-                                <span><strong>AI Training Tasks:</strong> Consistent AI Training tasks (<strong class="text-white">$8.6/hr</strong>)</span>
-                            </li>
-                            <li class="flex items-start space-x-3">
-                                <i class="fa-solid fa-circle-check text-brand-400 mt-1"></i>
-                                <span><strong>Remote Jobs:</strong> AI outsourced remote jobs (<span class="text-amber-400">inconsistent</span>) ($10.2/hr)</span>
-                            </li>
-                            <li class="flex items-start space-x-3">
-                                <i class="fa-solid fa-circle-check text-brand-400 mt-1"></i>
-                                <span><strong>AI Capabilities:</strong> Minimal prompts response from EverAI</span>
-                            </li>
-                            <li class="flex items-start space-x-3">
-                                <i class="fa-solid fa-circle-check text-brand-400 mt-1"></i>
-                                <span><strong>Media & Creation:</strong> Limited image and graphics generation</span>
-                            </li>
-                            <li class="flex items-start space-x-3 opacity-60">
-                                <i class="fa-solid fa-circle-xmark text-slate-500 mt-1"></i>
-                                <span><strong>Development:</strong> Cannot write code and build websites</span>
-                            </li>
-                            <li class="flex items-start space-x-3">
-                                <i class="fa-solid fa-circle-check text-brand-400 mt-1"></i>
-                                <span><strong>Academy:</strong> Minimal access to Evermore Skills Academy</span>
-                            </li>
-                        </ul>
+                    <div class="grid grid-cols-2 gap-3">
+                      <div class="bg-ink text-white rounded-2xl p-4">
+                        <div class="text-[9px] text-slate-400 uppercase tracking-widest">Opportunities</div>
+                        <div class="text-2xl font-extrabold mt-2">12</div>
+                        <div class="text-[9px] text-emerald-300 mt-1">Available to explore</div>
+                      </div>
+                      <div class="bg-white rounded-2xl border border-slate-200 p-4">
+                        <div class="text-[9px] text-slate-400 uppercase tracking-widest">Academy</div>
+                        <div class="text-2xl font-extrabold mt-2">68%</div>
+                        <div class="text-[9px] text-blue-600 mt-1">Learning progress</div>
+                      </div>
                     </div>
 
-                    <a href="signup.html" class="w-full bg-surface-hover hover:bg-slate-800 text-white font-bold py-4 rounded-xl text-center transition block border border-slate-700">Get Trial Package</a>
+                    <div class="bg-white rounded-2xl border border-slate-200 p-4">
+                      <div class="flex items-center justify-between">
+                        <span class="font-bold text-xs">AI Task</span>
+                        <span class="text-[9px] bg-blue-50 text-blue-700 px-2 py-1 rounded-full font-bold">Qualified</span>
+                      </div>
+                      <div class="mt-3 h-2 rounded-full bg-slate-100 overflow-hidden"><div class="h-full w-3/4 bg-blue-600 rounded-full"></div></div>
+                      <div class="mt-2 flex justify-between text-[9px] text-slate-400"><span>Response evaluation</span><span>75%</span></div>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- FAQ Section -->
-    <section id="faq" class="py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        <div class="text-center space-y-4">
-            <h2 class="text-3xl sm:text-4xl font-black">Frequently Asked Questions</h2>
-            <p class="text-slate-400">Clear answers regarding platform access, task eligibility, and features.</p>
+    <!-- Platform -->
+    <section id="platform" class="py-24 bg-soft border-y border-slate-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl reveal">
+          <p class="text-xs font-extrabold uppercase tracking-[.2em] text-blue-600">The ecosystem</p>
+          <h2 class="mt-3 text-4xl sm:text-5xl font-extrabold tracking-tight text-ink">Everything you need to move forward.[span_6](start_span)[span_6](end_span)</h2>
+          <p class="mt-5 text-slate-600 leading-7">One account. One ecosystem. Multiple ways to learn, create and explore digital opportunities.[span_7](start_span)[span_7](end_span)</p>
         </div>
 
-        <div class="space-y-4">
-            <details class="bg-surface border border-slate-800 rounded-2xl p-6 group">
-                <summary class="font-bold cursor-pointer flex justify-between items-center text-white">
-                    <span>What is the difference between Crown and Trial packages?</span>
-                    <i class="fa-solid fa-plus group-open:rotate-45 transition text-brand-400"></i>
-                </summary>
-                <p class="text-slate-400 text-sm mt-4 leading-relaxed">Crown ($10/N13,992 for 6 months) offers higher hourly task rates ($16.8/hr), priority remote jobs ($18/hr), unlimited EverAI code/media generation, and full academy access. Trial ($5/N6,991 for 2 months) offers $8.6/hr tasks, inconsistent remote jobs, and limited features.</p>
-            </details>
+        <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div class="reveal bg-white border border-slate-200 rounded-3xl p-7 shadow-card hover:-translate-y-1 transition">
+            <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+            <h3 class="mt-6 font-extrabold text-lg">EverAI</h3>
+            <p class="mt-3 text-sm text-slate-500 leading-6">Create, research, code and build with an intelligent AI workspace.[span_8](start_span)[span_8](end_span)</p>
+            <a href="#everai" class="inline-block mt-5 text-xs font-extrabold text-blue-600">Explore EverAI →</a>
+          </div>
 
-            <details class="bg-surface border border-slate-800 rounded-2xl p-6 group">
-                <summary class="font-bold cursor-pointer flex justify-between items-center text-white">
-                    <span>How do I receive remote job opportunities?</span>
-                    <i class="fa-solid fa-plus group-open:rotate-45 transition text-brand-400"></i>
-                </summary>
-                <p class="text-slate-400 text-sm mt-4 leading-relaxed">Crown members receive priority matching for outsourced AI jobs directly in their dashboard, while Trial members receive notifications subject to availability and active qualifications.</p>
-            </details>
+          <div class="reveal bg-white border border-slate-200 rounded-3xl p-7 shadow-card hover:-translate-y-1 transition">
+            <div class="w-12 h-12 rounded-2xl bg-violet-50 text-violet-600 flex items-center justify-center"><i class="fa-solid fa-list-check"></i></div>
+            <h3 class="mt-6 font-extrabold text-lg">AI Tasks</h3>
+            <p class="mt-3 text-sm text-slate-500 leading-6">Explore supervised AI evaluation, testing and annotation opportunities.[span_9](start_span)[span_9](end_span)</p>
+            <a href="#opportunities" class="inline-block mt-5 text-xs font-extrabold text-violet-600">View opportunities →</a>
+          </div>
 
-            <details class="bg-surface border border-slate-800 rounded-2xl p-6 group">
-                <summary class="font-bold cursor-pointer flex justify-between items-center text-white">
-                    <span>Can I build websites using EverAI?</span>
-                    <i class="fa-solid fa-plus group-open:rotate-45 transition text-brand-400"></i>
-                </summary>
-                <p class="text-slate-400 text-sm mt-4 leading-relaxed">Yes! Crown package members have full code-writing capabilities to generate and build complete single-page or multi-page websites directly through the platform.</p>
-            </details>
+          <div class="reveal bg-white border border-slate-200 rounded-3xl p-7 shadow-card hover:-translate-y-1 transition">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center"><i class="fa-solid fa-graduation-cap"></i></div>
+            <h3 class="mt-6 font-extrabold text-lg">Skills Academy</h3>
+            <p class="mt-3 text-sm text-slate-500 leading-6">Build practical digital and professional skills through structured learning.[span_10](start_span)[span_10](end_span)</p>
+            <a href="#academy" class="inline-block mt-5 text-xs font-extrabold text-emerald-600">Explore Academy →</a>
+          </div>
+
+          <div class="reveal bg-ink text-white rounded-3xl p-7 shadow-premium hover:-translate-y-1 transition">
+            <div class="w-12 h-12 rounded-2xl bg-white/10 text-blue-300 flex items-center justify-center"><i class="fa-solid fa-briefcase"></i></div>
+            <h3 class="mt-6 font-extrabold text-lg">Remote Work</h3>
+            <p class="mt-3 text-sm text-slate-300 leading-6">Discover qualified remote opportunities when roles are available.[span_11](start_span)[span_11](end_span)</p>
+            <a href="#opportunities" class="inline-block mt-5 text-xs font-extrabold text-blue-300">Explore work →</a>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- Professional Footer -->
-    <footer class="bg-canvas border-t border-slate-800/80 py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-12 text-sm text-slate-400">
-            <div class="space-y-4">
-                <div class="flex items-center space-x-3">
-                    <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold">E</div>
-                    <span class="font-bold text-white tracking-wider">EVERMORE</span>
-                </div>
-                <p class="text-xs text-slate-400 leading-relaxed">Evermore is a next-generation technology platform empowering users with advanced AI tools, professional skills, and qualified remote opportunities.</p>
-            </div>
-            <div>
-                <h4 class="font-bold text-white mb-4">Platform</h4>
-                <ul class="space-y-2 text-xs">
-                    <li><a href="#everai" class="hover:text-white transition">EverAI Workspace</a></li>
-                    <li><a href="#tasks" class="hover:text-white transition">AI Training Tasks</a></li>
-                    <li><a href="#academy" class="hover:text-white transition">Skills Academy</a></li>
-                    <li><a href="#pricing" class="hover:text-white transition">Pricing Tiers</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="font-bold text-white mb-4">Support & Trust</h4>
-                <ul class="space-y-2 text-xs">
-                    <li><a href="#faq" class="hover:text-white transition">Help Center & FAQ</a></li>
-                    <li><a href="#" class="hover:text-white transition">Terms of Service</a></li>
-                    <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="font-bold text-white mb-4">Account</h4>
-                <ul class="space-y-2 text-xs">
-                    <li><a href="signin.html" class="hover:text-white transition">Sign In</a></li>
-                    <li><a href="signup.html" class="hover:text-white transition">Create Account</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-slate-800/60 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
-            <div>&copy; 2026 Evermore Enterprise. All rights reserved.</div>
-            <div class="mt-4 sm:mt-0 flex space-x-6">
-                <span class="inline-flex items-center"><span class="w-2 h-2 rounded-full bg-emerald-500 mr-2"></span>All Systems Operational</span>
-            </div>
-        </div>
-    </footer>
+    <!-- EverAI -->
+    <section id="everai" class="py-28">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-center">
+        <div class="reveal">
+          <p class="text-xs font-extrabold uppercase tracking-[.2em] text-blue-600">Meet EverAI</p>
+          <h2 class="mt-3 text-4xl sm:text-5xl font-extrabold tracking-tight text-ink">Your intelligent workspace for getting things done.[span_12](start_span)[span_12](end_span)</h2>
+          <p class="mt-5 text-slate-600 leading-7">Use EverAI to move from an idea to a finished piece of work faster — from writing and research to code, websites and creative assets.[span_13](start_span)[span_13](end_span)</p>
 
-    <!-- Interactive Script for Mobile Menu -->
-    <script>
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-    </script>
+          <div class="mt-8 grid sm:grid-cols-2 gap-3">
+            <div class="rounded-2xl border border-slate-200 p-4"><i class="fa-solid fa-code text-blue-600"></i><span class="ml-2 font-bold text-sm">Code & websites</span></div>
+            <div class="rounded-2xl border border-slate-200 p-4"><i class="fa-solid fa-image text-violet-600"></i><span class="ml-2 font-bold text-sm">Creative generation</span></div>
+            <div class="rounded-2xl border border-slate-200 p-4"><i class="fa-solid fa-file-lines text-emerald-600"></i><span class="ml-2 font-bold text-sm">Documents & PDFs</span></div>
+            <div class="rounded-2xl border border-slate-200 p-4"><i class="fa-solid fa-lightbulb text-amber-500"></i><span class="ml-2 font-bold text-sm">Ideas & research</span></div>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <div class="rounded-[32px] bg-ink p-4 shadow-premium">
+            <div class="rounded-[24px] bg-white overflow-hidden">
+              <div class="px-5 py-4 border-b border-slate-200 flex items-center justify-between">
+                <span class="font-extrabold text-sm">EverAI</span>
+                <span class="text-[10px] text-emerald-600 font-bold"><i class="fa-solid fa-circle text-[6px] mr-1"></i>Online</span>
+              </div>
+              <div class="p-5 bg-slate-50 min-h-[350px]">
+                <div class="max-w-[88%] bg-white border border-slate-200 rounded-2xl rounded-tl-md p-4 shadow-sm">
+                  <div class="text-[10px] font-bold text-blue-600 mb-2">YOU</div>
+                  <p class="text-xs text-slate-700">Create a launch page for a modern AI platform.</p>
+                </div>
+                <div class="mt-4 ml-auto max-w-[90%] bg-ink text-white rounded-2xl rounded-tr-md p-4 shadow-lg">
+                  <div class="text-[10px] font-bold text-blue-300 mb-2">EVERAI</div>
+                  <p class="text-xs text-slate-200 leading-5">Absolutely. I can structure the hero, product showcase, pricing, trust section, FAQs and responsive layout.</p>
+                  <div class="mt-4 grid grid-cols-3 gap-2">
+                    <div class="h-14 rounded-lg bg-white/10"></div>
+                    <div class="h-14 rounded-lg bg-blue-500/30"></div>
+                    <div class="h-14 rounded-lg bg-white/10"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="p-4 border-t border-slate-200 flex gap-2">
+                <div class="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-[10px] text-slate-400">Ask EverAI anything...</div>
+                <button class="w-11 rounded-xl bg-ink text-white"><i class="fa-solid fa-arrow-up text-xs"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Opportunities -->
+    <section id="opportunities" class="py-24 bg-ink text-white overflow-hidden relative">
+      <div class="absolute -right-40 -top-40 w-96 h-96 bg-blue-600/20 blur-3xl rounded-full"></div>
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-12 items-end">
+          <div class="reveal">
+            <p class="text-xs font-extrabold uppercase tracking-[.2em] text-blue-300">Opportunities</p>
+            <h2 class="mt-3 text-4xl sm:text-5xl font-extrabold tracking-tight">Turn access into experience.[span_14](start_span)[span_14](end_span)</h2>
+            <p class="mt-5 text-slate-300 leading-7 max-w-xl">Explore AI training tasks and remote opportunities based on qualification, role requirements and active availability.[span_15](start_span)[span_15](end_span)</p>
+          </div>
+          <div class="reveal lg:text-right">
+            <span class="inline-flex px-4 py-2 rounded-full border border-white/10 bg-white/5 text-xs font-bold text-slate-300">Rates vary by task, role & availability[span_16](start_span)[span_16](end_span)</span>
+          </div>
+        </div>
+
+        <div class="mt-12 grid md:grid-cols-3 gap-4">
+          <div class="reveal rounded-3xl bg-white/5 border border-white/10 p-6">
+            <div class="flex justify-between"><span class="text-blue-300"><i class="fa-solid fa-robot"></i></span><span class="text-[10px] font-bold bg-emerald-400/10 text-emerald-300 px-2 py-1 rounded-full">Qualification[span_17](start_span)[span_17](end_span)</span></div>
+            <h3 class="mt-8 font-extrabold">AI Response Evaluation</h3>
+            <p class="mt-2 text-xs text-slate-400">Review and assess AI-generated responses against task criteria.[span_18](start_span)[span_18](end_span)</p>
+            <div class="mt-6 pt-4 border-t border-white/10 flex justify-between text-[10px]"><span class="text-slate-400">Task type</span><span class="font-bold">AI Training[span_19](start_span)[span_19](end_span)</span></div>
+          </div>
+          <div class="reveal rounded-3xl bg-white/5 border border-white/10 p-6">
+            <div class="flex justify-between"><span class="text-violet-300"><i class="fa-solid fa-database"></i></span><span class="text-[10px] font-bold bg-blue-400/10 text-blue-300 px-2 py-1 rounded-full">Remote[span_20](start_span)[span_20](end_span)</span></div>
+            <h3 class="mt-8 font-extrabold">Data & Content Review</h3>
+            <p class="mt-2 text-xs text-slate-400">Support structured data, content and annotation workflows.[span_21](start_span)[span_21](end_span)</p>
+            <div class="mt-6 pt-4 border-t border-white/10 flex justify-between text-[10px]"><span class="text-slate-400">Work mode</span><span class="font-bold">Remote[span_22](start_span)[span_22](end_span)</span></div>
+          </div>
+          <div class="reveal rounded-3xl bg-white/5 border border-white/10 p-6">
+            <div class="flex justify-between"><span class="text-emerald-300"><i class="fa-solid fa-briefcase"></i></span><span class="text-[10px] font-bold bg-white/10 text-slate-300 px-2 py-1 rounded-full">Opportunity[span_23](start_span)[span_23](end_span)</span></div>
+            <h3 class="mt-8 font-extrabold">Outsourced AI Jobs</h3>
+            <p class="mt-2 text-xs text-slate-400">Discover digital roles matched to active requirements and eligibility.[span_24](start_span)[span_24](end_span)</p>
+            <div class="mt-6 pt-4 border-t border-white/10 flex justify-between text-[10px]"><span class="text-slate-400">Status</span><span class="font-bold">When available[span_25](start_span)[span_25](end_span)</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Academy -->
+    <section id="academy" class="py-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto reveal">
+          <p class="text-xs font-extrabold uppercase tracking-[.2em] text-emerald-600">Skills Academy</p>
+          <h2 class="mt-3 text-4xl sm:text-5xl font-extrabold tracking-tight">Learn skills that compound.[span_26](start_span)[span_26](end_span)</h2>
+          <p class="mt-5 text-slate-600 leading-7">Build practical skills through structured learning, projects and professional workflows.[span_27](start_span)[span_27](end_span)</p>
+        </div>
+
+        <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="reveal rounded-3xl bg-soft border border-slate-200 p-6"><i class="fa-solid fa-code text-blue-600"></i><h3 class="mt-5 font-extrabold">Web Development</h3><p class="mt-2 text-xs text-slate-500 leading-5">Build modern websites and digital products.[span_28](start_span)[span_28](end_span)</p></div>
+          <div class="reveal rounded-3xl bg-soft border border-slate-200 p-6"><i class="fa-solid fa-wand-magic-sparkles text-violet-600"></i><h3 class="mt-5 font-extrabold">AI & Automation</h3><p class="mt-2 text-xs text-slate-500 leading-5">Use AI to automate workflows and increase productivity.[span_29](start_span)[span_29](end_span)</p></div>
+          <div class="reveal rounded-3xl bg-soft border border-slate-200 p-6"><i class="fa-solid fa-bullhorn text-amber-500"></i><h3 class="mt-5 font-extrabold">Digital Marketing</h3><p class="mt-2 text-xs text-slate-500 leading-5">Learn practical digital growth and content workflows.[span_30](start_span)[span_30](end_span)</p></div>
+          <div class="reveal rounded-3xl bg-soft border border-slate-200 p-6"><i class="fa-solid fa-briefcase text-emerald-600"></i><h3 class="mt-5 font-extrabold">Professional Skills</h3><p class="mt-2 text-xs text-slate-500 leading-5">Develop skills for modern remote and digital work.[span_31](start_span)[span_31](end_span)</p></div>
+        </div>
+
+        <div class="mt-10 rounded-[30px] bg-gradient-to-r from-blue-600 to-violet-600 p-8 sm:p-10 text-white flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+          <div>
+            <p class="text-xs font-bold uppercase tracking-widest text-blue-100">The Evermore pathway[span_32](start_span)[span_32](end_span)</p>
+            <h3 class="mt-2 text-2xl sm:text-3xl font-extrabold">Learn → Practice → Build → Explore[span_33](start_span)[span_33](end_span)</h3>
+          </div>
+          <a href="signup.html" class="bg-white text-ink font-extrabold px-6 py-3 rounded-xl text-sm hover:bg-slate-100 transition">Start learning</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="py-28 bg-soft border-y border-slate-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto reveal">
+          <p class="text-xs font-extrabold uppercase tracking-[.2em] text-blue-600">Membership</p>
+          <h2 class="mt-3 text-4xl sm:text-5xl font-extrabold tracking-tight">Choose your Evermore plan.[span_34](start_span)[span_34](end_span)</h2>
+          <p class="mt-5 text-slate-600">Start small or unlock the broader Evermore experience. Opportunity availability and task rates are subject to qualification and active availability.[span_35](start_span)[span_35](end_span)</p>
+        </div>
+
+        <!-- Updated grid from lg:grid-cols-3 to lg:grid-cols-2 max-w-4xl for the remaining 2 cards -->
+        <div class="mt-14 grid lg:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <!-- Trial -->
+          <div class="reveal bg-white border border-slate-200 rounded-[28px] p-7 shadow-card flex flex-col">
+            <span class="text-xs font-extrabold uppercase tracking-widest text-slate-400">Starter</span>
+            <h3 class="mt-3 text-2xl font-extrabold">Trial</h3>
+            <p class="mt-2 text-sm text-slate-500">A lower-access entry point for exploring Evermore.[span_36](start_span)[span_36](end_span)</p>
+            <div class="mt-6"><span class="text-4xl font-extrabold">$5</span> <span class="text-sm text-slate-400">/ ₦6,991[span_37](start_span)[span_37](end_span)</span></div>
+            <div class="text-xs text-slate-400 mt-1">2 months validity[span_38](start_span)[span_38](end_span)</div>
+            <ul class="mt-7 space-y-3 text-sm text-slate-600 flex-1">
+              <li><i class="fa-solid fa-check text-blue-600 mr-2"></i>Access to eligible AI training tasks[span_39](start_span)[span_39](end_span)</li>
+              <li><i class="fa-solid fa-check text-blue-600 mr-2"></i>Limited EverAI access[span_40](start_span)[span_40](end_span)</li>
+              <li><i class="fa-solid fa-check text-blue-600 mr-2"></i>Limited creative generation[span_41](start_span)[span_41](end_span)</li>
+              <li><i class="fa-solid fa-check text-blue-600 mr-2"></i>Basic Academy access[span_42](start_span)[span_42](end_span)</li>
+              <li class="text-slate-400"><i class="fa-solid fa-minus mr-2"></i>Advanced coding access[span_43](start_span)[span_43](end_span)</li>
+            </ul>
+            <a href="signup.html" class="mt-8 w-full text-center py-3.5 rounded-xl border border-slate-300 font-extrabold hover:bg-soft transition">Choose Trial</a>
+          </div>
+
+          <!-- Crown -->
+          <div class="reveal bg-ink text-white rounded-[30px] p-7 shadow-premium flex flex-col relative">
+            <div class="absolute -top-3.5 right-7 px-3 py-1 rounded-full bg-white text-ink text-[10px] font-extrabold uppercase tracking-widest">Most complete[span_44](start_span)[span_44](end_span)</div>
+            <span class="text-xs font-extrabold uppercase tracking-widest text-blue-300 mt-2">Premium[span_45](start_span)[span_45](end_span)</span>
+            <h3 class="mt-3 text-2xl font-extrabold">Crown Premium[span_46](start_span)[span_46](end_span)</h3>
+            <p class="mt-2 text-sm text-slate-300">The full Evermore experience for users who want maximum platform access.[span_47](start_span)[span_47](end_span)</p>
+            <div class="mt-6"><span class="text-4xl font-extrabold">$10</span> <span class="text-sm text-slate-400">/ ₦13,992[span_48](start_span)[span_48](end_span)</span></div>
+            <div class="text-xs text-slate-400 mt-1">6 months validity[span_49](start_span)[span_49](end_span)</div>
+            <ul class="mt-7 space-y-3 text-sm text-slate-200 flex-1">
+              <li><i class="fa-solid fa-check text-blue-300 mr-2"></i>Expanded AI training task access[span_50](start_span)[span_50](end_span)</li>
+              <li><i class="fa-solid fa-check text-blue-300 mr-2"></i>Priority access to available remote opportunities[span_51](start_span)[span_51](end_span)</li>
+              <li><i class="fa-solid fa-check text-blue-300 mr-2"></i>Unlimited EverAI prompting[span_52](start_span)[span_52](end_span)</li>
+              <li><i class="fa-solid fa-check text-blue-300 mr-2"></i>Advanced media generation[span_53](start_span)[span_53](end_span)</li>
+              <li><i class="fa-solid fa-check text-blue-300 mr-2"></i>Coding & website building[span_54](start_span)[span_54](end_span)</li>
+              <li><i class="fa-solid fa-check text-blue-300 mr-2"></i>Full Skills Academy access[span_55](start_span)[span_55](end_span)</li>
+            </ul>
+            <a href="signup.html" class="mt-8 w-full text-center py-3.5 rounded-xl bg-white text-ink font-extrabold hover:bg-slate-100 transition">Get Crown Premium</a>
+          </div>
+        </div>
+
+        <p class="text-center text-[11px] text-slate-400 mt-6">
+          *Opportunity access, task availability, qualification and applicable rates are not guaranteed and may vary by active work and eligibility.[span_56](start_span)[span_56](end_span)
+        </p>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="py-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center reveal">
+          <p class="text-xs font-extrabold uppercase tracking-[.2em] text-blue-600">Simple by design[span_57](start_span)[span_57](end_span)</p>
+          <h2 class="mt-3 text-4xl font-extrabold tracking-tight">One clear path.[span_58](start_span)[span_58](end_span)</h2>
+        </div>
+
+        <div class="mt-12 grid md:grid-cols-4 gap-4">
+          <div class="reveal p-6 rounded-3xl border border-slate-200"><div class="text-blue-600 font-extrabold">01</div><h3 class="mt-5 font-extrabold">Create account[span_59](start_span)[span_59](end_span)</h3><p class="mt-2 text-xs text-slate-500 leading-5">Set up your Evermore account and enter your workspace.[span_60](start_span)[span_60](end_span)</p></div>
+          <div class="reveal p-6 rounded-3xl border border-slate-200"><div class="text-blue-600 font-extrabold">02</div><h3 class="mt-5 font-extrabold">Choose access[span_61](start_span)[span_61](end_span)</h3><p class="mt-2 text-xs text-slate-500 leading-5">Pick the membership level that fits your needs.[span_62](start_span)[span_62](end_span)</p></div>
+          <div class="reveal p-6 rounded-3xl border border-slate-200"><div class="text-blue-600 font-extrabold">03</div><h3 class="mt-5 font-extrabold">Learn & create[span_63](start_span)[span_63](end_span)</h3><p class="mt-2 text-xs text-slate-500 leading-5">Use EverAI and build skills through the Academy.[span_64](start_span)[span_64](end_span)</p></div>
+          <div class="reveal p-6 rounded-3xl border border-slate-200"><div class="text-blue-600 font-extrabold">04</div><h3 class="mt-5 font-extrabold">Explore work[span_65](start_span)[span_65](end_span)</h3><p class="mt-2 text-xs text-slate-500 leading-5">Explore eligible tasks and remote opportunities when available.[span_66](start_span)[span_66](end_span)</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-24 bg-soft border-y border-slate-200">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center reveal">
+          <p class="text-xs font-extrabold uppercase tracking-[.2em] text-blue-600">FAQ</p>
+          <h2 class="mt-3 text-4xl font-extrabold">Questions, answered.[span_67](start_span)[span_67](end_span)</h2>
+        </div>
+
+        <div class="mt-10 space-y-3">
+          <details class="reveal bg-white border border-slate-200 rounded-2xl p-5 group">
+            <summary class="cursor-pointer list-none flex items-center justify-between font-bold"><span>What is Evermore?[span_68](start_span)[span_68](end_span)</span><i class="fa-solid fa-plus text-blue-600 text-sm group-open:rotate-45 transition"></i></summary>
+            <p class="mt-4 text-sm text-slate-500 leading-6">Evermore is a digital ecosystem combining AI tools, learning resources, AI training tasks and qualified remote opportunities.[span_69](start_span)[span_69](end_span)</p>
+          </details>
+          <details class="reveal bg-white border border-slate-200 rounded-2xl p-5 group">
+            <summary class="cursor-pointer list-none flex items-center justify-between font-bold"><span>What is the difference between the plans?[span_70](start_span)[span_70](end_span)</span><i class="fa-solid fa-plus text-blue-600 text-sm group-open:rotate-45 transition"></i></summary>
+            <p class="mt-4 text-sm text-slate-500 leading-6">Each plan provides a different level of access to EverAI, learning resources, task opportunities and platform capabilities. Opportunity availability depends on qualification and active work.[span_71](start_span)[span_71](end_span)</p>
+          </details>
+          <details class="reveal bg-white border border-slate-200 rounded-2xl p-5 group">
+            <summary class="cursor-pointer list-none flex items-center justify-between font-bold"><span>Are the displayed task or remote rates guaranteed?[span_72](start_span)[span_72](end_span)</span><i class="fa-solid fa-plus text-blue-600 text-sm group-open:rotate-45 transition"></i></summary>
+            <p class="mt-4 text-sm text-slate-500 leading-6">No. Rates and opportunities can vary by task, role, qualification and availability. Evermore should not be presented as guaranteeing a fixed income.[span_73](start_span)[span_73](end_span)</p>
+          </details>
+          <details class="reveal bg-white border border-slate-200 rounded-2xl p-5 group">
+            <summary class="cursor-pointer list-none flex items-center justify-between font-bold"><span>Can EverAI build websites?[span_74](start_span)[span_74](end_span)</span><i class="fa-solid fa-plus text-blue-600 text-sm group-open:rotate-45 transition"></i></summary>
+            <p class="mt-4 text-sm text-slate-500 leading-6">Where enabled by the selected plan and platform functionality, EverAI can assist with code and website creation.[span_75](start_span)[span_75](end_span)</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-24">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="rounded-[34px] bg-ink text-white p-9 sm:p-14 text-center relative overflow-hidden shadow-premium">
+          <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(37,99,235,.35),transparent_45%)]"></div>
+          <div class="relative">
+            <p class="text-xs font-extrabold uppercase tracking-[.2em] text-blue-300">Your next move[span_76](start_span)[span_76](end_span)</p>
+            <h2 class="mt-4 text-4xl sm:text-5xl font-extrabold tracking-tight">Learn. Create. Explore.[span_77](start_span)[span_77](end_span)</h2>
+            <p class="mt-5 text-slate-300 max-w-xl mx-auto">Step into an AI-powered ecosystem designed for modern digital work and growth.[span_78](start_span)[span_78](end_span)</p>
+            <a href="signup.html" class="inline-flex mt-8 bg-white text-ink font-extrabold px-7 py-4 rounded-xl hover:bg-slate-100 transition">Create your account <i class="fa-solid fa-arrow-right ml-2"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 bg-white py-14">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-10">
+        <div class="md:col-span-2">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-ink text-white flex items-center justify-center font-extrabold">E</div>
+            <span class="font-extrabold tracking-[.16em]">EVERMORE</span>
+          </div>
+          <p class="mt-4 text-sm text-slate-500 max-w-md leading-6">A premium digital ecosystem combining AI tools, practical skills and qualified opportunities for modern digital work.[span_79](start_span)[span_79](end_span)</p>
+        </div>
+        <div>
+          <h4 class="font-extrabold text-sm">Platform</h4>
+          <ul class="mt-4 space-y-3 text-xs text-slate-500">
+            <li><a href="#everai" class="hover:text-blue-600">EverAI</a></li>
+            <li><a href="#opportunities" class="hover:text-blue-600">Opportunities</a></li>
+            <li><a href="#academy" class="hover:text-blue-600">Academy</a></li>
+            <li><a href="#pricing" class="hover:text-blue-600">Pricing</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-extrabold text-sm">Company</h4>
+          <ul class="mt-4 space-y-3 text-xs text-slate-500">
+            <li><a href="#faq" class="hover:text-blue-600">FAQ</a></li>
+            <li><a href="#" class="hover:text-blue-600">Terms</a></li>
+            <li><a href="#" class="hover:text-blue-600">Privacy</a></li>
+            <li><a href="signin.html" class="hover:text-blue-600">Sign in</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-12 pt-6 border-t border-slate-200 flex flex-col sm:flex-row justify-between gap-3 text-[11px] text-slate-400">
+        <span>© 2026 Evermore Enterprise. All rights reserved.[span_80](start_span)[span_80](end_span)</span>
+        <span><i class="fa-solid fa-circle text-[6px] text-emerald-500 mr-1"></i> Platform experience available online[span_81](start_span)[span_81](end_span)</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    toggle.addEventListener('click', () => menu.classList.toggle('hidden'));
+
+    document.querySelectorAll('#mobile-menu a').forEach(a => {
+      a.addEventListener('click', () => menu.classList.add('hidden'));
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('show');
+      });
+    }, { threshold: .08 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
