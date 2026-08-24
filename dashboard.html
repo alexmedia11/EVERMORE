@@ -1,567 +1,1674 @@
 <!DOCTYPE html>
-<html lang="en" class="dark scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | Evermore - Exist Beyond the Moment</title>
-    <!-- Tailwind CSS CDN -->
+
+    <title>Dashboard | Evermore</title>
+    <meta name="description" content="Evermore member dashboard — AI tools, tasks, opportunities, academy and wallet.">
+
+    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
+
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
+                        ink: '#0B1020',
+                        muted: '#667085',
                         brand: {
-                            dark: '#030712',
-                            card: '#0b1329',
-                            cardHover: '#111d3b',
-                            mint: '#00ffcc',
-                            mintGlow: 'rgba(0, 255, 204, 0.3)',
-                            blue: '#1e40af',
-                            gold: '#fbbf24',
+                            blue: '#2563EB',
+                            purple: '#7C3AED',
+                            dark: '#111827',
+                            soft: '#EEF4FF'
                         }
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif']
+                    },
+                    boxShadow: {
+                        soft: '0 10px 40px rgba(15, 23, 42, 0.06)',
+                        card: '0 4px 24px rgba(15, 23, 42, 0.05)'
                     }
                 }
             }
         }
     </script>
-    <!-- Three.js for 3D Background Effect -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <!-- Lucide Icons -->
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Lucide -->
     <script src="https://unpkg.com/lucide@latest"></script>
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-        
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #030712;
-            color: #f3f4f6;
-            overflow-x: hidden;
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #0b1020;
         }
 
-        #canvas-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            pointer-events: none;
+        /* Soft editorial grid */
+        .grid-bg {
+            background-image:
+                linear-gradient(rgba(37, 99, 235, 0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(37, 99, 235, 0.035) 1px, transparent 1px);
+            background-size: 32px 32px;
         }
 
-        .glass-panel {
-            background: rgba(11, 19, 41, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(0, 255, 204, 0.15);
+        .gradient-text {
+            background: linear-gradient(100deg, #2563eb 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
-        .glow-button {
-            box-shadow: 0 0 25px rgba(0, 255, 204, 0.35);
-            transition: all 0.3s ease;
+        .gradient-bg {
+            background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
         }
 
-        .glow-button:hover {
-            box-shadow: 0 0 40px rgba(0, 255, 204, 0.6);
-            transform: translateY(-2px);
+        .soft-blue {
+            background: linear-gradient(
+                135deg,
+                rgba(37, 99, 235, 0.09),
+                rgba(124, 58, 237, 0.08)
+            );
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
+        .sidebar-link {
+            transition: all .2s ease;
         }
-        ::-webkit-scrollbar-track {
-            background: #030712;
+
+        .sidebar-link:hover {
+            background: #f1f5f9;
+            color: #2563eb;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #1e293b;
-            border-radius: 3px;
+
+        .sidebar-link.active {
+            background: linear-gradient(
+                90deg,
+                rgba(37, 99, 235, 0.1),
+                rgba(124, 58, 237, 0.07)
+            );
+            color: #2563eb;
+            font-weight: 700;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #00ffcc;
+
+        .card {
+            background: white;
+            border: 1px solid #e8edf5;
+            box-shadow: 0 4px 24px rgba(15, 23, 42, 0.045);
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        @media (max-width: 1023px) {
+            #sidebar {
+                transform: translateX(-100%);
+                transition: transform .25s ease;
+            }
+
+            #sidebar.open {
+                transform: translateX(0);
+            }
+
+            #sidebar-overlay {
+                display: none;
+            }
+
+            #sidebar-overlay.show {
+                display: block;
+            }
         }
     </style>
 </head>
-<body class="antialiased selection:bg-brand-mint selection:text-brand-dark min-h-screen flex">
 
-    <!-- 3D Live Interactive Background Canvas -->
-    <div id="canvas-container"></div>
+<body class="min-h-screen">
 
-    <!-- Sidebar Navigation -->
-    <aside class="w-64 glass-panel border-r border-gray-800/60 hidden md:flex flex-col justify-between p-6 z-40 fixed inset-y-0 left-0">
-        <div class="space-y-8">
-            <!-- Brand Logo -->
-            <a href="index.html" class="flex items-center space-x-3 group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-mint to-blue-600 flex items-center justify-center glow-button">
-                    <i data-lucide="infinity" class="w-6 h-6 text-brand-dark stroke-[2.5]"></i>
-                </div>
-                <div class="flex flex-col">
-                    <span class="text-xl font-black tracking-wider text-white flex items-center">
-                        EVER<span class="text-brand-mint">MORE</span>
-                    </span>
-                    <span class="text-[10px] tracking-widest text-brand-mint uppercase font-semibold">Workspace</span>
-                </div>
-            </a>
+<!-- =========================================================
+     MOBILE OVERLAY
+========================================================= -->
 
-            <!-- Nav Links -->
-            <nav class="space-y-2">
-                <button onclick="switchTab('overview')" id="nav-overview" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-semibold text-brand-mint bg-brand-mint/10 border border-brand-mint/30 transition-all">
-                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
-                    <span>Overview</span>
-                </button>
-                <button onclick="switchTab('tasks')" id="nav-tasks" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-semibold text-gray-400 hover:text-white hover:bg-gray-800/40 transition-all">
-                    <i data-lucide="cpu" class="w-5 h-5"></i>
-                    <span>AI Training Tasks</span>
-                </button>
-                <button onclick="switchTab('withdraw')" id="nav-withdraw" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-semibold text-gray-400 hover:text-white hover:bg-gray-800/40 transition-all">
-                    <i data-lucide="wallet" class="w-5 h-5"></i>
-                    <span>Withdraw Funds</span>
-                </button>
-                <button onclick="switchTab('settings')" id="nav-settings" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-semibold text-gray-400 hover:text-white hover:bg-gray-800/40 transition-all">
-                    <i data-lucide="settings" class="w-5 h-5"></i>
-                    <span>Account Settings</span>
-                </button>
-            </nav>
-        </div>
+<div
+    id="sidebar-overlay"
+    class="fixed inset-0 bg-slate-900/30 backdrop-blur-sm z-40"
+    onclick="closeSidebar()"
+></div>
 
-        <!-- Sidebar Footer / User Profile snippet -->
-        <div class="pt-6 border-t border-gray-800/80 space-y-4">
-            <div class="flex items-center space-x-3 bg-gray-900/60 border border-gray-800/80 p-3 rounded-xl">
-                <div id="user-avatar-initials" class="w-9 h-9 rounded-full bg-brand-mint/20 text-brand-mint flex items-center justify-center font-bold text-xs">
-                    U
-                </div>
-                <div class="overflow-hidden">
-                    <div id="user-display-name" class="text-xs font-bold text-white truncate">User Account</div>
-                    <div id="user-display-email" class="text-[10px] text-brand-mint truncate">member@evermore.io</div>
-                </div>
+
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
+
+<aside
+    id="sidebar"
+    class="fixed left-0 top-0 bottom-0 w-[270px] bg-white border-r border-slate-200 z-50 flex flex-col"
+>
+
+    <!-- Logo -->
+    <div class="h-20 px-6 flex items-center border-b border-slate-100">
+
+        <a href="index.html" class="flex items-center gap-3">
+
+            <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center shadow-lg shadow-blue-500/20">
+                <i data-lucide="infinity" class="w-5 h-5 text-white"></i>
             </div>
-            <button onclick="handleSignOut()" class="w-full flex items-center justify-center space-x-2 py-2.5 rounded-xl border border-gray-800 text-xs font-semibold text-gray-300 hover:text-brand-mint hover:border-brand-mint/40 transition-colors">
-                <i data-lucide="log-out" class="w-4 h-4"></i>
-                <span>Sign Out</span>
-            </button>
-        </div>
-    </aside>
 
-    <!-- Main Content Wrapper -->
-    <div class="flex-1 md:ml-64 flex flex-col min-h-screen justify-between relative z-10">
-        
-        <!-- Top Mobile Header -->
-        <header class="w-full glass-panel border-b border-gray-800/50 h-20 px-6 flex items-center justify-between md:hidden">
-            <a href="index.html" class="flex items-center space-x-2">
-                <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-brand-mint to-blue-600 flex items-center justify-center">
-                    <i data-lucide="infinity" class="w-5 h-5 text-brand-dark stroke-[2.5]"></i>
-                </div>
-                <span class="text-lg font-black text-white">EVER<span class="text-brand-mint">MORE</span></span>
-            </a>
-            <div class="flex items-center space-x-3">
-                <button onclick="switchTab('settings')" class="p-2 rounded-xl border border-gray-800 text-gray-300"><i data-lucide="settings" class="w-5 h-5"></i></button>
-                <button onclick="handleSignOut()" class="p-2 rounded-xl border border-gray-800 text-gray-300"><i data-lucide="log-out" class="w-5 h-5"></i></button>
-            </div>
-        </header>
-
-        <!-- Dynamic Content Area -->
-        <main class="p-6 sm:p-10 max-w-6xl mx-auto w-full space-y-8 flex-grow">
-
-            <!-- TAB 1: OVERVIEW -->
-            <div id="tab-overview" class="space-y-8">
-                <!-- Welcome Banner -->
-                <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-brand-mint/30 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-2xl">
-                    <div class="space-y-2">
-                        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brand-mint/10 border border-brand-mint/30 text-brand-mint text-xs font-semibold uppercase tracking-wider">
-                            <span class="w-2 h-2 rounded-full bg-brand-mint animate-pulse"></span>
-                            <span>System Active & Earning Enabled</span>
-                        </div>
-                        <h1 id="welcome-heading" class="text-2xl sm:text-4xl font-black text-white">Welcome back!</h1>
-                        <p class="text-gray-300 text-sm">Your EverAI training pipeline is active. Complete daily tasks or check remote jobs to scale your earnings.</p>
-                    </div>
-                    <button onclick="switchTab('tasks')" class="px-6 py-3.5 rounded-xl font-bold text-sm text-brand-dark bg-brand-mint glow-button flex items-center justify-center space-x-2 shrink-0">
-                        <i data-lucide="cpu" class="w-4 h-4"></i>
-                        <span>Start Training Task</span>
-                    </button>
+            <div>
+                <div class="text-lg font-extrabold tracking-tight">
+                    EVER<span class="gradient-text">MORE</span>
                 </div>
 
-                <!-- Stats Metric Cards -->
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                    <div class="glass-panel p-6 rounded-2xl border border-gray-800 space-y-3">
-                        <div class="flex items-center justify-between text-gray-400">
-                            <span class="text-xs uppercase tracking-wider font-semibold">Total Balance</span>
-                            <i data-lucide="wallet" class="w-5 h-5 text-brand-mint"></i>
-                        </div>
-                        <div class="text-3xl font-black text-white" id="stat-balance">$48.50 <span class="text-xs font-normal text-gray-400">(₦72,000)</span></div>
-                        <div class="text-[11px] text-brand-mint">Min. Payout Threshold: $20.00</div>
-                    </div>
-
-                    <div class="glass-panel p-6 rounded-2xl border border-gray-800 space-y-3">
-                        <div class="flex items-center justify-between text-gray-400">
-                            <span class="text-xs uppercase tracking-wider font-semibold">AI Training Rate</span>
-                            <i data-lucide="trending-up" class="w-5 h-5 text-blue-400"></i>
-                        </div>
-                        <div class="text-3xl font-black text-white">$16.80 <span class="text-xs font-normal text-gray-400">/ hr</span></div>
-                        <div class="text-[11px] text-gray-300">Tier 1 Multiplier Active</div>
-                    </div>
-
-                    <div class="glass-panel p-6 rounded-2xl border border-gray-800 space-y-3">
-                        <div class="flex items-center justify-between text-gray-400">
-                            <span class="text-xs uppercase tracking-wider font-semibold">Tasks Completed</span>
-                            <i data-lucide="check-circle" class="w-5 h-5 text-brand-gold"></i>
-                        </div>
-                        <div class="text-3xl font-black text-white">14 Modules</div>
-                        <div class="text-[11px] text-brand-gold">100% Accuracy Rating</div>
-                    </div>
-                </div>
-
-                <!-- Recent Activities Summary -->
-                <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-gray-800 space-y-6">
-                    <h2 class="text-lg font-bold text-white flex items-center space-x-2">
-                        <i data-lucide="activity" class="w-5 h-5 text-brand-mint"></i>
-                        <span>Recent Payout & Training Activity</span>
-                    </h2>
-                    <div class="space-y-3 text-sm">
-                        <div class="flex items-center justify-between p-4 rounded-xl bg-gray-900/60 border border-gray-800">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 rounded-lg bg-brand-mint/10 text-brand-mint flex items-center justify-center"><i data-lucide="arrow-down-left" class="w-4 h-4"></i></div>
-                                <div>
-                                    <div class="font-bold text-white">Signup Bonus Credited</div>
-                                    <div class="text-xs text-gray-400">August 22, 2026</div>
-                                </div>
-                            </div>
-                            <span class="text-brand-mint font-bold">+$15.00</span>
-                        </div>
-                        <div class="flex items-center justify-between p-4 rounded-xl bg-gray-900/60 border border-gray-800">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 rounded-lg bg-blue-600/20 text-blue-400 flex items-center justify-center"><i data-lucide="cpu" class="w-4 h-4"></i></div>
-                                <div>
-                                    <div class="font-bold text-white">LLM Dataset Alignment Completed</div>
-                                    <div class="text-xs text-gray-400">August 21, 2026</div>
-                                </div>
-                            </div>
-                            <span class="text-brand-mint font-bold">+$33.50</span>
-                        </div>
-                    </div>
+                <div class="text-[9px] uppercase tracking-[0.18em] text-slate-400 font-bold">
+                    Digital Ecosystem
                 </div>
             </div>
 
-            <!-- TAB 2: AI TRAINING TASKS -->
-            <div id="tab-tasks" class="space-y-8 hidden">
-                <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-gray-800 space-y-6">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <h2 class="text-xl font-bold text-white">Available AI Training Queue</h2>
-                            <p class="text-xs text-gray-400">Complete tasks to immediately credit your balance.</p>
-                        </div>
-                        <span class="px-3 py-1 rounded-full bg-brand-mint/10 border border-brand-mint/30 text-brand-mint text-xs font-semibold">Live Queue</span>
-                    </div>
+        </a>
 
-                    <div class="space-y-4">
-                        <div class="bg-gray-900/70 p-5 rounded-2xl border border-gray-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                            <div class="space-y-1">
-                                <div class="text-sm font-bold text-white">LLM Prompt Safety & Red Teaming</div>
-                                <div class="text-xs text-gray-400">Evaluate boundary test cases and flag inappropriate AI completions.</div>
-                                <div class="text-[11px] text-brand-mint pt-1">Estimated Time: 45 mins</div>
-                            </div>
-                            <button onclick="alert('Training session started! Complete the checklist on your screen.')" class="px-4 py-2.5 rounded-xl bg-brand-mint text-brand-dark font-bold text-xs glow-button shrink-0">Start Session</button>
-                        </div>
-
-                        <div class="bg-gray-900/70 p-5 rounded-2xl border border-gray-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                            <div class="space-y-1">
-                                <div class="text-sm font-bold text-white">Multimodal Technical Image Tagging</div>
-                                <div class="text-xs text-gray-400">Classify mechanical schematics and hardware components.</div>
-                                <div class="text-[11px] text-brand-mint pt-1">Estimated Time: 30 mins</div>
-                            </div>
-                            <button onclick="alert('Training session started! Complete the checklist on your screen.')" class="px-4 py-2.5 rounded-xl bg-brand-mint text-brand-dark font-bold text-xs glow-button shrink-0">Start Session</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TAB 3: WITHDRAW FUNDS -->
-            <div id="tab-withdraw" class="space-y-8 hidden">
-                <div class="max-w-xl mx-auto glass-panel p-8 rounded-3xl border border-brand-mint/30 space-y-6 shadow-2xl">
-                    <div class="text-center space-y-2">
-                        <div class="w-12 h-12 rounded-2xl bg-brand-mint/10 text-brand-mint flex items-center justify-center mx-auto">
-                            <i data-lucide="wallet" class="w-6 h-6"></i>
-                        </div>
-                        <h2 class="text-2xl font-black text-white">Request Withdrawal</h2>
-                        <p class="text-xs text-gray-300">Minimum withdrawal amount is <span class="text-brand-mint font-bold">$20.00</span>.</p>
-                    </div>
-
-                    <!-- Balance indicator -->
-                    <div class="bg-gray-900/80 p-4 rounded-2xl border border-gray-800 flex items-center justify-between">
-                        <span class="text-xs text-gray-400 uppercase font-semibold">Available Balance</span>
-                        <span class="text-lg font-bold text-white">$48.50</span>
-                    </div>
-
-                    <div class="space-y-4">
-                        <div class="space-y-1.5">
-                            <label class="block text-xs font-semibold text-gray-300 uppercase">Withdrawal Amount ($ USD)</label>
-                            <input type="number" id="withdraw-amount" min="20" value="48.50" placeholder="20.00" class="w-full bg-gray-900 border border-gray-800 rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-brand-mint">
-                        </div>
-
-                        <!-- Saved Payout Account Preview Box -->
-                        <div class="p-4 rounded-2xl bg-brand-cardHover border border-brand-mint/20 space-y-2">
-                            <div class="flex items-center justify-between text-xs">
-                                <span class="text-gray-400 font-semibold uppercase">Destination Account Details</span>
-                                <button onclick="switchTab('settings')" class="text-brand-mint hover:underline">Change</button>
-                            </div>
-                            <div id="payout-preview" class="text-xs text-white space-y-1 font-medium">
-                                <div>Bank: <span id="prev-bank" class="text-brand-mint">Guaranty Trust Bank (GTB)</span></div>
-                                <div>Account Name: <span id="prev-name" class="text-brand-mint">Gabriel Igwe</span></div>
-                                <div>Account Number: <span id="prev-num" class="text-brand-mint">0123456789</span></div>
-                            </div>
-                        </div>
-
-                        <button onclick="handleWithdrawal()" class="w-full py-4 rounded-xl font-bold text-sm text-brand-dark bg-brand-mint glow-button">
-                            Confirm & Request Payout
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TAB 4: ACCOUNT SETTINGS (Payout Details & Password) -->
-            <div id="tab-settings" class="space-y-8 hidden">
-                <div class="max-w-2xl mx-auto space-y-6">
-                    
-                    <!-- Payout Details Settings -->
-                    <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-gray-800 space-y-6">
-                        <h2 class="text-lg font-bold text-white flex items-center space-x-2">
-                            <i data-lucide="credit-card" class="w-5 h-5 text-brand-mint"></i>
-                            <span>Payout Account Details</span>
-                        </h2>
-                        <form id="payout-form" onsubmit="savePayoutDetails(event)" class="space-y-4">
-                            <div class="space-y-1.5">
-                                <label class="block text-xs font-semibold text-gray-300 uppercase">Bank Name</label>
-                                <input type="text" id="bank-name" value="Guaranty Trust Bank (GTB)" required class="w-full bg-gray-900 border border-gray-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-mint">
-                            </div>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div class="space-y-1.5">
-                                    <label class="block text-xs font-semibold text-gray-300 uppercase">Account Number</label>
-                                    <input type="text" id="account-num" value="0123456789" required class="w-full bg-gray-900 border border-gray-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-mint">
-                                </div>
-                                <div class="space-y-1.5">
-                                    <label class="block text-xs font-semibold text-gray-300 uppercase">Account Name</label>
-                                    <input type="text" id="account-name" value="Gabriel Igwe" required class="w-full bg-gray-900 border border-gray-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-mint">
-                                </div>
-                            </div>
-                            <button type="submit" class="px-6 py-3 rounded-xl bg-brand-mint/10 border border-brand-mint/30 text-brand-mint font-bold text-xs hover:bg-brand-mint hover:text-brand-dark transition-all">
-                                Save Payout Settings
-                            </button>
-                        </form>
-                    </div>
-
-                    <!-- Change Password Settings -->
-                    <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-gray-800 space-y-6">
-                        <h2 class="text-lg font-bold text-white flex items-center space-x-2">
-                            <i data-lucide="lock" class="w-5 h-5 text-brand-mint"></i>
-                            <span>Change Password</span>
-                        </h2>
-                        <form onsubmit="handlePasswordChange(event)" class="space-y-4">
-                            <div class="space-y-1.5">
-                                <label class="block text-xs font-semibold text-gray-300 uppercase">Current Password</label>
-                                <input type="password" required placeholder="••••••••" class="w-full bg-gray-900 border border-gray-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-mint">
-                            </div>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div class="space-y-1.5">
-                                    <label class="block text-xs font-semibold text-gray-300 uppercase">New Password</label>
-                                    <input type="password" required placeholder="New password" class="w-full bg-gray-900 border border-gray-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-mint">
-                                </div>
-                                <div class="space-y-1.5">
-                                    <label class="block text-xs font-semibold text-gray-300 uppercase">Confirm New Password</label>
-                                    <input type="password" required placeholder="Confirm password" class="w-full bg-gray-900 border border-gray-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-mint">
-                                </div>
-                            </div>
-                            <button type="submit" class="px-6 py-3 rounded-xl bg-brand-mint/10 border border-brand-mint/30 text-brand-mint font-bold text-xs hover:bg-brand-mint hover:text-brand-dark transition-all">
-                                Update Password
-                            </button>
-                        </form>
-                    </div>
-
-                </div>
-            </div>
-
-        </main>
-
-        <!-- Footer -->
-        <footer class="w-full glass-panel border-t border-gray-800/80 py-6 px-6 text-center text-xs text-gray-400">
-            &copy; 2026 Evermore. Exist Beyond the Moment. All rights reserved.
-        </footer>
     </div>
 
-    <!-- Application Script -->
-    <script>
-        // Check Authentication on Page Load
-        const storedUserJson = localStorage.getItem('evermore_user');
-        let currentUser = null;
 
-        if (!storedUserJson) {
-            // Redirect to signin if not authenticated (with fallback demo data if tested directly)
-            currentUser = {
-                name: "Gabriel Igwe",
-                email: "gabriel@example.com",
-                bank: "Guaranty Trust Bank (GTB)",
-                accountNum: "0123456789",
-                accountName: "Gabriel Igwe"
-            };
-        } else {
-            currentUser = JSON.parse(storedUserJson);
-        }
+    <!-- Navigation -->
+    <div class="flex-1 overflow-y-auto px-4 py-6">
 
-        // Populate User Details into Dashboard Elements
-        document.getElementById('user-display-name').textContent = currentUser.name;
-        document.getElementById('user-display-email').textContent = currentUser.email;
-        document.getElementById('welcome-heading').textContent = `Welcome back, ${currentUser.name.split(' ')[0]}!`;
-        
-        // Generate Initials
-        const nameParts = currentUser.name.split(' ');
-        const initials = nameParts.length > 1 ? `${nameParts[0][0]}${nameParts[1][0]}` : nameParts[0][0];
-        document.getElementById('user-avatar-initials').textContent = initials.toUpperCase();
+        <div class="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-400 px-3 mb-3">
+            Workspace
+        </div>
 
-        // Populate Saved Payout Info if available
-        if (currentUser.bank) {
-            document.getElementById('bank-name').value = currentUser.bank;
-            document.getElementById('prev-bank').textContent = currentUser.bank;
-        }
-        if (currentUser.accountNum) {
-            document.getElementById('account-num').value = currentUser.accountNum;
-            document.getElementById('prev-num').textContent = currentUser.accountNum;
-        }
-        if (currentUser.accountName) {
-            document.getElementById('account-name').value = currentUser.accountName;
-            document.getElementById('prev-name').textContent = currentUser.accountName;
-        }
+        <nav class="space-y-1">
 
-        // Initialize Lucide Icons
-        lucide.createIcons();
+            <a href="#overview"
+               onclick="setActive(this)"
+               class="sidebar-link active flex items-center gap-3 px-3 py-3 rounded-xl text-sm">
 
-        // Tab Switching Logic
-        function switchTab(tabId) {
-            const tabs = ['overview', 'tasks', 'withdraw', 'settings'];
-            tabs.forEach(t => {
-                const el = document.getElementById(`tab-${t}`);
-                const nav = document.getElementById(`nav-${t}`);
-                if (el) el.classList.add('hidden');
-                if (nav) {
-                    nav.className = "w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-semibold text-gray-400 hover:text-white hover:bg-gray-800/40 transition-all";
-                }
+                <i data-lucide="layout-dashboard" class="w-[18px] h-[18px]"></i>
+                Overview
+
+            </a>
+
+            <a href="#everai"
+               onclick="setActive(this)"
+               class="sidebar-link flex items-center gap-3 px-3 py-3 rounded-xl text-sm text-slate-600">
+
+                <i data-lucide="sparkles" class="w-[18px] h-[18px]"></i>
+                EverAI
+
+                <span class="ml-auto text-[9px] font-bold bg-blue-50 text-blue-600 px-2 py-1 rounded-full">
+                    AI
+                </span>
+
+            </a>
+
+            <a href="#tasks"
+               onclick="setActive(this)"
+               class="sidebar-link flex items-center gap-3 px-3 py-3 rounded-xl text-sm text-slate-600">
+
+                <i data-lucide="list-checks" class="w-[18px] h-[18px]"></i>
+                AI Tasks
+
+            </a>
+
+            <a href="#opportunities"
+               onclick="setActive(this)"
+               class="sidebar-link flex items-center gap-3 px-3 py-3 rounded-xl text-sm text-slate-600">
+
+                <i data-lucide="briefcase-business" class="w-[18px] h-[18px]"></i>
+                Opportunities
+
+            </a>
+
+            <a href="#academy"
+               onclick="setActive(this)"
+               class="sidebar-link flex items-center gap-3 px-3 py-3 rounded-xl text-sm text-slate-600">
+
+                <i data-lucide="graduation-cap" class="w-[18px] h-[18px]"></i>
+                Academy
+
+            </a>
+
+        </nav>
+
+
+        <div class="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-400 px-3 mb-3 mt-8">
+            Account
+        </div>
+
+        <nav class="space-y-1">
+
+            <a href="#wallet"
+               onclick="setActive(this)"
+               class="sidebar-link flex items-center gap-3 px-3 py-3 rounded-xl text-sm text-slate-600">
+
+                <i data-lucide="wallet" class="w-[18px] h-[18px]"></i>
+                Wallet
+
+            </a>
+
+            <a href="#profile"
+               onclick="setActive(this)"
+               class="sidebar-link flex items-center gap-3 px-3 py-3 rounded-xl text-sm text-slate-600">
+
+                <i data-lucide="user-round" class="w-[18px] h-[18px]"></i>
+                Profile
+
+            </a>
+
+        </nav>
+
+    </div>
+
+
+    <!-- Bottom -->
+    <div class="p-4 border-t border-slate-100">
+
+        <div class="soft-blue rounded-2xl p-4">
+
+            <div class="flex items-center gap-2 mb-2">
+
+                <div class="w-8 h-8 rounded-lg bg-white flex items-center justify-center">
+                    <i data-lucide="headphones" class="w-4 h-4 text-blue-600"></i>
+                </div>
+
+                <div class="text-xs font-bold text-slate-800">
+                    Need help?
+                </div>
+
+            </div>
+
+            <p class="text-[10px] text-slate-500 leading-relaxed mb-3">
+                Our support team is available to help you navigate Evermore.
+            </p>
+
+            <a
+                href="#"
+                class="text-[11px] font-bold text-blue-600"
+            >
+                Contact Support →
+            </a>
+
+        </div>
+
+    </div>
+
+</aside>
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<div class="lg:ml-[270px] min-h-screen">
+
+    <!-- =====================================================
+         TOPBAR
+    ====================================================== -->
+
+    <header class="h-20 bg-white/90 backdrop-blur-xl border-b border-slate-200 sticky top-0 z-30">
+
+        <div class="h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+
+            <div class="flex items-center gap-4">
+
+                <!-- Mobile menu -->
+                <button
+                    onclick="openSidebar()"
+                    class="lg:hidden w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center"
+                >
+                    <i data-lucide="menu" class="w-5 h-5"></i>
+                </button>
+
+                <div>
+                    <div class="text-[10px] uppercase tracking-[0.16em] font-bold text-slate-400">
+                        Evermore Workspace
+                    </div>
+
+                    <div class="text-sm sm:text-base font-bold text-slate-900">
+                        Member Dashboard
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="flex items-center gap-3">
+
+                <!-- Notification -->
+                <button
+                    class="relative w-10 h-10 rounded-xl border border-slate-200 bg-white flex items-center justify-center hover:bg-slate-50"
+                >
+                    <i data-lucide="bell" class="w-4 h-4 text-slate-600"></i>
+
+                    <span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-blue-600 border-2 border-white"></span>
+                </button>
+
+
+                <!-- User -->
+                <div class="flex items-center gap-3 pl-2">
+
+                    <div
+                        id="avatar"
+                        class="w-9 h-9 rounded-xl gradient-bg text-white flex items-center justify-center font-bold text-sm"
+                    >
+                        E
+                    </div>
+
+                    <div class="hidden sm:block">
+
+                        <div
+                            id="top-name"
+                            class="text-xs font-bold text-slate-900"
+                        >
+                            Evermore Member
+                        </div>
+
+                        <div
+                            id="top-plan"
+                            class="text-[10px] text-blue-600 font-semibold"
+                        >
+                            Premium
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         PAGE
+    ====================================================== -->
+
+    <main class="grid-bg min-h-[calc(100vh-80px)] px-4 sm:px-6 lg:px-8 py-8">
+
+
+        <!-- =================================================
+             WELCOME
+        ================================================== -->
+
+        <section id="overview" class="max-w-7xl mx-auto">
+
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
+
+                <div>
+
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200 text-[10px] font-bold uppercase tracking-wider text-blue-600 mb-4 shadow-sm">
+
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+
+                        Account Active
+
+                    </div>
+
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-950">
+                        Welcome back,
+                        <span id="welcome-name" class="gradient-text">
+                            Member
+                        </span>.
+                    </h1>
+
+                    <p class="mt-3 text-sm sm:text-base text-slate-500 max-w-2xl">
+                        Your Evermore workspace brings AI creation, qualified tasks,
+                        professional opportunities and digital learning into one place.
+                    </p>
+
+                </div>
+
+
+                <div class="flex gap-3">
+
+                    <a
+                        href="#everai"
+                        class="gradient-bg text-white px-5 py-3 rounded-xl text-xs sm:text-sm font-bold shadow-lg shadow-blue-500/20"
+                    >
+                        Open EverAI
+                    </a>
+
+                    <a
+                        href="#tasks"
+                        class="hidden sm:inline-flex bg-white border border-slate-200 text-slate-800 px-5 py-3 rounded-xl text-xs sm:text-sm font-bold"
+                    >
+                        Explore Tasks
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 STAT CARDS
+            ================================================== -->
+
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+
+
+                <!-- Balance -->
+                <div class="card rounded-2xl p-5">
+
+                    <div class="flex items-center justify-between mb-5">
+
+                        <div class="w-9 h-9 rounded-xl bg-blue-50 flex items-center justify-center">
+                            <i data-lucide="wallet" class="w-4 h-4 text-blue-600"></i>
+                        </div>
+
+                        <span class="text-[9px] uppercase font-bold tracking-wider text-slate-400">
+                            Wallet
+                        </span>
+
+                    </div>
+
+                    <div class="text-2xl sm:text-3xl font-extrabold tracking-tight">
+                        ₦<span id="wallet-balance">0.00</span>
+                    </div>
+
+                    <div class="text-[10px] text-slate-400 mt-2">
+                        Available balance
+                    </div>
+
+                </div>
+
+
+                <!-- Tasks -->
+                <div class="card rounded-2xl p-5">
+
+                    <div class="flex items-center justify-between mb-5">
+
+                        <div class="w-9 h-9 rounded-xl bg-purple-50 flex items-center justify-center">
+                            <i data-lucide="list-checks" class="w-4 h-4 text-purple-600"></i>
+                        </div>
+
+                        <span class="text-[9px] uppercase font-bold tracking-wider text-slate-400">
+                            Tasks
+                        </span>
+
+                    </div>
+
+                    <div class="text-2xl sm:text-3xl font-extrabold tracking-tight">
+                        0
+                    </div>
+
+                    <div class="text-[10px] text-slate-400 mt-2">
+                        Completed tasks
+                    </div>
+
+                </div>
+
+
+                <!-- Earnings -->
+                <div class="card rounded-2xl p-5">
+
+                    <div class="flex items-center justify-between mb-5">
+
+                        <div class="w-9 h-9 rounded-xl bg-emerald-50 flex items-center justify-center">
+                            <i data-lucide="trending-up" class="w-4 h-4 text-emerald-600"></i>
+                        </div>
+
+                        <span class="text-[9px] uppercase font-bold tracking-wider text-slate-400">
+                            Earnings
+                        </span>
+
+                    </div>
+
+                    <div class="text-2xl sm:text-3xl font-extrabold tracking-tight">
+                        ₦0
+                    </div>
+
+                    <div class="text-[10px] text-slate-400 mt-2">
+                        Total earned
+                    </div>
+
+                </div>
+
+
+                <!-- Plan -->
+                <div class="card rounded-2xl p-5">
+
+                    <div class="flex items-center justify-between mb-5">
+
+                        <div class="w-9 h-9 rounded-xl bg-indigo-50 flex items-center justify-center">
+                            <i data-lucide="crown" class="w-4 h-4 text-indigo-600"></i>
+                        </div>
+
+                        <span class="text-[9px] uppercase font-bold tracking-wider text-slate-400">
+                            Membership
+                        </span>
+
+                    </div>
+
+                    <div
+                        id="plan-card"
+                        class="text-xl sm:text-2xl font-extrabold tracking-tight"
+                    >
+                        Premium
+                    </div>
+
+                    <div class="text-[10px] text-slate-400 mt-2">
+                        Active membership
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 MAIN DASHBOARD GRID
+            ================================================== -->
+
+            <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+
+
+                <!-- =============================================
+                     EVERAI
+                ============================================== -->
+
+                <section
+                    id="everai"
+                    class="xl:col-span-2 card rounded-3xl overflow-hidden"
+                >
+
+                    <div class="p-6 sm:p-8">
+
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-7">
+
+                            <div>
+
+                                <div class="flex items-center gap-2 mb-2">
+
+                                    <span class="w-2 h-2 rounded-full bg-blue-600"></span>
+
+                                    <span class="text-[10px] font-bold uppercase tracking-[0.16em] text-blue-600">
+                                        Intelligence Workspace
+                                    </span>
+
+                                </div>
+
+                                <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">
+                                    Ever<span class="gradient-text">AI</span>
+                                </h2>
+
+                                <p class="text-xs sm:text-sm text-slate-500 mt-2">
+                                    Your intelligent workspace for writing, research,
+                                    coding and creative production.
+                                </p>
+
+                            </div>
+
+                            <button
+                                onclick="openAI()"
+                                class="gradient-bg text-white px-5 py-3 rounded-xl text-xs font-bold whitespace-nowrap"
+                            >
+                                Launch EverAI
+                            </button>
+
+                        </div>
+
+
+                        <!-- AI action cards -->
+
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+
+                            <button onclick="openAI('Writing')" class="text-left p-4 rounded-2xl border border-slate-200 hover:border-blue-300 hover:bg-blue-50/40 transition">
+
+                                <i data-lucide="pen-line" class="w-5 h-5 text-blue-600 mb-4"></i>
+
+                                <div class="text-xs font-bold">
+                                    Writing
+                                </div>
+
+                                <div class="text-[10px] text-slate-400 mt-1">
+                                    Create & refine
+                                </div>
+
+                            </button>
+
+
+                            <button onclick="openAI('Research')" class="text-left p-4 rounded-2xl border border-slate-200 hover:border-purple-300 hover:bg-purple-50/40 transition">
+
+                                <i data-lucide="search" class="w-5 h-5 text-purple-600 mb-4"></i>
+
+                                <div class="text-xs font-bold">
+                                    Research
+                                </div>
+
+                                <div class="text-[10px] text-slate-400 mt-1">
+                                    Analyze ideas
+                                </div>
+
+                            </button>
+
+
+                            <button onclick="openAI('Code')" class="text-left p-4 rounded-2xl border border-slate-200 hover:border-blue-300 hover:bg-blue-50/40 transition">
+
+                                <i data-lucide="code-2" class="w-5 h-5 text-blue-600 mb-4"></i>
+
+                                <div class="text-xs font-bold">
+                                    Code
+                                </div>
+
+                                <div class="text-[10px] text-slate-400 mt-1">
+                                    Build & debug
+                                </div>
+
+                            </button>
+
+
+                            <button onclick="openAI('Create')" class="text-left p-4 rounded-2xl border border-slate-200 hover:border-purple-300 hover:bg-purple-50/40 transition">
+
+                                <i data-lucide="wand-sparkles" class="w-5 h-5 text-purple-600 mb-4"></i>
+
+                                <div class="text-xs font-bold">
+                                    Create
+                                </div>
+
+                                <div class="text-[10px] text-slate-400 mt-1">
+                                    Visual content
+                                </div>
+
+                            </button>
+
+                        </div>
+
+
+                        <!-- AI composer -->
+
+                        <div class="mt-5 p-4 rounded-2xl bg-slate-50 border border-slate-200">
+
+                            <div class="flex items-center gap-3">
+
+                                <div class="w-9 h-9 rounded-xl gradient-bg flex items-center justify-center flex-shrink-0">
+
+                                    <i data-lucide="sparkles" class="w-4 h-4 text-white"></i>
+
+                                </div>
+
+                                <input
+                                    id="ai-prompt"
+                                    type="text"
+                                    placeholder="Ask EverAI anything..."
+                                    class="flex-1 bg-transparent outline-none text-xs sm:text-sm text-slate-800 placeholder:text-slate-400"
+                                >
+
+                                <button
+                                    onclick="sendPrompt()"
+                                    class="w-9 h-9 rounded-xl bg-slate-900 text-white flex items-center justify-center"
+                                >
+                                    <i data-lucide="arrow-up" class="w-4 h-4"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =============================================
+                     MEMBERSHIP
+                ============================================== -->
+
+                <section class="card rounded-3xl p-6 relative overflow-hidden">
+
+                    <div class="absolute -top-20 -right-20 w-48 h-48 rounded-full bg-blue-100 blur-3xl"></div>
+
+                    <div class="relative">
+
+                        <div class="flex items-center justify-between mb-6">
+
+                            <div>
+
+                                <div class="text-[10px] uppercase tracking-[0.16em] font-bold text-blue-600">
+                                    Membership
+                                </div>
+
+                                <h3 class="text-xl font-extrabold mt-1">
+                                    Your Plan
+                                </h3>
+
+                            </div>
+
+                            <i data-lucide="crown" class="w-6 h-6 text-purple-600"></i>
+
+                        </div>
+
+
+                        <div class="rounded-2xl p-5 gradient-bg text-white">
+
+                            <div class="flex items-center justify-between">
+
+                                <span class="text-sm font-bold">
+                                    <span id="membership-name">
+                                        Premium
+                                    </span>
+                                </span>
+
+                                <span class="px-2.5 py-1 bg-white/15 rounded-full text-[9px] font-bold">
+                                    ACTIVE
+                                </span>
+
+                            </div>
+
+                            <div class="mt-7">
+
+                                <div class="text-[10px] text-white/70">
+                                    Access level
+                                </div>
+
+                                <div class="text-xl font-extrabold mt-1">
+                                    Full Workspace
+                                </div>
+
+                            </div>
+
+                            <div class="mt-6 pt-4 border-t border-white/15 flex justify-between text-[10px]">
+
+                                <span>
+                                    AI Access
+                                </span>
+
+                                <span class="font-bold">
+                                    Unlimited
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            onclick="showToast('Membership management will be available soon.')"
+                            class="w-full mt-4 py-3 rounded-xl border border-slate-200 text-xs font-bold hover:bg-slate-50"
+                        >
+                            Manage Membership
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =============================================
+                     TASKS
+                ============================================== -->
+
+                <section
+                    id="tasks"
+                    class="xl:col-span-2 card rounded-3xl p-6 sm:p-8"
+                >
+
+                    <div class="flex items-center justify-between mb-7">
+
+                        <div>
+
+                            <div class="text-[10px] uppercase tracking-[0.16em] font-bold text-blue-600 mb-2">
+                                Work Opportunities
+                            </div>
+
+                            <h2 class="text-2xl font-extrabold">
+                                AI Training Tasks
+                            </h2>
+
+                            <p class="text-xs text-slate-500 mt-2">
+                                Complete qualified tasks and build your activity record.
+                            </p>
+
+                        </div>
+
+                        <button
+                            onclick="showToast('Task marketplace coming soon.')"
+                            class="hidden sm:block text-xs font-bold text-blue-600"
+                        >
+                            View all →
+                        </button>
+
+                    </div>
+
+
+                    <div class="rounded-2xl border border-dashed border-slate-300 p-8 text-center">
+
+                        <div class="w-12 h-12 mx-auto rounded-2xl bg-blue-50 flex items-center justify-center mb-4">
+
+                            <i data-lucide="clipboard-check" class="w-6 h-6 text-blue-600"></i>
+
+                        </div>
+
+                        <h3 class="font-bold text-sm">
+                            No tasks available right now
+                        </h3>
+
+                        <p class="text-xs text-slate-400 max-w-md mx-auto mt-2 leading-relaxed">
+                            Qualified tasks will appear here when they become available
+                            for your membership and eligibility level.
+                        </p>
+
+                        <button
+                            onclick="showToast('We will notify you when new tasks become available.')"
+                            class="mt-5 px-4 py-2.5 rounded-xl bg-slate-900 text-white text-xs font-bold"
+                        >
+                            Notify Me
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =============================================
+                     WALLET
+                ============================================== -->
+
+                <section
+                    id="wallet"
+                    class="card rounded-3xl p-6"
+                >
+
+                    <div class="flex items-center justify-between mb-6">
+
+                        <div>
+
+                            <div class="text-[10px] uppercase tracking-[0.16em] font-bold text-slate-400">
+                                Wallet
+                            </div>
+
+                            <h3 class="text-xl font-extrabold mt-1">
+                                Balance
+                            </h3>
+
+                        </div>
+
+                        <div class="w-9 h-9 rounded-xl bg-blue-50 flex items-center justify-center">
+                            <i data-lucide="wallet-cards" class="w-4 h-4 text-blue-600"></i>
+                        </div>
+
+                    </div>
+
+
+                    <div class="text-3xl font-extrabold">
+                        ₦<span id="wallet-balance-large">0.00</span>
+                    </div>
+
+                    <div class="text-[10px] text-slate-400 mt-2">
+                        Available for withdrawal
+                    </div>
+
+
+                    <div class="grid grid-cols-2 gap-3 mt-6">
+
+                        <button
+                            onclick="showToast('Withdrawal system will be connected to your payout gateway.')"
+                            class="gradient-bg text-white py-3 rounded-xl text-[11px] font-bold"
+                        >
+                            Withdraw
+                        </button>
+
+                        <button
+                            onclick="showToast('Wallet funding will be connected to your payment gateway.')"
+                            class="bg-slate-100 text-slate-800 py-3 rounded-xl text-[11px] font-bold"
+                        >
+                            Fund Wallet
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =============================================
+                     OPPORTUNITIES
+                ============================================== -->
+
+                <section
+                    id="opportunities"
+                    class="card rounded-3xl p-6 sm:p-8"
+                >
+
+                    <div class="flex items-center gap-3 mb-6">
+
+                        <div class="w-10 h-10 rounded-xl bg-purple-50 flex items-center justify-center">
+
+                            <i data-lucide="briefcase-business" class="w-5 h-5 text-purple-600"></i>
+
+                        </div>
+
+                        <div>
+
+                            <div class="text-[10px] uppercase tracking-[0.16em] font-bold text-purple-600">
+                                Career
+                            </div>
+
+                            <h2 class="text-xl font-extrabold">
+                                Opportunities
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="rounded-2xl bg-slate-50 p-6">
+
+                        <div class="flex items-start gap-4">
+
+                            <div class="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center flex-shrink-0">
+
+                                <i data-lucide="radar" class="w-5 h-5 text-blue-600"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h3 class="text-sm font-bold">
+                                    Opportunity matching is active
+                                </h3>
+
+                                <p class="text-xs text-slate-500 leading-relaxed mt-2">
+                                    When suitable remote opportunities are available,
+                                    they will appear here based on your profile,
+                                    membership and eligibility.
+                                </p>
+
+                                <button
+                                    onclick="showToast('Complete your profile to improve opportunity matching.')"
+                                    class="mt-4 text-[11px] font-bold text-blue-600"
+                                >
+                                    Complete profile →
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =============================================
+                     ACADEMY
+                ============================================== -->
+
+                <section
+                    id="academy"
+                    class="card rounded-3xl p-6 sm:p-8"
+                >
+
+                    <div class="flex items-center justify-between mb-7">
+
+                        <div>
+
+                            <div class="text-[10px] uppercase tracking-[0.16em] font-bold text-blue-600">
+                                Learning
+                            </div>
+
+                            <h2 class="text-2xl font-extrabold mt-1">
+                                Skills Academy
+                            </h2>
+
+                        </div>
+
+                        <i data-lucide="graduation-cap" class="w-6 h-6 text-purple-600"></i>
+
+                    </div>
+
+
+                    <div class="grid sm:grid-cols-3 gap-4">
+
+                        <div class="border border-slate-200 rounded-2xl p-4">
+
+                            <div class="w-9 h-9 rounded-xl bg-blue-50 flex items-center justify-center mb-4">
+
+                                <i data-lucide="code-2" class="w-4 h-4 text-blue-600"></i>
+
+                            </div>
+
+                            <div class="text-xs font-bold">
+                                Web Development
+                            </div>
+
+                            <div class="text-[10px] text-slate-400 mt-1">
+                                Websites & applications
+                            </div>
+
+                        </div>
+
+
+                        <div class="border border-slate-200 rounded-2xl p-4">
+
+                            <div class="w-9 h-9 rounded-xl bg-purple-50 flex items-center justify-center mb-4">
+
+                                <i data-lucide="palette" class="w-4 h-4 text-purple-600"></i>
+
+                            </div>
+
+                            <div class="text-xs font-bold">
+                                Digital Design
+                            </div>
+
+                            <div class="text-[10px] text-slate-400 mt-1">
+                                Creative workflows
+                            </div>
+
+                        </div>
+
+
+                        <div class="border border-slate-200 rounded-2xl p-4">
+
+                            <div class="w-9 h-9 rounded-xl bg-emerald-50 flex items-center justify-center mb-4">
+
+                                <i data-lucide="briefcase" class="w-4 h-4 text-emerald-600"></i>
+
+                            </div>
+
+                            <div class="text-xs font-bold">
+                                Digital Work
+                            </div>
+
+                            <div class="text-[10px] text-slate-400 mt-1">
+                                Professional skills
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =============================================
+                     PROFILE
+                ============================================== -->
+
+                <section
+                    id="profile"
+                    class="card rounded-3xl p-6 sm:p-8"
+                >
+
+                    <div class="flex items-center justify-between mb-6">
+
+                        <div>
+
+                            <div class="text-[10px] uppercase tracking-[0.16em] font-bold text-slate-400">
+                                Account
+                            </div>
+
+                            <h2 class="text-xl font-extrabold mt-1">
+                                Profile
+                            </h2>
+
+                        </div>
+
+                        <i data-lucide="user-round" class="w-5 h-5 text-blue-600"></i>
+
+                    </div>
+
+
+                    <div class="space-y-4">
+
+                        <div class="flex items-center justify-between py-3 border-b border-slate-100">
+
+                            <span class="text-xs text-slate-400">
+                                Name
+                            </span>
+
+                            <span id="profile-name" class="text-xs font-bold text-slate-800">
+                                —
+                            </span>
+
+                        </div>
+
+                        <div class="flex items-center justify-between py-3 border-b border-slate-100">
+
+                            <span class="text-xs text-slate-400">
+                                Email
+                            </span>
+
+                            <span id="profile-email" class="text-xs font-bold text-slate-800">
+                                —
+                            </span>
+
+                        </div>
+
+                        <div class="flex items-center justify-between py-3 border-b border-slate-100">
+
+                            <span class="text-xs text-slate-400">
+                                Country
+                            </span>
+
+                            <span id="profile-country" class="text-xs font-bold text-slate-800">
+                                —
+                            </span>
+
+                        </div>
+
+                        <div class="flex items-center justify-between py-3">
+
+                            <span class="text-xs text-slate-400">
+                                Membership
+                            </span>
+
+                            <span id="profile-plan" class="text-xs font-bold text-blue-600">
+                                —
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        onclick="showToast('Profile editing will be connected next.')"
+                        class="w-full mt-5 py-3 rounded-xl bg-slate-900 text-white text-xs font-bold"
+                    >
+                        Edit Profile
+                    </button>
+
+                </section>
+
+            </div>
+
+
+            <!-- =================================================
+                 FOOTER
+            ================================================== -->
+
+            <footer class="py-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] text-slate-400">
+
+                <div>
+                    © 2026 Evermore. All rights reserved.
+                </div>
+
+                <div class="flex items-center gap-5">
+
+                    <a href="#" class="hover:text-blue-600">
+                        Privacy
+                    </a>
+
+                    <a href="#" class="hover:text-blue-600">
+                        Terms
+                    </a>
+
+                    <a href="#" class="hover:text-blue-600">
+                        Support
+                    </a>
+
+                    <span class="flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                        Systems operational
+                    </span>
+
+                </div>
+
+            </footer>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- =========================================================
+     EVERAI MODAL
+========================================================= -->
+
+<div
+    id="ai-modal"
+    class="hidden fixed inset-0 z-[100] bg-slate-950/40 backdrop-blur-sm p-4 items-center justify-center"
+>
+
+    <div class="bg-white w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden">
+
+        <div class="p-6 border-b border-slate-100 flex items-center justify-between">
+
+            <div class="flex items-center gap-3">
+
+                <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center">
+
+                    <i data-lucide="sparkles" class="w-5 h-5 text-white"></i>
+
+                </div>
+
+                <div>
+
+                    <div class="font-extrabold">
+                        EverAI
+                    </div>
+
+                    <div
+                        id="ai-mode"
+                        class="text-[10px] text-blue-600 font-bold"
+                    >
+                        Intelligent Workspace
+                    </div>
+
+                </div>
+
+            </div>
+
+            <button
+                onclick="closeAI()"
+                class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center"
+            >
+                <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+
+        </div>
+
+
+        <div class="p-6">
+
+            <textarea
+                id="ai-modal-input"
+                rows="5"
+                placeholder="Tell EverAI what you want to create..."
+                class="w-full rounded-2xl border border-slate-200 p-4 text-sm outline-none focus:border-blue-500 resize-none"
+            ></textarea>
+
+
+            <div class="flex justify-end mt-4">
+
+                <button
+                    onclick="runAI()"
+                    class="gradient-bg text-white px-6 py-3 rounded-xl text-xs font-bold"
+                >
+                    Run EverAI
+                </button>
+
+            </div>
+
+
+            <div
+                id="ai-result"
+                class="hidden mt-5 rounded-2xl bg-slate-50 border border-slate-200 p-5"
+            >
+
+                <div class="flex items-center gap-2 text-xs font-bold text-blue-600 mb-3">
+
+                    <i data-lucide="sparkles" class="w-4 h-4"></i>
+
+                    EverAI Response
+
+                </div>
+
+                <p class="text-xs text-slate-500 leading-relaxed">
+                    EverAI is ready. Your AI engine/API can be connected here
+                    when the backend is integrated.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     TOAST
+========================================================= -->
+
+<div
+    id="toast"
+    class="fixed bottom-6 left-1/2 -translate-x-1/2 translate-y-20 opacity-0 z-[200] bg-slate-950 text-white px-5 py-3 rounded-xl text-xs font-semibold shadow-2xl transition-all duration-300"
+>
+    Notification
+</div>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+    /* ---------------------------------------------------------
+       ICONS
+    --------------------------------------------------------- */
+
+    lucide.createIcons();
+
+
+    /* ---------------------------------------------------------
+       LOAD USER
+    --------------------------------------------------------- */
+
+    const storedUser = localStorage.getItem('evermore_user');
+
+    let user = null;
+
+    try {
+        user = storedUser ? JSON.parse(storedUser) : null;
+    } catch (error) {
+        user = null;
+    }
+
+
+    /*
+       IMPORTANT:
+
+       For the current frontend prototype, activation.html
+       should set:
+
+       localStorage.setItem('evermore_activated', 'true');
+
+       Once Squad/backend is connected, this check should
+       eventually come from your server instead.
+    */
+
+    const activated = localStorage.getItem('evermore_activated');
+
+
+    /*
+       For development, don't trap the user if activation
+       hasn't yet been connected.
+
+       When the payment/activation system is finalized,
+       change this to a strict redirect.
+    */
+
+    if (!user) {
+
+        // No account
+        // window.location.href = 'signin.html';
+
+    }
+
+
+    /* ---------------------------------------------------------
+       USER DATA
+    --------------------------------------------------------- */
+
+    if (user) {
+
+        const fullName = user.name || 'Member';
+        const firstName = fullName.split(' ')[0];
+
+        const plan =
+            user.package === 'trial'
+                ? 'Trial'
+                : 'Premium';
+
+
+        document.getElementById('welcome-name').textContent = firstName;
+
+        document.getElementById('top-name').textContent = fullName;
+
+        document.getElementById('top-plan').textContent = plan;
+
+        document.getElementById('plan-card').textContent = plan;
+
+        document.getElementById('membership-name').textContent = plan;
+
+        document.getElementById('profile-name').textContent = fullName;
+
+        document.getElementById('profile-email').textContent =
+            user.email || '—';
+
+        document.getElementById('profile-country').textContent =
+            user.country || '—';
+
+        document.getElementById('profile-plan').textContent =
+            plan;
+
+        document.getElementById('avatar').textContent =
+            fullName.charAt(0).toUpperCase();
+
+
+        /*
+           Existing signup.html currently stores:
+
+           premium balance = 48.50
+           trial balance = 25.00
+
+           We display that value here.
+        */
+
+        const balance =
+            typeof user.balance === 'number'
+                ? user.balance
+                : parseFloat(user.balance || 0);
+
+
+        document.getElementById('wallet-balance').textContent =
+            balance.toLocaleString('en-NG', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
             });
 
-            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
-            const activeNav = document.getElementById(`nav-${tabId}`);
-            if (activeNav) {
-                activeNav.className = "w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-semibold text-brand-mint bg-brand-mint/10 border border-brand-mint/30 transition-all";
+
+        document.getElementById('wallet-balance-large').textContent =
+            balance.toLocaleString('en-NG', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+
+    }
+
+
+    /* ---------------------------------------------------------
+       SIDEBAR
+    --------------------------------------------------------- */
+
+    function openSidebar() {
+
+        document
+            .getElementById('sidebar')
+            .classList.add('open');
+
+        document
+            .getElementById('sidebar-overlay')
+            .classList.add('show');
+
+    }
+
+
+    function closeSidebar() {
+
+        document
+            .getElementById('sidebar')
+            .classList.remove('open');
+
+        document
+            .getElementById('sidebar-overlay')
+            .classList.remove('show');
+
+    }
+
+
+    /* ---------------------------------------------------------
+       ACTIVE NAV
+    --------------------------------------------------------- */
+
+    function setActive(element) {
+
+        document
+            .querySelectorAll('.sidebar-link')
+            .forEach(link => link.classList.remove('active'));
+
+        element.classList.add('active');
+
+        if (window.innerWidth < 1024) {
+            closeSidebar();
+        }
+
+    }
+
+
+    /* ---------------------------------------------------------
+       EVERAI
+    --------------------------------------------------------- */
+
+    function openAI(mode = 'Intelligent Workspace') {
+
+        const modal =
+            document.getElementById('ai-modal');
+
+        const modeText =
+            document.getElementById('ai-mode');
+
+        modeText.textContent =
+            mode === 'Intelligent Workspace'
+                ? mode
+                : `${mode} Workspace`;
+
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+
+        document
+            .getElementById('ai-modal-input')
+            .focus();
+
+    }
+
+
+    function closeAI() {
+
+        const modal =
+            document.getElementById('ai-modal');
+
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+
+    }
+
+
+    function sendPrompt() {
+
+        const prompt =
+            document.getElementById('ai-prompt').value.trim();
+
+        if (!prompt) {
+
+            openAI();
+
+            return;
+
+        }
+
+        openAI();
+
+        document
+            .getElementById('ai-modal-input')
+            .value = prompt;
+
+    }
+
+
+    function runAI() {
+
+        const input =
+            document.getElementById('ai-modal-input').value.trim();
+
+        if (!input) {
+
+            showToast('Enter a prompt first.');
+
+            return;
+
+        }
+
+
+        const result =
+            document.getElementById('ai-result');
+
+        result.classList.remove('hidden');
+
+        showToast('EverAI workspace ready.');
+
+    }
+
+
+    /* ---------------------------------------------------------
+       TOAST
+    --------------------------------------------------------- */
+
+    let toastTimer;
+
+    function showToast(message) {
+
+        const toast =
+            document.getElementById('toast');
+
+        toast.textContent = message;
+
+        toast.classList.remove(
+            'translate-y-20',
+            'opacity-0'
+        );
+
+        clearTimeout(toastTimer);
+
+        toastTimer = setTimeout(() => {
+
+            toast.classList.add(
+                'translate-y-20',
+                'opacity-0'
+            );
+
+        }, 2800);
+
+    }
+
+
+    /* ---------------------------------------------------------
+       ESC CLOSE
+    --------------------------------------------------------- */
+
+    document.addEventListener('keydown', event => {
+
+        if (event.key === 'Escape') {
+
+            closeAI();
+            closeSidebar();
+
+        }
+
+    });
+
+
+    /* ---------------------------------------------------------
+       MODAL BACKDROP
+    --------------------------------------------------------- */
+
+    document
+        .getElementById('ai-modal')
+        .addEventListener('click', event => {
+
+            if (
+                event.target.id === 'ai-modal'
+            ) {
+
+                closeAI();
+
             }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
 
-        // Save Payout Details & Update Preview
-        function savePayoutDetails(e) {
-            e.preventDefault();
-            const bank = document.getElementById('bank-name').value;
-            const name = document.getElementById('account-name').value;
-            const num = document.getElementById('account-num').value;
-
-            document.getElementById('prev-bank').innerText = bank;
-            document.getElementById('prev-name').innerText = name;
-            document.getElementById('prev-num').innerText = num;
-
-            // Update localStorage
-            currentUser.bank = bank;
-            currentUser.accountName = name;
-            currentUser.accountNum = num;
-            localStorage.setItem('evermore_user', JSON.stringify(currentUser));
-
-            alert('Payout account details saved successfully!');
-            switchTab('withdraw');
-        }
-
-        // Handle Password Change
-        function handlePasswordChange(e) {
-            e.preventDefault();
-            alert('Password changed successfully!');
-            e.target.reset();
-        }
-
-        // Validate and Handle Withdrawal
-        function handleWithdrawal() {
-            const amount = parseFloat(document.getElementById('withdraw-amount').value);
-            if (isNaN(amount) || amount < 20) {
-                alert('Minimum withdrawal amount is $20.00.');
-                return;
-            }
-            const bank = document.getElementById('prev-bank').innerText;
-            const num = document.getElementById('prev-num').innerText;
-            
-            alert(`Withdrawal request of $${amount.toFixed(2)} to ${bank} (${num}) submitted successfully! Processing payout...`);
-        }
-
-        // Sign Out Logic
-        function handleSignOut() {
-            localStorage.removeItem('evermore_user');
-            window.location.href = 'signin.html';
-        }
-
-        // Three.js Scene Setup for Background
-        const container = document.getElementById('canvas-container');
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.z = 30;
-
-        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        container.appendChild(renderer.domElement);
-
-        const particleCount = 1000;
-        const geometry = new THREE.BufferGeometry();
-        const positions = new Float32Array(particleCount * 3);
-
-        for (let i = 0; i < particleCount * 3; i += z = 3) { // fix loop increment
-            positions[i] = (Math.random() - 0.5) * 80;
-            positions[i + 1] = (Math.random() - 0.5) * 80;
-            positions[i + 2] = (Math.random() - 0.5) * 80;
-        }
-
-        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-        const material = new THREE.PointsMaterial({
-            size: 0.25,
-            color: 0x00ffcc,
-            transparent: true,
-            opacity: 0.8,
-            blending: THREE.AdditiveBlending
         });
 
-        const particles = new THREE.Points(geometry, material);
-        scene.add(particles);
+</script>
 
-        let mouseX = 0;
-        let mouseY = 0;
-        let targetX = 0;
-        let targetY = 0;
-
-        document.addEventListener('mousemove', (event) => {
-            mouseX = (event.clientX - window.innerWidth / 2) * 0.0005;
-            mouseY = (event.clientY - window.innerHeight / 2) * 0.0005;
-        });
-
-        function animate() {
-            requestAnimationFrame(animate);
-            targetX += (mouseX - targetX) * 0.05;
-            targetY += (mouseY - targetY) * 0.05;
-            particles.rotation.x += 0.0005 + targetY;
-            particles.rotation.y += 0.0008 + targetX;
-            renderer.render(scene, camera);
-        }
-        animate();
-
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-    </script>
 </body>
 </html>

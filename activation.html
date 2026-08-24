@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Activating Your Account | Evermore</title>
+
+    <meta
+        name="description"
+        content="Activate your Evermore account and continue to your personalized dashboard."
+    >
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#2563EB',
+                            indigo: '#4F46E5',
+                            purple: '#7C3AED',
+                            dark: '#0F172A'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif']
+                    },
+                    boxShadow: {
+                        soft: '0 20px 60px rgba(15, 23, 42, 0.08)',
+                        card: '0 10px 35px rgba(15, 23, 42, 0.06)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+        }
+
+        /* Soft premium grid */
+        .grid-background {
+            background-color: #f8fafc;
+            background-image:
+                linear-gradient(rgba(37, 99, 235, 0.045) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(37, 99, 235, 0.045) 1px, transparent 1px);
+            background-size: 42px 42px;
+        }
+
+        /* Premium ambient glow */
+        .ambient-blue {
+            position: absolute;
+            width: 420px;
+            height: 420px;
+            top: -180px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(37, 99, 235, 0.10);
+            filter: blur(100px);
+            border-radius: 9999px;
+            pointer-events: none;
+        }
+
+        .ambient-purple {
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            bottom: -180px;
+            right: -100px;
+            background: rgba(124, 58, 237, 0.08);
+            filter: blur(100px);
+            border-radius: 9999px;
+            pointer-events: none;
+        }
+
+        .gradient-text {
+            background: linear-gradient(
+                90deg,
+                #2563eb 0%,
+                #4f46e5 50%,
+                #7c3aed 100%
+            );
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .gradient-button {
+            background: linear-gradient(
+                135deg,
+                #2563eb,
+                #4f46e5,
+                #7c3aed
+            );
+        }
+
+        .gradient-button:hover {
+            background: linear-gradient(
+                135deg,
+                #1d4ed8,
+                #4338ca,
+                #6d28d9
+            );
+        }
+
+        .step-line {
+            height: 2px;
+            background: #e2e8f0;
+            flex: 1;
+        }
+
+        .step-line.active {
+            background: linear-gradient(
+                90deg,
+                #2563eb,
+                #7c3aed
+            );
+        }
+
+        .pulse-ring {
+            animation: pulseRing 2s infinite;
+        }
+
+        @keyframes pulseRing {
+            0% {
+                transform: scale(0.95);
+                opacity: 0.8;
+            }
+
+            70% {
+                transform: scale(1.15);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1.15);
+                opacity: 0;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .check-animation {
+            animation: checkPop 0.55s ease forwards;
+        }
+
+        @keyframes checkPop {
+            0% {
+                transform: scale(0.6);
+                opacity: 0;
+            }
+
+            70% {
+                transform: scale(1.08);
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Prevent button text selection */
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen grid-background antialiased">
+
+    <!-- Ambient background -->
+    <div class="ambient-blue"></div>
+    <div class="ambient-purple"></div>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+    <header class="relative z-20 border-b border-slate-200/80 bg-white/85 backdrop-blur-xl">
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="h-[76px] flex items-center justify-between">
+
+                <!-- Logo -->
+                <a
+                    href="index.html"
+                    class="flex items-center gap-3 group"
+                >
+
+                    <div
+                        class="w-10 h-10 rounded-xl gradient-button flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:scale-105 transition"
+                    >
+                        <i class="fa-solid fa-infinity text-white text-lg"></i>
+                    </div>
+
+                    <div>
+                        <div class="text-xl font-black tracking-tight text-slate-950">
+                            EVER<span class="gradient-text">MORE</span>
+                        </div>
+
+                        <div class="text-[9px] uppercase tracking-[0.18em] font-bold text-slate-400">
+                            Exist Beyond The Moment
+                        </div>
+                    </div>
+
+                </a>
+
+                <!-- Secure indicator -->
+                <div class="hidden sm:flex items-center gap-2 text-xs font-semibold text-slate-500">
+                    <i class="fa-solid fa-shield-halved text-blue-600"></i>
+                    Secure Account Activation
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+    <main class="relative z-10 px-4 sm:px-6 py-12 sm:py-16">
+
+        <div class="max-w-3xl mx-auto">
+
+            <!-- =========================
+                 PROGRESS
+            ========================== -->
+
+            <div class="mb-12">
+
+                <div class="flex items-center justify-center max-w-xl mx-auto">
+
+                    <!-- Step 1 -->
+                    <div class="flex flex-col items-center">
+
+                        <div
+                            class="w-9 h-9 rounded-full gradient-button text-white flex items-center justify-center text-sm font-bold shadow-lg shadow-blue-500/20"
+                        >
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+
+                        <span class="mt-2 text-[10px] sm:text-xs font-bold text-slate-700">
+                            Account
+                        </span>
+
+                    </div>
+
+                    <div class="step-line active mx-2 sm:mx-4"></div>
+
+                    <!-- Step 2 -->
+                    <div class="flex flex-col items-center">
+
+                        <div
+                            class="w-9 h-9 rounded-full gradient-button text-white flex items-center justify-center text-sm font-bold shadow-lg shadow-blue-500/20"
+                        >
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+
+                        <span class="mt-2 text-[10px] sm:text-xs font-bold text-slate-700">
+                            Payment
+                        </span>
+
+                    </div>
+
+                    <div class="step-line active mx-2 sm:mx-4"></div>
+
+                    <!-- Step 3 -->
+                    <div class="flex flex-col items-center">
+
+                        <div
+                            id="progress-activation"
+                            class="w-9 h-9 rounded-full bg-blue-50 border-2 border-blue-600 text-blue-600 flex items-center justify-center text-sm font-bold"
+                        >
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+
+                        <span class="mt-2 text-[10px] sm:text-xs font-bold text-blue-600">
+                            Activation
+                        </span>
+
+                    </div>
+
+                    <div class="step-line mx-2 sm:mx-4"></div>
+
+                    <!-- Step 4 -->
+                    <div class="flex flex-col items-center">
+
+                        <div
+                            class="w-9 h-9 rounded-full bg-slate-100 border border-slate-200 text-slate-400 flex items-center justify-center text-sm font-bold"
+                        >
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+
+                        <span class="mt-2 text-[10px] sm:text-xs font-semibold text-slate-400">
+                            Dashboard
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 HEADING
+            ========================== -->
+
+            <div class="text-center mb-9 fade-in">
+
+                <div
+                    class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-xs font-bold"
+                >
+                    <span class="relative flex h-2.5 w-2.5">
+
+                        <span
+                            class="pulse-ring absolute inline-flex h-full w-full rounded-full bg-blue-400"
+                        ></span>
+
+                        <span
+                            class="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-600"
+                        ></span>
+
+                    </span>
+
+                    FINAL ACCOUNT SETUP
+                </div>
+
+                <h1 class="mt-5 text-4xl sm:text-5xl font-black tracking-tight text-slate-950">
+                    Activate your
+                    <span class="gradient-text">Evermore account.</span>
+                </h1>
+
+                <p class="mt-4 text-slate-500 text-sm sm:text-base leading-relaxed max-w-xl mx-auto">
+                    Your payment has been received. We're confirming your account access so you can enter your Evermore dashboard.
+                </p>
+
+            </div>
+
+
+            <!-- =========================
+                 ACTIVATION CARD
+            ========================== -->
+
+            <section
+                class="bg-white border border-slate-200 rounded-[28px] shadow-soft overflow-hidden"
+            >
+
+                <!-- Card Top -->
+                <div class="px-6 sm:px-10 pt-8 sm:pt-10">
+
+                    <div
+                        id="status-card"
+                        class="rounded-2xl bg-slate-50 border border-slate-200 p-5 sm:p-6"
+                    >
+
+                        <div class="flex items-start gap-4">
+
+                            <!-- Status icon -->
+                            <div
+                                id="status-icon"
+                                class="relative flex-shrink-0 w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center"
+                            >
+                                <i
+                                    id="status-icon-inner"
+                                    class="fa-solid fa-shield-halved text-xl"
+                                ></i>
+                            </div>
+
+                            <div class="flex-1">
+
+                                <div
+                                    id="status-title"
+                                    class="font-extrabold text-slate-900"
+                                >
+                                    Verifying your activation
+                                </div>
+
+                                <p
+                                    id="status-description"
+                                    class="mt-1 text-xs sm:text-sm text-slate-500 leading-relaxed"
+                                >
+                                    We're checking your payment and account status. This usually takes only a few seconds.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     ACTIVATION CONTENT
+                ========================== -->
+
+                <div class="px-6 sm:px-10 py-9">
+
+                    <!-- Loading State -->
+                    <div
+                        id="loading-state"
+                        class="text-center"
+                    >
+
+                        <div
+                            class="relative mx-auto w-20 h-20 mb-6"
+                        >
+
+                            <div
+                                class="absolute inset-0 rounded-full border-4 border-blue-100"
+                            ></div>
+
+                            <div
+                                class="absolute inset-0 rounded-full border-4 border-transparent border-t-blue-600 border-r-purple-600 animate-spin"
+                            ></div>
+
+                            <div
+                                class="absolute inset-0 flex items-center justify-center"
+                            >
+                                <i class="fa-solid fa-bolt text-blue-600"></i>
+                            </div>
+
+                        </div>
+
+                        <h2 class="text-xl font-extrabold text-slate-900">
+                            Activating your account...
+                        </h2>
+
+                        <p class="mt-2 text-sm text-slate-500">
+                            Please stay on this page while we confirm your access.
+                        </p>
+
+                        <!-- Progress -->
+                        <div class="max-w-md mx-auto mt-7">
+
+                            <div class="flex items-center justify-between text-[11px] font-semibold text-slate-400 mb-2">
+                                <span id="progress-label">
+                                    Checking payment
+                                </span>
+
+                                <span id="progress-percent">
+                                    0%
+                                </span>
+                            </div>
+
+                            <div class="h-2 bg-slate-100 rounded-full overflow-hidden">
+
+                                <div
+                                    id="activation-progress"
+                                    class="h-full rounded-full gradient-button transition-all duration-700"
+                                    style="width: 0%"
+                                ></div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SUCCESS STATE -->
+                    <div
+                        id="success-state"
+                        class="hidden text-center fade-in"
+                    >
+
+                        <div
+                            class="check-animation mx-auto w-20 h-20 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 mb-6"
+                        >
+                            <div
+                                class="w-14 h-14 rounded-full gradient-button flex items-center justify-center shadow-lg shadow-blue-500/20"
+                            >
+                                <i class="fa-solid fa-check text-white text-2xl"></i>
+                            </div>
+                        </div>
+
+                        <h2 class="text-2xl sm:text-3xl font-black text-slate-950">
+                            You're officially activated.
+                        </h2>
+
+                        <p class="mt-3 text-sm text-slate-500 max-w-md mx-auto leading-relaxed">
+                            Your Evermore account is ready. Your selected package and platform access are now available from your dashboard.
+                        </p>
+
+                        <!-- Account summary -->
+                        <div
+                            class="max-w-md mx-auto mt-7 bg-slate-50 border border-slate-200 rounded-2xl p-5 text-left"
+                        >
+
+                            <div class="flex items-center justify-between py-2">
+                                <span class="text-xs text-slate-500">
+                                    Account
+                                </span>
+
+                                <span
+                                    id="account-email"
+                                    class="text-xs font-bold text-slate-900 truncate max-w-[190px]"
+                                >
+                                    —
+                                </span>
+                            </div>
+
+                            <div class="flex items-center justify-between py-2 border-t border-slate-200">
+                                <span class="text-xs text-slate-500">
+                                    Package
+                                </span>
+
+                                <span
+                                    id="account-package"
+                                    class="text-xs font-extrabold text-blue-600"
+                                >
+                                    —
+                                </span>
+                            </div>
+
+                            <div class="flex items-center justify-between py-2 border-t border-slate-200">
+                                <span class="text-xs text-slate-500">
+                                    Status
+                                </span>
+
+                                <span class="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-600">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                    Active
+                                </span>
+                            </div>
+
+                        </div>
+
+                        <a
+                            href="dashboard.html"
+                            class="mt-7 w-full max-w-md mx-auto gradient-button hover:opacity-95 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-3 shadow-lg shadow-blue-500/20 transition"
+                        >
+                            Continue to Dashboard
+
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+
+                        <p class="mt-4 text-[11px] text-slate-400">
+                            Your Evermore experience starts here.
+                        </p>
+
+                    </div>
+
+
+                    <!-- WAITING / PAYMENT NOT CONFIRMED -->
+                    <div
+                        id="waiting-state"
+                        class="hidden text-center fade-in"
+                    >
+
+                        <div
+                            class="mx-auto w-20 h-20 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center mb-6"
+                        >
+                            <i class="fa-solid fa-clock text-2xl"></i>
+                        </div>
+
+                        <h2 class="text-2xl font-black text-slate-950">
+                            We're waiting for payment confirmation.
+                        </h2>
+
+                        <p class="mt-3 text-sm text-slate-500 max-w-md mx-auto leading-relaxed">
+                            Your payment may still be processing. Once the payment gateway confirms it, your Evermore account will be activated automatically.
+                        </p>
+
+                        <div class="max-w-md mx-auto mt-7 space-y-3">
+
+                            <a
+                                href="payment.html"
+                                class="w-full bg-slate-950 hover:bg-slate-800 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-3 transition"
+                            >
+                                Return to Payment
+
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </a>
+
+                            <button
+                                onclick="checkActivation()"
+                                class="w-full bg-white hover:bg-slate-50 border border-slate-200 text-slate-900 font-bold py-4 rounded-xl flex items-center justify-center gap-3 transition"
+                            >
+                                <i class="fa-solid fa-rotate"></i>
+                                Check Again
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ERROR STATE -->
+                    <div
+                        id="error-state"
+                        class="hidden text-center fade-in"
+                    >
+
+                        <div
+                            class="mx-auto w-20 h-20 rounded-full bg-red-50 text-red-600 flex items-center justify-center mb-6"
+                        >
+                            <i class="fa-solid fa-circle-exclamation text-2xl"></i>
+                        </div>
+
+                        <h2 class="text-2xl font-black text-slate-950">
+                            We couldn't confirm your activation.
+                        </h2>
+
+                        <p class="mt-3 text-sm text-slate-500 max-w-md mx-auto leading-relaxed">
+                            Don't worry. Your account information is still safe. Please return to payment or contact Evermore support if you've already completed payment.
+                        </p>
+
+                        <div class="max-w-md mx-auto mt-7 space-y-3">
+
+                            <a
+                                href="payment.html"
+                                class="w-full gradient-button text-white font-bold py-4 rounded-xl flex items-center justify-center gap-3 transition"
+                            >
+                                Return to Payment
+
+                                <i class="fa-solid fa-credit-card"></i>
+                            </a>
+
+                            <a
+                                href="index.html"
+                                class="w-full bg-white border border-slate-200 hover:bg-slate-50 text-slate-900 font-bold py-4 rounded-xl flex items-center justify-center gap-3 transition"
+                            >
+                                Back to Home
+
+                                <i class="fa-solid fa-house"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     TRUST FOOTER
+                ========================== -->
+
+                <div
+                    class="px-6 sm:px-10 py-5 bg-slate-50 border-t border-slate-200"
+                >
+
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+
+                        <div class="flex items-center gap-2 text-[11px] text-slate-500">
+                            <i class="fa-solid fa-lock text-blue-600"></i>
+                            Secure account activation
+                        </div>
+
+                        <div class="flex items-center gap-5 text-[11px] text-slate-400">
+
+                            <span>
+                                <i class="fa-solid fa-shield-halved mr-1"></i>
+                                Protected
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-bolt mr-1"></i>
+                                Fast setup
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Support -->
+            <div class="text-center mt-7">
+
+                <p class="text-xs text-slate-400">
+                    Having trouble activating your account?
+                    <a
+                        href="#"
+                        class="font-bold text-blue-600 hover:text-purple-600 transition"
+                    >
+                        Contact Evermore Support
+                    </a>
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="relative z-10 border-t border-slate-200 bg-white">
+
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-7 flex flex-col sm:flex-row items-center justify-between gap-4"
+        >
+
+            <div class="text-[11px] text-slate-400">
+                © 2026 Evermore. All rights reserved.
+            </div>
+
+            <div class="flex items-center gap-6 text-[11px] text-slate-400">
+
+                <a href="index.html" class="hover:text-blue-600 transition">
+                    Home
+                </a>
+
+                <a href="index.html#pricing" class="hover:text-blue-600 transition">
+                    Pricing
+                </a>
+
+                <a href="#" class="hover:text-blue-600 transition">
+                    Support
+                </a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================
+         ACTIVATION SCRIPT
+    ========================== -->
+
+    <script>
+
+        /*
+        ============================================================
+        EVERMORE ACTIVATION FLOW
+        ============================================================
+
+        CURRENT DEVELOPMENT MODE:
+
+        payment.html should eventually set:
+
+        localStorage.setItem(
+            "evermore_payment_status",
+            "paid"
+        );
+
+        When Squad is connected, DO NOT rely on localStorage
+        for real payment verification.
+
+        Instead:
+
+        payment.html
+                ↓
+        Squad Payment
+                ↓
+        Squad Webhook
+                ↓
+        Your Backend
+                ↓
+        Verify Transaction
+                ↓
+        Mark User Active
+                ↓
+        activation.html
+                ↓
+        dashboard.html
+
+        ============================================================
+        */
+
+        const loadingState = document.getElementById('loading-state');
+        const successState = document.getElementById('success-state');
+        const waitingState = document.getElementById('waiting-state');
+        const errorState = document.getElementById('error-state');
+
+        const statusTitle = document.getElementById('status-title');
+        const statusDescription = document.getElementById('status-description');
+        const statusIcon = document.getElementById('status-icon');
+        const statusIconInner = document.getElementById('status-icon-inner');
+
+        const progressBar = document.getElementById('activation-progress');
+        const progressPercent = document.getElementById('progress-percent');
+        const progressLabel = document.getElementById('progress-label');
+
+        const accountEmail = document.getElementById('account-email');
+        const accountPackage = document.getElementById('account-package');
+
+
+        function hideAllStates() {
+
+            loadingState.classList.add('hidden');
+            successState.classList.add('hidden');
+            waitingState.classList.add('hidden');
+            errorState.classList.add('hidden');
+
+        }
+
+
+        function showStatus(
+            title,
+            description,
+            icon,
+            iconColorClass,
+            iconBackgroundClass
+        ) {
+
+            statusTitle.textContent = title;
+            statusDescription.textContent = description;
+
+            statusIcon.className =
+                `relative flex-shrink-0 w-12 h-12 rounded-2xl ${iconBackgroundClass} ${iconColorClass} flex items-center justify-center`;
+
+            statusIconInner.className =
+                `fa-solid ${icon} text-xl`;
+
+        }
+
+
+        function updateProgress(percent, label) {
+
+            progressBar.style.width = percent + '%';
+            progressPercent.textContent = percent + '%';
+            progressLabel.textContent = label;
+
+        }
+
+
+        function getUser() {
+
+            try {
+
+                const user =
+                    localStorage.getItem('evermore_user');
+
+                if (!user) {
+                    return null;
+                }
+
+                return JSON.parse(user);
+
+            } catch (error) {
+
+                console.error(
+                    'Unable to read Evermore account:',
+                    error
+                );
+
+                return null;
+
+            }
+
+        }
+
+
+        function getPaymentStatus() {
+
+            return localStorage.getItem(
+                'evermore_payment_status'
+            );
+
+        }
+
+
+        function activateAccount() {
+
+            const user = getUser();
+
+            /*
+            Store local activation state for development.
+
+            In production this must be controlled
+            by your backend after Squad confirms payment.
+            */
+
+            localStorage.setItem(
+                'evermore_account_status',
+                'active'
+            );
+
+            if (user) {
+
+                const updatedUser = {
+                    ...user,
+                    activated: true,
+                    accountStatus: 'active',
+                    activatedAt: new Date().toISOString()
+                };
+
+                localStorage.setItem(
+                    'evermore_user',
+                    JSON.stringify(updatedUser)
+                );
+
+            }
+
+        }
+
+
+        function showSuccess() {
+
+            const user = getUser();
+
+            if (user) {
+
+                accountEmail.textContent =
+                    user.email || 'Account';
+
+                accountPackage.textContent =
+                    user.package === 'premium'
+                        ? 'Crown Premium'
+                        : 'Trial';
+
+            } else {
+
+                accountEmail.textContent =
+                    'Evermore Account';
+
+                accountPackage.textContent =
+                    'Selected Package';
+
+            }
+
+            hideAllStates();
+
+            successState.classList.remove('hidden');
+
+            showStatus(
+                'Account activated successfully',
+                'Your payment has been confirmed and your Evermore access is ready.',
+                'fa-circle-check',
+                'text-emerald-600',
+                'bg-emerald-50'
+            );
+
+            /*
+            Update progress indicator.
+            */
+
+            const activationStep =
+                document.getElementById(
+                    'progress-activation'
+                );
+
+            activationStep.className =
+                'w-9 h-9 rounded-full bg-emerald-600 text-white flex items-center justify-center text-sm font-bold';
+
+            activationStep.innerHTML =
+                '<i class="fa-solid fa-check"></i>';
+
+        }
+
+
+        function showWaiting() {
+
+            hideAllStates();
+
+            waitingState.classList.remove('hidden');
+
+            showStatus(
+                'Payment confirmation pending',
+                'Your payment has not been confirmed yet. If you just paid, please give the gateway a moment.',
+                'fa-clock',
+                'text-amber-600',
+                'bg-amber-50'
+            );
+
+        }
+
+
+        function showError() {
+
+            hideAllStates();
+
+            errorState.classList.remove('hidden');
+
+            showStatus(
+                'Activation could not be completed',
+                'We could not confirm your account status at this time.',
+                'fa-circle-exclamation',
+                'text-red-600',
+                'bg-red-50'
+            );
+
+        }
+
+
+        /*
+        ============================================================
+        CHECK ACTIVATION
+        ============================================================
+        */
+
+        function checkActivation() {
+
+            hideAllStates();
+
+            loadingState.classList.remove('hidden');
+
+            showStatus(
+                'Verifying your activation',
+                "We're checking your payment and account status.",
+                'fa-shield-halved',
+                'text-blue-600',
+                'bg-blue-50'
+            );
+
+            updateProgress(
+                15,
+                'Checking payment'
+            );
+
+
+            /*
+            Small delay to create a smooth
+            onboarding experience.
+            */
+
+            setTimeout(() => {
+
+                updateProgress(
+                    40,
+                    'Confirming transaction'
+                );
+
+            }, 700);
+
+
+            setTimeout(() => {
+
+                updateProgress(
+                    65,
+                    'Preparing account'
+                );
+
+            }, 1400);
+
+
+            setTimeout(() => {
+
+                updateProgress(
+                    85,
+                    'Finalizing activation'
+                );
+
+            }, 2100);
+
+
+            setTimeout(() => {
+
+                const user = getUser();
+
+                /*
+                No account = error.
+                */
+
+                if (!user) {
+
+                    showError();
+                    return;
+
+                }
+
+
+                /*
+                DEVELOPMENT PAYMENT CHECK.
+
+                payment.html should set:
+
+                evermore_payment_status = "paid"
+
+                before redirecting here.
+
+                */
+
+                const paymentStatus =
+                    getPaymentStatus();
+
+
+                if (
+                    paymentStatus === 'paid' ||
+                    paymentStatus === 'success' ||
+                    paymentStatus === 'successful'
+                ) {
+
+                    updateProgress(
+                        100,
+                        'Account activated'
+                    );
+
+                    activateAccount();
+
+                    setTimeout(() => {
+
+                        showSuccess();
+
+                    }, 500);
+
+                } else {
+
+                    /*
+                    Payment isn't confirmed yet.
+                    */
+
+                    showWaiting();
+
+                }
+
+            }, 2900);
+
+        }
+
+
+        /*
+        ============================================================
+        START
+        ============================================================
+        */
+
+        document.addEventListener(
+            'DOMContentLoaded',
+            () => {
+
+                checkActivation();
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>
