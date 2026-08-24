@@ -12,10 +12,10 @@
                 extend: {
                     colors: {
                         brand: {
-                            50: '#f0fdf4',
+                            50: '#ecfdf5',
                             500: '#10b981',
                             600: '#059669',
-                            900: '#064e3b'
+                            700: '#047857',
                         }
                     }
                 }
@@ -25,26 +25,26 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-white relative">
+<body class="bg-[#0b0f17] text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-white relative overflow-x-hidden">
 
-    <!-- Background Corporate Team Image with Dark Overlay -->
-    <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2000&q=80" alt="Group of professionals working in an official office" class="w-full h-full object-cover opacity-20 scale-105 animate-pulse duration-[10000ms]">
-        <div class="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/90 to-slate-950"></div>
+    <!-- Dimly Visible Background Team Image with Gradient Overlay -->
+    <div class="fixed inset-0 -z-10 pointer-events-none">
+        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2000&q=80" alt="Evermore Team Background" class="w-full h-full object-cover opacity-10">
+        <div class="absolute inset-0 bg-gradient-to-br from-[#0b0f17] via-[#0f172a]/90 to-[#064e3b]/20"></div>
     </div>
 
     <!-- Navigation Header -->
-    <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/70 border-b border-slate-800">
+    <header class="sticky top-0 z-50 backdrop-blur-xl bg-[#0b0f17]/80 border-b border-slate-800/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-emerald-400 flex items-center justify-center shadow-lg shadow-brand-500/30">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-emerald-400 flex items-center justify-center shadow-lg shadow-brand-500/20">
                     <i class="fa-solid fa-cube text-white text-lg"></i>
                 </div>
-                <span class="text-xl font-extrabold tracking-wider bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">EVERMORE</span>
+                <span class="text-xl font-extrabold tracking-wider bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">EVERMORE</span>
             </div>
             
             <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
-                <a href="#features" class="hover:text-brand-400 transition">EverAI & Jobs</a>
+                <a href="#features" class="hover:text-brand-400 transition">Ecosystem</a>
                 <a href="#pricing" class="hover:text-brand-400 transition">Packages</a>
                 <a href="#how-it-works" class="hover:text-brand-400 transition">How It Works</a>
                 <a href="#reviews" class="hover:text-brand-400 transition">Reviews</a>
@@ -61,24 +61,24 @@
     <!-- Hero Section -->
     <section class="relative pt-20 pb-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <div class="lg:col-span-7 space-y-8">
-            <div class="inline-flex items-center space-x-2 bg-slate-900/90 border border-slate-800 px-4 py-2 rounded-full text-xs font-semibold text-brand-400">
-                <span class="w-2 h-2 rounded-full bg-brand-500 animate-ping"></span>
+            <div class="inline-flex items-center space-x-2 bg-slate-900/80 border border-slate-800/80 px-4 py-2 rounded-full text-xs font-semibold text-brand-400 shadow-inner">
+                <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
                 <span>Next-Gen AI Training & Remote Workforce Platform</span>
             </div>
-            <h1 class="text-4xl sm:text-6xl font-black tracking-tight leading-tight">
-                Empower your future: <span class="bg-gradient-to-r from-brand-400 to-emerald-200 bg-clip-text text-transparent">AI Training Tasks, Remote Jobs & Advanced EverAI.</span>
+            <h1 class="text-4xl sm:text-6xl font-black tracking-tight leading-[1.1]">
+                Empower your future: <span class="bg-gradient-to-r from-brand-400 via-emerald-300 to-teal-200 bg-clip-text text-transparent">AI Training Tasks, Remote Jobs & Advanced EverAI.</span>
             </h1>
-            <p class="text-slate-400 text-lg max-w-xl">
+            <p class="text-slate-300 text-lg max-w-xl font-normal leading-relaxed">
                 Unlock high-paying AI training tasks, outsourced remote positions, full media creation suites, and master new digital skills via the Evermore Skills Academy.
             </p>
             <div class="flex flex-col sm:flex-row items-stretch sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
-                <a href="signup.html" class="bg-brand-500 hover:bg-brand-600 text-white font-bold text-center px-8 py-4 rounded-xl shadow-xl shadow-brand-500/30 transition">Get Started Free</a>
-                <a href="#pricing" class="bg-slate-900/80 hover:bg-slate-800 border border-slate-800 font-semibold text-center px-8 py-4 rounded-xl transition">View Packages</a>
+                <a href="signup.html" class="bg-brand-500 hover:bg-brand-600 text-white font-bold text-center px-8 py-4 rounded-xl shadow-xl shadow-brand-500/25 transition">Get Started Free</a>
+                <a href="#pricing" class="bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 font-semibold text-center px-8 py-4 rounded-xl transition text-slate-200">View Packages</a>
             </div>
 
             <!-- Mini Metrics Row -->
-            <div class="grid grid-cols-2 sm:grid-cols-2 gap-4 pt-4 border-t border-slate-900">
-                <div class="bg-slate-900/60 border border-slate-800/80 p-4 rounded-2xl flex items-center space-x-4">
+            <div class="grid grid-cols-2 gap-4 pt-4 border-t border-slate-800/80">
+                <div class="bg-slate-900/60 backdrop-blur-md border border-slate-800 p-4 rounded-2xl flex items-center space-x-4">
                     <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center text-xl font-bold">
                         <i class="fa-solid fa-robot"></i>
                     </div>
@@ -87,7 +87,7 @@
                         <div class="text-xs text-slate-400">Unlimited Intelligence</div>
                     </div>
                 </div>
-                <div class="bg-slate-900/60 border border-slate-800/80 p-4 rounded-2xl flex items-center space-x-4">
+                <div class="bg-slate-900/60 backdrop-blur-md border border-slate-800 p-4 rounded-2xl flex items-center space-x-4">
                     <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl font-bold">
                         <i class="fa-solid fa-laptop-code"></i>
                     </div>
@@ -99,29 +99,28 @@
             </div>
         </div>
 
-        <!-- Hero Image Showcase Box (Room to add images) -->
+        <!-- Hero Image Showcase Box -->
         <div class="lg:col-span-5 relative">
-            <div class="absolute -inset-1 bg-gradient-to-r from-brand-600 to-emerald-400 rounded-3xl blur-xl opacity-30 animate-pulse"></div>
-            <div class="relative bg-slate-900 border border-slate-800 p-6 rounded-3xl shadow-2xl space-y-6">
+            <div class="absolute -inset-1 bg-gradient-to-r from-brand-600 to-teal-500 rounded-3xl blur-2xl opacity-20"></div>
+            <div class="relative bg-slate-900/90 backdrop-blur-xl border border-slate-800 p-6 rounded-3xl shadow-2xl space-y-6">
                 <div class="relative h-64 rounded-2xl overflow-hidden group">
-                    <!-- Image placement slot for team/workspace -->
-                    <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80" alt="Evermore Workspace and Team" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                    <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80" alt="Evermore Workspace" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
                     <div class="absolute bottom-4 left-4 right-4 bg-slate-950/80 backdrop-blur-md p-3 rounded-xl border border-slate-800 flex items-center justify-between">
                         <span class="text-xs font-semibold text-slate-300">Official Evermore Workforce Team</span>
                         <span class="text-xs bg-brand-500/20 text-brand-400 px-2 py-1 rounded font-bold">Verified</span>
                     </div>
                 </div>
                 <div class="grid grid-cols-3 gap-3 text-center">
-                    <div class="bg-slate-950/60 p-3 rounded-xl border border-slate-800">
+                    <div class="bg-slate-950/60 p-3 rounded-xl border border-slate-800/80">
                         <div class="text-brand-400 font-bold text-sm">Tasks</div>
                         <div class="text-[10px] text-slate-400">$16.8 / hr</div>
                     </div>
-                    <div class="bg-slate-950/60 p-3 rounded-xl border border-slate-800">
+                    <div class="bg-slate-950/60 p-3 rounded-xl border border-slate-800/80">
                         <div class="text-brand-400 font-bold text-sm">Media</div>
                         <div class="text-[10px] text-slate-400">Unlimited</div>
                     </div>
-                    <div class="bg-slate-950/60 p-3 rounded-xl border border-slate-800">
+                    <div class="bg-slate-950/60 p-3 rounded-xl border border-slate-800/80">
                         <div class="text-brand-400 font-bold text-sm">Academy</div>
                         <div class="text-[10px] text-slate-400">Full Access</div>
                     </div>
@@ -130,8 +129,8 @@
         </div>
     </section>
 
-    <!-- Pricing / Packages Section (Crown & Trial) -->
-    <section id="pricing" class="py-24 bg-slate-900/40 border-y border-slate-900">
+    <!-- Pricing / Packages Section -->
+    <section id="pricing" class="py-24 bg-slate-900/30 border-y border-slate-800/60">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
             <div class="text-center space-y-4">
                 <h2 class="text-3xl sm:text-4xl font-black">Choose Your Package</h2>
@@ -140,7 +139,7 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
                 <!-- Crown Premium Package -->
-                <div class="bg-slate-900 border-2 border-brand-500/80 rounded-3xl p-8 space-y-8 relative shadow-2xl shadow-brand-500/10 flex flex-col justify-between">
+                <div class="bg-slate-900/90 backdrop-blur-md border-2 border-brand-500/80 rounded-3xl p-8 space-y-8 relative shadow-2xl shadow-brand-500/10 flex flex-col justify-between">
                     <div class="absolute -top-4 right-8 bg-brand-500 text-white text-xs font-black uppercase tracking-wider px-4 py-1.5 rounded-full shadow-lg">Most Popular 👑</div>
                     
                     <div class="space-y-6">
@@ -150,21 +149,21 @@
                                 <span class="text-4xl font-black text-brand-400">$10</span>
                                 <span class="text-slate-400 text-sm font-semibold">/ N13,992</span>
                             </div>
-                            <p class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-calendar-days text-brand-400 mr-1"></i> Validity: 6 Months</p>
+                            <p class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-calendar-days text-brand-400 mr-1"></i> Validity: 6 Months validity</p>
                         </div>
 
                         <ul class="space-y-4 text-sm text-slate-300">
                             <li class="flex items-start space-x-3">
                                 <i class="fa-solid fa-circle-check text-brand-400 mt-1"></i>
-                                <span><strong>AI Training Tasks:</strong> Consistent tasks paying <strong class="text-white">$16.8/hr</strong></span>
+                                <span><strong>AI Training Tasks:</strong> Consistent AI Training tasks (<strong class="text-white">$16.8/hr</strong>)</span>
                             </li>
                             <li class="flex items-start space-x-3">
                                 <i class="fa-solid fa-circle-check text-brand-400 mt-1"></i>
-                                <span><strong>Remote Jobs:</strong> Priority in receiving AI outsourced jobs (<strong class="text-white">$18/hr</strong>)</span>
+                                <span><strong>Remote Jobs:</strong> Priority in receiving AI outsourced Jobs (<strong class="text-white">$18/hr</strong>)</span>
                             </li>
                             <li class="flex items-start space-x-3">
                                 <i class="fa-solid fa-circle-check text-brand-400 mt-1"></i>
-                                <span><strong>EverAI Capabilities:</strong> Unlimited prompt responses from EverAI</span>
+                                <span><strong>AI Capabilities:</strong> Unlimited prompt response from EverAI</span>
                             </li>
                             <li class="flex items-start space-x-3">
                                 <i class="fa-solid fa-circle-check text-brand-400 mt-1"></i>
@@ -172,7 +171,7 @@
                             </li>
                             <li class="flex items-start space-x-3">
                                 <i class="fa-solid fa-circle-check text-brand-400 mt-1"></i>
-                                <span><strong>Development:</strong> Full capability to write code and build websites</span>
+                                <span><strong>Development:</strong> Can write code and build websites</span>
                             </li>
                             <li class="flex items-start space-x-3">
                                 <i class="fa-solid fa-circle-check text-brand-400 mt-1"></i>
@@ -185,7 +184,7 @@
                 </div>
 
                 <!-- Trial Package -->
-                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 space-y-8 flex flex-col justify-between">
+                <div class="bg-slate-900/90 backdrop-blur-md border border-slate-800 rounded-3xl p-8 space-y-8 flex flex-col justify-between">
                     <div class="space-y-6">
                         <div>
                             <h3 class="text-2xl font-black text-white">Trial Package</h3>
@@ -193,13 +192,13 @@
                                 <span class="text-4xl font-black text-slate-200">$5</span>
                                 <span class="text-slate-400 text-sm font-semibold">/ N6,991</span>
                             </div>
-                            <p class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-calendar-days text-slate-400 mr-1"></i> Validity: 2 Months</p>
+                            <p class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-calendar-days text-slate-400 mr-1"></i> Validity: 2 Months validity</p>
                         </div>
 
                         <ul class="space-y-4 text-sm text-slate-300">
                             <li class="flex items-start space-x-3">
                                 <i class="fa-solid fa-circle-check text-brand-400 mt-1"></i>
-                                <span><strong>AI Training Tasks:</strong> Consistent tasks paying <strong class="text-white">$8.6/hr</strong></span>
+                                <span><strong>AI Training Tasks:</strong> Consistent AI Training tasks (<strong class="text-white">$8.6/hr</strong>)</span>
                             </li>
                             <li class="flex items-start space-x-3">
                                 <i class="fa-solid fa-circle-check text-brand-400 mt-1"></i>
@@ -207,7 +206,7 @@
                             </li>
                             <li class="flex items-start space-x-3">
                                 <i class="fa-solid fa-circle-check text-brand-400 mt-1"></i>
-                                <span><strong>EverAI Capabilities:</strong> Minimal prompt responses from EverAI</span>
+                                <span><strong>AI Capabilities:</strong> Minimal prompts response from EverAI</span>
                             </li>
                             <li class="flex items-start space-x-3">
                                 <i class="fa-solid fa-circle-check text-brand-400 mt-1"></i>
@@ -230,7 +229,7 @@
         </div>
     </section>
 
-    <!-- Platform Features Grid -->
+    <!-- Platform Blueprint Features Grid -->
     <section id="features" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         <div class="text-center space-y-4">
             <h2 class="text-3xl sm:text-4xl font-black">The Evermore Ecosystem Blueprint</h2>
@@ -264,8 +263,8 @@
         </div>
     </section>
 
-    <!-- How It Works Section -->
-    <section id="how-it-works" class="py-20 bg-slate-900/30 border-t border-slate-900">
+    <!-- How It Works -->
+    <section id="how-it-works" class="py-20 bg-slate-900/30 border-t border-slate-800/60">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
             <div class="text-center space-y-4">
                 <h2 class="text-3xl sm:text-4xl font-black">How It Works</h2>
@@ -273,17 +272,17 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-slate-900 border border-slate-800 p-8 rounded-3xl relative space-y-4">
+                <div class="bg-slate-900/90 border border-slate-800 p-8 rounded-3xl relative space-y-4">
                     <div class="text-brand-500 font-black text-3xl">01</div>
                     <h3 class="text-lg font-bold text-white">Create Account</h3>
                     <p class="text-slate-400 text-sm">Register for free and access your secure dashboard in seconds.</p>
                 </div>
-                <div class="bg-slate-900 border border-slate-800 p-8 rounded-3xl relative space-y-4">
+                <div class="bg-slate-900/90 border border-slate-800 p-8 rounded-3xl relative space-y-4">
                     <div class="text-brand-500 font-black text-3xl">02</div>
                     <h3 class="text-lg font-bold text-white">Select Package</h3>
                     <p class="text-slate-400 text-sm">Choose between the Trial or Crown Premium package to unlock task rates.</p>
                 </div>
-                <div class="bg-slate-900 border border-slate-800 p-8 rounded-3xl relative space-y-4">
+                <div class="bg-slate-900/90 border border-slate-800 p-8 rounded-3xl relative space-y-4">
                     <div class="text-brand-500 font-black text-3xl">03</div>
                     <h3 class="text-lg font-bold text-white">Earn & Learn</h3>
                     <p class="text-slate-400 text-sm">Execute AI training tasks, build websites, and cash out earnings seamlessly.</p>
@@ -292,7 +291,7 @@
         </div>
     </section>
 
-    <!-- Customer Reviews Section -->
+    <!-- Customer Reviews -->
     <section id="reviews" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         <div class="text-center space-y-4">
             <h2 class="text-3xl sm:text-4xl font-black">What Members Are Saying</h2>
@@ -307,7 +306,7 @@
                     </div>
                     <p class="text-slate-300 text-sm italic">"The Crown package is worth every penny. Getting $18/hr on priority remote jobs and using EverAI to build client websites has been life-changing."</p>
                 </div>
-                <div class="flex items-center space-x-4 pt-4 border-t border-slate-800">
+                <div class="flex items-center space-x-4 pt-4 border-t border-slate-800/80">
                     <div class="w-10 h-10 rounded-full bg-brand-500/20 text-brand-400 flex items-center justify-center font-bold">CE</div>
                     <div>
                         <div class="text-sm font-bold text-white">Chinedu E.</div>
@@ -323,7 +322,7 @@
                     </div>
                     <p class="text-slate-300 text-sm italic">"The AI training tasks are consistent, and the payouts arrive promptly. The Skills Academy also taught me modern web design."</p>
                 </div>
-                <div class="flex items-center space-x-4 pt-4 border-t border-slate-800">
+                <div class="flex items-center space-x-4 pt-4 border-t border-slate-800/80">
                     <div class="w-10 h-10 rounded-full bg-brand-500/20 text-brand-400 flex items-center justify-center font-bold">FA</div>
                     <div>
                         <div class="text-sm font-bold text-white">Fatima A.</div>
@@ -339,7 +338,7 @@
                     </div>
                     <p class="text-slate-300 text-sm italic">"I started with the Trial package and quickly upgraded to Crown. The mentorship and media generation tools are top-tier."</p>
                 </div>
-                <div class="flex items-center space-x-4 pt-4 border-t border-slate-800">
+                <div class="flex items-center space-x-4 pt-4 border-t border-slate-800/80">
                     <div class="w-10 h-10 rounded-full bg-brand-500/20 text-brand-400 flex items-center justify-center font-bold">KO</div>
                     <div>
                         <div class="text-sm font-bold text-white">Kelechi O.</div>
@@ -350,8 +349,8 @@
         </div>
     </section>
 
-    <!-- FAQ Section -->
-    <section id="faq" class="py-20 bg-slate-900/40 border-t border-slate-900">
+    <!-- FAQ -->
+    <section id="faq" class="py-20 bg-slate-900/30 border-t border-slate-800/60">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
             <div class="text-center space-y-4">
                 <h2 class="text-3xl sm:text-4xl font-black">Frequently Asked Questions</h2>
@@ -359,7 +358,7 @@
             </div>
 
             <div class="space-y-4">
-                <details class="bg-slate-900 border border-slate-800 rounded-2xl p-6 group">
+                <details class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 group">
                     <summary class="font-bold cursor-pointer flex justify-between items-center text-white">
                         <span>What is the difference between Crown and Trial packages?</span>
                         <i class="fa-solid fa-plus group-open:rotate-45 transition text-brand-400"></i>
@@ -367,7 +366,7 @@
                     <p class="text-slate-400 text-sm mt-4 leading-relaxed">Crown ($10/N13,992 for 6 months) offers higher hourly task rates ($16.8/hr), priority remote jobs ($18/hr), unlimited EverAI code/media generation, and full academy access. Trial ($5/N6,991 for 2 months) offers $8.6/hr tasks, inconsistent remote jobs, and limited features.</p>
                 </details>
 
-                <details class="bg-slate-900 border border-slate-800 rounded-2xl p-6 group">
+                <details class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 group">
                     <summary class="font-bold cursor-pointer flex justify-between items-center text-white">
                         <span>How do I receive remote jobs?</span>
                         <i class="fa-solid fa-plus group-open:rotate-45 transition text-brand-400"></i>
@@ -375,7 +374,7 @@
                     <p class="text-slate-400 text-sm mt-4 leading-relaxed">Crown members get priority matching for outsourced AI jobs directly in their dashboard, while Trial members receive occasional notifications based on availability.</p>
                 </details>
 
-                <details class="bg-slate-900 border border-slate-800 rounded-2xl p-6 group">
+                <details class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 group">
                     <summary class="font-bold cursor-pointer flex justify-between items-center text-white">
                         <span>Can I build websites with EverAI?</span>
                         <i class="fa-solid fa-plus group-open:rotate-45 transition text-brand-400"></i>
@@ -387,7 +386,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-slate-950 border-t border-slate-900 py-12">
+    <footer class="bg-[#070a10] border-t border-slate-800/80 py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0 text-sm text-slate-400">
             <div class="flex items-center space-x-3">
                 <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold">E</div>
