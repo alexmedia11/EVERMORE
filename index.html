@@ -1,780 +1,389 @@
 <!DOCTYPE html>
-<html lang="en" class="dark scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evermore | Exist Beyond the Moment</title>
+    <title>Evermore — Next-Gen Global Engagement & Platform</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
                         brand: {
-                            dark: '#030712',
-                            card: '#0b1329',
-                            cardHover: '#111d3b',
-                            mint: '#00ffcc',
-                            mintGlow: 'rgba(0, 255, 204, 0.3)',
-                            blue: '#1e40af',
-                            gold: '#fbbf24',
+                            50: '#f0fdf4',
+                            500: '#10b981',
+                            600: '#059669',
+                            900: '#064e3b'
                         }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
-    <!-- Three.js for 3D Background Effect -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #030712;
-            color: #f3f4f6;
-            overflow-x: hidden;
-        }
-
-        #canvas-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .glass-panel {
-            background: rgba(11, 19, 41, 0.75);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(0, 255, 204, 0.15);
-        }
-
-        .glass-panel-gold {
-            background: linear-gradient(135deg, rgba(20, 30, 60, 0.85) 0%, rgba(35, 28, 10, 0.85) 100%);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(251, 191, 36, 0.3);
-        }
-
-        .glow-text {
-            text-shadow: 0 0 25px rgba(0, 255, 204, 0.5);
-        }
-
-        .glow-button {
-            box-shadow: 0 0 25px rgba(0, 255, 204, 0.35);
-            transition: all 0.3s ease;
-        }
-
-        .glow-button:hover {
-            box-shadow: 0 0 40px rgba(0, 255, 204, 0.6);
-            transform: translateY(-2px);
-        }
-
-        .gold-button {
-            box-shadow: 0 0 25px rgba(251, 191, 36, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .gold-button:hover {
-            box-shadow: 0 0 40px rgba(251, 191, 36, 0.5);
-            transform: translateY(-2px);
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #030712;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #1e293b;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #00ffcc;
-        }
-    </style>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="antialiased selection:bg-brand-mint selection:text-brand-dark">
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-white relative">
 
-    <!-- 3D Live Interactive Background Canvas -->
-    <div id="canvas-container"></div>
+    <!-- Background Corporate Team Image with Dark Overlay -->
+    <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2000&q=80" alt="Office Professional Team" class="w-full h-full object-cover opacity-20 scale-105 animate-pulse duration-[10000ms]">
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/90 to-slate-950"></div>
+    </div>
 
-    <!-- Navigation Bar -->
-    <header class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-gray-800/50">
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/70 border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="#" class="flex items-center space-x-3 group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-mint to-blue-600 flex items-center justify-center glow-button">
-                    <i data-lucide="infinity" class="w-6 h-6 text-brand-dark stroke-[2.5]"></i>
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-emerald-400 flex items-center justify-center shadow-lg shadow-brand-500/30">
+                    <i class="fa-solid fa-cube text-white text-lg"></i>
                 </div>
-                <div class="flex flex-col">
-                    <span class="text-xl font-black tracking-wider text-white flex items-center">
-                        EVER<span class="text-brand-mint">MORE</span>
-                    </span>
-                    <span class="text-[10px] tracking-widest text-brand-mint uppercase font-semibold">Exist Beyond The Moment</span>
-                </div>
-            </a>
-
-            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-300">
-                <a href="#essence" class="hover:text-brand-mint transition-colors">The Essence</a>
-                <a href="#everai" class="hover:text-brand-mint transition-colors">EverAI Core</a>
-                <a href="#mentorship" class="hover:text-brand-mint transition-colors">Mentorship</a>
-                <a href="#predictions" class="hover:text-brand-mint transition-colors">Predictions</a>
-                <a href="#academy" class="hover:text-brand-mint transition-colors">Academy</a>
-                <a href="#pricing" class="hover:text-brand-mint transition-colors">Reward System</a>
+                <span class="text-xl font-extrabold tracking-wider bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">EVERMORE</span>
+            </div>
+            
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+                <a href="#features" class="hover:text-brand-400 transition">Features</a>
+                <a href="#calculator" class="hover:text-brand-400 transition">Earnings Calculator</a>
+                <a href="#how-it-works" class="hover:text-brand-400 transition">How It Works</a>
+                <a href="#reviews" class="hover:text-brand-400 transition">Reviews</a>
+                <a href="#faq" class="hover:text-brand-400 transition">FAQ</a>
             </nav>
 
             <div class="flex items-center space-x-4">
-                <a href="signup.html" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-xl font-semibold text-sm text-brand-dark bg-brand-mint glow-button">
-                    Get Started
-                </a>
-                <!-- Mobile menu button -->
-                <button id="menu-btn" class="md:hidden text-gray-300 hover:text-white focus:outline-none">
-                    <i data-lucide="menu" class="w-7 h-7"></i>
-                </button>
+                <a href="signin.html" class="hidden sm:inline-block text-sm font-semibold text-slate-300 hover:text-white px-4 py-2">Sign In</a>
+                <a href="signup.html" class="bg-brand-500 hover:bg-brand-600 text-white text-sm font-bold px-5 py-2.5 rounded-xl shadow-lg shadow-brand-500/20 transition transform hover:-translate-y-0.5">Get Started</a>
             </div>
-        </div>
-        <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu" class="hidden md:hidden glass-panel border-b border-gray-800 px-4 pt-2 pb-6 space-y-3">
-            <a href="#essence" class="block py-2 text-gray-300 hover:text-brand-mint">The Essence</a>
-            <a href="#everai" class="block py-2 text-gray-300 hover:text-brand-mint">EverAI Core</a>
-            <a href="#mentorship" class="block py-2 text-gray-300 hover:text-brand-mint">Mentorship</a>
-            <a href="#predictions" class="block py-2 text-gray-300 hover:text-brand-mint">Predictions</a>
-            <a href="#academy" class="block py-2 text-gray-300 hover:text-brand-mint">Academy</a>
-            <a href="#pricing" class="block py-2 text-gray-300 hover:text-brand-mint">Reward System</a>
-            <a href="signup.html" class="w-full text-center block py-3 rounded-xl font-semibold text-sm text-brand-dark bg-brand-mint glow-button">Get Started</a>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center pt-28 pb-20 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
-                <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full glass-panel border border-brand-mint/30 text-brand-mint text-xs font-semibold tracking-wider uppercase">
-                    <span class="w-2 h-2 rounded-full bg-brand-mint animate-pulse"></span>
-                    <span>Global Dollar Platform • Open Worldwide</span>
-                </div>
-                
-                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extxl font-extrabold tracking-tight text-white leading-none">
-                    Exist Beyond <br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-mint via-teal-300 to-blue-500 glow-text">The Moment.</span>
-                </h1>
+    <section class="relative pt-20 pb-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-7 space-y-8">
+            <div class="inline-flex items-center space-x-2 bg-slate-900/90 border border-slate-800 px-4 py-2 rounded-full text-xs font-semibold text-brand-400">
+                <span class="w-2 h-2 rounded-full bg-brand-500 animate-ping"></span>
+                <span>Verified Global Scaling Network</span>
+            </div>
+            <h1 class="text-4xl sm:text-6xl font-black tracking-tight leading-tight">
+                Launch your campaign: <span class="bg-gradient-to-r from-brand-400 to-emerald-200 bg-clip-text text-transparent">Reach 100% verified human audiences globally.</span>
+            </h1>
+            <p class="text-slate-400 text-lg max-w-xl">
+                Deploy campaigns across live networks with verified human reach, zero bot interactions, and transparent performance dashboards.
+            </p>
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="signup.html" class="bg-brand-500 hover:bg-brand-600 text-white font-bold text-center px-8 py-4 rounded-xl shadow-xl shadow-brand-500/30 transition">Start Earning Now</a>
+                <a href="#calculator" class="bg-slate-900/80 hover:bg-slate-800 border border-slate-800 font-semibold text-center px-8 py-4 rounded-xl transition">Estimate Earnings</a>
+            </div>
 
-                <p class="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
-                    We bridge the gap between the digital world and real-world opportunities. Train next-generation Generative AI, secure remote jobs paying up to <span class="text-brand-mint font-semibold">$18.6/hour</span>, and build enduring financial freedom.
-                </p>
-
-                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-5">
-                    <a href="#pricing" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-base text-brand-dark bg-brand-mint glow-button flex items-center justify-center space-x-2">
-                        <span>Join Evermore Now</span>
-                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                    </a>
-                    <a href="#everai" class="w-full sm:w-auto px-8 py-4 rounded-xl font-semibold text-base text-white glass-panel hover:bg-gray-800/50 transition-all flex items-center justify-center space-x-2">
-                        <i data-lucide="play-circle" class="w-5 h-5 text-brand-mint"></i>
-                        <span>Explore EverAI</span>
-                    </a>
-                </div>
-
-                <!-- Quick Stats -->
-                <div class="grid grid-cols-3 gap-4 pt-8 border-t border-gray-800/80">
-                    <div>
-                        <div class="text-2xl sm:text-3xl font-extrabold text-white">$18.6<span class="text-brand-mint">/hr</span></div>
-                        <div class="text-xs text-gray-400 mt-1">Max Hourly Training Pay</div>
+            <!-- Mini Metrics Row -->
+            <div class="grid grid-cols-2 sm:grid-cols-2 gap-4 pt-4 border-t border-slate-900">
+                <div class="bg-slate-900/60 border border-slate-800/80 p-4 rounded-2xl flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-users"></i>
                     </div>
                     <div>
-                        <div class="text-2xl sm:text-3xl font-extrabold text-white">100%</div>
-                        <div class="text-xs text-gray-400 mt-1">Assigned Personal Mentor</div>
+                        <div class="text-2xl font-black text-white">1M+</div>
+                        <div class="text-xs text-slate-400">Active Subscribers</div>
+                    </div>
+                </div>
+                <div class="bg-slate-900/60 border border-slate-800/80 p-4 rounded-2xl flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-phone-volume"></i>
                     </div>
                     <div>
-                        <div class="text-2xl sm:text-3xl font-extrabold text-white">Global</div>
-                        <div class="text-xs text-gray-400 mt-1">Accessible Worldwide</div>
+                        <div class="text-2xl font-black text-white">500M+</div>
+                        <div class="text-xs text-slate-400">Call Minutes Delivered</div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Hero Visual Graphic Element -->
-            <div class="lg:col-span-5 relative flex items-center justify-center">
-                <div class="absolute w-72 h-72 sm:w-96 sm:h-96 bg-brand-mint/10 rounded-full blur-3xl -z-10 animate-pulse"></div>
-                <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-brand-mint/30 w-full max-w-md relative shadow-2xl">
-                    <div class="absolute -top-4 -right-4 bg-gradient-to-r from-brand-mint to-blue-600 text-brand-dark font-extrabold text-xs px-4 py-1.5 rounded-full shadow-lg">
-                        CORE ENGINE
+        <!-- Hero Image Showcase Box -->
+        <div class="lg:col-span-5 relative">
+            <div class="absolute -inset-1 bg-gradient-to-r from-brand-600 to-emerald-400 rounded-3xl blur-xl opacity-30 animate-pulse"></div>
+            <div class="relative bg-slate-900 border border-slate-800 p-6 rounded-3xl shadow-2xl space-y-6">
+                <div class="relative h-64 rounded-2xl overflow-hidden group">
+                    <!-- Image placement slot -->
+                    <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80" alt="Platform Dashboard Preview" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-4 left-4 right-4 bg-slate-950/80 backdrop-blur-md p-3 rounded-xl border border-slate-800 flex items-center justify-between">
+                        <span class="text-xs font-semibold text-slate-300">Evermore Welcome Pack Card</span>
+                        <span class="text-xs bg-brand-500/20 text-brand-400 px-2 py-1 rounded font-bold">Verified</span>
                     </div>
-                    <div class="space-y-6">
-                        <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 rounded-2xl bg-brand-mint/20 flex items-center justify-center text-brand-mint">
-                                <i data-lucide="cpu" class="w-7 h-7"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-white">EverAI Assistant</h3>
-                                <p class="text-xs text-gray-400">Next-Gen Generative Intelligence</p>
-                            </div>
-                        </div>
-
-                        <div class="bg-brand-dark/60 rounded-2xl p-4 border border-gray-800 space-y-3 text-sm">
-                            <div class="flex justify-between items-center text-xs text-gray-400">
-                                <span>Training Status</span>
-                                <span class="text-brand-mint font-semibold">Active & Rewarding</span>
-                            </div>
-                            <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
-                                <div class="bg-gradient-to-r from-brand-mint to-blue-500 h-full w-[85%] rounded-full"></div>
-                            </div>
-                            <div class="flex justify-between text-xs pt-1">
-                                <span class="text-gray-300">Humanoid Memory Tuning</span>
-                                <span class="text-white font-mono">99.4%</span>
-                            </div>
-                        </div>
-
-                        <div class="space-y-2">
-                            <div class="flex items-center justify-between text-xs text-gray-300 bg-gray-900/40 p-3 rounded-xl border border-gray-800">
-                                <span class="flex items-center space-x-2">
-                                    <i data-lucide="check-circle" class="w-4 h-4 text-brand-mint"></i>
-                                    <span>No Special Skills Needed</span>
-                                </span>
-                                <span class="text-brand-mint font-bold">Global Access</span>
-                            </div>
-                            <div class="flex items-center justify-between text-xs text-gray-300 bg-gray-900/40 p-3 rounded-xl border border-gray-800">
-                                <span class="flex items-center space-x-2">
-                                    <i data-lucide="check-circle" class="w-4 h-4 text-brand-mint"></i>
-                                    <span>Instant Mentor Assignment</span>
-                                </span>
-                                <span class="text-brand-mint font-bold">1-on-1</span>
-                            </div>
-                        </div>
-
-                        <a href="#pricing" class="w-full py-3.5 rounded-xl font-bold text-sm text-brand-dark bg-brand-mint glow-button flex items-center justify-center space-x-2">
-                            <span>Activate EverAI Now</span>
-                            <i data-lucide="sparkles" class="w-4 h-4"></i>
-                        </a>
+                </div>
+                <div class="grid grid-cols-3 gap-3 text-center">
+                    <div class="bg-slate-950/60 p-3 rounded-xl border border-slate-800">
+                        <div class="text-brand-400 font-bold text-sm">Direct</div>
+                        <div class="text-[10px] text-slate-400">Placement</div>
+                    </div>
+                    <div class="bg-slate-950/60 p-3 rounded-xl border border-slate-800">
+                        <div class="text-brand-400 font-bold text-sm">Global</div>
+                        <div class="text-[10px] text-slate-400">Scale</div>
+                    </div>
+                    <div class="bg-slate-950/60 p-3 rounded-xl border border-slate-800">
+                        <div class="text-brand-400 font-bold text-sm">100%</div>
+                        <div class="text-[10px] text-slate-400">Verified</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- The Essence Section -->
-    <section id="essence" class="py-24 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
-                <h2 class="text-xs uppercase tracking-widest text-brand-mint font-bold">The Essence</h2>
-                <h3 class="text-3xl sm:text-5xl font-extrabold text-white">Who Are We?</h3>
-                <p class="text-gray-300 text-base sm:text-lg">
-                    Evermore is built to bridge the gap between the digital world and real-world opportunities. We contribute directly to next-gen Generative AI development while empowering humans globally.
-                </p>
+    <!-- Earnings Calculator Section -->
+    <section id="calculator" class="py-20 bg-slate-900/40 border-y border-slate-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            <div class="text-center space-y-4">
+                <h2 class="text-3xl sm:text-4xl font-black">See Your Earning Potential</h2>
+                <p class="text-slate-400 max-w-lg mx-auto">Estimate how much you can earn based on your call minutes, activity, and selected package parameters.</p>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between text-sm font-semibold mb-2">
+                            <span class="text-slate-300"><i class="fa-solid fa-sliders text-brand-400 mr-2"></i> Calls Per Day</span>
+                            <span id="callsValue" class="text-brand-400 font-bold text-base">24</span>
+                        </div>
+                        <input type="range" id="callsRange" min="5" max="100" value="24" class="w-full accent-brand-500 bg-slate-800 rounded-lg h-2 cursor-pointer">
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between text-sm font-semibold mb-2">
+                            <span class="text-slate-300"><i class="fa-solid fa-clock text-brand-400 mr-2"></i> Avg Duration (Min)</span>
+                            <span id="durationValue" class="text-brand-400 font-bold text-base">8</span>
+                        </div>
+                        <input type="range" id="durationRange" min="2" max="30" value="8" class="w-full accent-brand-500 bg-slate-800 rounded-lg h-2 cursor-pointer">
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between text-sm font-semibold mb-2">
+                            <span class="text-slate-300"><i class="fa-solid fa-coins text-brand-400 mr-2"></i> Earning Per Min ($)</span>
+                            <span id="rateValue" class="text-brand-400 font-bold text-base">50</span>
+                        </div>
+                        <input type="range" id="rateRange" min="10" max="200" value="50" class="w-full accent-brand-500 bg-slate-800 rounded-lg h-2 cursor-pointer">
+                    </div>
+                </div>
+
+                <div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl flex flex-col justify-between space-y-6 text-center">
+                    <div>
+                        <div class="text-xs text-slate-400 uppercase tracking-widest font-semibold mb-1">Projected Earnings</div>
+                        <div id="projectedEarnings" class="text-5xl font-black text-brand-400">$288</div>
+                    </div>
+                    <div class="bg-slate-900 p-4 rounded-xl border border-slate-800 text-left flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-lg bg-brand-500/20 text-brand-400 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-arrow-trend-up"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs font-bold text-white">Maximize Your Earnings</div>
+                            <div class="text-[11px] text-slate-400">Upgrade package to unlock higher daily returns.</div>
+                        </div>
+                    </div>
+                    <a href="signup.html" class="w-full bg-brand-500 hover:bg-brand-600 text-white font-bold py-3 rounded-xl transition shadow-lg shadow-brand-500/20">Activate Package Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+        <div class="text-center space-y-4">
+            <h2 class="text-3xl sm:text-4xl font-black">What Sets Us Apart</h2>
+            <p class="text-slate-400">We deliver your campaigns directly over active mobile networks with verified human reach.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-3xl space-y-4 hover:border-brand-500/50 transition">
+                <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center text-xl font-bold">
+                    <i class="fa-solid fa-chart-pie"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white">Evermore Shares</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Become our primary shareholder and unlock the ability to earn from every single minute of call activity generated.</p>
+            </div>
+
+            <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-3xl space-y-4 hover:border-brand-500/50 transition">
+                <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center text-xl font-bold">
+                    <i class="fa-solid fa-globe"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white">Global Ad Distribution</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Reach targeted, real business-minded audiences worldwide with automated, real-time ad placements suited to your budget.</p>
+            </div>
+
+            <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-3xl space-y-4 hover:border-brand-500/50 transition">
+                <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center text-xl font-bold">
+                    <i class="fa-solid fa-shield-check"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white">Verified Active Users</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">We protect your campaign with top-notch network device verification that guarantees every connection delivers 100% human interaction.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-20 bg-slate-900/30 border-t border-slate-900">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+            <div class="text-center space-y-4">
+                <h2 class="text-3xl sm:text-4xl font-black">How It Works</h2>
+                <p class="text-slate-400">Follow our streamlined process to activate your account and start earning in minutes.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="glass-panel p-8 rounded-3xl border border-gray-800 hover:border-brand-mint/40 transition-all group">
-                    <div class="w-14 h-14 rounded-2xl bg-brand-mint/10 flex items-center justify-center text-brand-mint mb-6 group-hover:scale-110 transition-transform">
-                        <i data-lucide="brain" class="w-7 h-7"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-white mb-3">AI Training & Memory</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        We employ individuals to train our AI core, refine prompts, and dramatically improve intelligent, humanoid response memory functions.
-                    </p>
+                <div class="bg-slate-900 border border-slate-800 p-8 rounded-3xl relative space-y-4">
+                    <div class="text-brand-500 font-black text-3xl">01</div>
+                    <h3 class="text-lg font-bold text-white">Register for free.</h3>
+                    <p class="text-slate-400 text-sm">Create your account in a few steps and access our complete suite of telecom products within seconds.</p>
                 </div>
-
-                <div class="glass-panel p-8 rounded-3xl border border-gray-800 hover:border-brand-mint/40 transition-all group">
-                    <div class="w-14 h-14 rounded-2xl bg-brand-mint/10 flex items-center justify-center text-brand-mint mb-6 group-hover:scale-110 transition-transform">
-                        <i data-lucide="award" class="w-7 h-7"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-white mb-3">Lucrative Reward System</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        Subscribers earn hourly pay by completing simple tasks, promoting ecosystem products, driving sales, and contributing real value.
-                    </p>
+                <div class="bg-slate-900 border border-slate-800 p-8 rounded-3xl relative space-y-4">
+                    <div class="text-brand-500 font-black text-3xl">02</div>
+                    <h3 class="text-lg font-bold text-white">Activate Package</h3>
+                    <p class="text-slate-400 text-sm">Navigate to your dashboard, select an active package, and connect with our network of verified users.</p>
                 </div>
-
-                <div class="glass-panel p-8 rounded-3xl border border-gray-800 hover:border-brand-mint/40 transition-all group">
-                    <div class="w-14 h-14 rounded-2xl bg-brand-mint/10 flex items-center justify-center text-brand-mint mb-6 group-hover:scale-110 transition-transform">
-                        <i data-lucide="globe" class="w-7 h-7"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-white mb-3">Turning Possibilities</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        We transform digital possibilities into live tangible experiences, creating a resilient brand identity that truly exists beyond the moment.
-                    </p>
+                <div class="bg-slate-900 border border-slate-800 p-8 rounded-3xl relative space-y-4">
+                    <div class="text-brand-500 font-black text-3xl">03</div>
+                    <h3 class="text-lg font-bold text-white">Connect & Earn</h3>
+                    <p class="text-slate-400 text-sm">Launch targeted ads, connect with verified users, and watch your earnings grow seamlessly.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- EverAI Core Section -->
-    <section id="everai" class="py-24 relative bg-gradient-to-b from-transparent via-brand-card/30 to-transparent">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                <div class="lg:col-span-6 space-y-6">
-                    <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full glass-panel border border-brand-mint/30 text-brand-mint text-xs font-semibold uppercase tracking-wider">
-                        <span>Core Product</span>
-                    </div>
-                    <h3 class="text-3xl sm:text-5xl font-extrabold text-white leading-tight">
-                        Africa & The World, Meet <span class="text-brand-mint">EverAI.</span>
-                    </h3>
-                    <p class="text-gray-300 text-base leading-relaxed">
-                        You have been lied to! AI is not as magically smart as you think—all AI responses are generated, integrated, and designed based on surveys and training given by humans!
-                    </p>
-                    <p class="text-gray-300 text-base leading-relaxed">
-                        EverAI is our advanced generative assistant built to help you do more through superior prompt responses, complex problem-solving, and access to high-paying remote tasks paying up to <span class="text-brand-mint font-semibold">$18.6/hour</span>.
-                    </p>
+    <!-- Customer Reviews / Testimonials Section -->
+    <section id="reviews" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+        <div class="text-center space-y-4">
+            <h2 class="text-3xl sm:text-4xl font-black">Trusted By Industry Leaders</h2>
+            <p class="text-slate-400">Here is what our platform partners and active members have to say about Evermore.</p>
+        </div>
 
-                    <div class="space-y-4 pt-2">
-                        <div class="flex items-start space-x-3">
-                            <div class="w-6 h-6 rounded-full bg-brand-mint/20 flex items-center justify-center text-brand-mint mt-1 flex-shrink-0">
-                                <i data-lucide="check" class="w-4 h-4"></i>
-                            </div>
-                            <p class="text-gray-300 text-sm"><strong class="text-white">No Special Skills Needed:</strong> Simple online tasks anyone can complete to review and correct basic AI responses.</p>
-                        </div>
-                        <div class="flex items-start space-x-3">
-                            <div class="w-6 h-6 rounded-full bg-brand-mint/20 flex items-center justify-center text-brand-mint mt-1 flex-shrink-0">
-                                <i data-lucide="check" class="w-4 h-4"></i>
-                            </div>
-                            <p class="text-gray-300 text-sm"><strong class="text-white">Global Remote Labor Market:</strong> Filter and promptly notify subscribers when new remote job opportunities drop.</p>
-                        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-3xl space-y-6 flex flex-col justify-between">
+                <div class="space-y-4">
+                    <div class="flex text-amber-400 space-x-1 text-sm">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-slate-300 text-sm italic">"Evermore has completely transformed how we run mobile campaigns. The verified human audience metric is 100% accurate."</p>
+                </div>
+                <div class="flex items-center space-x-4 pt-4 border-t border-slate-800">
+                    <div class="w-10 h-10 rounded-full bg-brand-500/20 text-brand-400 flex items-center justify-center font-bold">JD</div>
+                    <div>
+                        <div class="text-sm font-bold text-white">Jason Davis</div>
+                        <div class="text-xs text-slate-400">Marketing Director</div>
                     </div>
                 </div>
+            </div>
 
-                <div class="lg:col-span-6">
-                    <div class="glass-panel p-8 sm:p-10 rounded-3xl border border-brand-mint/30 space-y-6 relative">
-                        <div class="absolute top-4 right-4 text-brand-mint/20">
-                            <i data-lucide="cpu" class="w-24 h-24"></i>
-                        </div>
-                        <h4 class="text-2xl font-bold text-white">The EverAI Advantage</h4>
-                        <div class="space-y-4">
-                            <div class="bg-gray-900/60 p-4 rounded-2xl border border-gray-800">
-                                <div class="text-xs text-gray-400">Hourly Training Commission</div>
-                                <div class="text-2xl font-extrabold text-brand-mint mt-1">Up to $16.8 / hr</div>
-                                <p class="text-xs text-gray-400 mt-1">Earn hourly based on completed tasks & memory training value.</p>
-                            </div>
-                            <div class="bg-gray-900/60 p-4 rounded-2xl border border-gray-800">
-                                <div class="text-xs text-gray-400">AI Outsourced Remote Jobs</div>
-                                <div class="text-2xl font-extrabold text-white mt-1">Up to $18.6 / hr</div>
-                                <p class="text-xs text-gray-400 mt-1">Sourced globally with zero hard requirements or experience needed.</p>
-                            </div>
-                        </div>
-                        <a href="#pricing" class="w-full py-4 rounded-xl font-bold text-sm text-brand-dark bg-brand-mint glow-button block text-center">
-                            Start Training EverAI Today
-                        </a>
+            <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-3xl space-y-6 flex flex-col justify-between">
+                <div class="space-y-4">
+                    <div class="flex text-amber-400 space-x-1 text-sm">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-slate-300 text-sm italic">"The daily earnings dashboard and automated call minute payouts are smooth. Highly recommend Evermore to anyone."</p>
+                </div>
+                <div class="flex items-center space-x-4 pt-4 border-t border-slate-800">
+                    <div class="w-10 h-10 rounded-full bg-brand-500/20 text-brand-400 flex items-center justify-center font-bold">AO</div>
+                    <div>
+                        <div class="text-sm font-bold text-white">Aisha Okoro</div>
+                        <div class="text-xs text-slate-400">Enterprise Partner</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-3xl space-y-6 flex flex-col justify-between">
+                <div class="space-y-4">
+                    <div class="flex text-amber-400 space-x-1 text-sm">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-slate-300 text-sm italic">"Setting up my custom profile and starting my package took less than 3 minutes. The support team is also exceptionally fast."</p>
+                </div>
+                <div class="flex items-center space-x-4 pt-4 border-t border-slate-800">
+                    <div class="w-10 h-10 rounded-full bg-brand-500/20 text-brand-400 flex items-center justify-center font-bold">MK</div>
+                    <div>
+                        <div class="text-sm font-bold text-white">Marcus King</div>
+                        <div class="text-xs text-slate-400">Telecom Specialist</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Mentorship Program Section -->
-    <section id="mentorship" class="py-24 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="glass-panel p-8 sm:p-16 rounded-3xl border border-brand-mint/30 relative overflow-hidden">
-                <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-brand-mint/10 rounded-full blur-3xl pointer-events-none"></div>
-                
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                    <div class="lg:col-span-7 space-y-6">
-                        <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full glass-panel border border-brand-mint/30 text-brand-mint text-xs font-semibold uppercase tracking-wider">
-                            <span>Zero Left Behind</span>
-                        </div>
-                        <h3 class="text-3xl sm:text-5xl font-extrabold text-white leading-tight">
-                            Assigned a Personal Mentor <span class="text-brand-mint">Immediately</span> You Sign Up
-                        </h3>
-                        <p class="text-gray-300 text-base leading-relaxed">
-                            Understanding our products and monetization opportunities is not a myth. Every single EverAI subscriber is instantly paired with a dedicated personal mentor upon registration.
-                        </p>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                            <div class="bg-gray-900/50 p-4 rounded-2xl border border-gray-800">
-                                <i data-lucide="user-check" class="w-6 h-6 text-brand-mint mb-2"></i>
-                                <h5 class="font-bold text-white text-sm">Platform Navigation</h5>
-                                <p class="text-xs text-gray-400 mt-1">Step-by-step guidance through every interface feature.</p>
-                            </div>
-                            <div class="bg-gray-900/50 p-4 rounded-2xl border border-gray-800">
-                                <i data-lucide="dollar-sign" class="w-6 h-6 text-brand-mint mb-2"></i>
-                                <h5 class="font-bold text-white text-sm">Monetization Mastery</h5>
-                                <p class="text-xs text-gray-400 mt-1">Direct coaching on earning hourly while training AI.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="lg:col-span-5 flex justify-center">
-                        <div class="glass-panel p-8 rounded-3xl border border-gray-800 text-center space-y-6 w-full max-w-sm">
-                            <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-brand-mint to-blue-600 mx-auto flex items-center justify-center glow-button">
-                                <i data-lucide="shield-check" class="w-10 h-10 text-brand-dark"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-xl font-bold text-white">Instant Assignment</h4>
-                                <p class="text-xs text-gray-400 mt-1">Your mentor connects with you the moment your account is activated.</p>
-                            </div>
-                            <a href="#pricing" class="w-full py-3 rounded-xl font-bold text-sm text-brand-dark bg-brand-mint glow-button block">
-                                Get Your Mentor Now
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Predictions & Voting Section -->
-    <section id="predictions" class="py-24 relative bg-gradient-to-b from-transparent via-brand-card/30 to-transparent">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
-                <h2 class="text-xs uppercase tracking-widest text-brand-mint font-bold">Trending Opportunities</h2>
-                <h3 class="text-3xl sm:text-5xl font-extrabold text-white">Turn Trends Into Real Rewards</h3>
-                <p class="text-gray-300 text-base sm:text-lg">
-                    Evermore doesn't just follow trends—we turn them into earning opportunities. Make free predictions and votes on reality shows like BBNaija and win real prizes.
-                </p>
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 bg-slate-900/40 border-t border-slate-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            <div class="text-center space-y-4">
+                <h2 class="text-3xl sm:text-4xl font-black">Common Questions Answered</h2>
+                <p class="text-slate-400">Everything you need to know about getting started with Evermore.</p>
             </div>
 
-            <div class="glass-panel p-8 sm:p-12 rounded-3xl border border-brand-mint/30 max-w-4xl mx-auto text-center space-y-8">
-                <div class="w-16 h-16 rounded-2xl bg-brand-mint/20 flex items-center justify-center text-brand-mint mx-auto">
-                    <i data-lucide="tv" class="w-8 h-8"></i>
-                </div>
-                <div class="space-y-3">
-                    <span class="text-xs uppercase font-bold tracking-widest text-brand-mint">BBNaija Live Polls & Predictions</span>
-                    <h4 class="text-2xl sm:text-3xl font-extrabold text-white">Who Do You Think Will Be The Next Housemate To Leave?</h4>
-                    <p class="text-gray-300 text-sm max-w-xl mx-auto">
-                        Don't just watch with your time—earn with it. Make your free prediction on Evermore and stand a chance to get rewarded instantly.
-                    </p>
-                </div>
-                <div class="flex justify-center">
-                    <a href="#pricing" class="px-8 py-4 rounded-xl font-bold text-sm text-brand-dark bg-brand-mint glow-button flex items-center space-x-2">
-                        <span>Place Your Free Vote</span>
-                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+            <div class="space-y-4">
+                <details class="bg-slate-900 border border-slate-800 rounded-2xl p-6 group">
+                    <summary class="font-bold cursor-pointer flex justify-between items-center text-white">
+                        <span>What is Evermore?</span>
+                        <i class="fa-solid fa-plus group-open:rotate-45 transition text-brand-400"></i>
+                    </summary>
+                    <p class="text-slate-400 text-sm mt-4 leading-relaxed">Evermore is a global engagement and telecom distribution platform that connects campaigns with 100% verified human audiences over active networks.</p>
+                </details>
 
-    <!-- Evermore Academy Section -->
-    <section id="academy" class="py-24 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
-                <h2 class="text-xs uppercase tracking-widest text-brand-mint font-bold">Evermore Academy</h2>
-                <h3 class="text-3xl sm:text-5xl font-extrabold text-white">Master High-Income Skills</h3>
-                <p class="text-gray-300 text-base sm:text-lg">
-                    Trained by global experts. Certified with your legal name upon completion. Build continuous streams of income that remain relevant over time.
-                </p>
-            </div>
+                <details class="bg-slate-900 border border-slate-800 rounded-2xl p-6 group">
+                    <summary class="font-bold cursor-pointer flex justify-between items-center text-white">
+                        <span>How do I get started?</span>
+                        <i class="fa-solid fa-plus group-open:rotate-45 transition text-brand-400"></i>
+                    </summary>
+                    <p class="text-slate-400 text-sm mt-4 leading-relaxed">Simply sign up for a free account, navigate to your dashboard, choose an active package, and begin monitoring your earnings instantly.</p>
+                </details>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="glass-panel p-6 rounded-3xl border border-gray-800 hover:border-brand-mint/40 transition-all space-y-4">
-                    <div class="w-12 h-12 rounded-xl bg-brand-mint/10 flex items-center justify-center text-brand-mint">
-                        <i data-lucide="trending-up" class="w-6 h-6"></i>
-                    </div>
-                    <h4 class="text-lg font-bold text-white">Financial Market Trading & Analysis</h4>
-                    <p class="text-xs text-gray-400">Master global markets, chart analysis, and risk management strategies.</p>
-                </div>
-
-                <div class="glass-panel p-6 rounded-3xl border border-gray-800 hover:border-brand-mint/40 transition-all space-y-4">
-                    <div class="w-12 h-12 rounded-xl bg-brand-mint/10 flex items-center justify-center text-brand-mint">
-                        <i data-lucide="bot" class="w-6 h-6"></i>
-                    </div>
-                    <h4 class="text-lg font-bold text-white">AI Automation</h4>
-                    <p class="text-xs text-gray-400">Build automated workflows and leverage cutting-edge AI tools efficiently.</p>
-                </div>
-
-                <div class="glass-panel p-6 rounded-3xl border border-gray-800 hover:border-brand-mint/40 transition-all space-y-4">
-                    <div class="w-12 h-12 rounded-xl bg-brand-mint/10 flex items-center justify-center text-brand-mint">
-                        <i data-lucide="pen-tool" class="w-6 h-6"></i>
-                    </div>
-                    <h4 class="text-lg font-bold text-white">Copywriting</h4>
-                    <p class="text-xs text-gray-400">Craft high-converting sales copy, emails, and persuasive brand messaging.</p>
-                </div>
-
-                <div class="glass-panel p-6 rounded-3xl border border-gray-800 hover:border-brand-mint/40 transition-all space-y-4">
-                    <div class="w-12 h-12 rounded-xl bg-brand-mint/10 flex items-center justify-center text-brand-mint">
-                        <i data-lucide="video" class="w-6 h-6"></i>
-                    </div>
-                    <h4 class="text-lg font-bold text-white">Content Creation</h4>
-                    <p class="text-xs text-gray-400">Produce engaging viral video, graphic, and multimedia digital assets.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing / Reward System Section -->
-    <section id="pricing" class="py-24 relative bg-gradient-to-b from-transparent via-brand-card/30 to-transparent">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
-                <h2 class="text-xs uppercase tracking-widest text-brand-mint font-bold">Projected Reward System</h2>
-                <h3 class="text-3xl sm:text-5xl font-extrabold text-white">Choose Your Package</h3>
-                <p class="text-gray-300 text-base sm:text-lg">
-                    Unlock higher training commissions, priority remote jobs, and full academy access with our subscription tiers.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                <!-- Premium Package -->
-                <div class="glass-panel-gold p-8 sm:p-10 rounded-3xl relative flex flex-col justify-between shadow-2xl border-2 border-brand-gold">
-                    <div class="absolute -top-4 right-8 bg-brand-gold text-brand-dark font-extrabold text-xs px-4 py-1.5 rounded-full shadow-lg flex items-center space-x-1">
-                        <i data-lucide="crown" class="w-3.5 h-3.5"></i>
-                        <span>PREMIUM PACKAGE</span>
-                    </div>
-
-                    <div class="space-y-6">
-                        <div>
-                            <h4 class="text-2xl font-bold text-white">EverAI Premium</h4>
-                            <p class="text-xs text-gray-300 mt-1">Maximum earning potential and full ecosystem access.</p>
-                        </div>
-
-                        <div class="flex items-baseline space-x-2 pb-6 border-b border-gray-700/50">
-                            <span class="text-4xl sm:text-5xl font-extrabold text-white">$10</span>
-                            <span class="text-lg text-brand-gold font-bold">/ N13,992</span>
-                            <span class="text-xs text-gray-400 ml-auto font-semibold">6 Months Validity</span>
-                        </div>
-
-                        <ul class="space-y-4 text-sm text-gray-200">
-                            <li class="flex items-center justify-between">
-                                <span class="flex items-center space-x-3">
-                                    <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-gold flex-shrink-0"></i>
-                                    <span>Training Bonus</span>
-                                </span>
-                                <span class="font-bold text-white">N11,000</span>
-                            </li>
-                            <li class="flex items-center justify-between">
-                                <span class="flex items-center space-x-3">
-                                    <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-gold flex-shrink-0"></i>
-                                    <span>AI Training Commission</span>
-                                </span>
-                                <span class="font-bold text-brand-mint">$16.8 / hr</span>
-                            </li>
-                            <li class="flex items-center justify-between">
-                                <span class="flex items-center space-x-3">
-                                    <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-gold flex-shrink-0"></i>
-                                    <span>AI Remote Jobs</span>
-                                </span>
-                                <span class="font-bold text-white">$18 / hr (Priority)</span>
-                            </li>
-                            <li class="flex items-center justify-between">
-                                <span class="flex items-center space-x-3">
-                                    <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-gold flex-shrink-0"></i>
-                                    <span>Pro Indirect Invite</span>
-                                </span>
-                                <span class="font-bold text-white">N500</span>
-                            </li>
-                            <li class="flex items-center justify-between">
-                                <span class="flex items-center space-x-3">
-                                    <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-gold flex-shrink-0"></i>
-                                    <span>Prompt & Media Generation</span>
-                                </span>
-                                <span class="font-bold text-white">Unlimited</span>
-                            </li>
-                            <li class="flex items-center justify-between">
-                                <span class="flex items-center space-x-3">
-                                    <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-gold flex-shrink-0"></i>
-                                    <span>Code Writer & Website Builder</span>
-                                </span>
-                                <span class="font-bold text-white">Unlocked</span>
-                            </li>
-                            <li class="flex items-center justify-between">
-                                <span class="flex items-center space-x-3">
-                                    <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-gold flex-shrink-0"></i>
-                                    <span>Evermore Skills Academy</span>
-                                </span>
-                                <span class="font-bold text-white">Full Access</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="pt-8 mt-8 border-t border-gray-700/50">
-                        <a href="signup.html" class="w-full py-4 rounded-xl font-bold text-sm text-brand-dark bg-brand-gold gold-button block text-center">
-                            Get Premium Package ($10)
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Trial Package -->
-                <div class="glass-panel p-8 sm:p-10 rounded-3xl relative flex flex-col justify-between border border-gray-800">
-                    <div class="absolute -top-4 right-8 bg-blue-600 text-white font-extrabold text-xs px-4 py-1.5 rounded-full shadow-lg">
-                        TRIAL PACKAGE
-                    </div>
-
-                    <div class="space-y-6">
-                        <div>
-                            <h4 class="text-2xl font-bold text-white">EverAI Trial</h4>
-                            <p class="text-xs text-gray-400 mt-1">Standard introductory access to AI training tasks.</p>
-                        </div>
-
-                        <div class="flex items-baseline space-x-2 pb-6 border-b border-gray-800">
-                            <span class="text-4xl sm:text-5xl font-extrabold text-white">$5</span>
-                            <span class="text-lg text-gray-400 font-bold">/ N6,991</span>
-                            <span class="text-xs text-gray-400 ml-auto font-semibold">2 Months Validity</span>
-                        </div>
-
-                        <ul class="space-y-4 text-sm text-gray-300">
-                            <li class="flex items-center justify-between">
-                                <span class="flex items-center space-x-3">
-                                    <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-mint flex-shrink-0"></i>
-                                    <span>Training Bonus</span>
-                                </span>
-                                <span class="font-bold text-white">N5,000</span>
-                            </li>
-                            <li class="flex items-center justify-between">
-                                <span class="flex items-center space-x-3">
-                                    <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-mint flex-shrink-0"></i>
-                                    <span>AI Training Commission</span>
-                                </span>
-                                <span class="font-bold text-brand-mint">$8.6 / hr</span>
-                            </li>
-                            <li class="flex items-center justify-between">
-                                <span class="flex items-center space-x-3">
-                                    <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-mint flex-shrink-0"></i>
-                                    <span>AI Remote Jobs</span>
-                                </span>
-                                <span class="font-bold text-white">$10.2 / hr (Inconsistent)</span>
-                            </li>
-                            <li class="flex items-center justify-between">
-                                <span class="flex items-center space-x-3">
-                                    <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-mint flex-shrink-0"></i>
-                                    <span>Pro Indirect Invite</span>
-                                </span>
-                                <span class="font-bold text-white">N200</span>
-                            </li>
-                            <li class="flex items-center justify-between">
-                                <span class="flex items-center space-x-3">
-                                    <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-mint flex-shrink-0"></i>
-                                    <span>Prompt & Media Generation</span>
-                                </span>
-                                <span class="font-bold text-gray-400">Minimal / Limited</span>
-                            </li>
-                            <li class="flex items-center justify-between">
-                                <span class="flex items-center space-x-3">
-                                    <i data-lucide="x-circle" class="w-5 h-5 text-red-500 flex-shrink-0"></i>
-                                    <span>Code Writer & Website Builder</span>
-                                </span>
-                                <span class="font-bold text-red-400">Locked</span>
-                            </li>
-                            <li class="flex items-center justify-between">
-                                <span class="flex items-center space-x-3">
-                                    <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-mint flex-shrink-0"></i>
-                                    <span>Evermore Skills Academy</span>
-                                </span>
-                                <span class="font-bold text-gray-400">Minimal Access</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="pt-8 mt-8 border-t border-gray-800">
-                        <a href="signup.html" class="w-full py-4 rounded-xl font-bold text-sm text-brand-dark bg-brand-mint glow-button block text-center">
-                            Get Trial Package ($5)
-                        </a>
-                    </div>
-                </div>
+                <details class="bg-slate-900 border border-slate-800 rounded-2xl p-6 group">
+                    <summary class="font-bold cursor-pointer flex justify-between items-center text-white">
+                        <span>How do I withdraw my earnings?</span>
+                        <i class="fa-solid fa-plus group-open:rotate-45 transition text-brand-400"></i>
+                    </summary>
+                    <p class="text-slate-400 text-sm mt-4 leading-relaxed">Withdrawals are processed instantly directly through your dashboard payment gateway settings with multi-currency payout options.</p>
+                </details>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="glass-panel border-t border-gray-800/80 py-12 mt-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+    <footer class="bg-slate-950 border-t border-slate-900 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0 text-sm text-slate-400">
             <div class="flex items-center space-x-3">
-                <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-brand-mint to-blue-600 flex items-center justify-center">
-                    <i data-lucide="infinity" class="w-5 h-5 text-brand-dark stroke-[2.5]"></i>
-                </div>
-                <span class="text-lg font-black tracking-wider text-white">
-                    EVER<span class="text-brand-mint">MORE</span>
-                </span>
+                <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold">E</div>
+                <span class="font-bold text-white tracking-wider">EVERMORE</span>
             </div>
-
-            <div class="text-xs text-gray-400 text-center">
-                &copy; 2026 Evermore. Exist Beyond the Moment. All rights reserved. Global Dollar Platform.
-            </div>
-
-            <div class="flex space-x-6 text-gray-400">
-                <a href="#essence" class="hover:text-brand-mint text-xs">Privacy</a>
-                <a href="#everai" class="hover:text-brand-mint text-xs">Terms</a>
-                <a href="#pricing" class="hover:text-brand-mint text-xs">Support</a>
+            <div>&copy; 2026 Evermore Enterprise. All rights reserved.</div>
+            <div class="flex space-x-6">
+                <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition">Terms of Service</a>
+                <a href="#" class="hover:text-white transition">Support</a>
             </div>
         </div>
     </footer>
 
-    <!-- Three.js 3D Live Interactive Background Script -->
+    <!-- Calculator Script -->
     <script>
-        // Mobile Menu Toggle
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+        const callsRange = document.getElementById('callsRange');
+        const durationRange = document.getElementById('durationRange');
+        const rateRange = document.getElementById('rateRange');
 
-        // Initialize Lucide Icons
-        lucide.createIcons();
+        const callsValue = document.getElementById('callsValue');
+        const durationValue = document.getElementById('durationValue');
+        const rateValue = document.getElementById('rateValue');
+        const projectedEarnings = document.getElementById('projectedEarnings');
 
-        // Three.js Scene Setup
-        const container = document.getElementById('canvas-container');
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.z = 30;
+        function updateCalculator() {
+            const calls = parseInt(callsRange.value);
+            const duration = parseInt(durationRange.value);
+            const rate = parseInt(rateRange.value);
 
-        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        container.appendChild(renderer.domElement);
+            callsValue.textContent = calls;
+            durationValue.textContent = duration;
+            rateValue.textContent = rate;
 
-        // Create Glowing Particle Field (Infinity Starfield effect)
-        const particleCount = 1200;
-        const geometry = new THREE.BufferGeometry();
-        const positions = new Float32Array(particleCount * 3);
-
-        for (let i = 0; i < particleCount * 3; i += 3) {
-            positions[i] = (Math.random() - 0.5) * 80;
-            positions[i + 1] = (Math.random() - 0.5) * 80;
-            positions[i + 2] = (Math.random() - 0.5) * 80;
+            const total = Math.round(calls * duration * (rate / 10));
+            projectedEarnings.textContent = '$' + total.toLocaleString();
         }
 
-        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-        const material = new THREE.PointsMaterial({
-            size: 0.25,
-            color: 0x00ffcc,
-            transparent: true,
-            opacity: 0.8,
-            blending: THREE.AdditiveBlending
-        });
-
-        const particles = new THREE.Points(geometry, material);
-        scene.add(particles);
-
-        // Interactive Mouse Movement effect
-        let mouseX = 0;
-        let mouseY = 0;
-        let targetX = 0;
-        let targetY = 0;
-
-        document.addEventListener('mousemove', (event) => {
-            mouseX = (event.clientX - window.innerWidth / 2) * 0.0005;
-            mouseY = (event.clientY - window.innerHeight / 2) * 0.0005;
-        });
-
-        // Animation Loop
-        const clock = new THREE.Clock();
-
-        function animate() {
-            requestAnimationFrame(animate);
-
-            targetX += (mouseX - targetX) * 0.05;
-            targetY += (mouseY - targetY) * 0.05;
-
-            particles.rotation.x += 0.0005 + targetY;
-            particles.rotation.y += 0.0008 + targetX;
-
-            renderer.render(scene, camera);
-        }
-
-        animate();
-
-        // Responsive resize
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
+        callsRange.addEventListener('input', updateCalculator);
+        durationRange.addEventListener('input', updateCalculator);
+        rateRange.addEventListener('input', updateCalculator);
     </script>
 </body>
 </html>
