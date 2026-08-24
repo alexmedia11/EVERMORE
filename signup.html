@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Create Account — Evermore</title>
-    <meta name="description" content="Create your Evermore account and access EverAI, Skills Academy and qualified digital opportunities.">
+    <title>Create Account | Evermore</title>
+
+    <meta name="description" content="Create your Evermore account and access AI tools, digital skills, training tasks and qualified opportunities.">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -15,25 +16,25 @@
             theme: {
                 extend: {
                     colors: {
-                        canvas: '#07090e',
-                        surface: '#0d1322',
-                        'surface-hover': '#131b31',
-
+                        ink: '#080b16',
+                        muted: '#667085',
                         brand: {
-                            50: '#ecfdf5',
-                            400: '#34d399',
-                            500: '#10b981',
-                            600: '#059669',
-                            700: '#047857'
+                            50: '#eef4ff',
+                            100: '#dbe8ff',
+                            200: '#bfd4ff',
+                            300: '#91b5ff',
+                            400: '#5f8fff',
+                            500: '#315fdb',
+                            600: '#254bc0',
+                            700: '#1d3b9b'
                         }
                     },
-
                     fontFamily: {
                         sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif']
                     },
-
                     boxShadow: {
-                        'brand-glow': '0 20px 60px rgba(16,185,129,0.15)'
+                        soft: '0 20px 60px rgba(15, 23, 42, 0.08)',
+                        card: '0 10px 35px rgba(15, 23, 42, 0.06)'
                     }
                 }
             }
@@ -42,414 +43,399 @@
 
     <!-- Google Font -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
         rel="stylesheet"
     >
 
-    <!-- Font Awesome -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    >
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         html {
             scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+            margin: 0;
+            font-family: 'Plus Jakarta Sans', Inter, sans-serif;
+            color: #080b16;
+            background: #ffffff;
+            overflow-x: hidden;
         }
 
-        /* Premium ambient lighting */
-        .ambient-top {
-            position: absolute;
-            top: -180px;
+        /* Premium homepage-style grid */
+        .grid-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -20;
+            pointer-events: none;
+            background-color: #ffffff;
+            background-image:
+                linear-gradient(rgba(49, 95, 219, 0.055) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(49, 95, 219, 0.055) 1px, transparent 1px);
+            background-size: 42px 42px;
+            mask-image: linear-gradient(
+                to bottom,
+                black 0%,
+                rgba(0,0,0,.95) 45%,
+                transparent 100%
+            );
+        }
+
+        .ambient-blue {
+            position: fixed;
+            width: 520px;
+            height: 520px;
+            border-radius: 9999px;
+            background: rgba(49, 95, 219, 0.12);
+            filter: blur(100px);
+            top: -220px;
             left: 50%;
             transform: translateX(-50%);
-            width: 900px;
-            height: 500px;
+            pointer-events: none;
+            z-index: -10;
+        }
+
+        .ambient-purple {
+            position: fixed;
+            width: 420px;
+            height: 420px;
+            border-radius: 9999px;
+            background: rgba(124, 58, 237, 0.08);
+            filter: blur(100px);
+            bottom: -200px;
+            right: -150px;
+            pointer-events: none;
+            z-index: -10;
+        }
+
+        .logo-mark {
+            background: linear-gradient(135deg, #315fdb 0%, #4f46e5 100%);
+            box-shadow: 0 12px 25px rgba(49, 95, 219, 0.22);
+        }
+
+        .gradient-text {
+            background: linear-gradient(
+                90deg,
+                #315fdb 0%,
+                #4f46e5 55%,
+                #7c3aed 100%
+            );
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .premium-border {
             background:
-                radial-gradient(
-                    ellipse at center,
-                    rgba(16, 185, 129, 0.13) 0%,
-                    rgba(20, 184, 166, 0.06) 35%,
-                    transparent 72%
-                );
-            filter: blur(30px);
-            pointer-events: none;
+                linear-gradient(#ffffff, #ffffff) padding-box,
+                linear-gradient(
+                    135deg,
+                    rgba(49,95,219,.8),
+                    rgba(124,58,237,.55)
+                ) border-box;
+            border: 1px solid transparent;
         }
 
-        .ambient-side {
-            position: absolute;
-            top: 35%;
-            right: -300px;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(
-                circle,
-                rgba(16, 185, 129, 0.07),
-                transparent 70%
-            );
-            filter: blur(50px);
-            pointer-events: none;
+        .plan-card {
+            transition:
+                transform .25s ease,
+                box-shadow .25s ease,
+                border-color .25s ease;
         }
 
-        .ambient-bottom {
-            position: absolute;
-            bottom: -250px;
-            left: -200px;
-            width: 550px;
-            height: 550px;
-            background: radial-gradient(
-                circle,
-                rgba(20, 184, 166, 0.05),
-                transparent 70%
-            );
-            filter: blur(60px);
-            pointer-events: none;
+        .plan-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
         }
 
-        .glass {
-            background: rgba(13, 19, 34, 0.78);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
+        .plan-card.selected {
+            border-color: #315fdb;
+            box-shadow:
+                0 0 0 3px rgba(49, 95, 219, 0.08),
+                0 18px 45px rgba(49, 95, 219, 0.10);
         }
 
         .input-field {
             transition:
-                border-color 0.2s ease,
-                box-shadow 0.2s ease,
-                background 0.2s ease;
+                border-color .2s ease,
+                box-shadow .2s ease,
+                background .2s ease;
         }
 
         .input-field:focus {
-            background: rgba(19, 27, 49, 0.95);
-            border-color: rgba(52, 211, 153, 0.7);
-            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.08);
+            border-color: #315fdb;
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(49, 95, 219, 0.08);
+            outline: none;
         }
 
-        .package-card {
+        .primary-btn {
+            background: #080b16;
             transition:
-                transform 0.25s ease,
-                border-color 0.25s ease,
-                background 0.25s ease,
-                box-shadow 0.25s ease;
+                transform .2s ease,
+                box-shadow .2s ease,
+                background .2s ease;
         }
 
-        .package-card:hover {
-            transform: translateY(-3px);
+        .primary-btn:hover {
+            background: #131827;
+            transform: translateY(-1px);
+            box-shadow: 0 14px 30px rgba(8, 11, 22, 0.18);
         }
 
-        .package-card.selected {
-            border-color: rgba(16, 185, 129, 0.75);
-            background: rgba(16, 185, 129, 0.055);
-            box-shadow: 0 20px 50px rgba(16, 185, 129, 0.08);
+        .secondary-btn {
+            transition: all .2s ease;
         }
 
-        .package-radio {
+        .secondary-btn:hover {
+            border-color: rgba(49,95,219,.35);
+            color: #315fdb;
+            background: #f8faff;
+        }
+
+        .check-icon {
+            width: 18px;
+            height: 18px;
+            border-radius: 9999px;
+            background: #e8f7f1;
+            color: #12a878;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .radio-dot {
             width: 20px;
             height: 20px;
-            border: 2px solid #475569;
-            border-radius: 999px;
+            border-radius: 9999px;
+            border: 2px solid #cbd5e1;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: 0.2s ease;
+            transition: all .2s ease;
+            flex-shrink: 0;
         }
 
-        .package-card.selected .package-radio {
-            border-color: #10b981;
-        }
-
-        .package-card.selected .package-radio::after {
-            content: '';
-            width: 9px;
-            height: 9px;
-            border-radius: 999px;
-            background: #10b981;
-        }
-
-        .strength-bar {
-            transition: width 0.25s ease, background 0.25s ease;
-        }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar {
+        .radio-dot::after {
+            content: "";
             width: 8px;
+            height: 8px;
+            border-radius: 9999px;
+            background: white;
+            transform: scale(0);
+            transition: transform .2s ease;
         }
 
-        ::-webkit-scrollbar-track {
-            background: #07090e;
+        .plan-card.selected .radio-dot {
+            border-color: #315fdb;
+            background: #315fdb;
         }
 
-        ::-webkit-scrollbar-thumb {
-            background: #1e293b;
-            border-radius: 999px;
+        .plan-card.selected .radio-dot::after {
+            transform: scale(1);
         }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: #10b981;
-        }
+        @media (max-width: 640px) {
+            .grid-bg {
+                background-size: 34px 34px;
+            }
 
-        /* Prevent ugly autofill colors */
-        input:-webkit-autofill,
-        input:-webkit-autofill:hover,
-        input:-webkit-autofill:focus,
-        select:-webkit-autofill {
-            -webkit-text-fill-color: white;
-            transition: background-color 9999s ease-in-out 0s;
+            .ambient-blue {
+                width: 350px;
+                height: 350px;
+            }
         }
     </style>
 </head>
 
-<body class="bg-canvas text-slate-100 font-sans antialiased min-h-screen overflow-x-hidden">
+<body class="antialiased">
 
-    <!-- Ambient Background -->
-    <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
-        <div class="ambient-top"></div>
-        <div class="ambient-side"></div>
-        <div class="ambient-bottom"></div>
-    </div>
+    <!-- Background -->
+    <div class="grid-bg"></div>
+    <div class="ambient-blue"></div>
+    <div class="ambient-purple"></div>
 
 
-    <!-- =========================================================
-         NAVIGATION
-    ========================================================== -->
+    <!-- ================= HEADER ================= -->
 
-    <header class="sticky top-0 z-50 glass border-b border-slate-800/60">
+    <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-slate-200/80">
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[76px] flex items-center justify-between">
 
             <!-- Logo -->
             <a href="index.html" class="flex items-center gap-3 group">
 
-                <div
-                    class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-emerald-400
-                    flex items-center justify-center
-                    shadow-lg shadow-brand-500/20
-                    group-hover:scale-105 transition"
-                >
-                    <i class="fa-solid fa-cube text-white text-base"></i>
+                <div class="logo-mark w-10 h-10 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center">
+                    <i
+                        data-lucide="box"
+                        class="w-5 h-5 sm:w-6 sm:h-6 text-white"
+                    ></i>
                 </div>
 
-                <span
-                    class="text-xl font-extrabold tracking-wider
-                    bg-gradient-to-r from-white via-slate-200 to-slate-400
-                    bg-clip-text text-transparent"
-                >
-                    EVERMORE
-                </span>
+                <div class="leading-none">
+
+                    <div class="text-[18px] sm:text-[20px] font-extrabold tracking-[0.18em] text-slate-900">
+                        EVERMORE
+                    </div>
+
+                    <div class="text-[9px] sm:text-[10px] mt-1 tracking-[0.22em] font-semibold text-slate-400 uppercase">
+                        AI • Skills • Opportunities
+                    </div>
+
+                </div>
 
             </a>
 
 
-            <!-- Desktop Account Link -->
-            <div class="hidden sm:flex items-center gap-4 text-sm">
+            <!-- Sign in -->
+            <div class="text-sm text-slate-500">
 
-                <span class="text-slate-400">
+                <span class="hidden sm:inline">
                     Already have an account?
                 </span>
 
                 <a
                     href="signin.html"
-                    class="font-bold text-brand-400 hover:text-brand-300 transition"
+                    class="ml-1 font-bold text-slate-900 hover:text-brand-500 transition"
                 >
                     Sign In
                 </a>
 
             </div>
 
-
-            <!-- Mobile Sign In -->
-            <a
-                href="signin.html"
-                class="sm:hidden text-sm font-bold text-brand-400"
-            >
-                Sign In
-            </a>
-
         </div>
 
     </header>
 
 
-    <!-- =========================================================
-         MAIN
-    ========================================================== -->
+    <!-- ================= MAIN ================= -->
 
     <main class="relative py-14 sm:py-20 px-4 sm:px-6">
 
-        <div class="max-w-3xl mx-auto">
+        <div class="max-w-4xl mx-auto">
 
 
-            <!-- Header -->
-            <div class="text-center mb-10">
+            <!-- Intro -->
 
-                <div
-                    class="inline-flex items-center gap-2
-                    bg-surface
-                    border border-slate-800/80
-                    px-4 py-2
-                    rounded-full
-                    text-xs font-semibold
-                    text-brand-400
-                    shadow-inner mb-6"
-                >
-                    <span
-                        class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"
-                    ></span>
+            <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
+
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 shadow-card text-xs sm:text-sm font-semibold text-slate-600">
+
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
 
                     <span>
                         Create your Evermore account
                     </span>
+
                 </div>
 
 
-                <h1
-                    class="text-3xl sm:text-5xl font-black tracking-tight
-                    text-white leading-tight"
-                >
-                    Start your Evermore journey.
+                <h1 class="mt-6 text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.05] text-slate-950">
+
+                    Start your Evermore
+                    <span class="gradient-text">
+                        journey.
+                    </span>
+
                 </h1>
 
 
-                <p
-                    class="mt-4 text-slate-400
-                    text-sm sm:text-base
-                    max-w-xl mx-auto leading-relaxed"
-                >
-                    Create your account and get access to a unified ecosystem
-                    for AI, digital skills and qualified opportunities.
+                <p class="mt-5 text-base sm:text-lg leading-8 text-slate-500 max-w-xl mx-auto">
+
+                    Create your account and get access to a unified ecosystem for AI, digital skills and qualified opportunities.
+
                 </p>
 
             </div>
 
 
+            <!-- ================= FORM CARD ================= -->
 
-            <!-- =====================================================
-                 FORM CARD
-            ====================================================== -->
-
-            <div
-                class="glass
-                border border-slate-800/80
-                rounded-3xl
-                shadow-2xl
-                shadow-black/30
-                overflow-hidden"
-            >
-
-                <!-- Top Accent -->
-                <div
-                    class="h-1 w-full
-                    bg-gradient-to-r
-                    from-emerald-600
-                    via-brand-400
-                    to-teal-300"
-                ></div>
+            <div class="bg-white/95 backdrop-blur-xl rounded-[28px] sm:rounded-[32px] border border-slate-200 shadow-soft overflow-hidden">
 
 
-                <div class="p-6 sm:p-10">
+                <!-- Top gradient line -->
+
+                <div class="h-1.5 bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600"></div>
 
 
-                    <!-- Error Alert -->
-                    <div
-                        id="error-alert"
-                        class="hidden mb-6
-                        bg-red-500/10
-                        border border-red-500/30
-                        text-red-300
-                        rounded-xl
-                        px-4 py-3
-                        text-sm"
-                    >
-                        <div class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-exclamation mt-0.5"></i>
-                            <span id="error-message">
-                                Please check your information.
-                            </span>
-                        </div>
-                    </div>
+                <div class="p-5 sm:p-8 lg:p-12">
 
 
-                    <!-- Success Alert -->
+                    <!-- Success -->
+
                     <div
                         id="success-alert"
-                        class="hidden mb-6
-                        bg-brand-500/10
-                        border border-brand-500/30
-                        text-brand-400
-                        rounded-xl
-                        px-4 py-3
-                        text-sm"
+                        class="hidden mb-8 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-700"
                     >
-                        <div class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check mt-0.5"></i>
+
+                        <div class="flex items-center gap-3">
+
+                            <div class="check-icon">
+                                <i data-lucide="check" class="w-4 h-4"></i>
+                            </div>
 
                             <div>
-                                <strong class="text-white">
+                                <div class="font-bold">
                                     Account created successfully.
-                                </strong>
+                                </div>
 
-                                <p class="mt-1 text-slate-400">
-                                    Taking you to your Evermore dashboard...
-                                </p>
+                                <div class="text-xs mt-0.5">
+                                    Redirecting you to your Evermore dashboard...
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
+                        </div>
+
+                    </div>
 
 
                     <form
                         id="signup-form"
                         onsubmit="handleSignup(event)"
-                        novalidate
-                        class="space-y-8"
+                        class="space-y-10"
                     >
 
 
-                        <!-- =================================================
-                             ACCOUNT TYPE / ACCESS
-                        ================================================== -->
+                        <!-- ================= STEP 1 ================= -->
 
-                        <div>
+                        <section>
 
-                            <div class="flex items-end justify-between mb-4">
+                            <div class="flex items-end justify-between gap-4 mb-5">
 
                                 <div>
-                                    <p
-                                        class="text-xs font-bold
-                                        text-brand-400 uppercase
-                                        tracking-widest mb-1"
-                                    >
-                                        Access
-                                    </p>
 
-                                    <h2 class="text-xl font-bold text-white">
+                                    <div class="text-xs font-extrabold tracking-[0.18em] text-brand-500 uppercase">
+                                        Step 01
+                                    </div>
+
+                                    <h2 class="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-950">
                                         Choose your plan
                                     </h2>
+
                                 </div>
 
-                                <span class="hidden sm:block text-xs text-slate-500">
-                                    You can change your selection before payment
+                                <span class="hidden sm:block text-sm text-slate-400">
+                                    Select one
                                 </span>
 
                             </div>
 
 
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
 
 
                                 <!-- CROWN -->
+
                                 <label
                                     id="premium-card"
-                                    class="package-card selected relative
-                                    cursor-pointer
-                                    bg-surface
-                                    border border-brand-500/70
-                                    rounded-2xl
-                                    p-5"
+                                    class="plan-card selected premium-border rounded-2xl p-5 sm:p-6 cursor-pointer relative"
                                 >
 
                                     <input
@@ -457,7 +443,7 @@
                                         name="package"
                                         value="premium"
                                         checked
-                                        class="sr-only"
+                                        class="hidden"
                                     >
 
 
@@ -465,114 +451,105 @@
 
                                         <div class="flex items-center gap-3">
 
-                                            <div
-                                                class="w-11 h-11 rounded-xl
-                                                bg-brand-500/10
-                                                border border-brand-500/20
-                                                flex items-center justify-center"
-                                            >
+                                            <div class="w-12 h-12 rounded-2xl bg-brand-50 text-brand-500 flex items-center justify-center">
+
                                                 <i
-                                                    class="fa-solid fa-crown
-                                                    text-brand-400"
+                                                    data-lucide="crown"
+                                                    class="w-6 h-6"
                                                 ></i>
+
                                             </div>
 
                                             <div>
-                                                <h3 class="font-bold text-white">
+
+                                                <h3 class="font-extrabold text-lg text-slate-950">
                                                     Crown Premium
                                                 </h3>
 
-                                                <p class="text-xs text-slate-400 mt-0.5">
+                                                <p class="text-sm text-slate-400 mt-0.5">
                                                     Full platform access
                                                 </p>
+
                                             </div>
 
                                         </div>
 
 
-                                        <div class="package-radio"></div>
+                                        <span class="radio-dot"></span>
 
                                     </div>
 
 
-                                    <div class="mt-6">
+                                    <div class="mt-7">
 
-                                        <div class="flex items-end gap-2">
+                                        <div class="flex items-baseline gap-2">
 
-                                            <span
-                                                class="text-4xl font-black
-                                                text-white"
-                                            >
+                                            <span class="text-4xl font-extrabold text-slate-950">
                                                 $10
                                             </span>
 
-                                            <span class="text-sm text-slate-500 mb-1">
+                                            <span class="text-sm text-slate-400">
                                                 / 6 months
                                             </span>
 
                                         </div>
 
-                                        <div
-                                            class="text-xs text-slate-500 mt-1"
-                                        >
+                                        <div class="mt-1 text-sm text-slate-400">
                                             ₦13,992
                                         </div>
 
                                     </div>
 
 
-                                    <div class="mt-5 space-y-3">
+                                    <div class="mt-7 space-y-3">
 
-                                        <div class="flex gap-3 text-sm text-slate-300">
-                                            <i class="fa-solid fa-check text-brand-400 mt-1"></i>
-                                            <span>Expanded EverAI access</span>
+                                        <div class="flex items-center gap-3 text-sm text-slate-600">
+                                            <span class="check-icon">
+                                                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                                            </span>
+                                            Expanded EverAI access
                                         </div>
 
-                                        <div class="flex gap-3 text-sm text-slate-300">
-                                            <i class="fa-solid fa-check text-brand-400 mt-1"></i>
-                                            <span>Full Skills Academy access</span>
+                                        <div class="flex items-center gap-3 text-sm text-slate-600">
+                                            <span class="check-icon">
+                                                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                                            </span>
+                                            Full Skills Academy access
                                         </div>
 
-                                        <div class="flex gap-3 text-sm text-slate-300">
-                                            <i class="fa-solid fa-check text-brand-400 mt-1"></i>
-                                            <span>Eligible opportunity access</span>
+                                        <div class="flex items-center gap-3 text-sm text-slate-600">
+                                            <span class="check-icon">
+                                                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                                            </span>
+                                            Eligible opportunity access
                                         </div>
 
                                     </div>
 
 
-                                    <div
-                                        class="mt-5 inline-flex items-center gap-2
-                                        text-[11px] font-bold
-                                        text-brand-400
-                                        bg-brand-500/10
-                                        border border-brand-500/20
-                                        px-3 py-1.5 rounded-full"
-                                    >
-                                        <i class="fa-solid fa-star"></i>
+                                    <div class="mt-6 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-50 text-brand-600 text-xs font-bold">
+
+                                        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+
                                         Recommended
+
                                     </div>
 
                                 </label>
 
 
-
                                 <!-- TRIAL -->
+
                                 <label
                                     id="trial-card"
-                                    class="package-card relative
-                                    cursor-pointer
-                                    bg-surface
-                                    border border-slate-800
-                                    rounded-2xl
-                                    p-5"
+                                    class="plan-card bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 cursor-pointer relative"
                                 >
 
                                     <input
                                         type="radio"
                                         name="package"
                                         value="trial"
-                                        class="sr-only"
+                                        class="hidden"
                                     >
 
 
@@ -580,77 +557,77 @@
 
                                         <div class="flex items-center gap-3">
 
-                                            <div
-                                                class="w-11 h-11 rounded-xl
-                                                bg-slate-800/80
-                                                border border-slate-700
-                                                flex items-center justify-center"
-                                            >
+                                            <div class="w-12 h-12 rounded-2xl bg-slate-100 text-slate-600 flex items-center justify-center">
+
                                                 <i
-                                                    class="fa-solid fa-bolt
-                                                    text-slate-300"
+                                                    data-lucide="zap"
+                                                    class="w-6 h-6"
                                                 ></i>
+
                                             </div>
 
                                             <div>
-                                                <h3 class="font-bold text-white">
+
+                                                <h3 class="font-extrabold text-lg text-slate-950">
                                                     Trial
                                                 </h3>
 
-                                                <p class="text-xs text-slate-400 mt-0.5">
+                                                <p class="text-sm text-slate-400 mt-0.5">
                                                     Explore the platform
                                                 </p>
+
                                             </div>
 
                                         </div>
 
 
-                                        <div class="package-radio"></div>
+                                        <span class="radio-dot"></span>
 
                                     </div>
 
 
-                                    <div class="mt-6">
+                                    <div class="mt-7">
 
-                                        <div class="flex items-end gap-2">
+                                        <div class="flex items-baseline gap-2">
 
-                                            <span
-                                                class="text-4xl font-black
-                                                text-white"
-                                            >
+                                            <span class="text-4xl font-extrabold text-slate-950">
                                                 $5
                                             </span>
 
-                                            <span class="text-sm text-slate-500 mb-1">
+                                            <span class="text-sm text-slate-400">
                                                 / 2 months
                                             </span>
 
                                         </div>
 
-                                        <div
-                                            class="text-xs text-slate-500 mt-1"
-                                        >
+                                        <div class="mt-1 text-sm text-slate-400">
                                             ₦6,991
                                         </div>
 
                                     </div>
 
 
-                                    <div class="mt-5 space-y-3">
+                                    <div class="mt-7 space-y-3">
 
-                                        <div class="flex gap-3 text-sm text-slate-300">
-                                            <i class="fa-solid fa-check text-slate-500 mt-1"></i>
-                                            <span>Limited EverAI access</span>
+                                        <div class="flex items-center gap-3 text-sm text-slate-600">
+                                            <span class="check-icon">
+                                                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                                            </span>
+                                            Limited EverAI access
                                         </div>
 
-                                        <div class="flex gap-3 text-sm text-slate-300">
-                                            <i class="fa-solid fa-check text-slate-500 mt-1"></i>
-                                            <span>Selected Academy resources</span>
+                                        <div class="flex items-center gap-3 text-sm text-slate-600">
+                                            <span class="check-icon">
+                                                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                                            </span>
+                                            Selected Academy resources
                                         </div>
 
-                                        <div class="flex gap-3 text-sm text-slate-300">
-                                            <i class="fa-solid fa-check text-slate-500 mt-1"></i>
-                                            <span>Eligible opportunities</span>
+                                        <div class="flex items-center gap-3 text-sm text-slate-600">
+                                            <span class="check-icon">
+                                                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                                            </span>
+                                            Eligible opportunities
                                         </div>
 
                                     </div>
@@ -659,35 +636,31 @@
 
                             </div>
 
-                        </div>
-
+                        </section>
 
 
                         <!-- DIVIDER -->
 
-                        <div class="border-t border-slate-800/80"></div>
+                        <div class="h-px bg-slate-200"></div>
 
 
+                        <!-- ================= STEP 2 ================= -->
 
-                        <!-- =================================================
-                             PERSONAL INFORMATION
-                        ================================================== -->
+                        <section>
 
-                        <div>
+                            <div class="mb-6">
 
-                            <div class="mb-5">
+                                <div class="text-xs font-extrabold tracking-[0.18em] text-brand-500 uppercase">
+                                    Step 02
+                                </div>
 
-                                <p
-                                    class="text-xs font-bold
-                                    text-brand-400 uppercase
-                                    tracking-widest mb-1"
-                                >
+                                <h2 class="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-950">
                                     Your details
-                                </p>
-
-                                <h2 class="text-xl font-bold text-white">
-                                    Tell us about yourself
                                 </h2>
+
+                                <p class="mt-2 text-sm text-slate-500">
+                                    Tell us a little about yourself to create your account.
+                                </p>
 
                             </div>
 
@@ -695,372 +668,221 @@
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
 
 
-                                <!-- Full Name -->
+                                <!-- FULL NAME -->
+
                                 <div>
 
                                     <label
                                         for="fullname"
-                                        class="block text-xs font-bold
-                                        text-slate-300 mb-2"
+                                        class="block text-sm font-bold text-slate-700 mb-2"
                                     >
-                                        FULL NAME
+                                        Full name
                                     </label>
 
-                                    <div class="relative">
-
-                                        <i
-                                            class="fa-regular fa-user
-                                            absolute left-4 top-1/2
-                                            -translate-y-1/2
-                                            text-slate-500"
-                                        ></i>
-
-                                        <input
-                                            type="text"
-                                            id="fullname"
-                                            name="fullname"
-                                            required
-                                            autocomplete="name"
-                                            placeholder="Your full name"
-                                            class="input-field w-full
-                                            bg-canvas
-                                            border border-slate-800
-                                            rounded-xl
-                                            pl-11 pr-4 py-3.5
-                                            text-sm text-white
-                                            placeholder-slate-600
-                                            outline-none"
-                                        >
-
-                                    </div>
+                                    <input
+                                        type="text"
+                                        id="fullname"
+                                        required
+                                        autocomplete="name"
+                                        placeholder="Enter your full name"
+                                        class="input-field w-full h-13 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400"
+                                    >
 
                                 </div>
 
 
+                                <!-- EMAIL -->
 
-                                <!-- Email -->
                                 <div>
 
                                     <label
                                         for="email"
-                                        class="block text-xs font-bold
-                                        text-slate-300 mb-2"
+                                        class="block text-sm font-bold text-slate-700 mb-2"
                                     >
-                                        EMAIL ADDRESS
+                                        Email address
                                     </label>
 
-                                    <div class="relative">
-
-                                        <i
-                                            class="fa-regular fa-envelope
-                                            absolute left-4 top-1/2
-                                            -translate-y-1/2
-                                            text-slate-500"
-                                        ></i>
-
-                                        <input
-                                            type="email"
-                                            id="email"
-                                            name="email"
-                                            required
-                                            autocomplete="email"
-                                            placeholder="you@example.com"
-                                            class="input-field w-full
-                                            bg-canvas
-                                            border border-slate-800
-                                            rounded-xl
-                                            pl-11 pr-4 py-3.5
-                                            text-sm text-white
-                                            placeholder-slate-600
-                                            outline-none"
-                                        >
-
-                                    </div>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        required
+                                        autocomplete="email"
+                                        placeholder="name@example.com"
+                                        class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400"
+                                    >
 
                                 </div>
 
 
+                                <!-- PHONE -->
 
-                                <!-- Phone -->
                                 <div>
 
                                     <label
                                         for="phone"
-                                        class="block text-xs font-bold
-                                        text-slate-300 mb-2"
+                                        class="block text-sm font-bold text-slate-700 mb-2"
                                     >
-                                        PHONE NUMBER
+                                        Phone number
                                     </label>
 
-                                    <div class="relative">
-
-                                        <i
-                                            class="fa-solid fa-phone
-                                            absolute left-4 top-1/2
-                                            -translate-y-1/2
-                                            text-slate-500"
-                                        ></i>
-
-                                        <input
-                                            type="tel"
-                                            id="phone"
-                                            name="phone"
-                                            required
-                                            autocomplete="tel"
-                                            placeholder="+234 800 000 0000"
-                                            class="input-field w-full
-                                            bg-canvas
-                                            border border-slate-800
-                                            rounded-xl
-                                            pl-11 pr-4 py-3.5
-                                            text-sm text-white
-                                            placeholder-slate-600
-                                            outline-none"
-                                        >
-
-                                    </div>
+                                    <input
+                                        type="tel"
+                                        id="phone"
+                                        required
+                                        autocomplete="tel"
+                                        placeholder="+234 800 000 0000"
+                                        class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400"
+                                    >
 
                                 </div>
 
 
+                                <!-- COUNTRY -->
 
-                                <!-- Country -->
                                 <div>
 
                                     <label
                                         for="country"
-                                        class="block text-xs font-bold
-                                        text-slate-300 mb-2"
+                                        class="block text-sm font-bold text-slate-700 mb-2"
                                     >
-                                        COUNTRY
+                                        Country
                                     </label>
 
-                                    <div class="relative">
+                                    <select
+                                        id="country"
+                                        class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900"
+                                    >
 
-                                        <i
-                                            class="fa-solid fa-globe
-                                            absolute left-4 top-1/2
-                                            -translate-y-1/2
-                                            text-slate-500
-                                            pointer-events-none"
-                                        ></i>
+                                        <option value="Nigeria">
+                                            Nigeria
+                                        </option>
 
-                                        <select
-                                            id="country"
-                                            name="country"
-                                            class="input-field w-full
-                                            appearance-none
-                                            bg-canvas
-                                            border border-slate-800
-                                            rounded-xl
-                                            pl-11 pr-10 py-3.5
-                                            text-sm text-white
-                                            outline-none"
-                                        >
+                                        <option value="Ghana">
+                                            Ghana
+                                        </option>
 
-                                            <option value="Nigeria">
-                                                Nigeria
-                                            </option>
+                                        <option value="Kenya">
+                                            Kenya
+                                        </option>
 
-                                            <option value="Ghana">
-                                                Ghana
-                                            </option>
+                                        <option value="South Africa">
+                                            South Africa
+                                        </option>
 
-                                            <option value="Kenya">
-                                                Kenya
-                                            </option>
+                                        <option value="Other">
+                                            Other
+                                        </option>
 
-                                            <option value="South Africa">
-                                                South Africa
-                                            </option>
-
-                                            <option value="United Kingdom">
-                                                United Kingdom
-                                            </option>
-
-                                            <option value="United States">
-                                                United States
-                                            </option>
-
-                                            <option value="Other">
-                                                Other
-                                            </option>
-
-                                        </select>
-
-                                        <i
-                                            class="fa-solid fa-chevron-down
-                                            absolute right-4 top-1/2
-                                            -translate-y-1/2
-                                            text-slate-500
-                                            pointer-events-none text-xs"
-                                        ></i>
-
-                                    </div>
+                                    </select>
 
                                 </div>
 
-                            </div>
 
-                        </div>
+                                <!-- PASSWORD -->
 
-
-
-                        <!-- =================================================
-                             SECURITY
-                        ================================================== -->
-
-                        <div>
-
-                            <div class="mb-5">
-
-                                <p
-                                    class="text-xs font-bold
-                                    text-brand-400 uppercase
-                                    tracking-widest mb-1"
-                                >
-                                    Security
-                                </p>
-
-                                <h2 class="text-xl font-bold text-white">
-                                    Secure your account
-                                </h2>
-
-                            </div>
-
-
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-
-
-                                <!-- Password -->
                                 <div>
 
                                     <label
                                         for="password"
-                                        class="block text-xs font-bold
-                                        text-slate-300 mb-2"
+                                        class="block text-sm font-bold text-slate-700 mb-2"
                                     >
-                                        PASSWORD
+                                        Password
                                     </label>
 
                                     <div class="relative">
-
-                                        <i
-                                            class="fa-solid fa-lock
-                                            absolute left-4 top-1/2
-                                            -translate-y-1/2
-                                            text-slate-500"
-                                        ></i>
 
                                         <input
                                             type="password"
                                             id="password"
-                                            name="password"
                                             required
                                             minlength="8"
                                             autocomplete="new-password"
-                                            placeholder="At least 8 characters"
-                                            class="input-field w-full
-                                            bg-canvas
-                                            border border-slate-800
-                                            rounded-xl
-                                            pl-11 pr-12 py-3.5
-                                            text-sm text-white
-                                            placeholder-slate-600
-                                            outline-none"
+                                            placeholder="Create a strong password"
+                                            class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 pr-12 text-sm text-slate-900 placeholder:text-slate-400"
                                         >
 
                                         <button
                                             type="button"
-                                            onclick="togglePassword('password', this)"
-                                            class="absolute right-4 top-1/2
-                                            -translate-y-1/2
-                                            text-slate-500
-                                            hover:text-brand-400 transition"
+                                            id="toggle-password"
+                                            class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 p-2"
                                             aria-label="Show password"
                                         >
-                                            <i class="fa-regular fa-eye"></i>
+                                            <i data-lucide="eye" class="w-5 h-5"></i>
                                         </button>
 
                                     </div>
 
+                                    <div class="mt-2 flex items-center gap-2">
 
-                                    <!-- Strength -->
-                                    <div class="mt-3">
-
-                                        <div class="h-1.5 bg-slate-800 rounded-full overflow-hidden">
-
+                                        <div class="h-1 flex-1 rounded-full bg-slate-100 overflow-hidden">
                                             <div
                                                 id="strength-bar"
-                                                class="strength-bar h-full w-0 rounded-full"
+                                                class="h-full w-0 rounded-full transition-all"
                                             ></div>
-
                                         </div>
 
-                                        <p
+                                        <span
                                             id="strength-text"
-                                            class="text-[11px] text-slate-500 mt-2"
+                                            class="text-[11px] text-slate-400"
                                         >
-                                            Use 8+ characters with letters and numbers.
-                                        </p>
+                                            8+ characters
+                                        </span>
 
                                     </div>
 
                                 </div>
 
 
+                                <!-- REFERRAL -->
 
-                                <!-- Confirm Password -->
                                 <div>
 
                                     <label
-                                        for="confirm-password"
-                                        class="block text-xs font-bold
-                                        text-slate-300 mb-2"
+                                        for="coupon"
+                                        class="block text-sm font-bold text-slate-700 mb-2"
                                     >
-                                        CONFIRM PASSWORD
+                                        Referral / coupon code
+                                        <span class="font-normal text-slate-400">
+                                            (optional)
+                                        </span>
                                     </label>
 
-                                    <div class="relative">
+                                    <input
+                                        type="text"
+                                        id="coupon"
+                                        autocomplete="off"
+                                        placeholder="Enter code if you have one"
+                                        class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400"
+                                    >
 
-                                        <i
-                                            class="fa-solid fa-shield-halved
-                                            absolute left-4 top-1/2
-                                            -translate-y-1/2
-                                            text-slate-500"
-                                        ></i>
+                                </div>
 
-                                        <input
-                                            type="password"
-                                            id="confirm-password"
-                                            name="confirm-password"
-                                            required
-                                            minlength="8"
-                                            autocomplete="new-password"
-                                            placeholder="Repeat your password"
-                                            class="input-field w-full
-                                            bg-canvas
-                                            border border-slate-800
-                                            rounded-xl
-                                            pl-11 pr-12 py-3.5
-                                            text-sm text-white
-                                            placeholder-slate-600
-                                            outline-none"
-                                        >
+                            </div>
 
-                                        <button
-                                            type="button"
-                                            onclick="togglePassword('confirm-password', this)"
-                                            class="absolute right-4 top-1/2
-                                            -translate-y-1/2
-                                            text-slate-500
-                                            hover:text-brand-400 transition"
-                                            aria-label="Show password"
-                                        >
-                                            <i class="fa-regular fa-eye"></i>
-                                        </button>
+                        </section>
 
+
+                        <!-- NOTICE -->
+
+                        <div class="rounded-2xl border border-blue-100 bg-blue-50/70 p-4 sm:p-5">
+
+                            <div class="flex items-start gap-3">
+
+                                <div class="w-9 h-9 rounded-xl bg-white flex items-center justify-center text-brand-500 shadow-sm flex-shrink-0">
+
+                                    <i data-lucide="shield-check" class="w-5 h-5"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <div class="font-bold text-sm text-slate-900">
+                                        Your Evermore account
                                     </div>
+
+                                    <p class="text-xs sm:text-sm text-slate-500 leading-6 mt-1">
+                                        Your selected plan and account details will be used to personalize your Evermore experience.
+                                    </p>
 
                                 </div>
 
@@ -1069,188 +891,61 @@
                         </div>
 
 
+                        <!-- TERMS -->
 
-                        <!-- =================================================
-                             REFERRAL
-                        ================================================== -->
-
-                        <div>
-
-                            <label
-                                for="coupon"
-                                class="block text-xs font-bold
-                                text-slate-300 mb-2"
-                            >
-                                REFERRAL / COUPON CODE
-                                <span class="text-slate-600 font-normal">
-                                    (OPTIONAL)
-                                </span>
-                            </label>
-
-                            <div class="relative">
-
-                                <i
-                                    class="fa-solid fa-ticket
-                                    absolute left-4 top-1/2
-                                    -translate-y-1/2
-                                    text-slate-500"
-                                ></i>
-
-                                <input
-                                    type="text"
-                                    id="coupon"
-                                    name="coupon"
-                                    autocomplete="off"
-                                    placeholder="Enter your referral or coupon code"
-                                    class="input-field w-full
-                                    bg-canvas
-                                    border border-slate-800
-                                    rounded-xl
-                                    pl-11 pr-4 py-3.5
-                                    text-sm text-white
-                                    placeholder-slate-600
-                                    outline-none"
-                                >
-
-                            </div>
-
-                        </div>
-
-
-
-                        <!-- =================================================
-                             TERMS
-                        ================================================== -->
-
-                        <label
-                            class="flex items-start gap-3 cursor-pointer"
-                        >
+                        <label class="flex items-start gap-3 cursor-pointer">
 
                             <input
-                                type="checkbox"
                                 id="terms"
+                                type="checkbox"
                                 required
-                                class="mt-1
-                                w-4 h-4
-                                accent-emerald-500
-                                rounded"
+                                class="mt-1 w-4 h-4 rounded border-slate-300 text-brand-500 focus:ring-brand-500"
                             >
 
-                            <span
-                                class="text-xs text-slate-400 leading-relaxed"
-                            >
+                            <span class="text-xs sm:text-sm text-slate-500 leading-6">
+
                                 I agree to Evermore's
-                                <a
-                                    href="#"
-                                    class="text-brand-400 hover:text-brand-300 font-semibold"
-                                >
+                                <a href="#" class="font-bold text-slate-800 hover:text-brand-500">
                                     Terms of Service
                                 </a>
                                 and
-                                <a
-                                    href="#"
-                                    class="text-brand-400 hover:text-brand-300 font-semibold"
-                                >
+                                <a href="#" class="font-bold text-slate-800 hover:text-brand-500">
                                     Privacy Policy
                                 </a>.
+
                             </span>
 
                         </label>
 
 
-
-                        <!-- =================================================
-                             TRUST NOTICE
-                        ================================================== -->
-
-                        <div
-                            class="flex items-start gap-3
-                            bg-surface
-                            border border-slate-800
-                            rounded-2xl
-                            p-4"
-                        >
-
-                            <div
-                                class="w-9 h-9 flex-shrink-0
-                                rounded-xl
-                                bg-brand-500/10
-                                flex items-center justify-center"
-                            >
-                                <i
-                                    class="fa-solid fa-shield-halved
-                                    text-brand-400 text-sm"
-                                ></i>
-                            </div>
-
-                            <div>
-
-                                <p class="text-sm font-semibold text-white">
-                                    Your account starts here.
-                                </p>
-
-                                <p
-                                    class="text-xs text-slate-500
-                                    mt-1 leading-relaxed"
-                                >
-                                    After registration, you'll be guided through
-                                    the next steps required to activate your
-                                    selected Evermore access.
-                                </p>
-
-                            </div>
-
-                        </div>
-
-
-
-                        <!-- =================================================
-                             SUBMIT
-                        ================================================== -->
+                        <!-- SUBMIT -->
 
                         <button
                             type="submit"
                             id="submit-btn"
-                            class="w-full
-                            bg-brand-500
-                            hover:bg-brand-600
-                            text-white
-                            font-bold
-                            py-4
-                            rounded-xl
-                            shadow-xl
-                            shadow-brand-500/20
-                            transition
-                            flex items-center justify-center gap-3
-                            hover:-translate-y-0.5
-                            disabled:opacity-60
-                            disabled:cursor-not-allowed
-                            disabled:hover:translate-y-0"
+                            class="primary-btn w-full rounded-2xl py-4 sm:py-5 px-6 text-white font-bold text-base sm:text-lg flex items-center justify-center gap-3"
                         >
 
-                            <span id="submit-text">
-                                Create Evermore Account
+                            <span>
+                                Create My Evermore Account
                             </span>
 
-                            <i
-                                id="submit-icon"
-                                class="fa-solid fa-arrow-right"
-                            ></i>
+                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
 
                         </button>
 
 
-                        <p class="text-center text-xs text-slate-500">
+                        <!-- SIGN IN -->
 
-                            Already registered?
+                        <p class="text-center text-sm text-slate-500">
+
+                            Already have an account?
 
                             <a
                                 href="signin.html"
-                                class="text-brand-400
-                                font-semibold
-                                hover:text-brand-300"
+                                class="font-bold text-slate-900 hover:text-brand-500 transition"
                             >
-                                Sign in to Evermore
+                                Sign in
                             </a>
 
                         </p>
@@ -1262,28 +957,20 @@
             </div>
 
 
+            <!-- Trust line -->
 
-            <!-- Bottom Trust -->
-            <div
-                class="mt-8
-                flex flex-wrap items-center justify-center
-                gap-x-6 gap-y-3
-                text-[11px] text-slate-500"
-            >
+            <div class="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-xs text-slate-400">
 
                 <span class="inline-flex items-center gap-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                    Secure registration
+                    <i data-lucide="lock" class="w-3.5 h-3.5"></i>
+                    Secure account creation
                 </span>
 
-                <span class="inline-flex items-center gap-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                    Mobile optimized
-                </span>
+                <span class="hidden sm:block w-1 h-1 rounded-full bg-slate-300"></span>
 
                 <span class="inline-flex items-center gap-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                    EverAI ecosystem
+                    <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+                    AI • Skills • Opportunities
                 </span>
 
             </div>
@@ -1293,55 +980,42 @@
     </main>
 
 
+    <!-- ================= FOOTER ================= -->
 
-    <!-- =========================================================
-         FOOTER
-    ========================================================== -->
+    <footer class="border-t border-slate-200 bg-white/80 backdrop-blur-xl">
 
-    <footer class="border-t border-slate-800/60 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
-        <div
-            class="max-w-7xl mx-auto
-            px-4 sm:px-6 lg:px-8
-            flex flex-col sm:flex-row
-            items-center justify-between
-            gap-4"
-        >
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
 
-            <div class="text-xs text-slate-500">
-                © 2026 Evermore Enterprise. All rights reserved.
-            </div>
+                <div class="text-xs text-slate-400">
+                    © 2026 Evermore Enterprise. All rights reserved.
+                </div>
 
+                <div class="flex items-center gap-5 text-xs text-slate-400">
 
-            <div class="flex items-center gap-6 text-xs text-slate-500">
+                    <a
+                        href="index.html"
+                        class="hover:text-slate-900 transition"
+                    >
+                        Home
+                    </a>
 
-                <a
-                    href="index.html"
-                    class="hover:text-white transition"
-                >
-                    Home
-                </a>
+                    <a
+                        href="index.html#pricing"
+                        class="hover:text-slate-900 transition"
+                    >
+                        Pricing
+                    </a>
 
-                <a
-                    href="index.html#pricing"
-                    class="hover:text-white transition"
-                >
-                    Pricing
-                </a>
+                    <a
+                        href="#"
+                        class="hover:text-slate-900 transition"
+                    >
+                        Support
+                    </a>
 
-                <a
-                    href="#"
-                    class="hover:text-white transition"
-                >
-                    Terms
-                </a>
-
-                <a
-                    href="#"
-                    class="hover:text-white transition"
-                >
-                    Privacy
-                </a>
+                </div>
 
             </div>
 
@@ -1350,85 +1024,118 @@
     </footer>
 
 
-
-    <!-- =========================================================
-         JAVASCRIPT
-    ========================================================== -->
+    <!-- ================= JAVASCRIPT ================= -->
 
     <script>
 
-        /* =========================================================
-           PACKAGE SELECTION
-        ========================================================== */
+        /* -----------------------------------------
+           LUCIDE ICONS
+        ----------------------------------------- */
 
-        const packageCards = document.querySelectorAll('.package-card');
-        const packageInputs = document.querySelectorAll('input[name="package"]');
+        lucide.createIcons();
+
+
+        /* -----------------------------------------
+           PLAN SELECTION
+        ----------------------------------------- */
+
+        const premiumCard = document.getElementById('premium-card');
+        const trialCard = document.getElementById('trial-card');
+
+        const packageInputs = document.querySelectorAll(
+            'input[name="package"]'
+        );
+
+        function updatePlanUI() {
+
+            const selected = document.querySelector(
+                'input[name="package"]:checked'
+            );
+
+            premiumCard.classList.remove('selected');
+            trialCard.classList.remove('selected');
+
+            if (selected && selected.value === 'premium') {
+                premiumCard.classList.add('selected');
+            }
+
+            if (selected && selected.value === 'trial') {
+                trialCard.classList.add('selected');
+            }
+        }
 
         packageInputs.forEach(input => {
 
-            input.addEventListener('change', () => {
-
-                packageCards.forEach(card => {
-                    card.classList.remove('selected');
-                });
-
-                const selectedCard = input.closest('.package-card');
-
-                if (selectedCard) {
-                    selectedCard.classList.add('selected');
-                }
-
-            });
+            input.addEventListener('change', updatePlanUI);
 
         });
 
 
+        premiumCard.addEventListener('click', () => {
 
-        /* =========================================================
+            document.querySelector(
+                'input[value="premium"]'
+            ).checked = true;
+
+            updatePlanUI();
+
+        });
+
+
+        trialCard.addEventListener('click', () => {
+
+            document.querySelector(
+                'input[value="trial"]'
+            ).checked = true;
+
+            updatePlanUI();
+
+        });
+
+
+        /* -----------------------------------------
            PASSWORD VISIBILITY
-        ========================================================== */
-
-        function togglePassword(inputId, button) {
-
-            const input = document.getElementById(inputId);
-
-            if (input.type === 'password') {
-
-                input.type = 'text';
-
-                button.innerHTML =
-                    '<i class="fa-regular fa-eye-slash"></i>';
-
-                button.setAttribute('aria-label', 'Hide password');
-
-            } else {
-
-                input.type = 'password';
-
-                button.innerHTML =
-                    '<i class="fa-regular fa-eye"></i>';
-
-                button.setAttribute('aria-label', 'Show password');
-
-            }
-
-        }
-
-
-
-        /* =========================================================
-           PASSWORD STRENGTH
-        ========================================================== */
+        ----------------------------------------- */
 
         const passwordInput =
             document.getElementById('password');
+
+        const togglePassword =
+            document.getElementById('toggle-password');
+
+        togglePassword.addEventListener('click', () => {
+
+            const isPassword =
+                passwordInput.type === 'password';
+
+            passwordInput.type =
+                isPassword ? 'text' : 'password';
+
+            togglePassword.innerHTML = isPassword
+                ? '<i data-lucide="eye-off" class="w-5 h-5"></i>'
+                : '<i data-lucide="eye" class="w-5 h-5"></i>';
+
+            togglePassword.setAttribute(
+                'aria-label',
+                isPassword
+                    ? 'Hide password'
+                    : 'Show password'
+            );
+
+            lucide.createIcons();
+
+        });
+
+
+        /* -----------------------------------------
+           PASSWORD STRENGTH
+        ----------------------------------------- */
 
         const strengthBar =
             document.getElementById('strength-bar');
 
         const strengthText =
             document.getElementById('strength-text');
-
 
         passwordInput.addEventListener('input', () => {
 
@@ -1437,8 +1144,6 @@
             let score = 0;
 
             if (password.length >= 8) score++;
-
-            if (/[a-z]/.test(password)) score++;
 
             if (/[A-Z]/.test(password)) score++;
 
@@ -1449,140 +1154,95 @@
 
             const widths = [
                 '0%',
-                '20%',
-                '40%',
-                '60%',
-                '80%',
+                '25%',
+                '50%',
+                '75%',
                 '100%'
             ];
 
-            strengthBar.style.width = widths[score];
+            strengthBar.style.width =
+                widths[score];
 
 
-            if (!password) {
-
-                strengthBar.style.width = '0%';
+            if (score === 0) {
 
                 strengthText.textContent =
-                    'Use 8+ characters with letters and numbers.';
+                    '8+ characters';
 
                 strengthText.className =
-                    'text-[11px] text-slate-500 mt-2';
+                    'text-[11px] text-slate-400';
 
-                return;
+                strengthBar.style.background =
+                    '#e2e8f0';
 
             }
 
-
-            if (score <= 2) {
+            else if (score <= 1) {
 
                 strengthText.textContent =
-                    'Weak password — add more characters and variety.';
+                    'Weak';
 
                 strengthText.className =
-                    'text-[11px] text-red-400 mt-2';
+                    'text-[11px] text-red-500';
 
                 strengthBar.style.background =
                     '#ef4444';
 
             }
 
-            else if (score === 3) {
+            else if (score === 2) {
 
                 strengthText.textContent =
-                    'Fair password — you can make it stronger.';
+                    'Fair';
 
                 strengthText.className =
-                    'text-[11px] text-amber-400 mt-2';
+                    'text-[11px] text-amber-500';
 
                 strengthBar.style.background =
                     '#f59e0b';
 
             }
 
-            else if (score === 4) {
+            else if (score === 3) {
 
                 strengthText.textContent =
-                    'Good password.';
+                    'Good';
 
                 strengthText.className =
-                    'text-[11px] text-brand-400 mt-2';
+                    'text-[11px] text-blue-500';
 
                 strengthBar.style.background =
-                    '#10b981';
+                    '#315fdb';
 
             }
 
             else {
 
                 strengthText.textContent =
-                    'Strong password.';
+                    'Strong';
 
                 strengthText.className =
-                    'text-[11px] text-brand-400 mt-2';
+                    'text-[11px] text-emerald-500';
 
                 strengthBar.style.background =
-                    '#34d399';
+                    '#10b981';
 
             }
 
         });
 
 
-
-        /* =========================================================
-           FORM HELPERS
-        ========================================================== */
-
-        function showError(message) {
-
-            const alert =
-                document.getElementById('error-alert');
-
-            const messageBox =
-                document.getElementById('error-message');
-
-            messageBox.textContent = message;
-
-            alert.classList.remove('hidden');
-
-            alert.scrollIntoView({
-                behavior: 'smooth',
-                block: 'center'
-            });
-
-        }
-
-
-        function hideError() {
-
-            document
-                .getElementById('error-alert')
-                .classList.add('hidden');
-
-        }
-
-
-
-        /* =========================================================
+        /* -----------------------------------------
            SIGNUP
-        ========================================================== */
+        ----------------------------------------- */
 
         function handleSignup(event) {
 
             event.preventDefault();
 
-            hideError();
-
 
             const submitBtn =
                 document.getElementById('submit-btn');
-
-            const submitText =
-                document.getElementById('submit-text');
-
-            const submitIcon =
-                document.getElementById('submit-icon');
 
             const successAlert =
                 document.getElementById('success-alert');
@@ -1603,63 +1263,21 @@
             const password =
                 document.getElementById('password').value;
 
-            const confirmPassword =
-                document.getElementById('confirm-password').value;
-
             const coupon =
                 document.getElementById('coupon').value.trim();
 
-            const terms =
-                document.getElementById('terms').checked;
-
-            const selectedPackage =
+            const packageSelected =
                 document.querySelector(
                     'input[name="package"]:checked'
-                );
+                ).value;
 
 
-            /* Validation */
-
-            if (!name) {
-
-                showError('Please enter your full name.');
-
-                return;
-
-            }
-
-
-            if (!email || !email.includes('@')) {
-
-                showError('Please enter a valid email address.');
-
-                return;
-
-            }
-
-
-            if (!phone || phone.length < 7) {
-
-                showError('Please enter a valid phone number.');
-
-                return;
-
-            }
-
-
-            if (!selectedPackage) {
-
-                showError('Please select an Evermore plan.');
-
-                return;
-
-            }
-
+            /* Basic validation */
 
             if (password.length < 8) {
 
-                showError(
-                    'Your password must contain at least 8 characters.'
+                alert(
+                    'Please create a password with at least 8 characters.'
                 );
 
                 return;
@@ -1667,38 +1285,16 @@
             }
 
 
-            if (password !== confirmPassword) {
-
-                showError(
-                    'Your passwords do not match.'
-                );
-
-                return;
-
-            }
-
-
-            if (!terms) {
-
-                showError(
-                    'Please accept the Terms of Service and Privacy Policy.'
-                );
-
-                return;
-
-            }
-
-
-
-            /* =====================================================
+            /* -----------------------------------------
                IMPORTANT SECURITY NOTE
 
-               Do NOT store the password in localStorage.
+               We intentionally DO NOT save the
+               password into localStorage.
 
-               This temporary front-end flow stores only non-sensitive
-               profile information. Connect this section to your real
-               backend authentication/API before going live.
-            ====================================================== */
+               Your production backend should handle
+               password hashing and authentication.
+            ----------------------------------------- */
+
 
             const userData = {
 
@@ -1710,15 +1306,35 @@
 
                 country: country,
 
-                package: selectedPackage.value,
+                package: packageSelected,
 
                 coupon: coupon,
+
+                /*
+                    These balances are retained only
+                    for compatibility with the existing
+                    static dashboard.
+
+                    Replace with server-side values when
+                    your real backend/payment system is
+                    connected.
+                */
+
+                balance:
+                    packageSelected === 'premium'
+                        ? 0
+                        : 0,
 
                 registeredAt:
                     new Date().toISOString()
 
             };
 
+
+            /*
+                Save non-sensitive account information
+                for the current static frontend.
+            */
 
             localStorage.setItem(
                 'evermore_user',
@@ -1730,32 +1346,57 @@
 
             submitBtn.disabled = true;
 
-            submitText.textContent =
-                'Creating your account...';
+            submitBtn.classList.add(
+                'opacity-70',
+                'cursor-not-allowed'
+            );
 
-            submitIcon.className =
-                'fa-solid fa-circle-notch fa-spin';
+            submitBtn.innerHTML = `
+                <span>Creating your account...</span>
+                <svg
+                    class="animate-spin w-5 h-5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                >
+                    <circle
+                        class="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        stroke-width="4"
+                    ></circle>
 
+                    <path
+                        class="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                    ></path>
+                </svg>
+            `;
+
+
+            /* Simulated registration */
 
             setTimeout(() => {
 
                 successAlert.classList.remove('hidden');
 
-                submitText.textContent =
-                    'Account Created';
+                submitBtn.innerHTML = `
+                    <span>Account Created</span>
+                    <i data-lucide="check" class="w-5 h-5"></i>
+                `;
 
-                submitIcon.className =
-                    'fa-solid fa-check';
+                lucide.createIcons();
 
-
-                /*
-                 * Current demo/front-end flow.
-                 *
-                 * Replace this redirect with your actual
-                 * backend/payment activation route when ready.
-                 */
 
                 setTimeout(() => {
+
+                    /*
+                        Keep this dashboard redirect
+                        compatible with your current
+                        static website.
+                    */
 
                     window.location.href =
                         'dashboard.html';
@@ -1767,22 +1408,13 @@
         }
 
 
+        /* -----------------------------------------
+           INITIAL UI
+        ----------------------------------------- */
 
-        /* =========================================================
-           REMOVE ERROR WHEN USER STARTS CORRECTING FORM
-        ========================================================== */
-
-        document.querySelectorAll(
-            '#signup-form input, #signup-form select'
-        ).forEach(field => {
-
-            field.addEventListener('input', hideError);
-
-            field.addEventListener('change', hideError);
-
-        });
+        updatePlanUI();
 
     </script>
 
 </body>
-</html>
+    </html>
