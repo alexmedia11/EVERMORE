@@ -1429,14 +1429,16 @@
             name: "Crown Premium",
             duration: "6 months",
             usd: "$10",
-            ngn: "₦13,992"
+            ngn: 13992,
+            formattedNgn: "₦13,992"
         },
 
         trial: {
             name: "Trial",
             duration: "2 months",
             usd: "$5",
-            ngn: "₦6,991"
+            ngn: 6991,
+            formattedNgn: "₦6,991"
         }
 
     };
@@ -1476,7 +1478,7 @@
 
         summaryPlan.textContent = data.name;
         summaryDuration.textContent = data.duration;
-        summaryNgn.textContent = data.ngn;
+        summaryNgn.textContent = data.formattedNgn;
         summaryUsd.textContent = data.usd + " USD";
 
 
@@ -1528,7 +1530,7 @@
 
             usd: data.usd,
 
-            ngn: data.ngn,
+            ngn: data.formattedNgn,
 
             status: "payment_pending",
 
@@ -1634,13 +1636,12 @@
 
 
     /* =========================================
-       PAYMENT BUTTON
+       PAYMENT BUTTON & BACKEND INTEGRATION
     ========================================== */
 
-    payButton.addEventListener("click", function () {
+    payButton.addEventListener("click", async function () {
 
         hideMessages();
-
 
         const data = packages[selectedPackage];
 
@@ -1654,48 +1655,64 @@
 
         }
 
-
-        /* Save latest selection */
-
         saveCheckoutSelection();
 
-
-        /*
-         * IMPORTANT:
-         *
-         * This is deliberately NOT pretending
-         * that payment was successful.
-         *
-         * The real Squad payment initialization
-         * will be connected here later.
-         */
-
-
         payButton.disabled = true;
-
-        payText.textContent =
-            "Preparing secure payment...";
-
+        payText.textContent = "Connecting to secure gateway...";
         payIcon.style.display = "none";
 
+        try {
+            // Retrieve user email from localStorage if available from signup
+            const storedUser = localStorage.getItem("evermore_user");
+            let userEmail = "";
+            let userId = "";
 
-        setTimeout(function () {
+            if (storedUser) {
+                const parsedUser = JSON.parse(storedUser);
+                userEmail = parsedUser.email || "";
+                userId = parsedUser.id || "";
+            }
+
+            // Call your backend endpoint to initialize the payment (e.g., Squad / Monnify)
+            const response = await fetch("/api/initialize-payment", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email: userEmail,
+                    userId: userId,
+                    package: selectedPackage,
+                    amount: data.ngn
+                })
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.message || "Failed to initialize payment gateway.");
+            }
+
+            // If backend returns a payment gateway redirect URL, send the user there
+            if (result.checkoutUrl) {
+                window.location.href = result.checkoutUrl;
+            } else {
+                showInfo("Payment session initialized successfully. Ready for gateway redirect.");
+            }
+
+        } catch (error) {
+
+            console.warn("Payment error:", error);
+            showError(error.message || "Something went wrong connecting to the payment service.");
+
+        } finally {
 
             payButton.disabled = false;
-
-            payText.textContent =
-                "Continue to Payment";
-
+            payText.textContent = "Continue to Payment";
             payIcon.style.display = "";
-
             lucide.createIcons();
 
-
-            showInfo(
-                "Squad payment processing is ready to be connected here. No payment has been marked as successful."
-            );
-
-        }, 700);
+        }
 
     });
 

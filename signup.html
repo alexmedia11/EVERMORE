@@ -67,7 +67,6 @@
             overflow-x: hidden;
         }
 
-        /* Premium homepage-style grid */
         .grid-bg {
             position: fixed;
             inset: 0;
@@ -130,36 +129,6 @@
             color: transparent;
         }
 
-        .premium-border {
-            background:
-                linear-gradient(#ffffff, #ffffff) padding-box,
-                linear-gradient(
-                    135deg,
-                    rgba(49,95,219,.8),
-                    rgba(124,58,237,.55)
-                ) border-box;
-            border: 1px solid transparent;
-        }
-
-        .plan-card {
-            transition:
-                transform .25s ease,
-                box-shadow .25s ease,
-                border-color .25s ease;
-        }
-
-        .plan-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
-        }
-
-        .plan-card.selected {
-            border-color: #315fdb;
-            box-shadow:
-                0 0 0 3px rgba(49, 95, 219, 0.08),
-                0 18px 45px rgba(49, 95, 219, 0.10);
-        }
-
         .input-field {
             transition:
                 border-color .2s ease,
@@ -188,16 +157,6 @@
             box-shadow: 0 14px 30px rgba(8, 11, 22, 0.18);
         }
 
-        .secondary-btn {
-            transition: all .2s ease;
-        }
-
-        .secondary-btn:hover {
-            border-color: rgba(49,95,219,.35);
-            color: #315fdb;
-            background: #f8faff;
-        }
-
         .check-icon {
             width: 18px;
             height: 18px;
@@ -209,48 +168,6 @@
             justify-content: center;
             flex-shrink: 0;
         }
-
-        .radio-dot {
-            width: 20px;
-            height: 20px;
-            border-radius: 9999px;
-            border: 2px solid #cbd5e1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all .2s ease;
-            flex-shrink: 0;
-        }
-
-        .radio-dot::after {
-            content: "";
-            width: 8px;
-            height: 8px;
-            border-radius: 9999px;
-            background: white;
-            transform: scale(0);
-            transition: transform .2s ease;
-        }
-
-        .plan-card.selected .radio-dot {
-            border-color: #315fdb;
-            background: #315fdb;
-        }
-
-        .plan-card.selected .radio-dot::after {
-            transform: scale(1);
-        }
-
-        @media (max-width: 640px) {
-            .grid-bg {
-                background-size: 34px 34px;
-            }
-
-            .ambient-blue {
-                width: 350px;
-                height: 350px;
-            }
-        }
     </style>
 </head>
 
@@ -261,1160 +178,265 @@
     <div class="ambient-blue"></div>
     <div class="ambient-purple"></div>
 
-
     <!-- ================= HEADER ================= -->
-
     <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-slate-200/80">
-
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[76px] flex items-center justify-between">
-
-            <!-- Logo -->
             <a href="index.html" class="flex items-center gap-3 group">
-
                 <div class="logo-mark w-10 h-10 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center">
-                    <i
-                        data-lucide="box"
-                        class="w-5 h-5 sm:w-6 sm:h-6 text-white"
-                    ></i>
+                    <i data-lucide="box" class="w-5 h-5 sm:w-6 sm:h-6 text-white"></i>
                 </div>
-
                 <div class="leading-none">
-
                     <div class="text-[18px] sm:text-[20px] font-extrabold tracking-[0.18em] text-slate-900">
                         EVERMORE
                     </div>
-
                     <div class="text-[9px] sm:text-[10px] mt-1 tracking-[0.22em] font-semibold text-slate-400 uppercase">
                         AI • Skills • Opportunities
                     </div>
-
                 </div>
-
             </a>
-
-
-            <!-- Sign in -->
             <div class="text-sm text-slate-500">
-
-                <span class="hidden sm:inline">
-                    Already have an account?
-                </span>
-
-                <a
-                    href="signin.html"
-                    class="ml-1 font-bold text-slate-900 hover:text-brand-500 transition"
-                >
-                    Sign In
-                </a>
-
+                <span class="hidden sm:inline">Already have an account?</span>
+                <a href="signin.html" class="ml-1 font-bold text-slate-900 hover:text-brand-500 transition">Sign In</a>
             </div>
-
         </div>
-
     </header>
 
-
     <!-- ================= MAIN ================= -->
-
     <main class="relative py-14 sm:py-20 px-4 sm:px-6">
-
-        <div class="max-w-4xl mx-auto">
-
-
-            <!-- Intro -->
-
+        <div class="max-w-3xl mx-auto">
             <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
-
                 <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 shadow-card text-xs sm:text-sm font-semibold text-slate-600">
-
                     <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-
-                    <span>
-                        Create your Evermore account
-                    </span>
-
+                    <span>Create your Evermore account</span>
                 </div>
-
-
                 <h1 class="mt-6 text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.05] text-slate-950">
-
                     Start your Evermore
-                    <span class="gradient-text">
-                        journey.
-                    </span>
-
+                    <span class="gradient-text">journey.</span>
                 </h1>
-
-
                 <p class="mt-5 text-base sm:text-lg leading-8 text-slate-500 max-w-xl mx-auto">
-
                     Create your account and get access to a unified ecosystem for AI, digital skills and qualified opportunities.
-
                 </p>
-
             </div>
 
-
             <!-- ================= FORM CARD ================= -->
-
             <div class="bg-white/95 backdrop-blur-xl rounded-[28px] sm:rounded-[32px] border border-slate-200 shadow-soft overflow-hidden">
-
-
-                <!-- Top gradient line -->
-
                 <div class="h-1.5 bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600"></div>
 
-
                 <div class="p-5 sm:p-8 lg:p-12">
-
-
-                    <!-- Success -->
-
-                    <div
-                        id="success-alert"
-                        class="hidden mb-8 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-700"
-                    >
-
+                    <div id="success-alert" class="hidden mb-8 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-700">
                         <div class="flex items-center gap-3">
-
                             <div class="check-icon">
                                 <i data-lucide="check" class="w-4 h-4"></i>
                             </div>
-
                             <div>
-                                <div class="font-bold">
-                                    Account created successfully.
-                                </div>
-
-                                <div class="text-xs mt-0.5">
-                                    Redirecting you to your Evermore dashboard...
-                                </div>
+                                <div class="font-bold">Account created successfully.</div>
+                                <div class="text-xs mt-0.5">Redirecting you to sign in...</div>
                             </div>
-
                         </div>
-
                     </div>
 
-
-                    <form
-                        id="signup-form"
-                        onsubmit="handleSignup(event)"
-                        class="space-y-10"
-                    >
-
-
-                        <!-- ================= STEP 1 ================= -->
-
-                        <section>
-
-                            <div class="flex items-end justify-between gap-4 mb-5">
-
-                                <div>
-
-                                    <div class="text-xs font-extrabold tracking-[0.18em] text-brand-500 uppercase">
-                                        Step 01
-                                    </div>
-
-                                    <h2 class="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-950">
-                                        Choose your plan
-                                    </h2>
-
-                                </div>
-
-                                <span class="hidden sm:block text-sm text-slate-400">
-                                    Select one
-                                </span>
-
-                            </div>
-
-
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-
-
-                                <!-- CROWN -->
-
-                                <label
-                                    id="premium-card"
-                                    class="plan-card selected premium-border rounded-2xl p-5 sm:p-6 cursor-pointer relative"
-                                >
-
-                                    <input
-                                        type="radio"
-                                        name="package"
-                                        value="premium"
-                                        checked
-                                        class="hidden"
-                                    >
-
-
-                                    <div class="flex items-start justify-between gap-4">
-
-                                        <div class="flex items-center gap-3">
-
-                                            <div class="w-12 h-12 rounded-2xl bg-brand-50 text-brand-500 flex items-center justify-center">
-
-                                                <i
-                                                    data-lucide="crown"
-                                                    class="w-6 h-6"
-                                                ></i>
-
-                                            </div>
-
-                                            <div>
-
-                                                <h3 class="font-extrabold text-lg text-slate-950">
-                                                    Crown Premium
-                                                </h3>
-
-                                                <p class="text-sm text-slate-400 mt-0.5">
-                                                    Full platform access
-                                                </p>
-
-                                            </div>
-
-                                        </div>
-
-
-                                        <span class="radio-dot"></span>
-
-                                    </div>
-
-
-                                    <div class="mt-7">
-
-                                        <div class="flex items-baseline gap-2">
-
-                                            <span class="text-4xl font-extrabold text-slate-950">
-                                                $10
-                                            </span>
-
-                                            <span class="text-sm text-slate-400">
-                                                / 6 months
-                                            </span>
-
-                                        </div>
-
-                                        <div class="mt-1 text-sm text-slate-400">
-                                            ₦13,992
-                                        </div>
-
-                                    </div>
-
-
-                                    <div class="mt-7 space-y-3">
-
-                                        <div class="flex items-center gap-3 text-sm text-slate-600">
-                                            <span class="check-icon">
-                                                <i data-lucide="check" class="w-3.5 h-3.5"></i>
-                                            </span>
-                                            Expanded EverAI access
-                                        </div>
-
-                                        <div class="flex items-center gap-3 text-sm text-slate-600">
-                                            <span class="check-icon">
-                                                <i data-lucide="check" class="w-3.5 h-3.5"></i>
-                                            </span>
-                                            Full Skills Academy access
-                                        </div>
-
-                                        <div class="flex items-center gap-3 text-sm text-slate-600">
-                                            <span class="check-icon">
-                                                <i data-lucide="check" class="w-3.5 h-3.5"></i>
-                                            </span>
-                                            Eligible opportunity access
-                                        </div>
-
-                                    </div>
-
-
-                                    <div class="mt-6 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-50 text-brand-600 text-xs font-bold">
-
-                                        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-
-                                        Recommended
-
-                                    </div>
-
-                                </label>
-
-
-                                <!-- TRIAL -->
-
-                                <label
-                                    id="trial-card"
-                                    class="plan-card bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 cursor-pointer relative"
-                                >
-
-                                    <input
-                                        type="radio"
-                                        name="package"
-                                        value="trial"
-                                        class="hidden"
-                                    >
-
-
-                                    <div class="flex items-start justify-between gap-4">
-
-                                        <div class="flex items-center gap-3">
-
-                                            <div class="w-12 h-12 rounded-2xl bg-slate-100 text-slate-600 flex items-center justify-center">
-
-                                                <i
-                                                    data-lucide="zap"
-                                                    class="w-6 h-6"
-                                                ></i>
-
-                                            </div>
-
-                                            <div>
-
-                                                <h3 class="font-extrabold text-lg text-slate-950">
-                                                    Trial
-                                                </h3>
-
-                                                <p class="text-sm text-slate-400 mt-0.5">
-                                                    Explore the platform
-                                                </p>
-
-                                            </div>
-
-                                        </div>
-
-
-                                        <span class="radio-dot"></span>
-
-                                    </div>
-
-
-                                    <div class="mt-7">
-
-                                        <div class="flex items-baseline gap-2">
-
-                                            <span class="text-4xl font-extrabold text-slate-950">
-                                                $5
-                                            </span>
-
-                                            <span class="text-sm text-slate-400">
-                                                / 2 months
-                                            </span>
-
-                                        </div>
-
-                                        <div class="mt-1 text-sm text-slate-400">
-                                            ₦6,991
-                                        </div>
-
-                                    </div>
-
-
-                                    <div class="mt-7 space-y-3">
-
-                                        <div class="flex items-center gap-3 text-sm text-slate-600">
-                                            <span class="check-icon">
-                                                <i data-lucide="check" class="w-3.5 h-3.5"></i>
-                                            </span>
-                                            Limited EverAI access
-                                        </div>
-
-                                        <div class="flex items-center gap-3 text-sm text-slate-600">
-                                            <span class="check-icon">
-                                                <i data-lucide="check" class="w-3.5 h-3.5"></i>
-                                            </span>
-                                            Selected Academy resources
-                                        </div>
-
-                                        <div class="flex items-center gap-3 text-sm text-slate-600">
-                                            <span class="check-icon">
-                                                <i data-lucide="check" class="w-3.5 h-3.5"></i>
-                                            </span>
-                                            Eligible opportunities
-                                        </div>
-
-                                    </div>
-
-                                </label>
-
-                            </div>
-
-                        </section>
-
-
-                        <!-- DIVIDER -->
-
-                        <div class="h-px bg-slate-200"></div>
-
-
-                        <!-- ================= STEP 2 ================= -->
-
-                        <section>
-
+                    <form id="signup-form" onsubmit="handleSignup(event)" class="space-y-8">
+                        <div>
                             <div class="mb-6">
-
-                                <div class="text-xs font-extrabold tracking-[0.18em] text-brand-500 uppercase">
-                                    Step 02
-                                </div>
-
-                                <h2 class="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-950">
-                                    Your details
-                                </h2>
-
-                                <p class="mt-2 text-sm text-slate-500">
-                                    Tell us a little about yourself to create your account.
-                                </p>
-
+                                <div class="text-xs font-extrabold tracking-[0.18em] text-brand-500 uppercase">Account Setup</div>
+                                <h2 class="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-950">Your details</h2>
+                                <p class="mt-2 text-sm text-slate-500">Tell us a little about yourself to create your account.</p>
                             </div>
-
 
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-
-
-                                <!-- FULL NAME -->
-
                                 <div>
-
-                                    <label
-                                        for="fullname"
-                                        class="block text-sm font-bold text-slate-700 mb-2"
-                                    >
-                                        Full name
-                                    </label>
-
-                                    <input
-                                        type="text"
-                                        id="fullname"
-                                        required
-                                        autocomplete="name"
-                                        placeholder="Enter your full name"
-                                        class="input-field w-full h-13 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400"
-                                    >
-
+                                    <label for="fullname" class="block text-sm font-bold text-slate-700 mb-2">Full name</label>
+                                    <input type="text" id="fullname" required autocomplete="name" placeholder="Enter your full name" class="input-field w-full h-13 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400">
                                 </div>
-
-
-                                <!-- EMAIL -->
-
                                 <div>
-
-                                    <label
-                                        for="email"
-                                        class="block text-sm font-bold text-slate-700 mb-2"
-                                    >
-                                        Email address
-                                    </label>
-
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        required
-                                        autocomplete="email"
-                                        placeholder="name@example.com"
-                                        class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400"
-                                    >
-
+                                    <label for="email" class="block text-sm font-bold text-slate-700 mb-2">Email address</label>
+                                    <input type="email" id="email" required autocomplete="email" placeholder="name@example.com" class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400">
                                 </div>
-
-
-                                <!-- PHONE -->
-
                                 <div>
-
-                                    <label
-                                        for="phone"
-                                        class="block text-sm font-bold text-slate-700 mb-2"
-                                    >
-                                        Phone number
-                                    </label>
-
-                                    <input
-                                        type="tel"
-                                        id="phone"
-                                        required
-                                        autocomplete="tel"
-                                        placeholder="+234 800 000 0000"
-                                        class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400"
-                                    >
-
+                                    <label for="phone" class="block text-sm font-bold text-slate-700 mb-2">Phone number</label>
+                                    <input type="tel" id="phone" required autocomplete="tel" placeholder="+234 800 000 0000" class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400">
                                 </div>
-
-
-                                <!-- COUNTRY -->
-
                                 <div>
-
-                                    <label
-                                        for="country"
-                                        class="block text-sm font-bold text-slate-700 mb-2"
-                                    >
-                                        Country
-                                    </label>
-
-                                    <select
-                                        id="country"
-                                        class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900"
-                                    >
-
-                                        <option value="Nigeria">
-                                            Nigeria
-                                        </option>
-
-                                        <option value="Ghana">
-                                            Ghana
-                                        </option>
-
-                                        <option value="Kenya">
-                                            Kenya
-                                        </option>
-
-                                        <option value="South Africa">
-                                            South Africa
-                                        </option>
-
-                                        <option value="Other">
-                                            Other
-                                        </option>
-
+                                    <label for="country" class="block text-sm font-bold text-slate-700 mb-2">Country</label>
+                                    <select id="country" class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900">
+                                        <option value="Nigeria">Nigeria</option>
+                                        <option value="Ghana">Ghana</option>
+                                        <option value="Kenya">Kenya</option>
+                                        <option value="South Africa">South Africa</option>
+                                        <option value="Other">Other</option>
                                     </select>
-
                                 </div>
-
-
-                                <!-- PASSWORD -->
-
                                 <div>
-
-                                    <label
-                                        for="password"
-                                        class="block text-sm font-bold text-slate-700 mb-2"
-                                    >
-                                        Password
-                                    </label>
-
+                                    <label for="password" class="block text-sm font-bold text-slate-700 mb-2">Password</label>
                                     <div class="relative">
-
-                                        <input
-                                            type="password"
-                                            id="password"
-                                            required
-                                            minlength="8"
-                                            autocomplete="new-password"
-                                            placeholder="Create a strong password"
-                                            class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 pr-12 text-sm text-slate-900 placeholder:text-slate-400"
-                                        >
-
-                                        <button
-                                            type="button"
-                                            id="toggle-password"
-                                            class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 p-2"
-                                            aria-label="Show password"
-                                        >
+                                        <input type="password" id="password" required minlength="8" autocomplete="new-password" placeholder="Create a strong password" class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 pr-12 text-sm text-slate-900 placeholder:text-slate-400">
+                                        <button type="button" id="toggle-password" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 p-2" aria-label="Show password">
                                             <i data-lucide="eye" class="w-5 h-5"></i>
                                         </button>
-
                                     </div>
-
                                     <div class="mt-2 flex items-center gap-2">
-
                                         <div class="h-1 flex-1 rounded-full bg-slate-100 overflow-hidden">
-                                            <div
-                                                id="strength-bar"
-                                                class="h-full w-0 rounded-full transition-all"
-                                            ></div>
+                                            <div id="strength-bar" class="h-full w-0 rounded-full transition-all"></div>
                                         </div>
-
-                                        <span
-                                            id="strength-text"
-                                            class="text-[11px] text-slate-400"
-                                        >
-                                            8+ characters
-                                        </span>
-
+                                        <span id="strength-text" class="text-[11px] text-slate-400">8+ characters</span>
                                     </div>
-
                                 </div>
-
-
-                                <!-- REFERRAL -->
-
                                 <div>
-
-                                    <label
-                                        for="coupon"
-                                        class="block text-sm font-bold text-slate-700 mb-2"
-                                    >
-                                        Referral / coupon code
-                                        <span class="font-normal text-slate-400">
-                                            (optional)
-                                        </span>
-                                    </label>
-
-                                    <input
-                                        type="text"
-                                        id="coupon"
-                                        autocomplete="off"
-                                        placeholder="Enter code if you have one"
-                                        class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400"
-                                    >
-
+                                    <label for="coupon" class="block text-sm font-bold text-slate-700 mb-2">Referral / coupon code <span class="font-normal text-slate-400">(optional)</span></label>
+                                    <input type="text" id="coupon" autocomplete="off" placeholder="Enter code if you have one" class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400">
                                 </div>
-
                             </div>
-
-                        </section>
-
-
-                        <!-- NOTICE -->
-
-                        <div class="rounded-2xl border border-blue-100 bg-blue-50/70 p-4 sm:p-5">
-
-                            <div class="flex items-start gap-3">
-
-                                <div class="w-9 h-9 rounded-xl bg-white flex items-center justify-center text-brand-500 shadow-sm flex-shrink-0">
-
-                                    <i data-lucide="shield-check" class="w-5 h-5"></i>
-
-                                </div>
-
-                                <div>
-
-                                    <div class="font-bold text-sm text-slate-900">
-                                        Your Evermore account
-                                    </div>
-
-                                    <p class="text-xs sm:text-sm text-slate-500 leading-6 mt-1">
-                                        Your selected plan and account details will be used to personalize your Evermore experience.
-                                    </p>
-
-                                </div>
-
-                            </div>
-
                         </div>
 
-
-                        <!-- TERMS -->
-
-                        <label class="flex items-start gap-3 cursor-pointer">
-
-                            <input
-                                id="terms"
-                                type="checkbox"
-                                required
-                                class="mt-1 w-4 h-4 rounded border-slate-300 text-brand-500 focus:ring-brand-500"
-                            >
-
+                        <label class="flex items-start gap-3 cursor-pointer pt-2">
+                            <input id="terms" type="checkbox" required class="mt-1 w-4 h-4 rounded border-slate-300 text-brand-500 focus:ring-brand-500">
                             <span class="text-xs sm:text-sm text-slate-500 leading-6">
-
-                                I agree to Evermore's
-                                <a href="#" class="font-bold text-slate-800 hover:text-brand-500">
-                                    Terms of Service
-                                </a>
-                                and
-                                <a href="#" class="font-bold text-slate-800 hover:text-brand-500">
-                                    Privacy Policy
-                                </a>.
-
+                                I agree to Evermore's <a href="#" class="font-bold text-slate-800 hover:text-brand-500">Terms of Service</a> and <a href="#" class="font-bold text-slate-800 hover:text-brand-500">Privacy Policy</a>.
                             </span>
-
                         </label>
 
-
-                        <!-- SUBMIT -->
-
-                        <button
-                            type="submit"
-                            id="submit-btn"
-                            class="primary-btn w-full rounded-2xl py-4 sm:py-5 px-6 text-white font-bold text-base sm:text-lg flex items-center justify-center gap-3"
-                        >
-
-                            <span>
-                                Create My Evermore Account
-                            </span>
-
+                        <button type="submit" id="submit-btn" class="primary-btn w-full rounded-2xl py-4 sm:py-5 px-6 text-white font-bold text-base sm:text-lg flex items-center justify-center gap-3">
+                            <span>Create My Evermore Account</span>
                             <i data-lucide="arrow-right" class="w-5 h-5"></i>
-
                         </button>
 
-
-                        <!-- SIGN IN -->
-
                         <p class="text-center text-sm text-slate-500">
-
-                            Already have an account?
-
-                            <a
-                                href="signin.html"
-                                class="font-bold text-slate-900 hover:text-brand-500 transition"
-                            >
-                                Sign in
-                            </a>
-
+                            Already have an account? <a href="signin.html" class="font-bold text-slate-900 hover:text-brand-500 transition">Sign in</a>
                         </p>
-
                     </form>
-
                 </div>
-
             </div>
-
-
-            <!-- Trust line -->
-
-            <div class="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-xs text-slate-400">
-
-                <span class="inline-flex items-center gap-2">
-                    <i data-lucide="lock" class="w-3.5 h-3.5"></i>
-                    Secure account creation
-                </span>
-
-                <span class="hidden sm:block w-1 h-1 rounded-full bg-slate-300"></span>
-
-                <span class="inline-flex items-center gap-2">
-                    <i data-lucide="layers" class="w-3.5 h-3.5"></i>
-                    AI • Skills • Opportunities
-                </span>
-
-            </div>
-
         </div>
-
     </main>
 
-
-    <!-- ================= FOOTER ================= -->
-
-    <footer class="border-t border-slate-200 bg-white/80 backdrop-blur-xl">
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-
-            <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-
-                <div class="text-xs text-slate-400">
-                    © 2026 Evermore Enterprise. All rights reserved.
-                </div>
-
-                <div class="flex items-center gap-5 text-xs text-slate-400">
-
-                    <a
-                        href="index.html"
-                        class="hover:text-slate-900 transition"
-                    >
-                        Home
-                    </a>
-
-                    <a
-                        href="index.html#pricing"
-                        class="hover:text-slate-900 transition"
-                    >
-                        Pricing
-                    </a>
-
-                    <a
-                        href="#"
-                        class="hover:text-slate-900 transition"
-                    >
-                        Support
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </footer>
-
-
     <!-- ================= JAVASCRIPT ================= -->
-
     <script>
-
-        /* -----------------------------------------
-           LUCIDE ICONS
-        ----------------------------------------- */
-
         lucide.createIcons();
 
-
-        /* -----------------------------------------
-           PLAN SELECTION
-        ----------------------------------------- */
-
-        const premiumCard = document.getElementById('premium-card');
-        const trialCard = document.getElementById('trial-card');
-
-        const packageInputs = document.querySelectorAll(
-            'input[name="package"]'
-        );
-
-        function updatePlanUI() {
-
-            const selected = document.querySelector(
-                'input[name="package"]:checked'
-            );
-
-            premiumCard.classList.remove('selected');
-            trialCard.classList.remove('selected');
-
-            if (selected && selected.value === 'premium') {
-                premiumCard.classList.add('selected');
-            }
-
-            if (selected && selected.value === 'trial') {
-                trialCard.classList.add('selected');
-            }
-        }
-
-        packageInputs.forEach(input => {
-
-            input.addEventListener('change', updatePlanUI);
-
-        });
-
-
-        premiumCard.addEventListener('click', () => {
-
-            document.querySelector(
-                'input[value="premium"]'
-            ).checked = true;
-
-            updatePlanUI();
-
-        });
-
-
-        trialCard.addEventListener('click', () => {
-
-            document.querySelector(
-                'input[value="trial"]'
-            ).checked = true;
-
-            updatePlanUI();
-
-        });
-
-
-        /* -----------------------------------------
-           PASSWORD VISIBILITY
-        ----------------------------------------- */
-
-        const passwordInput =
-            document.getElementById('password');
-
-        const togglePassword =
-            document.getElementById('toggle-password');
+        const passwordInput = document.getElementById('password');
+        const togglePassword = document.getElementById('toggle-password');
 
         togglePassword.addEventListener('click', () => {
-
-            const isPassword =
-                passwordInput.type === 'password';
-
-            passwordInput.type =
-                isPassword ? 'text' : 'password';
-
-            togglePassword.innerHTML = isPassword
-                ? '<i data-lucide="eye-off" class="w-5 h-5"></i>'
-                : '<i data-lucide="eye" class="w-5 h-5"></i>';
-
-            togglePassword.setAttribute(
-                'aria-label',
-                isPassword
-                    ? 'Hide password'
-                    : 'Show password'
-            );
-
+            const isPassword = passwordInput.type === 'password';
+            passwordInput.type = isPassword ? 'text' : 'password';
+            togglePassword.innerHTML = isPassword ? '<i data-lucide="eye-off" class="w-5 h-5"></i>' : '<i data-lucide="eye" class="w-5 h-5"></i>';
             lucide.createIcons();
-
         });
 
-
-        /* -----------------------------------------
-           PASSWORD STRENGTH
-        ----------------------------------------- */
-
-        const strengthBar =
-            document.getElementById('strength-bar');
-
-        const strengthText =
-            document.getElementById('strength-text');
+        const strengthBar = document.getElementById('strength-bar');
+        const strengthText = document.getElementById('strength-text');
 
         passwordInput.addEventListener('input', () => {
-
             const password = passwordInput.value;
-
             let score = 0;
-
             if (password.length >= 8) score++;
-
             if (/[A-Z]/.test(password)) score++;
-
             if (/[0-9]/.test(password)) score++;
-
             if (/[^A-Za-z0-9]/.test(password)) score++;
 
-
-            const widths = [
-                '0%',
-                '25%',
-                '50%',
-                '75%',
-                '100%'
-            ];
-
-            strengthBar.style.width =
-                widths[score];
-
+            const widths = ['0%', '25%', '50%', '75%', '100%'];
+            strengthBar.style.width = widths[score];
 
             if (score === 0) {
-
-                strengthText.textContent =
-                    '8+ characters';
-
-                strengthText.className =
-                    'text-[11px] text-slate-400';
-
-                strengthBar.style.background =
-                    '#e2e8f0';
-
+                strengthText.textContent = '8+ characters';
+                strengthText.className = 'text-[11px] text-slate-400';
+                strengthBar.style.background = '#e2e8f0';
+            } else if (score <= 1) {
+                strengthText.textContent = 'Weak';
+                strengthText.className = 'text-[11px] text-red-500';
+                strengthBar.style.background = '#ef4444';
+            } else if (score === 2) {
+                strengthText.textContent = 'Fair';
+                strengthText.className = 'text-[11px] text-amber-500';
+                strengthBar.style.background = '#f59e0b';
+            } else if (score === 3) {
+                strengthText.textContent = 'Good';
+                strengthText.className = 'text-[11px] text-blue-500';
+                strengthBar.style.background = '#315fdb';
+            } else {
+                strengthText.textContent = 'Strong';
+                strengthText.className = 'text-[11px] text-emerald-500';
+                strengthBar.style.background = '#10b981';
             }
-
-            else if (score <= 1) {
-
-                strengthText.textContent =
-                    'Weak';
-
-                strengthText.className =
-                    'text-[11px] text-red-500';
-
-                strengthBar.style.background =
-                    '#ef4444';
-
-            }
-
-            else if (score === 2) {
-
-                strengthText.textContent =
-                    'Fair';
-
-                strengthText.className =
-                    'text-[11px] text-amber-500';
-
-                strengthBar.style.background =
-                    '#f59e0b';
-
-            }
-
-            else if (score === 3) {
-
-                strengthText.textContent =
-                    'Good';
-
-                strengthText.className =
-                    'text-[11px] text-blue-500';
-
-                strengthBar.style.background =
-                    '#315fdb';
-
-            }
-
-            else {
-
-                strengthText.textContent =
-                    'Strong';
-
-                strengthText.className =
-                    'text-[11px] text-emerald-500';
-
-                strengthBar.style.background =
-                    '#10b981';
-
-            }
-
         });
 
-
         /* -----------------------------------------
-           SIGNUP
+           SIGNUP (Connected to Backend API)
         ----------------------------------------- */
-
-        function handleSignup(event) {
-
+        async function handleSignup(event) {
             event.preventDefault();
 
+            const submitBtn = document.getElementById('submit-btn');
+            const successAlert = document.getElementById('success-alert');
 
-            const submitBtn =
-                document.getElementById('submit-btn');
-
-            const successAlert =
-                document.getElementById('success-alert');
-
-
-            const name =
-                document.getElementById('fullname').value.trim();
-
-            const email =
-                document.getElementById('email').value.trim();
-
-            const phone =
-                document.getElementById('phone').value.trim();
-
-            const country =
-                document.getElementById('country').value;
-
-            const password =
-                document.getElementById('password').value;
-
-            const coupon =
-                document.getElementById('coupon').value.trim();
-
-            const packageSelected =
-                document.querySelector(
-                    'input[name="package"]:checked'
-                ).value;
-
-
-            /* Basic validation */
+            const name = document.getElementById('fullname').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const password = document.getElementById('password').value;
+            const coupon = document.getElementById('coupon').value.trim();
 
             if (password.length < 8) {
-
-                alert(
-                    'Please create a password with at least 8 characters.'
-                );
-
+                alert('Please create a password with at least 8 characters.');
                 return;
-
             }
 
-
-            /* -----------------------------------------
-               IMPORTANT SECURITY NOTE
-
-               We intentionally DO NOT save the
-               password into localStorage.
-
-               Your production backend should handle
-               password hashing and authentication.
-            ----------------------------------------- */
-
-
-            const userData = {
-
-                name: name,
-
-                email: email,
-
-                phone: phone,
-
-                country: country,
-
-                package: packageSelected,
-
-                coupon: coupon,
-
-                /*
-                    These balances are retained only
-                    for compatibility with the existing
-                    static dashboard.
-
-                    Replace with server-side values when
-                    your real backend/payment system is
-                    connected.
-                */
-
-                balance:
-                    packageSelected === 'premium'
-                        ? 0
-                        : 0,
-
-                registeredAt:
-                    new Date().toISOString()
-
-            };
-
-
-            /*
-                Save non-sensitive account information
-                for the current static frontend.
-            */
-
-            localStorage.setItem(
-                'evermore_user',
-                JSON.stringify(userData)
-            );
-
-
-            /* Loading state */
-
             submitBtn.disabled = true;
-
-            submitBtn.classList.add(
-                'opacity-70',
-                'cursor-not-allowed'
-            );
-
+            submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
             submitBtn.innerHTML = `
                 <span>Creating your account...</span>
-                <svg
-                    class="animate-spin w-5 h-5"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                >
-                    <circle
-                        class="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        stroke-width="4"
-                    ></circle>
-
-                    <path
-                        class="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-                    ></path>
+                <svg class="animate-spin w-5 h-5" viewBox="0 0 24 24" fill="none">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
                 </svg>
             `;
 
+            try {
+                const response = await fetch('http://localhost:5000/api/signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        full_name: name,
+                        email: email,
+                        phone: phone,
+                        password: password,
+                        coupon: coupon
+                    })
+                });
 
-            /* Simulated registration */
+                const data = await response.json();
 
-            setTimeout(() => {
+                if (!response.ok) {
+                    throw new Error(data.message || 'Something went wrong during signup.');
+                }
+
+                localStorage.setItem('evermore_user', JSON.stringify({
+                    id: data.user.id,
+                    name: data.user.full_name,
+                    email: data.user.email
+                }));
 
                 successAlert.classList.remove('hidden');
-
                 submitBtn.innerHTML = `
                     <span>Account Created</span>
                     <i data-lucide="check" class="w-5 h-5"></i>
                 `;
-
                 lucide.createIcons();
 
-
                 setTimeout(() => {
-
-                    /*
-                        Keep this dashboard redirect
-                        compatible with your current
-                        static website.
-                    */
-
-                    window.location.href =
-                        'signin.html';
-
+                    window.location.href = 'signin.html';
                 }, 1200);
 
-            }, 900);
-
+            } catch (error) {
+                alert(error.message);
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+                submitBtn.innerHTML = `
+                    <span>Create My Evermore Account</span>
+                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                `;
+                lucide.createIcons();
+            }
         }
-
-
-        /* -----------------------------------------
-           INITIAL UI
-        ----------------------------------------- */
-
-        updatePlanUI();
-
     </script>
-
 </body>
 </html>
