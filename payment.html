@@ -791,27 +791,6 @@
         }
 
         /* =========================================
-           LOADING SPINNER
-        ========================================= */
-
-        .spinner {
-            width: 18px;
-            height: 18px;
-
-            border: 2px solid rgba(255,255,255,.35);
-            border-top-color: white;
-            border-radius: 50%;
-
-            animation: spin .75s linear infinite;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* =========================================
            RESPONSIVE
         ========================================= */
 
@@ -1289,9 +1268,7 @@
                         </strong>
 
                         <p>
-                            Your payment will be processed through the
-                            configured payment gateway. Evermore does not
-                            store your card details.
+                            Your payment will be processed securely through Kora. Evermore does not store your card details.
                         </p>
 
                     </div>
@@ -1321,7 +1298,7 @@
                     <i data-lucide="info"></i>
 
                     <span id="info-text">
-                        Payment gateway connection will be enabled here.
+                        Payment gateway connection ready.
                     </span>
                 </div>
 
@@ -1499,16 +1476,12 @@
     ========================================== */
 
     premiumPlan.addEventListener("click", function () {
-
         selectPackage("premium");
-
     });
 
 
     trialPlan.addEventListener("click", function () {
-
         selectPackage("trial");
-
     });
 
 
@@ -1521,23 +1494,15 @@
         const data = packages[selectedPackage];
 
         const checkoutData = {
-
             package: selectedPackage,
-
             packageName: data.name,
-
             duration: data.duration,
-
             usd: data.usd,
-
             ngn: data.formattedNgn,
-
+            amount: data.ngn,
             status: "payment_pending",
-
             createdAt: new Date().toISOString()
-
         };
-
 
         localStorage.setItem(
             "evermore_checkout",
@@ -1555,41 +1520,24 @@
 
         try {
 
-            const storedUser =
-                localStorage.getItem("evermore_user");
+            const storedUser = localStorage.getItem("evermore_user") || localStorage.getItem("user");
 
             if (!storedUser) {
-
                 selectPackage("premium");
-
                 return;
-
             }
-
 
             const user = JSON.parse(storedUser);
 
-
-            if (
-                user.package === "premium" ||
-                user.package === "trial"
-            ) {
-
-                selectPackage(user.package);
-
+            if (user.package === "premium" || user.package === "trial" || user.plan === "premium" || user.plan === "trial") {
+                selectPackage(user.package || user.plan);
             } else {
-
                 selectPackage("premium");
-
             }
 
         } catch (error) {
 
-            console.warn(
-                "Could not read signup package:",
-                error
-            );
-
+            console.warn("Could not read signup package:", error);
             selectPackage("premium");
 
         }
@@ -1602,41 +1550,29 @@
     ========================================== */
 
     function hideMessages() {
-
         errorMessage.classList.remove("show");
         infoMessage.classList.remove("show");
-
     }
 
 
     function showError(message) {
-
         errorText.textContent = message;
-
         errorMessage.classList.add("show");
-
         infoMessage.classList.remove("show");
-
         lucide.createIcons();
-
     }
 
 
     function showInfo(message) {
-
         infoText.textContent = message;
-
         infoMessage.classList.add("show");
-
         errorMessage.classList.remove("show");
-
         lucide.createIcons();
-
     }
 
 
     /* =========================================
-       PAYMENT BUTTON & BACKEND INTEGRATION
+       PAYMENT BUTTON & KORA GATEWAY INTEGRATION
     ========================================== */
 
     payButton.addEventListener("click", async function () {
@@ -1646,34 +1582,41 @@
         const data = packages[selectedPackage];
 
         if (!data) {
-
-            showError(
-                "Please select a valid Evermore access plan."
-            );
-
+            showError("Please select a valid Evermore access plan.");
             return;
-
         }
 
         saveCheckoutSelection();
 
-        payButton.disabled = true;
-        payText.textContent = "Connecting to secure gateway...";
-        payIcon.style.display = "none";
+        // Retrieve user details from localStorage
+        const storedUser = localStorage.getItem("evermore_user") || localStorage.getItem("user");
+        let userEmail = "";
+        let userId = "";
 
-        try {
-            // Retrieve user email from localStorage if available from signup
-            const storedUser = localStorage.getItem("evermore_user");
-            let userEmail = "";
-            let userId = "";
-
-            if (storedUser) {
+        if (storedUser) {
+            try {
                 const parsedUser = JSON.parse(storedUser);
                 userEmail = parsedUser.email || "";
                 userId = parsedUser.id || "";
+            } catch (e) {
+                console.error("Error parsing user data:", e);
             }
+        }
 
-            // Call your backend endpoint to initialize the payment (e.g., Squad / Monnify)
+        if (!userEmail) {
+            showError("User session not found. Please sign in or register first.");
+            setTimeout(() => {
+                window.location.href = "signin.html";
+            }, 2000);
+            return;
+        }
+
+        payButton.disabled = true;
+        payText.textContent = "Connecting to Kora Gateway...";
+        payIcon.style.display = "none";
+
+        try {
+            // Call Node.js backend endpoint to initialize Kora Checkout
             const response = await fetch("/api/initialize-payment", {
                 method: "POST",
                 headers: {
@@ -1689,23 +1632,21 @@
 
             const result = await response.json();
 
-            if (!response.ok) {
+            if (!response.ok || !result.success) {
                 throw new Error(result.message || "Failed to initialize payment gateway.");
             }
 
-            // If backend returns a payment gateway redirect URL, send the user there
+            // Redirect user to Kora Hosted Checkout Page
             if (result.checkoutUrl) {
                 window.location.href = result.checkoutUrl;
             } else {
-                showInfo("Payment session initialized successfully. Ready for gateway redirect.");
+                showInfo("Payment session initialized successfully. Redirecting...");
             }
 
         } catch (error) {
 
-            console.warn("Payment error:", error);
+            console.error("Payment error:", error);
             showError(error.message || "Something went wrong connecting to the payment service.");
-
-        } finally {
 
             payButton.disabled = false;
             payText.textContent = "Continue to Payment";
