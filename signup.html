@@ -361,49 +361,54 @@
         });
 
         /* -----------------------------------------
-           SIGNUP (Connected to Backend API)
-        ----------------------------------------- */
-        async function handleSignup(event) {
-            event.preventDefault();
+    SIGNUP (Connected to Backend API)
+----------------------------------------- */
+async function handleSignup(event) {
+    event.preventDefault();
 
-            const submitBtn = document.getElementById('submit-btn');
-            const successAlert = document.getElementById('success-alert');
+    const submitBtn = document.getElementById('submit-btn');
+    const successAlert = document.getElementById('success-alert');
 
-            const name = document.getElementById('fullname').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const password = document.getElementById('password').value;
-            const coupon = document.getElementById('coupon').value.trim();
+    const name = document.getElementById('fullname').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const password = document.getElementById('password').value;
+    const coupon = document.getElementById('coupon').value.trim();
 
-            if (password.length < 8) {
-                alert('Please create a password with at least 8 characters.');
-                return;
-            }
+    if (password.length < 8) {
+        alert('Please create a password with at least 8 characters.');
+        return;
+    }
 
-            submitBtn.disabled = true;
-            submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
-            submitBtn.innerHTML = `
-                <span>Creating your account...</span>
-                <svg class="animate-spin w-5 h-5" viewBox="0 0 24 24" fill="none">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
-                </svg>
-            `;
+    submitBtn.disabled = true;
+    submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
+    submitBtn.innerHTML = `
+        <span>Creating your account...</span>
+        <svg class="animate-spin w-5 h-5" viewBox="0 0 24 24" fill="none">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+        </svg>
+    `;
 
-            try {
-                const response = await fetch('http://localhost:5000/api/signup', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        full_name: name,
-                        email: email,
-                        phone: phone,
-                        password: password,
-                        coupon: coupon
-                    })
-                });
+    try {
+        // Set dynamic URL for local vs live production
+        const API_BASE_URL = window.location.hostname === 'localhost' 
+            ? 'http://localhost:5000' 
+            : 'https://evermore-backend-y83h.onrender.com';
 
-                const data = await response.json();
+        const response = await fetch(`${API_BASE_URL}/api/signup`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                full_name: name,
+                email: email,
+                phone: phone,
+                password: password,
+                coupon: coupon
+            })
+        });
+
+        const data = await response.json();
 
                 if (!response.ok) {
                     throw new Error(data.message || 'Something went wrong during signup.');

@@ -1616,8 +1616,13 @@
         payIcon.style.display = "none";
 
         try {
-            // Call Node.js backend endpoint to initialize Kora Checkout
-            const response = await fetch("/api/initialize-payment", {
+            // Set dynamic API base URL for local testing vs live Render production
+            const API_BASE_URL = window.location.hostname === 'localhost' 
+                ? 'http://localhost:5000' 
+                : 'https://evermore-backend-y83h.onrender.com';
+
+            // Call Node.js backend endpoint on Render to initialize Kora Checkout
+            const response = await fetch(`${API_BASE_URL}/api/initialize-payment`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
