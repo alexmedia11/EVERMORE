@@ -1080,22 +1080,33 @@
     <script>
         // GUARD: Immediately redirect activated users to dashboard
         (function guardPaymentPage() {
-            const isActivatedStorage = localStorage.getItem('evermore_activated') === 'true';
-            let isActivatedUser = false;
-            
+            let isActivated = false;
+
+            // First check user object directly
             try {
-                const storedUser = localStorage.getItem("evermore_user") || localStorage.getItem("user");
+                const storedUser = localStorage.getItem("evermore_user") || localStorage.getItem("user") || sessionStorage.getItem("evermore_user");
                 if (storedUser) {
                     const user = JSON.parse(storedUser);
-                    if (user.activated || user.isActivated || user.accountStatus === 'active') {
-                        isActivatedUser = true;
+                    if (
+                        user.activated === true || 
+                        user.isActivated === true || 
+                        user.accountStatus === 'active' || 
+                        user.paymentStatus === 'completed' ||
+                        user.status === 'active'
+                    ) {
+                        isActivated = true;
                     }
                 }
             } catch(e) {
                 console.warn("Could not parse user data for activation check.");
             }
 
-            if (isActivatedStorage || isActivatedUser) {
+            // Fallback check on localStorage flag
+            if (!isActivated && localStorage.getItem('evermore_activated') === 'true') {
+                isActivated = true;
+            }
+
+            if (isActivated) {
                 window.location.replace('dashboard.html'); 
             }
         })();
