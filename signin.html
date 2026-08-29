@@ -337,7 +337,7 @@
             <!-- SUPPORT -->
             <p class="text-center text-xs text-slate-400 mt-8">
                 Need help accessing your account?
-                <a href="#" onclick="contactSupport(event)" class="font-semibold text-slate-600 hover:text-blue-600 transition">
+                <a href="https://t.me/Evermore_team" target="_blank" class="font-semibold text-slate-600 hover:text-blue-600 transition">
                     Contact Support
                 </a>
             </p>
@@ -355,7 +355,7 @@
                 <div class="flex items-center gap-5 text-xs text-slate-400">
                     <a href="index.html" class="hover:text-blue-600 transition">Home</a>
                     <a href="signup.html" class="hover:text-blue-600 transition">Sign Up</a>
-                    <a href="#" onclick="contactSupport(event)" class="hover:text-blue-600 transition">Support</a>
+                    <a href="https://t.me/Evermore_team" target="_blank" class="hover:text-blue-600 transition">Support</a>
                 </div>
             </div>
         </div>
@@ -405,8 +405,12 @@
             lucide.createIcons();
 
             try {
-                // Send credentials to local Node.js server
-                const response = await fetch('http://localhost:5000/api/login', {
+                // Dynamic Base URL detection for Localhost vs Live Render server
+                const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+                    ? 'http://localhost:5000'
+                    : 'https://evermore-backend-y83h.onrender.com';
+
+                const response = await fetch(`${API_BASE_URL}/api/login`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -454,11 +458,6 @@
             errorMessage.textContent = 'Password recovery will be available through Evermore Support.';
             errorAlert.classList.remove('hidden');
             lucide.createIcons();
-        }
-
-        function contactSupport(event) {
-            event.preventDefault();
-            alert('Evermore Support: Please contact the official Evermore support channel for assistance with your account.');
         }
     </script>
 
