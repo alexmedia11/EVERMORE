@@ -172,16 +172,13 @@
 
 <body>
 
-    <!-- HEADER -->
     <header class="bg-white/90 backdrop-blur-md border-b border-slate-200/70">
         <div class="max-w-7xl mx-auto px-5 sm:px-8 h-[88px] flex items-center justify-between">
 
-            <!-- Logo -->
             <a href="index.html" class="flex items-center">
                 <img src="assets/evermore-logo.png" alt="Evermore Logo" class="h-14 sm:h-16 w-auto object-contain">
             </a>
 
-            <!-- Mobile Sign Up -->
             <a href="signup.html" class="sm:hidden font-bold text-blue-600 text-sm">
                 Sign Up
             </a>
@@ -189,11 +186,9 @@
         </div>
     </header>
 
-    <!-- MAIN -->
     <main class="min-h-[calc(100vh-88px)] px-5 sm:px-8 py-12 sm:py-20">
         <div class="max-w-xl mx-auto">
 
-            <!-- Intro -->
             <div class="text-center fade-up">
                 <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full feature-pill text-sm font-semibold text-slate-600 mb-6">
                     <span class="status-dot w-2.5 h-2.5 bg-emerald-500 rounded-full"></span>
@@ -210,12 +205,9 @@
                 </p>
             </div>
 
-            <!-- SIGN IN CARD -->
             <div class="main-card rounded-[28px] mt-10 sm:mt-12 p-6 sm:p-10 fade-up">
-                <!-- Top accent -->
                 <div class="h-1.5 w-full rounded-full bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600 mb-8"></div>
 
-                <!-- Error Alert -->
                 <div id="error-alert" class="hidden mb-6 rounded-2xl border border-red-200 bg-red-50 p-4 text-sm text-red-600">
                     <div class="flex items-start gap-3">
                         <i data-lucide="alert-circle" class="w-5 h-5 flex-shrink-0 mt-0.5"></i>
@@ -223,7 +215,6 @@
                     </div>
                 </div>
 
-                <!-- Success Alert -->
                 <div id="success-alert" class="hidden mb-6 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-700">
                     <div class="flex items-center gap-3">
                         <i data-lucide="check-circle" class="w-5 h-5 flex-shrink-0"></i>
@@ -231,9 +222,7 @@
                     </div>
                 </div>
 
-                <!-- Form -->
                 <form id="signin-form" novalidate onsubmit="handleSignin(event)" class="space-y-6">
-                    <!-- EMAIL -->
                     <div>
                         <label for="signin-email" class="block text-sm font-bold text-slate-800 mb-2">
                             Email Address
@@ -241,7 +230,6 @@
                         <input type="email" id="signin-email" required autocomplete="email" placeholder="name@example.com" class="input-field w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-sm text-slate-900 placeholder-slate-400">
                     </div>
 
-                    <!-- PASSWORD -->
                     <div>
                         <div class="flex items-center justify-between mb-2">
                             <label for="signin-password" class="block text-sm font-bold text-slate-800">
@@ -261,7 +249,6 @@
                         </div>
                     </div>
 
-                    <!-- REMEMBER -->
                     <div class="flex items-center gap-3">
                         <input type="checkbox" id="remember" class="w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500">
                         <label for="remember" class="text-sm text-slate-500">
@@ -269,21 +256,18 @@
                         </label>
                     </div>
 
-                    <!-- BUTTON -->
                     <button type="submit" id="signin-btn" class="primary-button w-full rounded-2xl py-4.5 px-6 text-white font-bold text-base flex items-center justify-center gap-3">
                         <span>Sign In to Evermore</span>
                         <i data-lucide="arrow-right" class="w-5 h-5"></i>
                     </button>
                 </form>
 
-                <!-- Divider -->
                 <div class="flex items-center gap-4 my-8">
                     <div class="h-px bg-slate-200 flex-1"></div>
                     <span class="text-xs text-slate-400 font-medium">OR</span>
                     <div class="h-px bg-slate-200 flex-1"></div>
                 </div>
 
-                <!-- Signup CTA -->
                 <div class="rounded-2xl bg-slate-50 border border-slate-200 p-5 text-center">
                     <p class="text-sm text-slate-500">New to Evermore?</p>
                     <a href="signup.html" class="inline-flex items-center gap-2 mt-2 text-sm font-bold text-blue-600 hover:text-purple-600 transition">
@@ -293,7 +277,6 @@
                 </div>
             </div>
 
-            <!-- FEATURES -->
             <div class="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm text-slate-500">
                 <div class="flex items-center gap-2">
                     <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
@@ -309,7 +292,6 @@
                 </div>
             </div>
 
-            <!-- SUPPORT -->
             <p class="text-center text-xs text-slate-400 mt-8">
                 Need help accessing your account?
                 <a href="https://t.me/Evermore_team" target="_blank" class="font-semibold text-slate-600 hover:text-blue-600 transition">
@@ -320,7 +302,6 @@
         </div>
     </main>
 
-    <!-- FOOTER -->
     <footer class="border-t border-slate-200/70 bg-white/70 backdrop-blur-sm">
         <div class="max-w-7xl mx-auto px-5 sm:px-8 py-7">
             <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -336,7 +317,6 @@
         </div>
     </footer>
 
-    <!-- JAVASCRIPT -->
     <script>
         /* Lucide Icons */
         lucide.createIcons();
@@ -412,18 +392,32 @@
                     throw new Error(data.message || 'Invalid email or password.');
                 }
 
-                const storage = remember ? localStorage : sessionStorage;
-                storage.setItem('evermore_token', data.token);
-                storage.setItem('evermore_user', JSON.stringify(data.user));
+                // Ensure core user payload is always saved to localStorage for payment guard compatibility
+                localStorage.setItem('evermore_token', data.token);
+                localStorage.setItem('evermore_user', JSON.stringify(data.user));
 
-                // Check activation status from user object or stored status
-                const isActivated = (data.user && (data.user.activated || data.user.accountStatus === 'active')) || 
-                                    localStorage.getItem('evermore_account_status') === 'active';
+                if (!remember) {
+                    sessionStorage.setItem('evermore_token', data.token);
+                    sessionStorage.setItem('evermore_user', JSON.stringify(data.user));
+                }
+
+                // Check activation across all possible backend flag patterns
+                const isActivated = Boolean(
+                    data.user && (
+                        data.user.activated === true || 
+                        data.user.isActivated === true || 
+                        data.user.accountStatus === 'active' ||
+                        data.user.paymentStatus === 'completed'
+                    )
+                );
 
                 if (isActivated) {
+                    localStorage.setItem('evermore_activated', 'true');
                     localStorage.setItem('evermore_account_status', 'active');
                     successText.textContent = 'Sign in successful! Redirecting to dashboard...';
                 } else {
+                    localStorage.setItem('evermore_activated', 'false');
+                    localStorage.setItem('evermore_account_status', 'pending');
                     successText.textContent = 'Sign in successful! Redirecting to payment...';
                 }
 
