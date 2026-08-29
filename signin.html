@@ -382,74 +382,86 @@
 
         /* Sign In API Backend Request */
         async function handleSignin(e) {
-            e.preventDefault();
+    e.preventDefault();
 
-            const emailInput = document.getElementById('signin-email').value.trim();
-            const passInput = document.getElementById('signin-password').value;
-            const signinBtn = document.getElementById('signin-btn');
-            const errorAlert = document.getElementById('error-alert');
-            const successAlert = document.getElementById('success-alert');
-            const errorMessage = document.getElementById('error-message');
-            const remember = document.getElementById('remember').checked;
+    // Trim whitespace that mobile auto-fill often inserts
+    const emailInput = document.getElementById('signin-email').value.trim();
+    const passInput = document.getElementById('signin-password').value;
+    const signinBtn = document.getElementById('signin-btn');
+    const errorAlert = document.getElementById('error-alert');
+    const successAlert = document.getElementById('success-alert');
+    const errorMessage = document.getElementById('error-message');
+    const remember = document.getElementById('remember').checked;
 
-            errorAlert.classList.add('hidden');
-            successAlert.classList.add('hidden');
+    errorAlert.classList.add('hidden');
+    successAlert.classList.add('hidden');
 
-            // Button loading state
-            signinBtn.disabled = true;
-            signinBtn.style.opacity = '0.65';
-            signinBtn.innerHTML = `
-                <span>Signing you in...</span>
-                <i data-lucide="loader-circle" class="w-5 h-5 animate-spin"></i>
-            `;
-            lucide.createIcons();
+    // Simple JS Email Regex Validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(emailInput)) {
+        errorMessage.textContent = 'Please enter a valid email address.';
+        errorAlert.classList.remove('hidden');
+        return;
+    }
 
-            try {
-                // Dynamic Base URL detection for Localhost vs Live Render server
-                const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-                    ? 'http://localhost:5000'
-                    : 'https://evermore-backend-y83h.onrender.com';
+    if (!passInput) {
+        errorMessage.textContent = 'Please enter your password.';
+        errorAlert.classList.remove('hidden');
+        return;
+    }
 
-                const response = await fetch(`${API_BASE_URL}/api/login`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        email: emailInput,
-                        password: passInput
-                    })
-                });
+    // Button loading state
+    signinBtn.disabled = true;
+    signinBtn.style.opacity = '0.65';
+    signinBtn.innerHTML = `
+        <span>Signing you in...</span>
+        <i data-lucide="loader-circle" class="w-5 h-5 animate-spin"></i>
+    `;
+    lucide.createIcons();
 
-                const data = await response.json();
+    try {
+        const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? 'http://localhost:5000'
+            : 'https://evermore-backend-y83h.onrender.com';
 
-                if (!response.ok) {
-                    throw new Error(data.message || 'Invalid email or password.');
-                }
+        const response = await fetch(`${API_BASE_URL}/api/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                email: emailInput,
+                password: passInput
+            })
+        });
 
-                // Store persistent session details locally
-                const storage = remember ? localStorage : sessionStorage;
-                storage.setItem('evermore_token', data.token);
-                storage.setItem('evermore_user', JSON.stringify(data.user));
+        const data = await response.json();
 
-                successAlert.classList.remove('hidden');
-
-                setTimeout(function () {
-                    window.location.href = 'payment.html';
-                }, 1000);
-
-            } catch (error) {
-                errorMessage.textContent = error.message;
-                errorAlert.classList.remove('hidden');
-
-                // Reset button state
-                signinBtn.disabled = false;
-                signinBtn.style.opacity = '1';
-                signinBtn.innerHTML = `
-                    <span>Sign In to Evermore</span>
-                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                `;
-                lucide.createIcons();
-            }
+        if (!response.ok) {
+            throw new Error(data.message || 'Invalid email or password.');
         }
+
+        const storage = remember ? localStorage : sessionStorage;
+        storage.setItem('evermore_token', data.token);
+        storage.setItem('evermore_user', JSON.stringify(data.user));
+
+        successAlert.classList.remove('hidden');
+
+        setTimeout(function () {
+            window.location.href = 'payment.html';
+        }, 1000);
+
+    } catch (error) {
+        errorMessage.textContent = error.message;
+        errorAlert.classList.remove('hidden');
+
+        signinBtn.disabled = false;
+        signinBtn.style.opacity = '1';
+        signinBtn.innerHTML = `
+            <span>Sign In to Evermore</span>
+            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+        `;
+        lucide.createIcons();
+    }
+}
 
         function forgotPassword(event) {
             event.preventDefault();
