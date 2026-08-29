@@ -392,22 +392,18 @@
                     throw new Error(data.message || 'Invalid email or password.');
                 }
 
-                // Ensure core user payload is always saved to localStorage for payment guard compatibility
-                localStorage.setItem('evermore_token', data.token);
+                // Save core user payload to localStorage
                 localStorage.setItem('evermore_user', JSON.stringify(data.user));
 
                 if (!remember) {
-                    sessionStorage.setItem('evermore_token', data.token);
                     sessionStorage.setItem('evermore_user', JSON.stringify(data.user));
                 }
 
-                // Check activation across all possible backend flag patterns
+                // FIX: Check exact database column names returned by your backend (account_status / subscription_status)
                 const isActivated = Boolean(
                     data.user && (
-                        data.user.activated === true || 
-                        data.user.isActivated === true || 
-                        data.user.accountStatus === 'active' ||
-                        data.user.paymentStatus === 'completed'
+                        data.user.account_status === 'active' || 
+                        data.user.subscription_status === 'active'
                     )
                 );
 
