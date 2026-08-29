@@ -1376,8 +1376,9 @@
     --------------------------------------------------------- */
 
     function logoutUser() {
+        // Only clear active user session data.
+        // DO NOT remove 'evermore_activated' so the system preserves their activation status.
         localStorage.removeItem('evermore_user');
-        localStorage.removeItem('evermore_activated');
         window.location.href = 'signin.html';
     }
 

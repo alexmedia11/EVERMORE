@@ -181,8 +181,6 @@
                 <img src="assets/evermore-logo.png" alt="Evermore Logo" class="h-14 sm:h-16 w-auto object-contain">
             </a>
 
-            
-
             <!-- Mobile Sign Up -->
             <a href="signup.html" class="sm:hidden font-bold text-blue-600 text-sm">
                 Sign Up
@@ -229,7 +227,7 @@
                 <div id="success-alert" class="hidden mb-6 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-700">
                     <div class="flex items-center gap-3">
                         <i data-lucide="check-circle" class="w-5 h-5 flex-shrink-0"></i>
-                        <span>Sign in successful! Redirecting to payment...</span>
+                        <span id="success-text">Sign in successful! Redirecting...</span>
                     </div>
                 </div>
 
@@ -367,6 +365,7 @@
             const errorAlert = document.getElementById('error-alert');
             const successAlert = document.getElementById('success-alert');
             const errorMessage = document.getElementById('error-message');
+            const successText = document.getElementById('success-text');
             const remember = document.getElementById('remember').checked;
 
             errorAlert.classList.add('hidden');
@@ -417,10 +416,21 @@
                 storage.setItem('evermore_token', data.token);
                 storage.setItem('evermore_user', JSON.stringify(data.user));
 
+                // Check activation status from user object or stored status
+                const isActivated = (data.user && (data.user.activated || data.user.accountStatus === 'active')) || 
+                                    localStorage.getItem('evermore_account_status') === 'active';
+
+                if (isActivated) {
+                    localStorage.setItem('evermore_account_status', 'active');
+                    successText.textContent = 'Sign in successful! Redirecting to dashboard...';
+                } else {
+                    successText.textContent = 'Sign in successful! Redirecting to payment...';
+                }
+
                 successAlert.classList.remove('hidden');
 
                 setTimeout(function () {
-                    window.location.href = 'payment.html';
+                    window.location.href = isActivated ? 'dashboard.html' : 'payment.html';
                 }, 1000);
 
             } catch (error) {

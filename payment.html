@@ -8,12 +8,10 @@
 
     <meta name="description" content="Complete your Evermore access payment securely.">
 
-    <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
@@ -860,10 +858,8 @@
     <div class="page">
         <div class="glow-left"></div>
 
-        <!-- HEADER -->
         <header>
             <div class="header-inner">
-                <!-- Logo -->
                 <a href="index.html" class="flex items-center">
                     <img src="assets/evermore-logo.png" alt="Evermore Logo" class="h-14 sm:h-16 w-auto object-contain">
                 </a>
@@ -875,7 +871,6 @@
             </div>
         </header>
 
-        <!-- MAIN -->
         <main>
             <div class="top-label">
                 <span class="status"></span>
@@ -895,10 +890,8 @@
                 </p>
             </div>
 
-            <!-- PAYMENT AREA -->
             <div class="payment-layout">
 
-                <!-- PLAN SELECTION -->
                 <section class="card payment-card">
                     <div class="card-title">Access</div>
                     <h2 class="card-heading">Choose your plan</h2>
@@ -908,7 +901,6 @@
                     </p>
 
                     <div class="plans">
-                        <!-- CROWN PREMIUM -->
                         <div
                             class="plan selected"
                             id="premium-plan"
@@ -955,7 +947,6 @@
                             </div>
                         </div>
 
-                        <!-- TRIAL -->
                         <div
                             class="plan"
                             id="trial-plan"
@@ -1003,7 +994,6 @@
                     </div>
                 </section>
 
-                <!-- ORDER SUMMARY -->
                 <aside class="card summary-card">
                     <div class="summary-title">Payment summary</div>
                     <div class="summary-subtitle">
@@ -1036,13 +1026,11 @@
                         </div>
                     </div>
 
-                    <!-- PAY BUTTON -->
                     <button type="button" class="pay-button" id="pay-button">
                         <span id="pay-text">Continue to Payment</span>
                         <i data-lucide="arrow-right" id="pay-icon"></i>
                     </button>
 
-                    <!-- SECURITY -->
                     <div class="security">
                         <div class="security-icon">
                             <i data-lucide="shield-check"></i>
@@ -1055,7 +1043,6 @@
                         </div>
                     </div>
 
-                    <!-- MESSAGE -->
                     <div class="message error" id="error-message">
                         <i data-lucide="alert-circle"></i>
                         <span id="error-text">Something went wrong. Please try again.</span>
@@ -1075,7 +1062,6 @@
             </div>
         </main>
 
-        <!-- FOOTER -->
         <footer>
             <div class="footer-inner">
                 <div class="footer-copy">
@@ -1091,8 +1077,29 @@
 
     </div>
 
-    <!-- JAVASCRIPT -->
     <script>
+        // GUARD: Immediately redirect activated users to dashboard
+        (function guardPaymentPage() {
+            const isActivatedStorage = localStorage.getItem('evermore_activated') === 'true';
+            let isActivatedUser = false;
+            
+            try {
+                const storedUser = localStorage.getItem("evermore_user") || localStorage.getItem("user");
+                if (storedUser) {
+                    const user = JSON.parse(storedUser);
+                    if (user.activated || user.isActivated || user.accountStatus === 'active') {
+                        isActivatedUser = true;
+                    }
+                }
+            } catch(e) {
+                console.warn("Could not parse user data for activation check.");
+            }
+
+            if (isActivatedStorage || isActivatedUser) {
+                window.location.replace('dashboard.html'); 
+            }
+        })();
+
         lucide.createIcons();
 
         const premiumPlan = document.getElementById("premium-plan");
