@@ -42,10 +42,7 @@
     </script>
 
     <!-- Google Font -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -85,38 +82,6 @@
             );
         }
 
-        .ambient-blue {
-            position: fixed;
-            width: 520px;
-            height: 520px;
-            border-radius: 9999px;
-            background: rgba(49, 95, 219, 0.12);
-            filter: blur(100px);
-            top: -220px;
-            left: 50%;
-            transform: translateX(-50%);
-            pointer-events: none;
-            z-index: -10;
-        }
-
-        .ambient-purple {
-            position: fixed;
-            width: 420px;
-            height: 420px;
-            border-radius: 9999px;
-            background: rgba(124, 58, 237, 0.08);
-            filter: blur(100px);
-            bottom: -200px;
-            right: -150px;
-            pointer-events: none;
-            z-index: -10;
-        }
-
-        .logo-mark {
-            background: linear-gradient(135deg, #315fdb 0%, #4f46e5 100%);
-            box-shadow: 0 12px 25px rgba(49, 95, 219, 0.22);
-        }
-
         .gradient-text {
             background: linear-gradient(
                 90deg,
@@ -130,10 +95,7 @@
         }
 
         .input-field {
-            transition:
-                border-color .2s ease,
-                box-shadow .2s ease,
-                background .2s ease;
+            transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
         }
 
         .input-field:focus {
@@ -145,10 +107,7 @@
 
         .primary-btn {
             background: #080b16;
-            transition:
-                transform .2s ease,
-                box-shadow .2s ease,
-                background .2s ease;
+            transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
         }
 
         .primary-btn:hover {
@@ -173,56 +132,37 @@
 
 <body class="antialiased">
 
-    <!-- Background -->
+    <!-- Background Grid -->
     <div class="grid-bg"></div>
-    <div class="ambient-blue"></div>
-    <div class="ambient-purple"></div>
 
     <!-- ================= HEADER ================= -->
     <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-slate-200/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[76px] flex items-center justify-between">
-            <a href="index.html" class="flex items-center gap-3 group">
-                <div class="logo-mark w-10 h-10 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center">
-                    <i data-lucide="box" class="w-5 h-5 sm:w-6 sm:h-6 text-white"></i>
-                </div>
-                <div class="leading-none">
-                    <div class="text-[18px] sm:text-[20px] font-extrabold tracking-[0.18em] text-slate-900">
-                        EVERMORE
-                    </div>
-                    <div class="text-[9px] sm:text-[10px] mt-1 tracking-[0.22em] font-semibold text-slate-400 uppercase">
-                        AI • Skills • Opportunities
-                    </div>
-                </div>
+            <a href="index.html" class="flex items-center">
+                <img src="assets/evermore-logo.png" alt="Evermore Logo" class="h-10 w-auto object-contain sm:h-12">
             </a>
-            <div class="text-sm text-slate-500">
-                <span class="hidden sm:inline">Already have an account?</span>
-                <a href="signin.html" class="ml-1 font-bold text-slate-900 hover:text-brand-500 transition">Sign In</a>
-            </div>
-        </div>
+            
     </header>
+            
 
     <!-- ================= MAIN ================= -->
-    <main class="relative py-14 sm:py-20 px-4 sm:px-6">
+    <main class="relative py-12 sm:py-16 px-4 sm:px-6">
         <div class="max-w-3xl mx-auto">
-            <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
+            <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
                 <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 shadow-card text-xs sm:text-sm font-semibold text-slate-600">
                     <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                     <span>Create your Evermore account</span>
                 </div>
-                <h1 class="mt-6 text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.05] text-slate-950">
-                    Start your Evermore
-                    <span class="gradient-text">journey.</span>
+                <h1 class="mt-6 text-4xl sm:text-5xl font-extrabold tracking-tight leading-[1.05] text-slate-950">
+                    Start your Evermore <span class="gradient-text">journey.</span>
                 </h1>
-                <p class="mt-5 text-base sm:text-lg leading-8 text-slate-500 max-w-xl mx-auto">
-                    Create your account and get access to a unified ecosystem for AI, digital skills and qualified opportunities.
-                </p>
             </div>
 
             <!-- ================= FORM CARD ================= -->
             <div class="bg-white/95 backdrop-blur-xl rounded-[28px] sm:rounded-[32px] border border-slate-200 shadow-soft overflow-hidden">
                 <div class="h-1.5 bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600"></div>
 
-                <div class="p-5 sm:p-8 lg:p-12">
+                <div class="p-6 sm:p-10">
                     <div id="success-alert" class="hidden mb-8 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-700">
                         <div class="flex items-center gap-3">
                             <div class="check-icon">
@@ -235,56 +175,48 @@
                         </div>
                     </div>
 
-                    <form id="signup-form" onsubmit="handleSignup(event)" class="space-y-8">
-                        <div>
-                            <div class="mb-6">
-                                <div class="text-xs font-extrabold tracking-[0.18em] text-brand-500 uppercase">Account Setup</div>
-                                <h2 class="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-950">Your details</h2>
-                                <p class="mt-2 text-sm text-slate-500">Tell us a little about yourself to create your account.</p>
+                    <form id="signup-form" onsubmit="handleSignup(event)" class="space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label for="fullname" class="block text-sm font-bold text-slate-700 mb-2">Full name</label>
+                                <input type="text" id="fullname" required autocomplete="name" placeholder="Enter your full name" class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400">
                             </div>
-
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                                <div>
-                                    <label for="fullname" class="block text-sm font-bold text-slate-700 mb-2">Full name</label>
-                                    <input type="text" id="fullname" required autocomplete="name" placeholder="Enter your full name" class="input-field w-full h-13 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400">
+                            <div>
+                                <label for="email" class="block text-sm font-bold text-slate-700 mb-2">Email address</label>
+                                <input type="email" id="email" required autocomplete="email" placeholder="name@example.com" class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400">
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-sm font-bold text-slate-700 mb-2">Phone number</label>
+                                <input type="tel" id="phone" required autocomplete="tel" placeholder="+234 800 000 0000" class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400">
+                            </div>
+                            <div>
+                                <label for="country" class="block text-sm font-bold text-slate-700 mb-2">Country</label>
+                                <select id="country" class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900">
+                                    <option value="Nigeria">Nigeria</option>
+                                    <option value="Ghana">Ghana</option>
+                                    <option value="Kenya">Kenya</option>
+                                    <option value="South Africa">South Africa</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="password" class="block text-sm font-bold text-slate-700 mb-2">Password</label>
+                                <div class="relative">
+                                    <input type="password" id="password" required minlength="8" autocomplete="new-password" placeholder="Create a strong password" class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 pr-12 text-sm text-slate-900 placeholder:text-slate-400">
+                                    <button type="button" id="toggle-password" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 p-2" aria-label="Show password">
+                                        <i data-lucide="eye" class="w-5 h-5"></i>
+                                    </button>
                                 </div>
-                                <div>
-                                    <label for="email" class="block text-sm font-bold text-slate-700 mb-2">Email address</label>
-                                    <input type="email" id="email" required autocomplete="email" placeholder="name@example.com" class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400">
-                                </div>
-                                <div>
-                                    <label for="phone" class="block text-sm font-bold text-slate-700 mb-2">Phone number</label>
-                                    <input type="tel" id="phone" required autocomplete="tel" placeholder="+234 800 000 0000" class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400">
-                                </div>
-                                <div>
-                                    <label for="country" class="block text-sm font-bold text-slate-700 mb-2">Country</label>
-                                    <select id="country" class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900">
-                                        <option value="Nigeria">Nigeria</option>
-                                        <option value="Ghana">Ghana</option>
-                                        <option value="Kenya">Kenya</option>
-                                        <option value="South Africa">South Africa</option>
-                                        <option value="Other">Other</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label for="password" class="block text-sm font-bold text-slate-700 mb-2">Password</label>
-                                    <div class="relative">
-                                        <input type="password" id="password" required minlength="8" autocomplete="new-password" placeholder="Create a strong password" class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 pr-12 text-sm text-slate-900 placeholder:text-slate-400">
-                                        <button type="button" id="toggle-password" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 p-2" aria-label="Show password">
-                                            <i data-lucide="eye" class="w-5 h-5"></i>
-                                        </button>
+                                <div class="mt-2 flex items-center gap-2">
+                                    <div class="h-1 flex-1 rounded-full bg-slate-100 overflow-hidden">
+                                        <div id="strength-bar" class="h-full w-0 rounded-full transition-all"></div>
                                     </div>
-                                    <div class="mt-2 flex items-center gap-2">
-                                        <div class="h-1 flex-1 rounded-full bg-slate-100 overflow-hidden">
-                                            <div id="strength-bar" class="h-full w-0 rounded-full transition-all"></div>
-                                        </div>
-                                        <span id="strength-text" class="text-[11px] text-slate-400">8+ characters</span>
-                                    </div>
+                                    <span id="strength-text" class="text-[11px] text-slate-400">8+ characters</span>
                                 </div>
-                                <div>
-                                    <label for="coupon" class="block text-sm font-bold text-slate-700 mb-2">Referral / coupon code <span class="font-normal text-slate-400">(optional)</span></label>
-                                    <input type="text" id="coupon" autocomplete="off" placeholder="Enter code if you have one" class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400">
-                                </div>
+                            </div>
+                            <div>
+                                <label for="coupon" class="block text-sm font-bold text-slate-700 mb-2">Referral / coupon code <span class="font-normal text-slate-400">(optional)</span></label>
+                                <input type="text" id="coupon" autocomplete="off" placeholder="Enter code if you have one" class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400">
                             </div>
                         </div>
 
@@ -295,7 +227,7 @@
                             </span>
                         </label>
 
-                        <button type="submit" id="submit-btn" class="primary-btn w-full rounded-2xl py-4 sm:py-5 px-6 text-white font-bold text-base sm:text-lg flex items-center justify-center gap-3">
+                        <button type="submit" id="submit-btn" class="primary-btn w-full rounded-2xl py-4 px-6 text-white font-bold text-base sm:text-lg flex items-center justify-center gap-3">
                             <span>Create My Evermore Account</span>
                             <i data-lucide="arrow-right" class="w-5 h-5"></i>
                         </button>
@@ -315,6 +247,8 @@
 
         const passwordInput = document.getElementById('password');
         const togglePassword = document.getElementById('toggle-password');
+        const strengthBar = document.getElementById('strength-bar');
+        const strengthText = document.getElementById('strength-text');
 
         togglePassword.addEventListener('click', () => {
             const isPassword = passwordInput.type === 'password';
@@ -322,9 +256,6 @@
             togglePassword.innerHTML = isPassword ? '<i data-lucide="eye-off" class="w-5 h-5"></i>' : '<i data-lucide="eye" class="w-5 h-5"></i>';
             lucide.createIcons();
         });
-
-        const strengthBar = document.getElementById('strength-bar');
-        const strengthText = document.getElementById('strength-text');
 
         passwordInput.addEventListener('input', () => {
             const password = passwordInput.value;
@@ -360,64 +291,62 @@
             }
         });
 
-        /* -----------------------------------------
-    SIGNUP (Connected to Backend API)
------------------------------------------ */
-async function handleSignup(event) {
-    event.preventDefault();
+        async function handleSignup(event) {
+            event.preventDefault();
 
-    const submitBtn = document.getElementById('submit-btn');
-    const successAlert = document.getElementById('success-alert');
+            const submitBtn = document.getElementById('submit-btn');
+            const successAlert = document.getElementById('success-alert');
 
-    const name = document.getElementById('fullname').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const password = document.getElementById('password').value;
-    const coupon = document.getElementById('coupon').value.trim();
+            const name = document.getElementById('fullname').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const country = document.getElementById('country').value;
+            const password = document.getElementById('password').value;
+            const coupon = document.getElementById('coupon').value.trim();
 
-    if (password.length < 8) {
-        alert('Please create a password with at least 8 characters.');
-        return;
-    }
+            if (password.length < 8) {
+                alert('Please create a password with at least 8 characters.');
+                return;
+            }
 
-    submitBtn.disabled = true;
-    submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
-    submitBtn.innerHTML = `
-        <span>Creating your account...</span>
-        <svg class="animate-spin w-5 h-5" viewBox="0 0 24 24" fill="none">
-            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
-        </svg>
-    `;
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
+            submitBtn.innerHTML = `
+                <span>Creating your account...</span>
+                <svg class="animate-spin w-5 h-5" viewBox="0 0 24 24" fill="none">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                </svg>
+            `;
 
-    try {
-        // Set dynamic URL for local vs live production
-        const API_BASE_URL = window.location.hostname === 'localhost' 
-            ? 'http://localhost:5000' 
-            : 'https://evermore-backend-y83h.onrender.com';
+            try {
+                const API_BASE_URL = window.location.hostname === 'localhost' 
+                    ? 'http://localhost:5000' 
+                    : 'https://evermore-backend-y83h.onrender.com';
 
-        const response = await fetch(`${API_BASE_URL}/api/signup`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                full_name: name,
-                email: email,
-                phone: phone,
-                password: password,
-                coupon: coupon
-            })
-        });
+                const response = await fetch(`${API_BASE_URL}/api/signup`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        full_name: name,
+                        email: email,
+                        phone: phone,
+                        country: country,
+                        password: password,
+                        coupon: coupon
+                    })
+                });
 
-        const data = await response.json();
+                const data = await response.json();
 
                 if (!response.ok) {
                     throw new Error(data.message || 'Something went wrong during signup.');
                 }
 
                 localStorage.setItem('evermore_user', JSON.stringify({
-                    id: data.user.id,
-                    name: data.user.full_name,
-                    email: data.user.email
+                    id: data.user?.id,
+                    name: data.user?.full_name || name,
+                    email: data.user?.email || email
                 }));
 
                 successAlert.classList.remove('hidden');

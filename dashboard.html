@@ -269,6 +269,16 @@
 
             </a>
 
+            <!-- Sidebar Logout Button -->
+            <button 
+               onclick="logoutUser()"
+               class="w-full sidebar-link flex items-center gap-3 px-3 py-3 rounded-xl text-sm text-rose-600 hover:bg-rose-50 hover:text-rose-700">
+
+                <i data-lucide="log-out" class="w-[18px] h-[18px]"></i>
+                Logout
+
+            </button>
+
         </nav>
 
     </div>
@@ -296,7 +306,7 @@
             </p>
 
             <a
-                href="#"
+                href="http://t.me/Evermore_team"
                 class="text-[11px] font-bold text-blue-600"
             >
                 Contact Support →
@@ -385,6 +395,15 @@
                         </div>
 
                     </div>
+
+                    <!-- Topbar Logout Quick Button -->
+                    <button
+                        onclick="logoutUser()"
+                        title="Logout"
+                        class="ml-2 w-9 h-9 rounded-xl border border-slate-200 bg-white flex items-center justify-center text-slate-600 hover:text-rose-600 hover:bg-rose-50 hover:border-rose-200 transition"
+                    >
+                        <i data-lucide="log-out" class="w-4 h-4"></i>
+                    </button>
 
                 </div>
 
@@ -1350,6 +1369,37 @@
     --------------------------------------------------------- */
 
     lucide.createIcons();
+
+
+    /* ---------------------------------------------------------
+       LOGOUT & AUTO SIGN-OUT LOGIC
+    --------------------------------------------------------- */
+
+    function logoutUser() {
+        localStorage.removeItem('evermore_user');
+        localStorage.removeItem('evermore_activated');
+        window.location.href = 'signin.html';
+    }
+
+    // 15-Minute Auto Sign-Out Timer
+    let inactivityTimer;
+    const INACTIVITY_LIMIT = 15 * 60 * 1000; // 15 minutes in milliseconds
+
+    function resetInactivityTimer() {
+        clearTimeout(inactivityTimer);
+        inactivityTimer = setTimeout(() => {
+            alert('You have been automatically logged out due to 15 minutes of inactivity.');
+            logoutUser();
+        }, INACTIVITY_LIMIT);
+    }
+
+    // Listeners for user activity
+    ['mousemove', 'keydown', 'click', 'scroll', 'touchstart'].forEach(event => {
+        window.addEventListener(event, resetInactivityTimer, true);
+    });
+
+    // Start timer on load
+    resetInactivityTimer();
 
 
     /* ---------------------------------------------------------

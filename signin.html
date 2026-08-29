@@ -84,13 +84,6 @@
             z-index: -1;
         }
 
-        .logo-box {
-            background: linear-gradient(135deg, #2563eb 0%, #4f46e5 55%, #7c3aed 100%);
-            box-shadow:
-                0 12px 30px rgba(79, 70, 229, 0.25),
-                inset 0 1px 1px rgba(255,255,255,0.25);
-        }
-
         .gradient-text {
             background: linear-gradient(
                 90deg,
@@ -184,27 +177,11 @@
         <div class="max-w-7xl mx-auto px-5 sm:px-8 h-[88px] flex items-center justify-between">
 
             <!-- Logo -->
-            <a href="index.html" class="flex items-center gap-3">
-                <div class="logo-box w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center">
-                    <i data-lucide="box" class="w-6 h-6 sm:w-7 sm:h-7 text-white stroke-[2.5]"></i>
-                </div>
-                <div>
-                    <div class="text-[22px] sm:text-[25px] font-black tracking-[0.16em] text-slate-900 leading-none">
-                        EVERMORE
-                    </div>
-                    <div class="mt-1 text-[9px] sm:text-[10px] tracking-[0.25em] uppercase text-slate-400 font-semibold">
-                        AI • SKILLS • OPPORTUNITIES
-                    </div>
-                </div>
+            <a href="index.html" class="flex items-center">
+                <img src="assets/evermore-logo.png" alt="Evermore Logo" class="h-10 w-auto object-contain sm:h-12">
             </a>
 
-            <!-- Desktop Sign Up -->
-            <div class="hidden sm:block text-sm text-slate-500">
-                Don't have an account?
-                <a href="signup.html" class="ml-1 font-bold text-blue-600 hover:text-purple-600 transition">
-                    Sign Up
-                </a>
-            </div>
+            
 
             <!-- Mobile Sign Up -->
             <a href="signup.html" class="sm:hidden font-bold text-blue-600 text-sm">
@@ -382,86 +359,83 @@
 
         /* Sign In API Backend Request */
         async function handleSignin(e) {
-    e.preventDefault();
+            e.preventDefault();
 
-    // Trim whitespace that mobile auto-fill often inserts
-    const emailInput = document.getElementById('signin-email').value.trim();
-    const passInput = document.getElementById('signin-password').value;
-    const signinBtn = document.getElementById('signin-btn');
-    const errorAlert = document.getElementById('error-alert');
-    const successAlert = document.getElementById('success-alert');
-    const errorMessage = document.getElementById('error-message');
-    const remember = document.getElementById('remember').checked;
+            const emailInput = document.getElementById('signin-email').value.trim();
+            const passInput = document.getElementById('signin-password').value;
+            const signinBtn = document.getElementById('signin-btn');
+            const errorAlert = document.getElementById('error-alert');
+            const successAlert = document.getElementById('success-alert');
+            const errorMessage = document.getElementById('error-message');
+            const remember = document.getElementById('remember').checked;
 
-    errorAlert.classList.add('hidden');
-    successAlert.classList.add('hidden');
+            errorAlert.classList.add('hidden');
+            successAlert.classList.add('hidden');
 
-    // Simple JS Email Regex Validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(emailInput)) {
-        errorMessage.textContent = 'Please enter a valid email address.';
-        errorAlert.classList.remove('hidden');
-        return;
-    }
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(emailInput)) {
+                errorMessage.textContent = 'Please enter a valid email address.';
+                errorAlert.classList.remove('hidden');
+                return;
+            }
 
-    if (!passInput) {
-        errorMessage.textContent = 'Please enter your password.';
-        errorAlert.classList.remove('hidden');
-        return;
-    }
+            if (!passInput) {
+                errorMessage.textContent = 'Please enter your password.';
+                errorAlert.classList.remove('hidden');
+                return;
+            }
 
-    // Button loading state
-    signinBtn.disabled = true;
-    signinBtn.style.opacity = '0.65';
-    signinBtn.innerHTML = `
-        <span>Signing you in...</span>
-        <i data-lucide="loader-circle" class="w-5 h-5 animate-spin"></i>
-    `;
-    lucide.createIcons();
+            signinBtn.disabled = true;
+            signinBtn.style.opacity = '0.65';
+            signinBtn.innerHTML = `
+                <span>Signing you in...</span>
+                <i data-lucide="loader-circle" class="w-5 h-5 animate-spin"></i>
+            `;
+            lucide.createIcons();
 
-    try {
-        const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-            ? 'http://localhost:5000'
-            : 'https://evermore-backend-y83h.onrender.com';
+            try {
+                const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+                    ? 'http://localhost:5000'
+                    : 'https://evermore-backend-y83h.onrender.com';
 
-        const response = await fetch(`${API_BASE_URL}/api/signin`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                email: emailInput,
-                password: passInput
-            })
-        });
+                const response = await fetch(`${API_BASE_URL}/api/signin`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: emailInput,
+                        password: passInput
+                    })
+                });
 
-        const data = await response.json();
+                const data = await response.json();
 
-        if (!response.ok) {
-            throw new Error(data.message || 'Invalid email or password.');
+                if (!response.ok) {
+                    throw new Error(data.message || 'Invalid email or password.');
+                }
+
+                const storage = remember ? localStorage : sessionStorage;
+                storage.setItem('evermore_token', data.token);
+                storage.setItem('evermore_user', JSON.stringify(data.user));
+
+                successAlert.classList.remove('hidden');
+
+                setTimeout(function () {
+                    window.location.href = 'payment.html';
+                }, 1000);
+
+            } catch (error) {
+                errorMessage.textContent = error.message;
+                errorAlert.classList.remove('hidden');
+
+                signinBtn.disabled = false;
+                signinBtn.style.opacity = '1';
+                signinBtn.innerHTML = `
+                    <span>Sign In to Evermore</span>
+                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                `;
+                lucide.createIcons();
+            }
         }
-
-        const storage = remember ? localStorage : sessionStorage;
-        storage.setItem('evermore_token', data.token);
-        storage.setItem('evermore_user', JSON.stringify(data.user));
-
-        successAlert.classList.remove('hidden');
-
-        setTimeout(function () {
-            window.location.href = 'payment.html';
-        }, 1000);
-
-    } catch (error) {
-        errorMessage.textContent = error.message;
-        errorAlert.classList.remove('hidden');
-
-        signinBtn.disabled = false;
-        signinBtn.style.opacity = '1';
-        signinBtn.innerHTML = `
-            <span>Sign In to Evermore</span>
-            <i data-lucide="arrow-right" class="w-5 h-5"></i>
-        `;
-        lucide.createIcons();
-    }
-}
 
         function forgotPassword(event) {
             event.preventDefault();
