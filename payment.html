@@ -904,747 +904,450 @@
 </head>
 
 <body>
-    
-<!-- HEADER -->
-    <header class="bg-white/90 backdrop-blur-md border-b border-slate-200/70">
-        <div class="max-w-7xl mx-auto px-5 sm:px-8 h-[88px] flex items-center justify-between">
 
-            <!-- Logo -->
-            <a href="index.html" class="flex items-center">
-                <img src="assets/evermore-logo.png" alt="Evermore Logo" class="h-14 sm:h-16 w-auto object-contain">
-            </a>
-        </div>
-    </header>
-
-
-
-    <!-- =========================================
-         MAIN
-    ========================================== -->
-
-    <main>
-
-        <div class="top-label">
-            <span class="status"></span>
-            Complete your Evermore access
-        </div>
-
-
-        <div class="heading">
-
-            <h1>
-                Activate your
-                <span>Evermore access.</span>
-            </h1>
-
-            <p>
-                Choose your access plan and continue to secure payment.
-                Your Evermore workspace will become available after your
-                payment has been successfully confirmed.
-            </p>
-
-        </div>
-
-
-        <!-- =====================================
-             PAYMENT AREA
-        ====================================== -->
-
-        <div class="payment-layout">
-
-
-            <!-- =================================
-                 PLAN SELECTION
-            ================================== -->
-
-            <section class="card payment-card">
-
-                <div class="card-title">
-                    Access
-                </div>
-
-                <h2 class="card-heading">
-                    Choose your plan
-                </h2>
-
-                <p class="card-description">
-                    Select the Evermore access level you want to activate.
-                    You can review your selection before continuing.
-                </p>
-
-
-                <div class="plans">
-
-
-                    <!-- =========================
-                         CROWN PREMIUM
-                    ========================== -->
-
-                    <div
-                        class="plan selected"
-                        id="premium-plan"
-                        data-package="premium"
-                        data-usd="10"
-                        data-ngn="13992"
-                    >
-
-                        <div class="recommended">
-                            RECOMMENDED
-                        </div>
-
-                        <div class="plan-top">
-
-                            <div class="plan-left">
-
-                                <div class="plan-icon">
-                                    <i data-lucide="crown"></i>
-                                </div>
-
-                                <div>
-                                    <div class="plan-name">
-                                        Crown Premium
-                                    </div>
-
-                                    <div class="plan-subtitle">
-                                        Full platform access
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="radio">
-                                <div class="radio-inner"></div>
-                            </div>
-
-                        </div>
-
-
-                        <div class="plan-price">
-                            <strong>$10</strong>
-                            <span>/ 6 months</span>
-                        </div>
-
-                        <div class="plan-naira">
-                            ₦13,992
-                        </div>
-
-
-                        <div class="plan-features">
-
-                            <div class="feature">
-                                <i data-lucide="check"></i>
-                                Expanded EverAI access
-                            </div>
-
-                            <div class="feature">
-                                <i data-lucide="check"></i>
-                                Full Skills Academy access
-                            </div>
-
-                            <div class="feature">
-                                <i data-lucide="check"></i>
-                                Eligible opportunity access
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- =========================
-                         TRIAL
-                    ========================== -->
-
-                    <div
-                        class="plan"
-                        id="trial-plan"
-                        data-package="trial"
-                        data-usd="5"
-                        data-ngn="6991"
-                    >
-
-                        <div class="plan-top">
-
-                            <div class="plan-left">
-
-                                <div class="plan-icon">
-                                    <i data-lucide="zap"></i>
-                                </div>
-
-                                <div>
-                                    <div class="plan-name">
-                                        Trial
-                                    </div>
-
-                                    <div class="plan-subtitle">
-                                        Explore the platform
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="radio">
-                                <div class="radio-inner"></div>
-                            </div>
-
-                        </div>
-
-
-                        <div class="plan-price">
-                            <strong>$5</strong>
-                            <span>/ 2 months</span>
-                        </div>
-
-                        <div class="plan-naira">
-                            ₦6,991
-                        </div>
-
-
-                        <div class="plan-features">
-
-                            <div class="feature">
-                                <i data-lucide="check"></i>
-                                Limited EverAI access
-                            </div>
-
-                            <div class="feature">
-                                <i data-lucide="check"></i>
-                                Selected Skills Academy resources
-                            </div>
-
-                            <div class="feature">
-                                <i data-lucide="check"></i>
-                                Eligible opportunities
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- =================================
-                 ORDER SUMMARY
-            ================================== -->
-
-            <aside class="card summary-card">
-
-                <div class="summary-title">
-                    Payment summary
-                </div>
-
-                <div class="summary-subtitle">
-                    Review your selected Evermore access before proceeding.
-                </div>
-
-
-                <div class="summary-line">
-
-                    <span>
-                        Selected plan
-                    </span>
-
-                    <strong id="summary-plan">
-                        Crown Premium
-                    </strong>
-
-                </div>
-
-
-                <div class="summary-line">
-
-                    <span>
-                        Access duration
-                    </span>
-
-                    <strong id="summary-duration">
-                        6 months
-                    </strong>
-
-                </div>
-
-
-                <div class="summary-line">
-
-                    <span>
-                        Platform access
-                    </span>
-
-                    <strong>
-                        Included
-                    </strong>
-
-                </div>
-
-
-                <div class="total">
-
-                    <div>
-                        <div class="total-label">
-                            Total
-                        </div>
-
-                        <small>
-                            Payment amount
-                        </small>
-                    </div>
-
-                    <div class="total-amount">
-
-                        <strong id="summary-ngn">
-                            ₦13,992
-                        </strong>
-
-                        <span id="summary-usd">
-                            $10 USD
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <!-- =============================
-                     PAY BUTTON
-                ============================== -->
-
-                <button
-                    type="button"
-                    class="pay-button"
-                    id="pay-button"
-                >
-
-                    <span id="pay-text">
-                        Continue to Payment
-                    </span>
-
-                    <i data-lucide="arrow-right" id="pay-icon"></i>
-
-                </button>
-
-
-                <!-- =============================
-                     SECURITY
-                ============================== -->
-
-                <div class="security">
-
-                    <div class="security-icon">
+    <div class="page">
+        <div class="glow-left"></div>
+
+        <!-- HEADER -->
+        <header>
+            <div class="header-inner">
+                <a href="index.html" class="brand">
+                    <div class="brand-icon">
                         <i data-lucide="shield-check"></i>
                     </div>
-
                     <div>
+                        <div class="brand-name">EVERMORE</div>
+                        <div class="brand-subtitle">SECURE ACCESS</div>
+                    </div>
+                </a>
 
-                        <strong>
-                            Secure payment
-                        </strong>
+                <div class="secure-header">
+                    <span class="dot"></span>
+                    256-bit Encrypted Checkout
+                </div>
+            </div>
+        </header>
 
-                        <p>
-                            Your payment will be processed securely through Kora. Evermore does not store your card details.
-                        </p>
+        <!-- MAIN -->
+        <main>
+            <div class="top-label">
+                <span class="status"></span>
+                Complete your Evermore access
+            </div>
 
+            <div class="heading">
+                <h1>
+                    Activate your
+                    <span>Evermore access.</span>
+                </h1>
+
+                <p>
+                    Choose your access plan and continue to secure payment.
+                    Your Evermore workspace will become available after your
+                    payment has been successfully confirmed.
+                </p>
+            </div>
+
+            <!-- PAYMENT AREA -->
+            <div class="payment-layout">
+
+                <!-- PLAN SELECTION -->
+                <section class="card payment-card">
+                    <div class="card-title">Access</div>
+                    <h2 class="card-heading">Choose your plan</h2>
+                    <p class="card-description">
+                        Select the Evermore access level you want to activate.
+                        You can review your selection before continuing.
+                    </p>
+
+                    <div class="plans">
+                        <!-- CROWN PREMIUM -->
+                        <div
+                            class="plan selected"
+                            id="premium-plan"
+                            data-package="premium"
+                            data-usd="10"
+                            data-ngn="13992"
+                        >
+                            <div class="recommended">RECOMMENDED</div>
+                            <div class="plan-top">
+                                <div class="plan-left">
+                                    <div class="plan-icon">
+                                        <i data-lucide="crown"></i>
+                                    </div>
+                                    <div>
+                                        <div class="plan-name">Crown Premium</div>
+                                        <div class="plan-subtitle">Full platform access</div>
+                                    </div>
+                                </div>
+                                <div class="radio">
+                                    <div class="radio-inner"></div>
+                                </div>
+                            </div>
+
+                            <div class="plan-price">
+                                <strong>$10</strong>
+                                <span>/ 6 months</span>
+                            </div>
+
+                            <div class="plan-naira">₦13,992</div>
+
+                            <div class="plan-features">
+                                <div class="feature">
+                                    <i data-lucide="check"></i>
+                                    Expanded EverAI access
+                                </div>
+                                <div class="feature">
+                                    <i data-lucide="check"></i>
+                                    Full Skills Academy access
+                                </div>
+                                <div class="feature">
+                                    <i data-lucide="check"></i>
+                                    Eligible opportunity access
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TRIAL -->
+                        <div
+                            class="plan"
+                            id="trial-plan"
+                            data-package="trial"
+                            data-usd="5"
+                            data-ngn="6991"
+                        >
+                            <div class="plan-top">
+                                <div class="plan-left">
+                                    <div class="plan-icon">
+                                        <i data-lucide="zap"></i>
+                                    </div>
+                                    <div>
+                                        <div class="plan-name">Trial</div>
+                                        <div class="plan-subtitle">Explore the platform</div>
+                                    </div>
+                                </div>
+                                <div class="radio">
+                                    <div class="radio-inner"></div>
+                                </div>
+                            </div>
+
+                            <div class="plan-price">
+                                <strong>$5</strong>
+                                <span>/ 2 months</span>
+                            </div>
+
+                            <div class="plan-naira">₦6,991</div>
+
+                            <div class="plan-features">
+                                <div class="feature">
+                                    <i data-lucide="check"></i>
+                                    Limited EverAI access
+                                </div>
+                                <div class="feature">
+                                    <i data-lucide="check"></i>
+                                    Selected Skills Academy resources
+                                </div>
+                                <div class="feature">
+                                    <i data-lucide="check"></i>
+                                    Eligible opportunities
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ORDER SUMMARY -->
+                <aside class="card summary-card">
+                    <div class="summary-title">Payment summary</div>
+                    <div class="summary-subtitle">
+                        Review your selected Evermore access before proceeding.
                     </div>
 
-                </div>
+                    <div class="summary-line">
+                        <span>Selected plan</span>
+                        <strong id="summary-plan">Crown Premium</strong>
+                    </div>
 
+                    <div class="summary-line">
+                        <span>Access duration</span>
+                        <strong id="summary-duration">6 months</strong>
+                    </div>
 
-                <!-- =============================
-                     MESSAGE
-                ============================== -->
+                    <div class="summary-line">
+                        <span>Platform access</span>
+                        <strong>Included</strong>
+                    </div>
 
-                <div
-                    class="message error"
-                    id="error-message"
-                >
-                    <i data-lucide="alert-circle"></i>
+                    <div class="total">
+                        <div>
+                            <div class="total-label">Total</div>
+                            <small>Payment amount</small>
+                        </div>
+                        <div class="total-amount">
+                            <strong id="summary-ngn">₦13,992</strong>
+                            <span id="summary-usd">$10 USD</span>
+                        </div>
+                    </div>
 
-                    <span id="error-text">
-                        Something went wrong. Please try again.
-                    </span>
-                </div>
+                    <!-- PAY BUTTON -->
+                    <button type="button" class="pay-button" id="pay-button">
+                        <span id="pay-text">Continue to Payment</span>
+                        <i data-lucide="arrow-right" id="pay-icon"></i>
+                    </button>
 
-                <div
-                    class="message info"
-                    id="info-message"
-                >
-                    <i data-lucide="info"></i>
+                    <!-- SECURITY -->
+                    <div class="security">
+                        <div class="security-icon">
+                            <i data-lucide="shield-check"></i>
+                        </div>
+                        <div>
+                            <strong>Secure payment</strong>
+                            <p>
+                                Your payment will be processed securely through Kora. Evermore does not store your card details.
+                            </p>
+                        </div>
+                    </div>
 
-                    <span id="info-text">
-                        Payment gateway connection ready.
-                    </span>
-                </div>
+                    <!-- MESSAGE -->
+                    <div class="message error" id="error-message">
+                        <i data-lucide="alert-circle"></i>
+                        <span id="error-text">Something went wrong. Please try again.</span>
+                    </div>
 
+                    <div class="message info" id="info-message">
+                        <i data-lucide="info"></i>
+                        <span id="info-text">Payment gateway connection ready.</span>
+                    </div>
 
-                <a href="signup.html" class="back-link">
-
-                    <i data-lucide="arrow-left"></i>
-
-                    Back to account setup
-
-                </a>
-
-            </aside>
-
-        </div>
-
-    </main>
-
-
-    <!-- =========================================
-         FOOTER
-    ========================================== -->
-
-    <footer>
-
-        <div class="footer-inner">
-
-            <div class="footer-copy">
-                © 2026 Evermore. All rights reserved.
-            </div>
-
-            <div class="footer-links">
-
-                <a href="index.html">
-                    Home
-                </a>
-
-                <a href="signin.html">
-                    Sign In
-                </a>
-
-                <a href="https://t.me/Evermore_team" target="_blank">
-                    Support
-                </a>
+                    <a href="signup.html" class="back-link">
+                        <i data-lucide="arrow-left"></i>
+                        Back to account setup
+                    </a>
+                </aside>
 
             </div>
+        </main>
 
-        </div>
+        <!-- FOOTER -->
+        <footer>
+            <div class="footer-inner">
+                <div class="footer-copy">
+                    © 2026 Evermore. All rights reserved.
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="signin.html">Sign In</a>
+                    <a href="https://t.me/Evermore_team" target="_blank">Support</a>
+                </div>
+            </div>
+        </footer>
 
-    </footer>
+    </div>
 
-</div>
+    <!-- JAVASCRIPT -->
+    <script>
+        lucide.createIcons();
 
+        const premiumPlan = document.getElementById("premium-plan");
+        const trialPlan = document.getElementById("trial-plan");
+        const summaryPlan = document.getElementById("summary-plan");
+        const summaryDuration = document.getElementById("summary-duration");
+        const summaryNgn = document.getElementById("summary-ngn");
+        const summaryUsd = document.getElementById("summary-usd");
 
-<!-- =========================================
-     JAVASCRIPT
-========================================== -->
+        const payButton = document.getElementById("pay-button");
+        const payText = document.getElementById("pay-text");
+        const payIcon = document.getElementById("pay-icon");
 
-<script>
+        const errorMessage = document.getElementById("error-message");
+        const errorText = document.getElementById("error-text");
+        const infoMessage = document.getElementById("info-message");
+        const infoText = document.getElementById("info-text");
 
-    /* =========================================
-       ICONS
-    ========================================== */
+        let selectedPackage = "premium";
 
-    lucide.createIcons();
-
-
-    /* =========================================
-       PACKAGE ELEMENTS
-    ========================================== */
-
-    const premiumPlan = document.getElementById("premium-plan");
-    const trialPlan = document.getElementById("trial-plan");
-
-    const summaryPlan = document.getElementById("summary-plan");
-    const summaryDuration = document.getElementById("summary-duration");
-    const summaryNgn = document.getElementById("summary-ngn");
-    const summaryUsd = document.getElementById("summary-usd");
-
-    const payButton = document.getElementById("pay-button");
-    const payText = document.getElementById("pay-text");
-    const payIcon = document.getElementById("pay-icon");
-
-    const errorMessage = document.getElementById("error-message");
-    const errorText = document.getElementById("error-text");
-
-    const infoMessage = document.getElementById("info-message");
-    const infoText = document.getElementById("info-text");
-
-
-    /* =========================================
-       CURRENT PACKAGE
-    ========================================== */
-
-    let selectedPackage = "premium";
-
-
-    /* =========================================
-       PACKAGE DATA
-    ========================================== */
-
-    const packages = {
-
-        premium: {
-            name: "Crown Premium",
-            duration: "6 months",
-            usd: "$10",
-            ngn: 13992,
-            formattedNgn: "₦13,992"
-        },
-
-        trial: {
-            name: "Trial",
-            duration: "2 months",
-            usd: "$5",
-            ngn: 6991,
-            formattedNgn: "₦6,991"
-        }
-
-    };
-
-
-    /* =========================================
-       SELECT PACKAGE
-    ========================================== */
-
-    function selectPackage(packageName) {
-
-        selectedPackage = packageName;
-
-        const data = packages[packageName];
-
-        if (!data) return;
-
-
-        /* Remove current selection */
-
-        premiumPlan.classList.remove("selected");
-        trialPlan.classList.remove("selected");
-
-
-        /* Add new selection */
-
-        if (packageName === "premium") {
-            premiumPlan.classList.add("selected");
-        }
-
-        if (packageName === "trial") {
-            trialPlan.classList.add("selected");
-        }
-
-
-        /* Update summary */
-
-        summaryPlan.textContent = data.name;
-        summaryDuration.textContent = data.duration;
-        summaryNgn.textContent = data.formattedNgn;
-        summaryUsd.textContent = data.usd + " USD";
-
-
-        /* Hide messages */
-
-        hideMessages();
-
-
-        /* Save temporary checkout selection */
-
-        saveCheckoutSelection();
-
-    }
-
-
-    /* =========================================
-       PLAN CLICK EVENTS
-    ========================================== */
-
-    premiumPlan.addEventListener("click", function () {
-        selectPackage("premium");
-    });
-
-
-    trialPlan.addEventListener("click", function () {
-        selectPackage("trial");
-    });
-
-
-    /* =========================================
-       SAVE CHECKOUT DATA
-    ========================================== */
-
-    function saveCheckoutSelection() {
-
-        const data = packages[selectedPackage];
-
-        const checkoutData = {
-            package: selectedPackage,
-            packageName: data.name,
-            duration: data.duration,
-            usd: data.usd,
-            ngn: data.formattedNgn,
-            amount: data.ngn,
-            status: "payment_pending",
-            createdAt: new Date().toISOString()
+        const packages = {
+            premium: {
+                name: "Crown Premium",
+                duration: "6 months",
+                usd: "$10",
+                ngn: 13992,
+                formattedNgn: "₦13,992"
+            },
+            trial: {
+                name: "Trial",
+                duration: "2 months",
+                usd: "$5",
+                ngn: 6991,
+                formattedNgn: "₦6,991"
+            }
         };
 
-        localStorage.setItem(
-            "evermore_checkout",
-            JSON.stringify(checkoutData)
-        );
+        function selectPackage(packageName) {
+            selectedPackage = packageName;
+            const data = packages[packageName];
+            if (!data) return;
 
-    }
+            premiumPlan.classList.remove("selected");
+            trialPlan.classList.remove("selected");
 
+            if (packageName === "premium") {
+                premiumPlan.classList.add("selected");
+            }
+            if (packageName === "trial") {
+                trialPlan.classList.add("selected");
+            }
 
-    /* =========================================
-       LOAD PACKAGE FROM SIGNUP
-    ========================================== */
+            summaryPlan.textContent = data.name;
+            summaryDuration.textContent = data.duration;
+            summaryNgn.textContent = data.formattedNgn;
+            summaryUsd.textContent = data.usd + " USD";
 
-    function loadSignupPackage() {
+            hideMessages();
+            saveCheckoutSelection();
+        }
 
-        try {
+        premiumPlan.addEventListener("click", function () {
+            selectPackage("premium");
+        });
 
-            const storedUser = localStorage.getItem("evermore_user") || localStorage.getItem("user");
+        trialPlan.addEventListener("click", function () {
+            selectPackage("trial");
+        });
 
-            if (!storedUser) {
+        function saveCheckoutSelection() {
+            const data = packages[selectedPackage];
+            const checkoutData = {
+                package: selectedPackage,
+                packageName: data.name,
+                duration: data.duration,
+                usd: data.usd,
+                ngn: data.formattedNgn,
+                amount: data.ngn,
+                status: "payment_pending",
+                createdAt: new Date().toISOString()
+            };
+
+            localStorage.setItem("evermore_checkout", JSON.stringify(checkoutData));
+        }
+
+        function loadSignupPackage() {
+            try {
+                const storedUser = localStorage.getItem("evermore_user") || localStorage.getItem("user");
+                if (!storedUser) {
+                    selectPackage("premium");
+                    return;
+                }
+                const user = JSON.parse(storedUser);
+                if (user.package === "premium" || user.package === "trial" || user.plan === "premium" || user.plan === "trial") {
+                    selectPackage(user.package || user.plan);
+                } else {
+                    selectPackage("premium");
+                }
+            } catch (error) {
+                console.warn("Could not read signup package:", error);
                 selectPackage("premium");
+            }
+        }
+
+        function hideMessages() {
+            errorMessage.classList.remove("show");
+            infoMessage.classList.remove("show");
+        }
+
+        function showError(message) {
+            errorText.textContent = message;
+            errorMessage.classList.add("show");
+            infoMessage.classList.remove("show");
+            lucide.createIcons();
+        }
+
+        function showInfo(message) {
+            infoText.textContent = message;
+            infoMessage.classList.add("show");
+            errorMessage.classList.remove("show");
+            lucide.createIcons();
+        }
+
+        payButton.addEventListener("click", async function () {
+            hideMessages();
+
+            const data = packages[selectedPackage];
+            if (!data) {
+                showError("Please select a valid Evermore access plan.");
                 return;
             }
 
-            const user = JSON.parse(storedUser);
+            saveCheckoutSelection();
 
-            if (user.package === "premium" || user.package === "trial" || user.plan === "premium" || user.plan === "trial") {
-                selectPackage(user.package || user.plan);
-            } else {
-                selectPackage("premium");
+            const storedUser = localStorage.getItem("evermore_user") || localStorage.getItem("user");
+            let userEmail = "";
+            let userId = "";
+
+            if (storedUser) {
+                try {
+                    const parsedUser = JSON.parse(storedUser);
+                    userEmail = parsedUser.email || "";
+                    userId = parsedUser.id || "";
+                } catch (e) {
+                    console.error("Error parsing user data:", e);
+                }
             }
 
-        } catch (error) {
+            if (!userEmail) {
+                showError("User session not found. Please sign in or register first.");
+                setTimeout(() => {
+                    window.location.href = "signin.html";
+                }, 2000);
+                return;
+            }
 
-            console.warn("Could not read signup package:", error);
-            selectPackage("premium");
+            payButton.disabled = true;
+            payText.textContent = "Connecting to Kora Gateway...";
+            payIcon.style.display = "none";
 
-        }
-
-    }
-
-
-    /* =========================================
-       MESSAGE HELPERS
-    ========================================== */
-
-    function hideMessages() {
-        errorMessage.classList.remove("show");
-        infoMessage.classList.remove("show");
-    }
-
-
-    function showError(message) {
-        errorText.textContent = message;
-        errorMessage.classList.add("show");
-        infoMessage.classList.remove("show");
-        lucide.createIcons();
-    }
-
-
-    function showInfo(message) {
-        infoText.textContent = message;
-        infoMessage.classList.add("show");
-        errorMessage.classList.remove("show");
-        lucide.createIcons();
-    }
-
-
-    /* =========================================
-       PAYMENT BUTTON & KORA GATEWAY INTEGRATION
-    ========================================== */
-
-    payButton.addEventListener("click", async function () {
-
-        hideMessages();
-
-        const data = packages[selectedPackage];
-
-        if (!data) {
-            showError("Please select a valid Evermore access plan.");
-            return;
-        }
-
-        saveCheckoutSelection();
-
-        // Retrieve user details from localStorage
-        const storedUser = localStorage.getItem("evermore_user") || localStorage.getItem("user");
-        let userEmail = "";
-        let userId = "";
-
-        if (storedUser) {
             try {
-                const parsedUser = JSON.parse(storedUser);
-                userEmail = parsedUser.email || "";
-                userId = parsedUser.id || "";
-            } catch (e) {
-                console.error("Error parsing user data:", e);
+                const API_BASE_URL = window.location.hostname === 'localhost' 
+                    ? 'http://localhost:5000' 
+                    : 'https://evermore-backend-y83h.onrender.com';
+
+                const response = await fetch(`${API_BASE_URL}/api/initialize-payment`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        email: userEmail,
+                        userId: userId,
+                        package: selectedPackage,
+                        amount: data.ngn
+                    })
+                });
+
+                const result = await response.json();
+
+                if (!response.ok || !result.success) {
+                    throw new Error(result.message || "Failed to initialize payment gateway.");
+                }
+
+                if (result.checkoutUrl) {
+                    window.location.href = result.checkoutUrl;
+                } else {
+                    showInfo("Payment session initialized successfully. Redirecting...");
+                }
+
+            } catch (error) {
+                console.error("Payment error:", error);
+                showError(error.message || "Something went wrong connecting to the payment service.");
+
+                payButton.disabled = false;
+                payText.textContent = "Continue to Payment";
+                payIcon.style.display = "";
+                lucide.createIcons();
             }
-        }
+        });
 
-        if (!userEmail) {
-            showError("User session not found. Please sign in or register first.");
-            setTimeout(() => {
-                window.location.href = "signin.html";
-            }, 2000);
-            return;
-        }
-
-        payButton.disabled = true;
-        payText.textContent = "Connecting to Kora Gateway...";
-        payIcon.style.display = "none";
-
-        try {
-            // Set dynamic API base URL for local testing vs live Render production
-            const API_BASE_URL = window.location.hostname === 'localhost' 
-                ? 'http://localhost:5000' 
-                : 'https://evermore-backend-y83h.onrender.com';
-
-            // Call Node.js backend endpoint on Render to initialize Kora Checkout
-            const response = await fetch(`${API_BASE_URL}/api/initialize-payment`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    email: userEmail,
-                    userId: userId,
-                    package: selectedPackage,
-                    amount: data.ngn
-                })
-            });
-
-            const result = await response.json();
-
-            if (!response.ok || !result.success) {
-                throw new Error(result.message || "Failed to initialize payment gateway.");
-            }
-
-            // Redirect user to Kora Hosted Checkout Page
-            if (result.checkoutUrl) {
-                window.location.href = result.checkoutUrl;
-            } else {
-                showInfo("Payment session initialized successfully. Redirecting...");
-            }
-
-        } catch (error) {
-
-            console.error("Payment error:", error);
-            showError(error.message || "Something went wrong connecting to the payment service.");
-
-            payButton.disabled = false;
-            payText.textContent = "Continue to Payment";
-            payIcon.style.display = "";
-            lucide.createIcons();
-
-        }
-
-    });
-
-
-    /* =========================================
-       INITIALIZE
-    ========================================== */
-
-    loadSignupPackage();
-
-</script>
-
+        loadSignupPackage();
+    </script>
 </body>
 </html>
