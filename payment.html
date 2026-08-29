@@ -8,10 +8,12 @@
 
     <meta name="description" content="Complete your Evermore access payment securely.">
 
+    <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
@@ -53,6 +55,17 @@
         button,
         input {
             font-family: inherit;
+        }
+
+        /* Helper classes for the custom logo snippet */
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .h-14 { height: 3.5rem; }
+        .w-auto { width: auto; }
+        .object-contain { object-fit: contain; }
+
+        @media (min-width: 640px) {
+            .sm\:h-16 { height: 4rem; }
         }
 
         /* =========================================
@@ -128,33 +141,6 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-        }
-
-        .brand {
-            display: inline-flex;
-            align-items: center;
-            gap: 13px;
-        }
-
-        .brand-logo {
-            height: 50px;
-            width: auto;
-            object-fit: contain;
-        }
-
-        .brand-name {
-            font-size: 21px;
-            font-weight: 900;
-            letter-spacing: 4px;
-            line-height: 1;
-        }
-
-        .brand-subtitle {
-            margin-top: 5px;
-            color: #9aa4b4;
-            font-size: 9px;
-            font-weight: 600;
-            letter-spacing: 3px;
         }
 
         .secure-header {
@@ -786,20 +772,6 @@
                 width: min(100% - 28px, 1180px);
             }
 
-            .brand-logo {
-                height: 42px;
-            }
-
-            .brand-name {
-                font-size: 18px;
-                letter-spacing: 3px;
-            }
-
-            .brand-subtitle {
-                font-size: 8px;
-                letter-spacing: 2.4px;
-            }
-
             .secure-header {
                 font-size: 10px;
             }
@@ -888,9 +860,11 @@
     <div class="page">
         <div class="glow-left"></div>
 
+        <!-- HEADER -->
         <header>
             <div class="header-inner">
-                <a href="index.html" class="brand">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center">
                     <img src="assets/evermore-logo.png" alt="Evermore Logo" class="h-14 sm:h-16 w-auto object-contain">
                 </a>
 
@@ -901,6 +875,7 @@
             </div>
         </header>
 
+        <!-- MAIN -->
         <main>
             <div class="top-label">
                 <span class="status"></span>
@@ -920,8 +895,10 @@
                 </p>
             </div>
 
+            <!-- PAYMENT AREA -->
             <div class="payment-layout">
 
+                <!-- PLAN SELECTION -->
                 <section class="card payment-card">
                     <div class="card-title">Access</div>
                     <h2 class="card-heading">Choose your plan</h2>
@@ -931,6 +908,7 @@
                     </p>
 
                     <div class="plans">
+                        <!-- CROWN PREMIUM -->
                         <div
                             class="plan selected"
                             id="premium-plan"
@@ -977,6 +955,7 @@
                             </div>
                         </div>
 
+                        <!-- TRIAL -->
                         <div
                             class="plan"
                             id="trial-plan"
@@ -1024,6 +1003,7 @@
                     </div>
                 </section>
 
+                <!-- ORDER SUMMARY -->
                 <aside class="card summary-card">
                     <div class="summary-title">Payment summary</div>
                     <div class="summary-subtitle">
@@ -1056,11 +1036,13 @@
                         </div>
                     </div>
 
+                    <!-- PAY BUTTON -->
                     <button type="button" class="pay-button" id="pay-button">
                         <span id="pay-text">Continue to Payment</span>
                         <i data-lucide="arrow-right" id="pay-icon"></i>
                     </button>
 
+                    <!-- SECURITY -->
                     <div class="security">
                         <div class="security-icon">
                             <i data-lucide="shield-check"></i>
@@ -1073,6 +1055,7 @@
                         </div>
                     </div>
 
+                    <!-- MESSAGE -->
                     <div class="message error" id="error-message">
                         <i data-lucide="alert-circle"></i>
                         <span id="error-text">Something went wrong. Please try again.</span>
@@ -1092,6 +1075,7 @@
             </div>
         </main>
 
+        <!-- FOOTER -->
         <footer>
             <div class="footer-inner">
                 <div class="footer-copy">
@@ -1107,6 +1091,7 @@
 
     </div>
 
+    <!-- JAVASCRIPT -->
     <script>
         lucide.createIcons();
 
