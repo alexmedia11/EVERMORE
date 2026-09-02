@@ -1,5 +1,10 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/homepage/index.html" }
+    { "source": "/", "destination": "/homepage/index.html" },
+    { "source": "/signup", "destination": "/signup.html" },
+    { "source": "/signin", "destination": "/signin.html" },
+    { "source": "/payment", "destination": "/payment.html" },
+    { "source": "/activation", "destination": "/activation.html" },
+    { "source": "/dashboard", "destination": "/dashboard.html" }
   ]
 }
