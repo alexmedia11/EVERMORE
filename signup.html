@@ -4,9 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Create Account | Evermore</title>
+    <!-- Primary SEO -->
+    <title>Create Account | Evermore — AI Training & Remote Opportunities</title>
+    <meta
+        name="description"
+        content="Create your Evermore account and access AI training tasks, digital skills learning, remote opportunities and intelligent tools through EverAI."
+    >
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Evermore Enterprise">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="format-detection" content="telephone=no">
 
-    <meta name="description" content="Create your Evermore account and access AI tools, digital skills, training tasks and qualified opportunities.">
+    <!-- Canonical -->
+    <link rel="canonical" href="https://www.evermoreonline.com.ng/signup">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Evermore">
+    <meta property="og:title" content="Create Your Evermore Account">
+    <meta
+        property="og:description"
+        content="Join Evermore to access AI training tasks, digital skills learning and remote opportunities."
+    >
+    <meta property="og:url" content="https://www.evermoreonline.com.ng/signup">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Create Your Evermore Account">
+    <meta
+        name="twitter:description"
+        content="Join Evermore to access AI training tasks, digital skills learning and remote opportunities."
+    >
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -29,23 +57,44 @@
                             700: '#1d3b9b'
                         }
                     },
+
                     fontFamily: {
                         sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif']
                     },
+
                     boxShadow: {
                         soft: '0 20px 60px rgba(15, 23, 42, 0.08)',
                         card: '0 10px 35px rgba(15, 23, 42, 0.06)'
                     }
                 }
             }
-        }
+        };
     </script>
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Create Account | Evermore",
+        "description": "Create an Evermore account and access AI training tasks, digital skills learning and remote opportunities.",
+        "url": "https://www.evermoreonline.com.ng/signup",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "Evermore",
+            "url": "https://www.evermoreonline.com.ng/"
+        }
+    }
+    </script>
 
     <style>
         * {
@@ -74,10 +123,18 @@
                 linear-gradient(rgba(49, 95, 219, 0.055) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(49, 95, 219, 0.055) 1px, transparent 1px);
             background-size: 42px 42px;
+
             mask-image: linear-gradient(
                 to bottom,
                 black 0%,
-                rgba(0,0,0,.95) 45%,
+                rgba(0, 0, 0, 0.95) 45%,
+                transparent 100%
+            );
+
+            -webkit-mask-image: linear-gradient(
+                to bottom,
+                black 0%,
+                rgba(0, 0, 0, 0.95) 45%,
                 transparent 100%
             );
         }
@@ -89,13 +146,17 @@
                 #4f46e5 55%,
                 #7c3aed 100%
             );
+
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
 
         .input-field {
-            transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease;
         }
 
         .input-field:focus {
@@ -107,13 +168,21 @@
 
         .primary-btn {
             background: #080b16;
-            transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease;
         }
 
         .primary-btn:hover {
             background: #131827;
             transform: translateY(-1px);
             box-shadow: 0 14px 30px rgba(8, 11, 22, 0.18);
+        }
+
+        .primary-btn:disabled {
+            transform: none;
+            box-shadow: none;
         }
 
         .check-icon {
@@ -127,71 +196,195 @@
             justify-content: center;
             flex-shrink: 0;
         }
+
+        input::placeholder {
+            opacity: 1;
+        }
+
+        select {
+            cursor: pointer;
+        }
     </style>
 </head>
 
 <body class="antialiased">
 
     <!-- Background Grid -->
-    <div class="grid-bg"></div>
+    <div class="grid-bg" aria-hidden="true"></div>
 
     <!-- ================= HEADER ================= -->
     <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-slate-200/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[76px] flex items-center justify-between">
-            <a href="index.html" class="flex items-center">
-                <img src="assets/evermore-logo.png" alt="Evermore Logo" class="h-14 sm:h-16 w-auto object-contain">
+
+            <a
+                href="/"
+                class="flex items-center"
+                aria-label="Evermore Home"
+            >
+                <img
+                    src="assets/evermore-logo.png"
+                    alt="Evermore"
+                    class="h-14 sm:h-16 w-auto object-contain"
+                    width="auto"
+                    height="64"
+                >
             </a>
-            
+
+        </div>
     </header>
-            
 
     <!-- ================= MAIN ================= -->
     <main class="relative py-12 sm:py-16 px-4 sm:px-6">
+
         <div class="max-w-3xl mx-auto">
+
+            <!-- Page Intro -->
             <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 shadow-card text-xs sm:text-sm font-semibold text-slate-600">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+
+                <div
+                    class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 shadow-card text-xs sm:text-sm font-semibold text-slate-600"
+                >
+                    <span
+                        class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"
+                        aria-hidden="true"
+                    ></span>
+
                     <span>Create your Evermore account</span>
                 </div>
+
                 <h1 class="mt-6 text-4xl sm:text-5xl font-extrabold tracking-tight leading-[1.05] text-slate-950">
-                    Start your Evermore <span class="gradient-text">journey.</span>
+                    Start your Evermore
+                    <span class="gradient-text">journey.</span>
                 </h1>
+
+                <p class="mt-5 text-sm sm:text-base leading-7 text-slate-500 max-w-xl mx-auto">
+                    Create your account to access Evermore's AI training,
+                    digital skills and remote opportunity ecosystem.
+                </p>
+
             </div>
 
             <!-- ================= FORM CARD ================= -->
             <div class="bg-white/95 backdrop-blur-xl rounded-[28px] sm:rounded-[32px] border border-slate-200 shadow-soft overflow-hidden">
-                <div class="h-1.5 bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600"></div>
+
+                <div
+                    class="h-1.5 bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600"
+                    aria-hidden="true"
+                ></div>
 
                 <div class="p-6 sm:p-10">
-                    <div id="success-alert" class="hidden mb-8 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-700">
+
+                    <!-- Success Alert -->
+                    <div
+                        id="success-alert"
+                        class="hidden mb-8 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-700"
+                        role="status"
+                        aria-live="polite"
+                    >
                         <div class="flex items-center gap-3">
-                            <div class="check-icon">
+
+                            <div class="check-icon" aria-hidden="true">
                                 <i data-lucide="check" class="w-4 h-4"></i>
                             </div>
+
                             <div>
-                                <div class="font-bold">Account created successfully.</div>
-                                <div class="text-xs mt-0.5">Redirecting you to sign in...</div>
+                                <div class="font-bold">
+                                    Account created successfully.
+                                </div>
+
+                                <div class="text-xs mt-0.5">
+                                    Redirecting you to sign in...
+                                </div>
                             </div>
+
                         </div>
                     </div>
 
-                    <form id="signup-form" onsubmit="handleSignup(event)" class="space-y-6">
+                    <!-- Signup Form -->
+                    <form
+                        id="signup-form"
+                        onsubmit="handleSignup(event)"
+                        class="space-y-6"
+                        novalidate
+                    >
+
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+
+                            <!-- Full Name -->
                             <div>
-                                <label for="fullname" class="block text-sm font-bold text-slate-700 mb-2">Full name</label>
-                                <input type="text" id="fullname" required autocomplete="name" placeholder="Enter your full name" class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400">
+                                <label
+                                    for="fullname"
+                                    class="block text-sm font-bold text-slate-700 mb-2"
+                                >
+                                    Full name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="fullname"
+                                    name="full_name"
+                                    required
+                                    autocomplete="name"
+                                    placeholder="Enter your full name"
+                                    class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400"
+                                >
                             </div>
+
+                            <!-- Email -->
                             <div>
-                                <label for="email" class="block text-sm font-bold text-slate-700 mb-2">Email address</label>
-                                <input type="email" id="email" required autocomplete="email" placeholder="name@example.com" class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400">
+                                <label
+                                    for="email"
+                                    class="block text-sm font-bold text-slate-700 mb-2"
+                                >
+                                    Email address
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    required
+                                    autocomplete="email"
+                                    placeholder="name@example.com"
+                                    class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400"
+                                >
                             </div>
+
+                            <!-- Phone -->
                             <div>
-                                <label for="phone" class="block text-sm font-bold text-slate-700 mb-2">Phone number</label>
-                                <input type="tel" id="phone" required autocomplete="tel" placeholder="+234 800 000 0000" class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400">
+                                <label
+                                    for="phone"
+                                    class="block text-sm font-bold text-slate-700 mb-2"
+                                >
+                                    Phone number
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    name="phone"
+                                    required
+                                    autocomplete="tel"
+                                    placeholder="+234 800 000 0000"
+                                    class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400"
+                                >
                             </div>
+
+                            <!-- Country -->
                             <div>
-                                <label for="country" class="block text-sm font-bold text-slate-700 mb-2">Country</label>
-                                <select id="country" class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900">
+                                <label
+                                    for="country"
+                                    class="block text-sm font-bold text-slate-700 mb-2"
+                                >
+                                    Country
+                                </label>
+
+                                <select
+                                    id="country"
+                                    name="country"
+                                    autocomplete="country-name"
+                                    class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900"
+                                >
                                     <option value="Nigeria">Nigeria</option>
                                     <option value="Ghana">Ghana</option>
                                     <option value="Kenya">Kenya</option>
@@ -199,46 +392,150 @@
                                     <option value="Other">Other</option>
                                 </select>
                             </div>
+
+                            <!-- Password -->
                             <div>
-                                <label for="password" class="block text-sm font-bold text-slate-700 mb-2">Password</label>
+                                <label
+                                    for="password"
+                                    class="block text-sm font-bold text-slate-700 mb-2"
+                                >
+                                    Password
+                                </label>
+
                                 <div class="relative">
-                                    <input type="password" id="password" required minlength="8" autocomplete="new-password" placeholder="Create a strong password" class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 pr-12 text-sm text-slate-900 placeholder:text-slate-400">
-                                    <button type="button" id="toggle-password" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 p-2" aria-label="Show password">
-                                        <i data-lucide="eye" class="w-5 h-5"></i>
+
+                                    <input
+                                        type="password"
+                                        id="password"
+                                        name="password"
+                                        required
+                                        minlength="8"
+                                        autocomplete="new-password"
+                                        placeholder="Create a strong password"
+                                        class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 pr-12 text-sm text-slate-900 placeholder:text-slate-400"
+                                    >
+
+                                    <button
+                                        type="button"
+                                        id="toggle-password"
+                                        class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 p-2"
+                                        aria-label="Show password"
+                                        aria-pressed="false"
+                                    >
+                                        <i
+                                            data-lucide="eye"
+                                            class="w-5 h-5"
+                                        ></i>
                                     </button>
+
                                 </div>
+
+                                <!-- Password Strength -->
                                 <div class="mt-2 flex items-center gap-2">
+
                                     <div class="h-1 flex-1 rounded-full bg-slate-100 overflow-hidden">
-                                        <div id="strength-bar" class="h-full w-0 rounded-full transition-all"></div>
+                                        <div
+                                            id="strength-bar"
+                                            class="h-full w-0 rounded-full transition-all"
+                                        ></div>
                                     </div>
-                                    <span id="strength-text" class="text-[11px] text-slate-400">8+ characters</span>
+
+                                    <span
+                                        id="strength-text"
+                                        class="text-[11px] text-slate-400"
+                                    >
+                                        8+ characters
+                                    </span>
+
                                 </div>
                             </div>
+
+                            <!-- Referral / Coupon -->
                             <div>
-                                <label for="coupon" class="block text-sm font-bold text-slate-700 mb-2">Referral / coupon code <span class="font-normal text-slate-400">(optional)</span></label>
-                                <input type="text" id="coupon" autocomplete="off" placeholder="Enter code if you have one" class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400">
+                                <label
+                                    for="coupon"
+                                    class="block text-sm font-bold text-slate-700 mb-2"
+                                >
+                                    Referral / coupon code
+                                    <span class="font-normal text-slate-400">
+                                        (optional)
+                                    </span>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="coupon"
+                                    name="coupon"
+                                    autocomplete="off"
+                                    placeholder="Enter code if you have one"
+                                    class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400"
+                                >
                             </div>
+
                         </div>
 
+                        <!-- Terms -->
                         <label class="flex items-start gap-3 cursor-pointer pt-2">
-                            <input id="terms" type="checkbox" required class="mt-1 w-4 h-4 rounded border-slate-300 text-brand-500 focus:ring-brand-500">
+
+                            <input
+                                id="terms"
+                                type="checkbox"
+                                required
+                                class="mt-1 w-4 h-4 rounded border-slate-300 text-brand-500 focus:ring-brand-500"
+                            >
+
                             <span class="text-xs sm:text-sm text-slate-500 leading-6">
-                                I agree to Evermore's <a href="#" class="font-bold text-slate-800 hover:text-brand-500">Terms of Service</a> and <a href="#" class="font-bold text-slate-800 hover:text-brand-500">Privacy Policy</a>.
+                                I agree to Evermore's
+                                <a
+                                    href="#"
+                                    class="font-bold text-slate-800 hover:text-brand-500"
+                                >
+                                    Terms of Service
+                                </a>
+                                and
+                                <a
+                                    href="#"
+                                    class="font-bold text-slate-800 hover:text-brand-500"
+                                >
+                                    Privacy Policy
+                                </a>.
                             </span>
+
                         </label>
 
-                        <button type="submit" id="submit-btn" class="primary-btn w-full rounded-2xl py-4 px-6 text-white font-bold text-base sm:text-lg flex items-center justify-center gap-3">
+                        <!-- Submit -->
+                        <button
+                            type="submit"
+                            id="submit-btn"
+                            class="primary-btn w-full rounded-2xl py-4 px-6 text-white font-bold text-base sm:text-lg flex items-center justify-center gap-3"
+                        >
                             <span>Create My Evermore Account</span>
-                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+
+                            <i
+                                data-lucide="arrow-right"
+                                class="w-5 h-5"
+                            ></i>
                         </button>
 
+                        <!-- Sign In -->
                         <p class="text-center text-sm text-slate-500">
-                            Already have an account? <a href="signin.html" class="font-bold text-slate-900 hover:text-brand-500 transition">Sign in</a>
+                            Already have an account?
+
+                            <a
+                                href="/signin"
+                                class="font-bold text-slate-900 hover:text-brand-500 transition"
+                            >
+                                Sign in
+                            </a>
                         </p>
+
                     </form>
+
                 </div>
             </div>
+
         </div>
+
     </main>
 
     <!-- ================= JAVASCRIPT ================= -->
@@ -250,50 +547,92 @@
         const strengthBar = document.getElementById('strength-bar');
         const strengthText = document.getElementById('strength-text');
 
+        /* ================= PASSWORD VISIBILITY ================= */
+
         togglePassword.addEventListener('click', () => {
             const isPassword = passwordInput.type === 'password';
+
             passwordInput.type = isPassword ? 'text' : 'password';
-            togglePassword.innerHTML = isPassword ? '<i data-lucide="eye-off" class="w-5 h-5"></i>' : '<i data-lucide="eye" class="w-5 h-5"></i>';
+
+            togglePassword.setAttribute(
+                'aria-label',
+                isPassword ? 'Hide password' : 'Show password'
+            );
+
+            togglePassword.setAttribute(
+                'aria-pressed',
+                isPassword ? 'true' : 'false'
+            );
+
+            togglePassword.innerHTML = isPassword
+                ? '<i data-lucide="eye-off" class="w-5 h-5"></i>'
+                : '<i data-lucide="eye" class="w-5 h-5"></i>';
+
             lucide.createIcons();
         });
 
+        /* ================= PASSWORD STRENGTH ================= */
+
         passwordInput.addEventListener('input', () => {
+
             const password = passwordInput.value;
+
             let score = 0;
+
             if (password.length >= 8) score++;
             if (/[A-Z]/.test(password)) score++;
             if (/[0-9]/.test(password)) score++;
             if (/[^A-Za-z0-9]/.test(password)) score++;
 
-            const widths = ['0%', '25%', '50%', '75%', '100%'];
+            const widths = [
+                '0%',
+                '25%',
+                '50%',
+                '75%',
+                '100%'
+            ];
+
             strengthBar.style.width = widths[score];
 
             if (score === 0) {
+
                 strengthText.textContent = '8+ characters';
                 strengthText.className = 'text-[11px] text-slate-400';
                 strengthBar.style.background = '#e2e8f0';
+
             } else if (score <= 1) {
+
                 strengthText.textContent = 'Weak';
                 strengthText.className = 'text-[11px] text-red-500';
                 strengthBar.style.background = '#ef4444';
+
             } else if (score === 2) {
+
                 strengthText.textContent = 'Fair';
                 strengthText.className = 'text-[11px] text-amber-500';
                 strengthBar.style.background = '#f59e0b';
+
             } else if (score === 3) {
+
                 strengthText.textContent = 'Good';
                 strengthText.className = 'text-[11px] text-blue-500';
                 strengthBar.style.background = '#315fdb';
+
             } else {
+
                 strengthText.textContent = 'Strong';
                 strengthText.className = 'text-[11px] text-emerald-500';
                 strengthBar.style.background = '#10b981';
             }
         });
 
+        /* ================= SIGNUP ================= */
+
         async function handleSignup(event) {
+
             event.preventDefault();
 
+            const form = document.getElementById('signup-form');
             const submitBtn = document.getElementById('submit-btn');
             const successAlert = document.getElementById('success-alert');
 
@@ -304,73 +643,159 @@
             const password = document.getElementById('password').value;
             const coupon = document.getElementById('coupon').value.trim();
 
-            if (password.length < 8) {
-                alert('Please create a password with at least 8 characters.');
+            /* Browser validation */
+            if (!form.checkValidity()) {
+                form.reportValidity();
                 return;
             }
 
+            /* Password validation */
+            if (password.length < 8) {
+
+                alert('Please create a password with at least 8 characters.');
+                passwordInput.focus();
+
+                return;
+            }
+
+            /* Disable button */
             submitBtn.disabled = true;
-            submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
+
+            submitBtn.classList.add(
+                'opacity-70',
+                'cursor-not-allowed'
+            );
+
             submitBtn.innerHTML = `
                 <span>Creating your account...</span>
-                <svg class="animate-spin w-5 h-5" viewBox="0 0 24 24" fill="none">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+
+                <svg
+                    class="animate-spin w-5 h-5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                >
+                    <circle
+                        class="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        stroke-width="4"
+                    ></circle>
+
+                    <path
+                        class="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                    ></path>
                 </svg>
             `;
 
             try {
-                const API_BASE_URL = window.location.hostname === 'localhost' 
-                    ? 'http://localhost:5000' 
-                    : 'https://evermore-backend-y83h.onrender.com';
 
-                const response = await fetch(`${API_BASE_URL}/api/signup`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        full_name: name,
-                        email: email,
-                        phone: phone,
-                        country: country,
-                        password: password,
-                        coupon: coupon
-                    })
-                });
+                /* ================= API CONFIG ================= */
 
-                const data = await response.json();
+                const API_BASE_URL =
+                    window.location.hostname === 'localhost'
+                        ? 'http://localhost:5000'
+                        : 'https://evermore-backend-y83h.onrender.com';
 
-                if (!response.ok) {
-                    throw new Error(data.message || 'Something went wrong during signup.');
+                /* ================= API REQUEST ================= */
+
+                const response = await fetch(
+                    `${API_BASE_URL}/api/signup`,
+                    {
+                        method: 'POST',
+
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+
+                        body: JSON.stringify({
+                            full_name: name,
+                            email: email,
+                            phone: phone,
+                            country: country,
+                            password: password,
+                            coupon: coupon
+                        })
+                    }
+                );
+
+                let data;
+
+                try {
+                    data = await response.json();
+                } catch {
+                    throw new Error(
+                        'The server returned an invalid response. Please try again.'
+                    );
                 }
 
-                localStorage.setItem('evermore_user', JSON.stringify({
-                    id: data.user?.id,
-                    name: data.user?.full_name || name,
-                    email: data.user?.email || email
-                }));
+                /* ================= API ERROR ================= */
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        data.message ||
+                        'Something went wrong during signup.'
+                    );
+                }
+
+                /* ================= SAVE USER ================= */
+
+                localStorage.setItem(
+                    'evermore_user',
+                    JSON.stringify({
+                        id: data.user?.id,
+                        name: data.user?.full_name || name,
+                        email: data.user?.email || email
+                    })
+                );
+
+                /* ================= SUCCESS ================= */
 
                 successAlert.classList.remove('hidden');
+
                 submitBtn.innerHTML = `
                     <span>Account Created</span>
                     <i data-lucide="check" class="w-5 h-5"></i>
                 `;
+
                 lucide.createIcons();
 
+                /* ================= REDIRECT ================= */
+
                 setTimeout(() => {
-                    window.location.href = 'signin.html';
+                    window.location.href = '/signin';
                 }, 1200);
 
             } catch (error) {
-                alert(error.message);
+
+                console.error('Signup error:', error);
+
+                alert(
+                    error?.message ||
+                    'Unable to create your account. Please try again.'
+                );
+
                 submitBtn.disabled = false;
-                submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+
+                submitBtn.classList.remove(
+                    'opacity-70',
+                    'cursor-not-allowed'
+                );
+
                 submitBtn.innerHTML = `
                     <span>Create My Evermore Account</span>
                     <i data-lucide="arrow-right" class="w-5 h-5"></i>
                 `;
+
                 lucide.createIcons();
             }
         }
     </script>
+
 </body>
 </html>
