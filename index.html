@@ -106,6 +106,11 @@
             --line: #e5ebf4;
             --success: #0b8f58;
 
+            --accent: #7c3aed;
+            --accent-dark: #6528d6;
+            --accent-soft: #f4efff;
+            --gradient-brand: linear-gradient(135deg, #0b63f6 0%, #7c3aed 100%);
+
             --shadow-sm: 0 8px 25px rgba(20, 50, 100, .06);
             --shadow-md: 0 20px 55px rgba(20, 50, 100, .10);
             --shadow-lg: 0 30px 90px rgba(15, 50, 110, .15);
@@ -244,12 +249,12 @@
 
         .btn-primary {
             color: #fff;
-            background: linear-gradient(135deg, #0b63f6, #1b77ff);
-            box-shadow: 0 14px 30px rgba(11, 99, 246, .22);
+            background: var(--gradient-brand);
+            box-shadow: 0 14px 30px rgba(76, 58, 220, .24);
         }
 
         .btn-primary:hover {
-            box-shadow: 0 18px 40px rgba(11, 99, 246, .29);
+            box-shadow: 0 18px 42px rgba(76, 58, 220, .32);
         }
 
         .btn-secondary {
@@ -327,7 +332,7 @@
 
         .brand img {
             width: 145px;
-            max-height: 48px;
+            max-height: 100px;
             object-fit: contain;
         }
 
@@ -449,7 +454,10 @@
         }
 
         .hero h1 .accent {
-            color: var(--primary);
+            background: var(--gradient-brand);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         .hero-description {
@@ -767,7 +775,7 @@
 
         .platform-card.featured {
             color: #fff;
-            background: linear-gradient(145deg, #0b63f6, #0a4dc4);
+            background: var(--gradient-brand);
             border-color: transparent;
         }
 
@@ -1571,8 +1579,24 @@
         }
 
         .price-card.featured {
+            overflow: hidden;
             border-color: #b9d3fa;
-            box-shadow: 0 22px 55px rgba(11,99,246,.12);
+            box-shadow: 0 22px 55px rgba(76,58,220,.16);
+        }
+
+        .price-card.featured::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gradient-brand);
+        }
+
+        .price-card.featured .price-badge {
+            color: #fff;
+            background: var(--gradient-brand);
         }
 
         .price-badge {
@@ -1650,6 +1674,28 @@
 
         .price-card .btn {
             width: 100%;
+        }
+
+        .payment-trust {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: fit-content;
+            margin: 0 auto 34px;
+            padding: 10px 16px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: #fff;
+            box-shadow: var(--shadow-sm);
+            color: #33445f;
+            font-size: .74rem;
+            font-weight: 800;
+        }
+
+        .payment-trust svg {
+            width: 16px;
+            color: var(--success);
         }
 
         .pricing-disclaimer {
@@ -1739,10 +1785,10 @@
             background:
                 radial-gradient(
                     circle at 90% 20%,
-                    rgba(70,148,255,.24),
+                    rgba(255,255,255,.16),
                     transparent 27%
                 ),
-                linear-gradient(135deg, #0a4bb6, #0b63f6);
+                var(--gradient-brand);
             color: #fff;
         }
 
@@ -2249,8 +2295,8 @@
                 <img
                     src="assets/evermore-logo.png"
                     alt="Evermore"
-                    width="145"
-                    height="48"
+                    width="149"
+                    height="100"
                 >
             </a>
 
@@ -2733,90 +2779,93 @@
         </section>
 
 
-        <div class="showcase-heading">
+        <section class="section" id="showcase" aria-labelledby="showcase-title">
+            <div class="container">
 
-        <div class="section-heading" data-reveal>
-            <span class="eyebrow">Inside Evermore</span>
+                <div class="showcase-heading">
 
-            <h2 id="showcase-title">
-                A closer look at the Evermore experience.
-            </h2>
+                    <div class="section-heading" data-reveal>
+                        <span class="eyebrow">Inside Evermore</span>
 
-            <p>
-                Explore Evermore through our platform visuals,
-                announcements and featured campaign graphics.
-            </p>
-        </div>
+                        <h2 id="showcase-title">
+                            A closer look at the Evermore experience.
+                        </h2>
 
-        <p class="showcase-note">
-            Explore selected visuals from the Evermore platform,
-            campaigns and community updates.
-        </p>
+                        <p>
+                            Explore Evermore through our platform visuals,
+                            announcements and featured campaign graphics.
+                        </p>
+                    </div>
 
-    </div>
+                    <p class="showcase-note">
+                        Explore selected visuals from the Evermore platform,
+                        campaigns and community updates.
+                    </p>
+
+                </div>
 
 
-    <div class="showcase-grid">
+                <div class="showcase-grid">
 
-        <!-- FEATURED COMPANY IMAGE -->
-        <article class="showcase-card large" data-reveal>
+                    <!-- FEATURED COMPANY IMAGE -->
+                    <article class="showcase-card large" data-reveal>
 
-            <img
-                class="showcase-image"
-                src="assets/company-image-1.jpg"
-                alt="Evermore platform experience"
-                loading="lazy"
-                decoding="async"
-            >
+                        <img
+                            class="showcase-image"
+                            src="assets/company-image-1.jpg"
+                            alt="Evermore platform experience"
+                            loading="lazy"
+                            decoding="async"
+                        >
 
-            <div class="showcase-overlay">
-                <strong>Evermore Experience</strong>
-                <span>Featured platform visual</span>
+                        <div class="showcase-overlay">
+                            <strong>Evermore Experience</strong>
+                            <span>Featured platform visual</span>
+                        </div>
+
+                    </article>
+
+
+                    <!-- COMPANY FLYER 1 -->
+                    <article class="showcase-card" data-reveal>
+
+                        <img
+                            class="showcase-image"
+                            src="assets/company-flyer-1.jpg"
+                            alt="Evermore promotional flyer"
+                            loading="lazy"
+                            decoding="async"
+                        >
+
+                        <div class="showcase-overlay">
+                            <strong>Evermore Update</strong>
+                            <span>Featured campaign graphic</span>
+                        </div>
+
+                    </article>
+
+
+                    <!-- COMPANY FLYER 2 -->
+                    <article class="showcase-card" data-reveal>
+
+                        <img
+                            class="showcase-image"
+                            src="assets/company-flyer-2.jpg"
+                            alt="Evermore campaign flyer"
+                            loading="lazy"
+                            decoding="async"
+                        >
+
+                        <div class="showcase-overlay">
+                            <strong>Evermore Campaign</strong>
+                            <span>Community &amp; platform update</span>
+                        </div>
+
+                    </article>
+
+                </div>
             </div>
-
-        </article>
-
-
-        <!-- COMPANY FLYER 1 -->
-        <article class="showcase-card" data-reveal>
-
-            <img
-                class="showcase-image"
-                src="assets/company-flyer-1.jpg"
-                alt="Evermore promotional flyer"
-                loading="lazy"
-                decoding="async"
-            >
-
-            <div class="showcase-overlay">
-                <strong>Evermore Update</strong>
-                <span>Featured campaign graphic</span>
-            </div>
-
-        </article>
-
-
-        <!-- COMPANY FLYER 2 -->
-        <article class="showcase-card" data-reveal>
-
-            <img
-                class="showcase-image"
-                src="assets/company-flyer-2.jpg"
-                alt="Evermore campaign flyer"
-                loading="lazy"
-                decoding="async"
-            >
-
-            <div class="showcase-overlay">
-                <strong>Evermore Campaign</strong>
-                <span>Community &amp; platform update</span>
-            </div>
-
-        </article>
-
-    </div>
-
-</div>
+        </section>
 
         <!-- =====================================================
              HOW IT WORKS
@@ -3233,6 +3282,11 @@
                     </p>
                 </div>
 
+                <div class="payment-trust">
+                    <i data-lucide="shield-check" aria-hidden="true"></i>
+                    Payments secured by Kora Pay
+                </div>
+
 
                 <div class="pricing-wrap">
 
@@ -3252,18 +3306,18 @@
 
                         <div class="price">
                             <strong>$10</strong>
-                            <span>/ 6 months</span>
+                            <span>/ 12 months</span>
                         </div>
 
                         <div class="price-alt">
-                            ₦13,992 • 6 months
+                            ₦14,000 • 12 months
                         </div>
 
                         <div class="price-features">
 
                             <div class="price-feature">
                                 <i data-lucide="check" aria-hidden="true"></i>
-                                6-month package duration
+                                12-month package duration
                             </div>
 
                             <div class="price-feature">
@@ -3307,7 +3361,7 @@
                         </div>
 
                         <div class="price-alt">
-                            ₦6,991 • 2 months
+                            ₦7,000 • 2 months
                         </div>
 
                         <div class="price-features">
@@ -3347,7 +3401,8 @@
                 <p class="pricing-disclaimer">
                     Pricing and access are subject to Evermore's applicable
                     package terms. Task availability and opportunity access
-                    may vary by user and activity.
+                    may vary by user and activity. All payments are processed
+                    securely through Kora Pay.
                 </p>
 
             </div>
@@ -3485,7 +3540,7 @@
                         <div class="faq-answer">
                             <div class="faq-answer-inner">
                                 <p>
-                                    Users can create an account through the
+                                    No, users cannot create an account for free. They can create an account through the
                                     existing Evermore registration flow. Some
                                     platform features may be subject to the
                                     applicable Evermore package or access terms.
@@ -3509,8 +3564,8 @@
                             <div class="faq-answer-inner">
                                 <p>
                                     Evermore currently lists Crown Premium
-                                    at $10 / ₦13,992 for 6 months and Trial
-                                    at $5 / ₦6,991 for 2 months. Access is
+                                    at $10 / ₦14,000 for 12 months and Trial
+                                    at $5 / ₦7,000 for 2 months. Access is
                                     subject to the applicable package terms.
                                 </p>
                             </div>
