@@ -55,7 +55,7 @@
             font-family: inherit;
         }
 
-        /* Helper classes for the custom logo snippet */
+        /* Helper classes for logo */
         .flex { display: flex; }
         .items-center { align-items: center; }
         .h-14 { height: 3.5rem; }
@@ -66,10 +66,7 @@
             .sm\:h-16 { height: 4rem; }
         }
 
-        /* =========================================
-           PAGE BACKGROUND
-        ========================================= */
-
+        /* PAGE BACKGROUND */
         .page {
             min-height: 100vh;
             position: relative;
@@ -116,10 +113,7 @@
             pointer-events: none;
         }
 
-        /* =========================================
-           HEADER
-        ========================================= */
-
+        /* HEADER */
         header {
             width: 100%;
             height: 88px;
@@ -135,7 +129,6 @@
             width: min(1180px, calc(100% - 40px));
             height: 100%;
             margin: 0 auto;
-
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -145,7 +138,6 @@
             display: flex;
             align-items: center;
             gap: 8px;
-
             color: #5c6677;
             font-size: 12px;
             font-weight: 600;
@@ -159,10 +151,7 @@
             box-shadow: 0 0 0 5px rgba(25, 183, 122, 0.12);
         }
 
-        /* =========================================
-           MAIN
-        ========================================= */
-
+        /* MAIN */
         main {
             width: min(1080px, calc(100% - 40px));
             margin: 0 auto;
@@ -172,22 +161,17 @@
         .top-label {
             width: fit-content;
             margin: 0 auto 22px;
-
             display: flex;
             align-items: center;
             gap: 9px;
-
             padding: 10px 16px;
             border: 1px solid rgba(37, 99, 235, 0.14);
             border-radius: 999px;
-
             background: rgba(255,255,255,.78);
-
             color: #536174;
             font-size: 12px;
             font-weight: 700;
             letter-spacing: .2px;
-
             box-shadow: 0 8px 25px rgba(31, 48, 82, 0.05);
         }
 
@@ -222,19 +206,14 @@
         .heading p {
             margin: 22px auto 0;
             max-width: 650px;
-
             color: #657083;
             font-size: 17px;
             line-height: 1.75;
         }
 
-        /* =========================================
-           PAYMENT LAYOUT
-        ========================================= */
-
+        /* PAYMENT LAYOUT */
         .payment-layout {
             margin-top: 48px;
-
             display: grid;
             grid-template-columns: minmax(0, 1.35fr) minmax(320px, .75fr);
             gap: 24px;
@@ -245,11 +224,9 @@
             background: rgba(255,255,255,.91);
             border: 1px solid rgba(219,225,235,.95);
             border-radius: 28px;
-
             box-shadow:
                 0 24px 70px rgba(19, 33, 61, 0.08),
                 0 3px 12px rgba(19, 33, 61, 0.035);
-
             overflow: hidden;
         }
 
@@ -280,10 +257,7 @@
             line-height: 1.7;
         }
 
-        /* =========================================
-           PLAN OPTIONS
-        ========================================= */
-
+        /* PLAN OPTIONS */
         .plans {
             margin-top: 28px;
             display: grid;
@@ -295,15 +269,9 @@
             border: 1.5px solid #e2e7ef;
             border-radius: 20px;
             padding: 22px;
-
             cursor: pointer;
-
             background: #ffffff;
-
-            transition:
-                border-color .25s ease,
-                box-shadow .25s ease,
-                transform .25s ease;
+            transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
         }
 
         .plan:hover {
@@ -319,7 +287,6 @@
                 rgba(25,183,122,.045),
                 rgba(37,99,235,.025)
             );
-
             box-shadow:
                 0 0 0 4px rgba(25,183,122,.07),
                 0 18px 40px rgba(25,183,122,.07);
@@ -342,11 +309,9 @@
             width: 48px;
             height: 48px;
             flex: 0 0 48px;
-
             display: flex;
             align-items: center;
             justify-content: center;
-
             border-radius: 15px;
             background: #eef4ff;
             color: var(--blue);
@@ -401,7 +366,6 @@
 
         .plan-price {
             margin-top: 22px;
-
             display: flex;
             align-items: baseline;
             gap: 8px;
@@ -436,7 +400,6 @@
             display: flex;
             align-items: center;
             gap: 10px;
-
             color: #596577;
             font-size: 13px;
         }
@@ -453,22 +416,16 @@
             position: absolute;
             top: 18px;
             right: 18px;
-
             padding: 6px 10px;
             border-radius: 999px;
-
             background: rgba(25,183,122,.09);
             color: var(--green-dark);
-
             font-size: 10px;
             font-weight: 800;
             letter-spacing: .4px;
         }
 
-        /* =========================================
-           CHECKOUT SUMMARY
-        ========================================= */
-
+        /* CHECKOUT SUMMARY */
         .summary-card {
             padding: 28px;
             position: sticky;
@@ -492,7 +449,6 @@
             margin-top: 26px;
             padding-bottom: 19px;
             border-bottom: 1px solid #edf0f5;
-
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -511,7 +467,6 @@
 
         .total {
             padding-top: 19px;
-
             display: flex;
             align-items: flex-end;
             justify-content: space-between;
@@ -547,44 +502,29 @@
             font-size: 11px;
         }
 
-        /* =========================================
-           PAY BUTTON
-        ========================================= */
-
+        /* PAY BUTTON */
         .pay-button {
             width: 100%;
             margin-top: 28px;
             min-height: 58px;
-
             border: 0;
             border-radius: 17px;
-
             background: #080b18;
             color: white;
-
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 11px;
-
             font-size: 15px;
             font-weight: 800;
-
             cursor: pointer;
-
-            box-shadow:
-                0 14px 30px rgba(8,11,24,.18);
-
-            transition:
-                transform .2s ease,
-                box-shadow .2s ease,
-                opacity .2s ease;
+            box-shadow: 0 14px 30px rgba(8,11,24,.18);
+            transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease;
         }
 
         .pay-button:hover {
             transform: translateY(-2px);
-            box-shadow:
-                0 18px 35px rgba(8,11,24,.25);
+            box-shadow: 0 18px 35px rgba(8,11,24,.25);
         }
 
         .pay-button:active {
@@ -602,19 +542,13 @@
             height: 20px;
         }
 
-        /* =========================================
-           SECURITY BOX
-        ========================================= */
-
+        /* SECURITY BOX */
         .security {
             margin-top: 18px;
-
             display: flex;
             align-items: flex-start;
             gap: 11px;
-
             padding: 15px;
-
             border-radius: 16px;
             background: #f7faf9;
             border: 1px solid #e0f0e9;
@@ -624,11 +558,9 @@
             width: 30px;
             height: 30px;
             flex: 0 0 30px;
-
             display: flex;
             align-items: center;
             justify-content: center;
-
             border-radius: 10px;
             background: rgba(25,183,122,.1);
             color: var(--green);
@@ -653,10 +585,7 @@
             line-height: 1.55;
         }
 
-        /* =========================================
-           STATUS / MESSAGES
-        ========================================= */
-
+        /* STATUS MESSAGES */
         .message {
             display: none;
             margin-top: 16px;
@@ -691,22 +620,16 @@
             margin-top: 1px;
         }
 
-        /* =========================================
-           BACK LINK
-        ========================================= */
-
+        /* BACK LINK */
         .back-link {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 7px;
-
             margin-top: 28px;
-
             color: #737e8e;
             font-size: 12px;
             font-weight: 700;
-
             transition: color .2s ease;
         }
 
@@ -719,10 +642,7 @@
             height: 15px;
         }
 
-        /* =========================================
-           FOOTER
-        ========================================= */
-
+        /* FOOTER */
         footer {
             border-top: 1px solid #edf0f5;
             background: rgba(255,255,255,.78);
@@ -732,7 +652,6 @@
             width: min(1180px, calc(100% - 40px));
             margin: 0 auto;
             padding: 26px 0;
-
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -756,99 +675,28 @@
             color: var(--blue);
         }
 
-        /* =========================================
-           RESPONSIVE
-        ========================================= */
-
         @media (max-width: 800px) {
-
-            header {
-                height: 78px;
-            }
-
-            .header-inner {
-                width: min(100% - 28px, 1180px);
-            }
-
-            .secure-header {
-                font-size: 10px;
-            }
-
-            main {
-                width: min(100% - 28px, 1080px);
-                padding-top: 45px;
-            }
-
-            .heading h1 {
-                letter-spacing: -2px;
-            }
-
-            .heading p {
-                font-size: 14px;
-                line-height: 1.65;
-            }
-
-            .payment-layout {
-                grid-template-columns: 1fr;
-                margin-top: 35px;
-            }
-
-            .summary-card {
-                position: static;
-            }
+            header { height: 78px; }
+            .header-inner { width: min(100% - 28px, 1180px); }
+            .secure-header { font-size: 10px; }
+            main { width: min(100% - 28px, 1080px); padding-top: 45px; }
+            .heading h1 { letter-spacing: -2px; }
+            .heading p { font-size: 14px; line-height: 1.65; }
+            .payment-layout { grid-template-columns: 1fr; margin-top: 35px; }
+            .summary-card { position: static; }
         }
 
         @media (max-width: 500px) {
-
-            .secure-header {
-                display: none;
-            }
-
-            .payment-card {
-                padding: 22px;
-            }
-
-            .summary-card {
-                padding: 22px;
-            }
-
-            .card {
-                border-radius: 23px;
-            }
-
-            .card-heading {
-                font-size: 25px;
-            }
-
-            .plan {
-                padding: 18px;
-                border-radius: 18px;
-            }
-
-            .plan-icon {
-                width: 43px;
-                height: 43px;
-                flex-basis: 43px;
-            }
-
-            .plan-name {
-                font-size: 15px;
-            }
-
-            .plan-price strong {
-                font-size: 36px;
-            }
-
-            .recommended {
-                top: 14px;
-                right: 14px;
-            }
-
-            .footer-inner {
-                width: calc(100% - 28px);
-                flex-direction: column;
-                text-align: center;
-            }
+            .secure-header { display: none; }
+            .payment-card, .summary-card { padding: 22px; }
+            .card { border-radius: 23px; }
+            .card-heading { font-size: 25px; }
+            .plan { padding: 18px; border-radius: 18px; }
+            .plan-icon { width: 43px; height: 43px; flex-basis: 43px; }
+            .plan-name { font-size: 15px; }
+            .plan-price strong { font-size: 36px; }
+            .recommended { top: 14px; right: 14px; }
+            .footer-inner { width: calc(100% - 28px); flex-direction: column; text-align: center; }
         }
     </style>
 </head>
@@ -926,7 +774,7 @@
 
                             <div class="plan-price">
                                 <strong>$10</strong>
-                                <span>/ 12 months</span>
+                                <span>/ 6 months</span>
                             </div>
 
                             <div class="plan-naira">₦14,000</div>
@@ -1021,7 +869,7 @@
                             <small>Payment amount</small>
                         </div>
                         <div class="total-amount">
-                            <strong id="summary-ngn">₦13,992</strong>
+                            <strong id="summary-ngn">₦14,000</strong>
                             <span id="summary-usd">$10 USD</span>
                         </div>
                     </div>
@@ -1078,11 +926,10 @@
     </div>
 
     <script>
-        // GUARD: Immediately redirect activated users to dashboard
+        // GUARD: Redirect already activated users to dashboard
         (function guardPaymentPage() {
             let isActivated = false;
 
-            // First check user object directly
             try {
                 const storedUser = localStorage.getItem("evermore_user") || localStorage.getItem("user") || sessionStorage.getItem("evermore_user");
                 if (storedUser) {
@@ -1091,6 +938,7 @@
                         user.activated === true || 
                         user.isActivated === true || 
                         user.accountStatus === 'active' || 
+                        user.account_status === 'active' || 
                         user.paymentStatus === 'completed' ||
                         user.status === 'active'
                     ) {
@@ -1101,7 +949,6 @@
                 console.warn("Could not parse user data for activation check.");
             }
 
-            // Fallback check on localStorage flag
             if (!isActivated && localStorage.getItem('evermore_activated') === 'true') {
                 isActivated = true;
             }
@@ -1134,7 +981,7 @@
         const packages = {
             premium: {
                 name: "Crown Premium",
-                duration: "12 months",
+                duration: "6 months",
                 usd: "$10",
                 ngn: 14000,
                 formattedNgn: "₦14,000"
@@ -1204,8 +1051,9 @@
                     return;
                 }
                 const user = JSON.parse(storedUser);
-                if (user.package === "premium" || user.package === "trial" || user.plan === "premium" || user.plan === "trial") {
-                    selectPackage(user.package || user.plan);
+                const planToSelect = user.package || user.plan;
+                if (planToSelect === "premium" || planToSelect === "trial") {
+                    selectPackage(planToSelect);
                 } else {
                     selectPackage("premium");
                 }
@@ -1272,7 +1120,7 @@
             payIcon.style.display = "none";
 
             try {
-                const API_BASE_URL = window.location.hostname === 'localhost' 
+                const API_BASE_URL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
                     ? 'http://localhost:5000' 
                     : 'https://evermore-backend-y83h.onrender.com';
 
