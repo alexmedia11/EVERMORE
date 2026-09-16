@@ -540,262 +540,169 @@
 
     <!-- ================= JAVASCRIPT ================= -->
     <script>
+    lucide.createIcons();
+
+    const passwordInput = document.getElementById('password');
+    const togglePassword = document.getElementById('toggle-password');
+    const strengthBar = document.getElementById('strength-bar');
+    const strengthText = document.getElementById('strength-text');
+
+    /* ================= PASSWORD VISIBILITY ================= */
+    togglePassword.addEventListener('click', () => {
+        const isPassword = passwordInput.type === 'password';
+        passwordInput.type = isPassword ? 'text' : 'password';
+
+        togglePassword.setAttribute('aria-label', isPassword ? 'Hide password' : 'Show password');
+        togglePassword.setAttribute('aria-pressed', isPassword ? 'true' : 'false');
+
+        togglePassword.innerHTML = isPassword
+            ? '<i data-lucide="eye-off" class="w-5 h-5"></i>'
+            : '<i data-lucide="eye" class="w-5 h-5"></i>';
+
         lucide.createIcons();
+    });
 
-        const passwordInput = document.getElementById('password');
-        const togglePassword = document.getElementById('toggle-password');
-        const strengthBar = document.getElementById('strength-bar');
-        const strengthText = document.getElementById('strength-text');
+    /* ================= PASSWORD STRENGTH ================= */
+    passwordInput.addEventListener('input', () => {
+        const password = passwordInput.value;
+        let score = 0;
 
-        /* ================= PASSWORD VISIBILITY ================= */
+        if (password.length >= 8) score++;
+        if (/[A-Z]/.test(password)) score++;
+        if (/[0-9]/.test(password)) score++;
+        if (/[^A-Za-z0-9]/.test(password)) score++;
 
-        togglePassword.addEventListener('click', () => {
-            const isPassword = passwordInput.type === 'password';
+        const widths = ['0%', '25%', '50%', '75%', '100%'];
+        strengthBar.style.width = widths[score];
 
-            passwordInput.type = isPassword ? 'text' : 'password';
+        if (score === 0) {
+            strengthText.textContent = '8+ characters';
+            strengthText.className = 'text-[11px] text-slate-400';
+            strengthBar.style.background = '#e2e8f0';
+        } else if (score <= 1) {
+            strengthText.textContent = 'Weak';
+            strengthText.className = 'text-[11px] text-red-500';
+            strengthBar.style.background = '#ef4444';
+        } else if (score === 2) {
+            strengthText.textContent = 'Fair';
+            strengthText.className = 'text-[11px] text-amber-500';
+            strengthBar.style.background = '#f59e0b';
+        } else if (score === 3) {
+            strengthText.textContent = 'Good';
+            strengthText.className = 'text-[11px] text-blue-500';
+            strengthBar.style.background = '#315fdb';
+        } else {
+            strengthText.textContent = 'Strong';
+            strengthText.className = 'text-[11px] text-emerald-500';
+            strengthBar.style.background = '#10b981';
+        }
+    });
 
-            togglePassword.setAttribute(
-                'aria-label',
-                isPassword ? 'Hide password' : 'Show password'
-            );
+    /* ================= SIGNUP ================= */
+    async function handleSignup(event) {
+        event.preventDefault();
 
-            togglePassword.setAttribute(
-                'aria-pressed',
-                isPassword ? 'true' : 'false'
-            );
+        const form = document.getElementById('signup-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const successAlert = document.getElementById('success-alert');
 
-            togglePassword.innerHTML = isPassword
-                ? '<i data-lucide="eye-off" class="w-5 h-5"></i>'
-                : '<i data-lucide="eye" class="w-5 h-5"></i>';
+        const name = document.getElementById('fullname').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const country = document.getElementById('country').value;
+        const password = document.getElementById('password').value;
+        const coupon = document.getElementById('coupon').value.trim();
 
-            lucide.createIcons();
-        });
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
 
-        /* ================= PASSWORD STRENGTH ================= */
+        if (password.length < 8) {
+            alert('Please create a password with at least 8 characters.');
+            document.getElementById('password').focus();
+            return;
+        }
 
-        passwordInput.addEventListener('input', () => {
+        submitBtn.disabled = true;
+        submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
 
-            const password = passwordInput.value;
+        submitBtn.innerHTML = `
+            <span>Creating your account...</span>
+            <svg class="animate-spin w-5 h-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+            </svg>
+        `;
 
-            let score = 0;
+        try {
+            const API_BASE_URL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+                ? 'http://localhost:5000'
+                : 'https://evermore-backend-y83h.onrender.com';
 
-            if (password.length >= 8) score++;
-            if (/[A-Z]/.test(password)) score++;
-            if (/[0-9]/.test(password)) score++;
-            if (/[^A-Za-z0-9]/.test(password)) score++;
+            const response = await fetch(`${API_BASE_URL}/api/signup`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    full_name: name,
+                    email: email,
+                    phone: phone,
+                    country: country,
+                    password: password,
+                    coupon: coupon
+                })
+            });
 
-            const widths = [
-                '0%',
-                '25%',
-                '50%',
-                '75%',
-                '100%'
-            ];
-
-            strengthBar.style.width = widths[score];
-
-            if (score === 0) {
-
-                strengthText.textContent = '8+ characters';
-                strengthText.className = 'text-[11px] text-slate-400';
-                strengthBar.style.background = '#e2e8f0';
-
-            } else if (score <= 1) {
-
-                strengthText.textContent = 'Weak';
-                strengthText.className = 'text-[11px] text-red-500';
-                strengthBar.style.background = '#ef4444';
-
-            } else if (score === 2) {
-
-                strengthText.textContent = 'Fair';
-                strengthText.className = 'text-[11px] text-amber-500';
-                strengthBar.style.background = '#f59e0b';
-
-            } else if (score === 3) {
-
-                strengthText.textContent = 'Good';
-                strengthText.className = 'text-[11px] text-blue-500';
-                strengthBar.style.background = '#315fdb';
-
-            } else {
-
-                strengthText.textContent = 'Strong';
-                strengthText.className = 'text-[11px] text-emerald-500';
-                strengthBar.style.background = '#10b981';
-            }
-        });
-
-        /* ================= SIGNUP ================= */
-
-        async function handleSignup(event) {
-
-            event.preventDefault();
-
-            const form = document.getElementById('signup-form');
-            const submitBtn = document.getElementById('submit-btn');
-            const successAlert = document.getElementById('success-alert');
-
-            const name = document.getElementById('fullname').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const country = document.getElementById('country').value;
-            const password = document.getElementById('password').value;
-            const coupon = document.getElementById('coupon').value.trim();
-
-            /* Browser validation */
-            if (!form.checkValidity()) {
-                form.reportValidity();
-                return;
+            let data;
+            try {
+                data = await response.json();
+            } catch {
+                throw new Error('The server returned an invalid response. Please try again.');
             }
 
-            /* Password validation */
-            if (password.length < 8) {
-
-                alert('Please create a password with at least 8 characters.');
-                passwordInput.focus();
-
-                return;
+            if (!response.ok) {
+                throw new Error(data.message || 'Something went wrong during signup.');
             }
 
-            /* Disable button */
-            submitBtn.disabled = true;
+            // Save full user object so dashboard reads name and status properly
+            const userToStore = data.user || {
+                full_name: name,
+                email: email,
+                phone: phone,
+                country: country,
+                account_status: 'pending',
+                subscription_status: 'inactive'
+            };
 
-            submitBtn.classList.add(
-                'opacity-70',
-                'cursor-not-allowed'
-            );
+            localStorage.setItem('evermore_user', JSON.stringify(userToStore));
+            localStorage.setItem('evermore_account_status', userToStore.account_status || 'pending');
+
+            successAlert.classList.remove('hidden');
 
             submitBtn.innerHTML = `
-                <span>Creating your account...</span>
-
-                <svg
-                    class="animate-spin w-5 h-5"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    aria-hidden="true"
-                >
-                    <circle
-                        class="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        stroke-width="4"
-                    ></circle>
-
-                    <path
-                        class="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-                    ></path>
-                </svg>
+                <span>Account Created</span>
+                <i data-lucide="check" class="w-5 h-5"></i>
             `;
+            lucide.createIcons();
 
-            try {
+            // Redirect to plan selection page
+            setTimeout(() => {
+                window.location.href = 'payment.html';
+            }, 1000);
 
-                /* ================= API CONFIG ================= */
+        } catch (error) {
+            console.error('Signup error:', error);
+            alert(error?.message || 'Unable to create your account. Please try again.');
 
-                const API_BASE_URL =
-                    window.location.hostname === 'localhost'
-                        ? 'http://localhost:5000'
-                        : 'https://evermore-backend-y83h.onrender.com';
-
-                /* ================= API REQUEST ================= */
-
-                const response = await fetch(
-                    `${API_BASE_URL}/api/signup`,
-                    {
-                        method: 'POST',
-
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-
-                        body: JSON.stringify({
-                            full_name: name,
-                            email: email,
-                            phone: phone,
-                            country: country,
-                            password: password,
-                            coupon: coupon
-                        })
-                    }
-                );
-
-                let data;
-
-                try {
-                    data = await response.json();
-                } catch {
-                    throw new Error(
-                        'The server returned an invalid response. Please try again.'
-                    );
-                }
-
-                /* ================= API ERROR ================= */
-
-                if (!response.ok) {
-
-                    throw new Error(
-                        data.message ||
-                        'Something went wrong during signup.'
-                    );
-                }
-
-                /* ================= SAVE USER ================= */
-
-                localStorage.setItem(
-                    'evermore_user',
-                    JSON.stringify({
-                        id: data.user?.id,
-                        name: data.user?.full_name || name,
-                        email: data.user?.email || email
-                    })
-                );
-
-                /* ================= SUCCESS ================= */
-
-                successAlert.classList.remove('hidden');
-
-                submitBtn.innerHTML = `
-                    <span>Account Created</span>
-                    <i data-lucide="check" class="w-5 h-5"></i>
-                `;
-
-                lucide.createIcons();
-
-                /* ================= REDIRECT ================= */
-
-                setTimeout(() => {
-                    window.location.href = '/signin';
-                }, 1200);
-
-            } catch (error) {
-
-                console.error('Signup error:', error);
-
-                alert(
-                    error?.message ||
-                    'Unable to create your account. Please try again.'
-                );
-
-                submitBtn.disabled = false;
-
-                submitBtn.classList.remove(
-                    'opacity-70',
-                    'cursor-not-allowed'
-                );
-
-                submitBtn.innerHTML = `
-                    <span>Create My Evermore Account</span>
-                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                `;
-
-                lucide.createIcons();
-            }
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+            submitBtn.innerHTML = `
+                <span>Create My Evermore Account</span>
+                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            `;
+            lucide.createIcons();
         }
-    </script>
-
+    }
+</script>
 </body>
 </html>

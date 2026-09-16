@@ -930,20 +930,35 @@
 
 <!-- JAVASCRIPT -->
 <script>
-    const EVERMORE_CONFIG = {
-        API_BASE_URL: '',
-        endpoints: {
-            user: null, tasks: null, transactions: null, notifications: null,
-            opportunities: null, academy: null, ai: null, fundWallet: null,
-            withdraw: null, profileUpdate: null
+    // 1. AUTH & ACTIVATION GUARD
+    (function guardDashboard() {
+        const storedUserStr = localStorage.getItem('evermore_user') || sessionStorage.getItem('evermore_user');
+        if (!storedUserStr) {
+            window.location.replace('signin.html');
+            return;
         }
+
+        try {
+            const user = JSON.parse(storedUserStr);
+            const isActive = user.account_status === 'active' || user.subscription_status === 'active' || localStorage.getItem('evermore_activated') === 'true';
+            if (!isActive) {
+                window.location.replace('payment.html');
+            }
+        } catch(e) {
+            window.location.replace('signin.html');
+        }
+    })();
+
+    const EVERMORE_CONFIG = {
+        API_BASE_URL: (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+            ? 'http://localhost:5000' 
+            : 'https://evermore-backend-y83h.onrender.com'
     };
 
     let currentUser = null;
     let inactivityTimer = null;
     let toastTimer = null;
     let aiMessages = [];
-    let aiBusy = false;
 
     function refreshIcons() {
         if (window.lucide) { lucide.createIcons(); }
@@ -956,16 +971,12 @@
         try { return JSON.parse(storedUserStr); } catch (error) { return null; }
     }
 
-    function getAuthToken() {
-        return localStorage.getItem('evermore_token') || sessionStorage.getItem('evermore_token') || '';
-    }
-
     function logoutUser() {
         clearTimeout(inactivityTimer);
         localStorage.removeItem('evermore_user');
         sessionStorage.removeItem('evermore_user');
-        localStorage.removeItem('evermore_token');
-        sessionStorage.removeItem('evermore_token');
+        localStorage.removeItem('evermore_activated');
+        localStorage.removeItem('evermore_account_status');
         window.location.href = 'signin.html';
     }
 
@@ -992,66 +1003,52 @@
         toastTimer = setTimeout(() => { toast.classList.remove('show'); }, 3000);
     }
 
-    function escapeHTML(str) {
-        return String(str).replace(/[&<>'"]/g, 
-            tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
-        );
+    function populateUserData(user) {
+        if (!user) return;
+        currentUser = user;
+
+        const fullName = user.full_name || 'Evermore Member';
+        const firstName = fullName.split(' ')[0];
+        const email = user.email || '—';
+        const planName = (user.plan === 'trial') ? 'Trial' : 'Crown Premium';
+        const initial = firstName.charAt(0).toUpperCase();
+
+        // Header & Hero
+        if (document.getElementById('top-name')) document.getElementById('top-name').textContent = fullName;
+        if (document.getElementById('welcome-name')) document.getElementById('welcome-name').textContent = firstName;
+        if (document.getElementById('avatar')) document.getElementById('avatar').textContent = initial;
+        if (document.getElementById('top-plan')) document.getElementById('top-plan').textContent = planName;
+        if (document.getElementById('hero-plan')) document.getElementById('hero-plan').textContent = planName;
+
+        // Profile Section
+        if (document.getElementById('profile-avatar-large')) document.getElementById('profile-avatar-large').textContent = initial;
+        if (document.getElementById('profile-name-large')) document.getElementById('profile-name-large').textContent = fullName;
+        if (document.getElementById('profile-email-large')) document.getElementById('profile-email-large').textContent = email;
+        if (document.getElementById('profile-name')) document.getElementById('profile-name').textContent = fullName;
+        if (document.getElementById('profile-email')) document.getElementById('profile-email').textContent = email;
+        if (document.getElementById('profile-plan')) document.getElementById('profile-plan').textContent = planName;
+        if (document.getElementById('membership-name')) document.getElementById('membership-name').textContent = planName;
+        if (document.getElementById('profile-plan-badge')) document.getElementById('profile-plan-badge').textContent = planName;
+
+        // Edit form inputs
+        if (document.getElementById('edit-full-name')) document.getElementById('edit-full-name').value = fullName;
     }
 
-    function clearAIConversation() {
-        aiMessages = [];
-        const conversation = document.getElementById('ai-conversation');
-        if (!conversation) return;
-        conversation.innerHTML = `
-            <div id="ai-empty" class="min-h-[220px] flex flex-col items-center justify-center text-center">
-                <div class="w-12 h-12 rounded-2xl gradient-bg flex items-center justify-center mb-4 shadow-lg shadow-blue-500/15">
-                    <i data-lucide="sparkles" class="w-6 h-6 text-white"></i>
-                </div>
-                <h3 class="text-sm font-extrabold">What can EverAI help you with?</h3>
-                <p class="text-xs text-slate-400 mt-2 max-w-sm leading-relaxed">Start a conversation or choose one of the suggested prompts.</p>
-            </div>`;
-        refreshIcons();
-        showToast('EverAI conversation cleared.');
+    async function syncBackendData(userId) {
+        if (!userId) return;
+        try {
+            const res = await fetch(`${EVERMORE_CONFIG.API_BASE_URL}/api/dashboard/${userId}`);
+            const data = await res.json();
+            if (data.success && data.user) {
+                localStorage.setItem('evermore_user', JSON.stringify(data.user));
+                populateUserData(data.user);
+            }
+        } catch(e) {
+            console.warn("Backend dashboard sync offline:", e);
+        }
     }
 
-    function useAIPrompt(prompt) {
-        const input = document.getElementById('ai-prompt');
-        if (!input) return;
-        input.value = prompt;
-        input.focus();
-    }
-
-    function handleAIComposerSubmit(event) {
-        event.preventDefault();
-        const input = document.getElementById('ai-prompt');
-        const prompt = input?.value.trim();
-        if (!prompt) return;
-        appendAIMessage('user', prompt);
-        input.value = '';
-        showToast('EverAI query sent.');
-    }
-
-    function appendAIMessage(role, content) {
-        const conversation = document.getElementById('ai-conversation');
-        if (!conversation) return;
-        const empty = document.getElementById('ai-empty');
-        if (empty) empty.remove();
-
-        const wrapper = document.createElement('div');
-        wrapper.className = 'ai-message flex gap-3 mb-4';
-        wrapper.innerHTML = `
-            <div class="w-8 h-8 rounded-lg ${role === 'user' ? 'bg-slate-900' : 'gradient-bg'} text-white flex items-center justify-center flex-shrink-0">
-                <i data-lucide="${role === 'user' ? 'user' : 'sparkles'}" class="w-4 h-4"></i>
-            </div>
-            <div class="max-w-[85%]">
-                <div class="text-[9px] font-bold uppercase tracking-wider text-slate-400 mb-1">${role === 'user' ? 'You' : 'EverAI'}</div>
-                <div class="rounded-2xl rounded-tl-md ${role === 'user' ? 'bg-slate-900 text-white' : 'bg-white border border-slate-200 text-slate-700'} px-4 py-3 text-xs leading-relaxed whitespace-pre-wrap">${escapeHTML(content)}</div>
-            </div>`;
-        conversation.appendChild(wrapper);
-        conversation.scrollTop = conversation.scrollHeight;
-        refreshIcons();
-    }
-
+    // Modal Helpers
     function openModal(id) {
         const modal = document.getElementById(id);
         if (!modal) return;
@@ -1102,17 +1099,12 @@
     function focusProfile() {
         document.getElementById('profile')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-    function refreshTasks() { showToast('Tasks refreshed.'); }
-    function refreshOpportunities() { showToast('Opportunities refreshed.'); }
-    function loadTransactions() { showToast('Transactions refreshed.'); }
 
-    // Init check user session on load
     window.addEventListener('DOMContentLoaded', () => {
         const user = getStoredUser();
         if (user) {
-            currentUser = user;
-            document.getElementById('top-name').textContent = user.full_name || 'Member';
-            document.getElementById('welcome-name').textContent = (user.full_name || 'Member').split(' ')[0];
+            populateUserData(user);
+            if (user.id) syncBackendData(user.id);
         }
     });
 </script>

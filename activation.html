@@ -462,183 +462,200 @@
 
     <!-- ACTIVATION SCRIPT -->
     <script>
-        const loadingState = document.getElementById('loading-state');
-        const successState = document.getElementById('success-state');
-        const waitingState = document.getElementById('waiting-state');
-        const errorState = document.getElementById('error-state');
+    const loadingState = document.getElementById('loading-state');
+    const successState = document.getElementById('success-state');
+    const waitingState = document.getElementById('waiting-state');
+    const errorState = document.getElementById('error-state');
 
-        const statusTitle = document.getElementById('status-title');
-        const statusDescription = document.getElementById('status-description');
-        const statusIcon = document.getElementById('status-icon');
-        const statusIconInner = document.getElementById('status-icon-inner');
+    const statusTitle = document.getElementById('status-title');
+    const statusDescription = document.getElementById('status-description');
+    const statusIcon = document.getElementById('status-icon');
+    const statusIconInner = document.getElementById('status-icon-inner');
 
-        const progressBar = document.getElementById('activation-progress');
-        const progressPercent = document.getElementById('progress-percent');
-        const progressLabel = document.getElementById('progress-label');
+    const progressBar = document.getElementById('activation-progress');
+    const progressPercent = document.getElementById('progress-percent');
+    const progressLabel = document.getElementById('progress-label');
 
-        const accountEmail = document.getElementById('account-email');
-        const accountPackage = document.getElementById('account-package');
+    const accountEmail = document.getElementById('account-email');
+    const accountPackage = document.getElementById('account-package');
 
-        function hideAllStates() {
-            loadingState.classList.add('hidden');
-            successState.classList.add('hidden');
-            waitingState.classList.add('hidden');
-            errorState.classList.add('hidden');
+    function hideAllStates() {
+        loadingState.classList.add('hidden');
+        successState.classList.add('hidden');
+        waitingState.classList.add('hidden');
+        errorState.classList.add('hidden');
+    }
+
+    function showStatus(title, description, icon, iconColorClass, iconBackgroundClass) {
+        statusTitle.textContent = title;
+        statusDescription.textContent = description;
+        statusIcon.className = `relative flex-shrink-0 w-12 h-12 rounded-2xl ${iconBackgroundClass} ${iconColorClass} flex items-center justify-center`;
+        statusIconInner.className = `fa-solid ${icon} text-xl`;
+    }
+
+    function updateProgress(percent, label) {
+        progressBar.style.width = percent + '%';
+        progressPercent.textContent = percent + '%';
+        progressLabel.textContent = label;
+    }
+
+    function getUser() {
+        try {
+            const user = localStorage.getItem('evermore_user') || localStorage.getItem('user') || sessionStorage.getItem('evermore_user');
+            return user ? JSON.parse(user) : null;
+        } catch (error) {
+            console.error('Unable to read Evermore account:', error);
+            return null;
+        }
+    }
+
+    function activateAccount(planKey) {
+        const user = getUser();
+        localStorage.setItem('evermore_account_status', 'active');
+        localStorage.setItem('evermore_payment_status', 'paid');
+        localStorage.setItem('evermore_activated', 'true');
+
+        if (user) {
+            const updatedUser = {
+                ...user,
+                account_status: 'active',
+                subscription_status: 'active',
+                plan: planKey || user.plan || 'premium'
+            };
+            localStorage.setItem('evermore_user', JSON.stringify(updatedUser));
+        }
+    }
+
+    function showSuccess(planKey) {
+        const user = getUser();
+        const displayPlan = planKey || (user ? user.plan : 'premium');
+        
+        if (user) {
+            accountEmail.textContent = user.email || 'Account';
+            accountPackage.textContent = (displayPlan === 'trial') ? 'Trial' : 'Crown Premium';
+        } else {
+            accountEmail.textContent = 'Evermore Account';
+            accountPackage.textContent = 'Crown Premium';
         }
 
-        function showStatus(title, description, icon, iconColorClass, iconBackgroundClass) {
-            statusTitle.textContent = title;
-            statusDescription.textContent = description;
-            statusIcon.className = `relative flex-shrink-0 w-12 h-12 rounded-2xl ${iconBackgroundClass} ${iconColorClass} flex items-center justify-center`;
-            statusIconInner.className = `fa-solid ${icon} text-xl`;
-        }
+        hideAllStates();
+        successState.classList.remove('hidden');
 
-        function updateProgress(percent, label) {
-            progressBar.style.width = percent + '%';
-            progressPercent.textContent = percent + '%';
-            progressLabel.textContent = label;
-        }
+        showStatus(
+            'Account activated successfully',
+            'Your payment has been confirmed and your Evermore access is ready.',
+            'fa-circle-check',
+            'text-emerald-600',
+            'bg-emerald-50'
+        );
 
-        function getUser() {
-            try {
-                const user = localStorage.getItem('evermore_user') || localStorage.getItem('user');
-                return user ? JSON.parse(user) : null;
-            } catch (error) {
-                console.error('Unable to read Evermore account:', error);
-                return null;
-            }
-        }
-
-        function activateAccount() {
-            const user = getUser();
-            localStorage.setItem('evermore_account_status', 'active');
-            localStorage.setItem('evermore_payment_status', 'paid');
-
-            if (user) {
-                const updatedUser = {
-                    ...user,
-                    activated: true,
-                    accountStatus: 'active',
-                    activatedAt: new Date().toISOString()
-                };
-                localStorage.setItem('evermore_user', JSON.stringify(updatedUser));
-            }
-        }
-
-        function showSuccess() {
-            const user = getUser();
-            if (user) {
-                accountEmail.textContent = user.email || 'Account';
-                accountPackage.textContent = (user.package === 'premium' || user.plan === 'premium') ? 'Crown Premium' : 'Trial';
-            } else {
-                accountEmail.textContent = 'Evermore Account';
-                accountPackage.textContent = 'Selected Package';
-            }
-
-            hideAllStates();
-            successState.classList.remove('hidden');
-
-            showStatus(
-                'Account activated successfully',
-                'Your payment has been confirmed and your Evermore access is ready.',
-                'fa-circle-check',
-                'text-emerald-600',
-                'bg-emerald-50'
-            );
-
-            const activationStep = document.getElementById('progress-activation');
+        const activationStep = document.getElementById('progress-activation');
+        if (activationStep) {
             activationStep.className = 'w-9 h-9 rounded-full bg-emerald-600 text-white flex items-center justify-center text-sm font-bold';
             activationStep.innerHTML = '<i class="fa-solid fa-check"></i>';
         }
+    }
 
-        function showWaiting() {
-            hideAllStates();
-            waitingState.classList.remove('hidden');
-            showStatus(
-                'Payment confirmation pending',
-                'Your payment has not been confirmed yet. If you just paid, please give the gateway a moment.',
-                'fa-clock',
-                'text-amber-600',
-                'bg-amber-50'
-            );
+    function showWaiting() {
+        hideAllStates();
+        waitingState.classList.remove('hidden');
+        showStatus(
+            'Payment confirmation pending',
+            'Your payment has not been confirmed yet. If you just paid, please give the gateway a moment.',
+            'fa-clock',
+            'text-amber-600',
+            'bg-amber-50'
+        );
+    }
+
+    function showError() {
+        hideAllStates();
+        errorState.classList.remove('hidden');
+        showStatus(
+            'Activation could not be completed',
+            'We could not confirm your account status at this time.',
+            'fa-circle-exclamation',
+            'text-red-600',
+            'bg-red-50'
+        );
+    }
+
+    async function verifyPaymentBackend(reference) {
+        const API_BASE_URL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') 
+            ? 'http://localhost:5000' 
+            : 'https://evermore-backend-y83h.onrender.com';
+
+        try {
+            // FIXED ENDPOINT TO MATCH server.js ROUTE: /api/payment/verify/:reference
+            const res = await fetch(`${API_BASE_URL}/api/payment/verify/${encodeURIComponent(reference)}`);
+            const data = await res.json();
+            
+            if (data.success && data.paid) {
+                return { verified: true, plan: data.plan };
+            }
+            return { verified: false, plan: null };
+        } catch (err) {
+            console.error("Verification backend error:", err);
+            return { verified: false, plan: null };
         }
+    }
 
-        function showError() {
-            hideAllStates();
-            errorState.classList.remove('hidden');
-            showStatus(
-                'Activation could not be completed',
-                'We could not confirm your account status at this time.',
-                'fa-circle-exclamation',
-                'text-red-600',
-                'bg-red-50'
-            );
-        }
+    async function checkActivation() {
+        hideAllStates();
+        loadingState.classList.remove('hidden');
 
-        async function verifyPaymentBackend(reference) {
-            const API_BASE_URL = window.location.hostname === 'localhost' 
-                ? 'http://localhost:5000' 
-                : 'https://evermore-backend-y83h.onrender.com';
+        showStatus(
+            'Verifying your activation',
+            "We're checking your payment and account status.",
+            'fa-shield-halved',
+            'text-blue-600',
+            'bg-blue-50'
+        );
 
-            try {
-                const res = await fetch(`${API_BASE_URL}/api/verify-payment?reference=${encodeURIComponent(reference)}`);
-                const data = await res.json();
-                return data.success || data.status === 'success';
-            } catch (err) {
-                console.error("Verification backend error:", err);
-                return false;
+        updateProgress(20, 'Checking gateway reference');
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const reference = urlParams.get('reference') || urlParams.get('trxref');
+
+        updateProgress(50, 'Confirming transaction');
+
+        let verificationResult = { verified: false, plan: null };
+
+        if (reference) {
+            verificationResult = await verifyPaymentBackend(reference);
+        } else {
+            // Check if database already has user as active via session lookup
+            const user = getUser();
+            if (user && user.id) {
+                const API_BASE_URL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+                    ? 'http://localhost:5000' 
+                    : 'https://evermore-backend-y83h.onrender.com';
+                try {
+                    const dashRes = await fetch(`${API_BASE_URL}/api/dashboard/${user.id}`);
+                    const dashData = await dashRes.json();
+                    if (dashData.success && dashData.user && dashData.user.account_status === 'active') {
+                        verificationResult = { verified: true, plan: dashData.user.plan };
+                    }
+                } catch(e) {}
             }
         }
 
-        async function checkActivation() {
-            hideAllStates();
-            loadingState.classList.remove('hidden');
+        updateProgress(80, 'Finalizing activation');
 
-            showStatus(
-                'Verifying your activation',
-                "We're checking your payment and account status.",
-                'fa-shield-halved',
-                'text-blue-600',
-                'bg-blue-50'
-            );
-
-            updateProgress(20, 'Checking gateway reference');
-
-            const urlParams = new URLSearchParams(window.location.search);
-            const reference = urlParams.get('reference') || urlParams.get('trxref');
-            const localPaymentStatus = localStorage.getItem('evermore_payment_status');
-
-            setTimeout(() => { updateProgress(50, 'Confirming transaction'); }, 600);
-            setTimeout(() => { updateProgress(80, 'Finalizing activation'); }, 1200);
-
-            let isVerified = false;
-
-            if (reference) {
-                isVerified = await verifyPaymentBackend(reference);
-            } else if (localPaymentStatus === 'paid' || localPaymentStatus === 'success') {
-                isVerified = true;
+        setTimeout(() => {
+            if (verificationResult.verified) {
+                updateProgress(100, 'Account activated');
+                activateAccount(verificationResult.plan);
+                setTimeout(() => { showSuccess(verificationResult.plan); }, 300);
+            } else {
+                showWaiting();
             }
+        }, 1000);
+    }
 
-            setTimeout(() => {
-                const user = getUser();
-                if (!user && !isVerified) {
-                    showError();
-                    return;
-                }
-
-                if (isVerified) {
-                    updateProgress(100, 'Account activated');
-                    activateAccount();
-                    setTimeout(() => { showSuccess(); }, 400);
-                } else {
-                    showWaiting();
-                }
-            }, 1800);
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            checkActivation();
-        });
-    </script>
+    document.addEventListener('DOMContentLoaded', () => {
+        checkActivation();
+    });
+</script>
 </body>
 </html>
