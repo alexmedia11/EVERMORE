@@ -52,13 +52,13 @@
     >
     <meta name="twitter:image:alt" content="Evermore">
 
-    <meta name="theme-color" content="#0b63f6">
+    <meta name="theme-color" content="#00c88d">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap"
         rel="stylesheet"
     >
 
@@ -94,26 +94,27 @@
 
     <style>
         :root {
-            --primary: #0b63f6;
-            --primary-dark: #0747b8;
-            --primary-soft: #edf5ff;
-            --navy: #081a38;
-            --ink: #0b172a;
+            --primary: #00c88d;
+            --primary-dark: #00996b;
+            --primary-soft: #e6fcf5;
+            --cyan-accent: #06b6d4;
+            --navy: #07152b;
+            --navy-card: #0d1f3d;
+            --ink: #0a1628;
             --muted: #64748b;
             --light-text: #8a98ad;
             --white: #ffffff;
-            --surface: #f7faff;
-            --line: #e5ebf4;
-            --success: #0b8f58;
+            --surface: #f4f9f8;
+            --line: #e2ece9;
+            --success: #00c88d;
 
-            --accent: #7c3aed;
-            --accent-dark: #6528d6;
-            --accent-soft: #f4efff;
-            --gradient-brand: linear-gradient(135deg, #0b63f6 0%, #7c3aed 100%);
+            --gradient-flyer-headline: linear-gradient(135deg, #00e699 0%, #00b37e 60%, #06b6d4 100%);
+            --gradient-brand: linear-gradient(135deg, #00c88d 0%, #06b6d4 100%);
+            --gradient-cta-amber: linear-gradient(180deg, #d97706 0%, #b45309 100%);
 
-            --shadow-sm: 0 8px 25px rgba(20, 50, 100, .06);
-            --shadow-md: 0 20px 55px rgba(20, 50, 100, .10);
-            --shadow-lg: 0 30px 90px rgba(15, 50, 110, .15);
+            --shadow-sm: 0 8px 25px rgba(0, 50, 40, .06);
+            --shadow-md: 0 20px 55px rgba(0, 50, 40, .10);
+            --shadow-lg: 0 30px 90px rgba(7, 21, 43, .20);
 
             --radius-sm: 12px;
             --radius-md: 18px;
@@ -135,7 +136,7 @@
         }
 
         body {
-            font-family: "Manrope", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-family: "Plus Jakarta Sans", "Manrope", system-ui, -apple-system, sans-serif;
             color: var(--ink);
             background: var(--white);
             line-height: 1.65;
@@ -150,6 +151,7 @@
         img {
             display: block;
             max-width: 100%;
+            height: auto;
         }
 
         a {
@@ -180,8 +182,8 @@
             background:
                 radial-gradient(
                     circle at 10% 10%,
-                    rgba(11, 99, 246, .055),
-                    transparent 30%
+                    rgba(0, 200, 141, .06),
+                    transparent 35%
                 ),
                 var(--surface);
         }
@@ -216,6 +218,7 @@
             line-height: 1.08;
             letter-spacing: -.045em;
             margin-bottom: 17px;
+            font-weight: 900;
         }
 
         .section-heading p {
@@ -225,22 +228,18 @@
         }
 
         .btn {
-            min-height: 50px;
-            padding: 0 20px;
+            min-height: 52px;
+            padding: 0 24px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 9px;
-            border-radius: 13px;
+            border-radius: 99px;
             border: 1px solid transparent;
             font-size: .88rem;
             font-weight: 800;
             cursor: pointer;
-            transition:
-                transform .22s ease,
-                box-shadow .22s ease,
-                background .22s ease,
-                border-color .22s ease;
+            transition: transform .22s ease, box-shadow .22s ease, background .22s ease, border-color .22s ease;
         }
 
         .btn:hover {
@@ -250,11 +249,22 @@
         .btn-primary {
             color: #fff;
             background: var(--gradient-brand);
-            box-shadow: 0 14px 30px rgba(76, 58, 220, .24);
+            box-shadow: 0 14px 30px rgba(0, 200, 141, .28);
         }
 
         .btn-primary:hover {
-            box-shadow: 0 18px 42px rgba(76, 58, 220, .32);
+            box-shadow: 0 18px 42px rgba(0, 200, 141, .38);
+        }
+
+        .btn-amber-glow {
+            color: #ffffff;
+            background: var(--gradient-cta-amber);
+            border: 2px solid #f59e0b;
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-amber-glow:hover {
+            box-shadow: 0 0 35px rgba(245, 158, 11, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.5);
         }
 
         .btn-secondary {
@@ -265,18 +275,13 @@
         }
 
         .btn-secondary:hover {
-            border-color: #c9d7ea;
-        }
-
-        .btn-dark {
-            color: #fff;
-            background: var(--navy);
+            border-color: #b2ded2;
         }
 
         .btn-small {
             min-height: 43px;
-            padding-inline: 15px;
-            border-radius: 11px;
+            padding-inline: 18px;
+            border-radius: 99px;
             font-size: .79rem;
         }
 
@@ -311,8 +316,8 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            background: rgba(255, 255, 255, .90);
-            border-bottom: 1px solid rgba(229, 235, 244, .8);
+            background: rgba(255, 255, 255, .92);
+            border-bottom: 1px solid rgba(226, 236, 233, .8);
             backdrop-filter: blur(18px);
             -webkit-backdrop-filter: blur(18px);
         }
@@ -344,9 +349,11 @@
         }
 
         .nav-link {
-            color: #52627b;
+            color: #475569;
             font-size: .79rem;
-            font-weight: 700;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .05em;
             transition: color .2s ease;
         }
 
@@ -357,7 +364,7 @@
         .nav-actions {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
         }
 
         .nav-signin {
@@ -394,26 +401,46 @@
 
         .hero {
             position: relative;
-            padding: 82px 0 105px;
+            padding: 85px 0 110px;
             overflow: hidden;
             background:
-                radial-gradient(
-                    circle at 76% 18%,
-                    rgba(39, 123, 255, .13),
-                    transparent 30%
-                ),
-                radial-gradient(
-                    circle at 12% 70%,
-                    rgba(11, 99, 246, .055),
-                    transparent 27%
-                ),
-                #fff;
+                radial-gradient(circle at 80% 25%, rgba(0, 200, 141, 0.18) 0%, transparent 45%),
+                radial-gradient(circle at 15% 75%, rgba(6, 182, 212, 0.12) 0%, transparent 40%),
+                linear-gradient(180deg, #f0fdfa 0%, #ffffff 100%);
+        }
+
+        .hero-radar-lines {
+            position: absolute;
+            top: 50%;
+            right: -100px;
+            transform: translateY(-50%);
+            width: 650px;
+            height: 650px;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 200, 141, 0.2);
+            pointer-events: none;
+        }
+
+        .hero-radar-lines::before {
+            content: '';
+            position: absolute;
+            inset: 80px;
+            border-radius: 50%;
+            border: 1px dashed rgba(6, 182, 212, 0.25);
+        }
+
+        .hero-radar-lines::after {
+            content: '';
+            position: absolute;
+            inset: 160px;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 200, 141, 0.3);
         }
 
         .hero-grid {
             display: grid;
-            grid-template-columns: 1.03fr .97fr;
-            gap: 70px;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 60px;
             align-items: center;
         }
 
@@ -427,14 +454,16 @@
             display: inline-flex;
             align-items: center;
             gap: 9px;
-            padding: 8px 12px;
+            padding: 8px 16px;
             margin-bottom: 25px;
-            border: 1px solid #dce9fb;
+            border: 1px solid #bbf7d0;
             border-radius: 999px;
-            color: #315d99;
-            background: rgba(244, 249, 255, .85);
+            color: #047857;
+            background: rgba(236, 253, 245, .9);
             font-size: .72rem;
             font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .08em;
         }
 
         .hero-badge span {
@@ -442,37 +471,70 @@
             height: 7px;
             border-radius: 50%;
             background: var(--primary);
-            box-shadow: 0 0 0 5px rgba(11, 99, 246, .10);
+            box-shadow: 0 0 0 5px rgba(0, 200, 141, .2);
         }
 
-        .hero h1 {
-            max-width: 690px;
-            font-size: clamp(3rem, 6vw, 5.5rem);
-            line-height: .98;
-            letter-spacing: -.065em;
-            margin-bottom: 25px;
-        }
-
-        .hero h1 .accent {
-            background: var(--gradient-brand);
+        .hero h1.flyer-title {
+            font-size: clamp(3.2rem, 6.5vw, 5.8rem);
+            line-height: .95;
+            letter-spacing: -.05em;
+            margin-bottom: 20px;
+            font-weight: 900;
+            background: var(--gradient-flyer-headline);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
 
-        .hero-description {
-            max-width: 610px;
-            color: var(--muted);
-            font-size: 1.04rem;
-            line-height: 1.8;
-            margin-bottom: 31px;
+        .hero-subheadline {
+            font-size: clamp(1.35rem, 2.5vw, 2.1rem);
+            font-weight: 800;
+            line-height: 1.25;
+            color: #0f172a;
+            margin-bottom: 25px;
+            letter-spacing: -.03em;
+        }
+
+        .hero-subheadline .rate-tag {
+            color: var(--primary);
+            font-weight: 900;
+        }
+
+        .hero-bullet-box {
+            position: relative;
+            padding: 22px 26px;
+            margin-bottom: 32px;
+            border-radius: 24px;
+            background: rgba(11, 25, 44, 0.92);
+            color: #fff;
+            box-shadow: 0 20px 45px rgba(11, 25, 44, 0.2);
+            border: 1px solid rgba(0, 200, 141, 0.3);
+        }
+
+        .hero-bullet-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: .95rem;
+            font-weight: 600;
+            color: #e2e8f0;
+        }
+
+        .hero-bullet-item + .hero-bullet-item {
+            margin-top: 12px;
+        }
+
+        .hero-bullet-item svg {
+            color: var(--primary);
+            flex-shrink: 0;
+            margin-top: 3px;
         }
 
         .hero-actions {
             display: flex;
             flex-wrap: wrap;
-            gap: 11px;
-            margin-bottom: 30px;
+            gap: 14px;
+            margin-bottom: 25px;
         }
 
         .hero-note {
@@ -491,52 +553,38 @@
 
         .hero-visual {
             position: relative;
-            min-height: 530px;
-        }
-
-        .hero-orb {
-            position: absolute;
-            inset: 35px 15px 30px 15px;
-            border-radius: 42px;
-            background:
-                radial-gradient(
-                    circle at 30% 25%,
-                    rgba(255,255,255,.95),
-                    transparent 25%
-                ),
-                linear-gradient(
-                    145deg,
-                    #eaf3ff,
-                    #f8fbff 52%,
-                    #e8f2ff
-                );
-            border: 1px solid #dce9f8;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .hero-grid-lines {
-            position: absolute;
-            inset: 0;
-            opacity: .35;
-            background-image:
-                linear-gradient(rgba(11, 99, 246, .07) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(11, 99, 246, .07) 1px, transparent 1px);
-            background-size: 35px 35px;
-            border-radius: 42px;
         }
 
         .hero-dashboard {
-            position: absolute;
+            position: relative;
             z-index: 3;
-            top: 77px;
-            left: 38px;
-            right: 38px;
-            padding: 19px;
-            border: 1px solid rgba(255,255,255,.85);
-            border-radius: 25px;
-            background: rgba(255,255,255,.90);
-            box-shadow: 0 30px 70px rgba(23, 68, 130, .17);
+            padding: 24px;
+            border: 1px solid rgba(0, 200, 141, .25);
+            border-radius: 30px;
+            background: rgba(255, 255, 255, .95);
+            box-shadow: var(--shadow-lg);
             backdrop-filter: blur(18px);
+        }
+
+        .hero-dashboard-img-wrap {
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #e2ece9;
+            margin-bottom: 15px;
+            background: #0f172a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Ensures full uncropped display of hero image */
+        .hero-dashboard-img-wrap img {
+            width: 100%;
+            height: auto;
+            max-height: 480px;
+            object-fit: contain;
+            display: block;
         }
 
         .dash-top {
@@ -545,6 +593,7 @@
             justify-content: space-between;
             padding-bottom: 17px;
             border-bottom: 1px solid var(--line);
+            margin-bottom: 15px;
         }
 
         .dash-brand {
@@ -552,138 +601,70 @@
             align-items: center;
             gap: 9px;
             color: var(--navy);
-            font-size: .78rem;
-            font-weight: 800;
+            font-size: .85rem;
+            font-weight: 900;
         }
 
         .dash-brand-dot {
-            width: 28px;
-            height: 28px;
+            width: 32px;
+            height: 32px;
             display: grid;
             place-items: center;
-            border-radius: 9px;
+            border-radius: 10px;
             color: #fff;
             background: var(--primary);
-        }
-
-        .dash-brand-dot svg {
-            width: 15px;
         }
 
         .dash-status {
             display: flex;
             align-items: center;
             gap: 6px;
-            color: var(--success);
-            font-size: .65rem;
+            color: var(--primary);
+            font-size: .68rem;
             font-weight: 800;
+            text-transform: uppercase;
         }
 
         .dash-status span {
-            width: 6px;
-            height: 6px;
+            width: 7px;
+            height: 7px;
             border-radius: 50%;
-            background: #19ad6d;
-        }
-
-        .dash-body {
-            padding-top: 20px;
-        }
-
-        .dash-kicker {
-            color: var(--light-text);
-            font-size: .64rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: .08em;
-        }
-
-        .dash-title {
-            margin: 3px 0 17px;
-            font-size: 1.2rem;
-            letter-spacing: -.025em;
+            background: var(--primary);
         }
 
         .dash-cards {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
+            gap: 12px;
         }
 
         .dash-card {
-            min-height: 105px;
-            padding: 14px;
-            border: 1px solid #e8eef7;
-            border-radius: 15px;
-            background: #fbfdff;
+            padding: 16px;
+            border: 1px solid #e2ece9;
+            border-radius: 18px;
+            background: #f8fcfb;
         }
 
         .dash-card-icon {
-            width: 31px;
-            height: 31px;
+            width: 36px;
+            height: 36px;
             display: grid;
             place-items: center;
             margin-bottom: 10px;
-            border-radius: 9px;
+            border-radius: 10px;
             color: var(--primary);
             background: var(--primary-soft);
         }
 
-        .dash-card-icon svg {
-            width: 16px;
-        }
-
         .dash-card strong {
             display: block;
-            font-size: .75rem;
+            font-size: .82rem;
             margin-bottom: 2px;
         }
 
         .dash-card small {
-            color: var(--light-text);
-            font-size: .62rem;
-        }
-
-        .floating-card {
-            position: absolute;
-            z-index: 5;
-            padding: 15px 17px;
-            border: 1px solid rgba(255,255,255,.9);
-            border-radius: 17px;
-            background: rgba(255,255,255,.94);
-            box-shadow: 0 20px 45px rgba(24, 65, 120, .15);
-            backdrop-filter: blur(16px);
-        }
-
-        .floating-card.one {
-            top: 28px;
-            right: 5px;
-        }
-
-        .floating-card.two {
-            bottom: 38px;
-            left: -5px;
-        }
-
-        .floating-label {
-            display: block;
-            margin-bottom: 3px;
-            color: var(--light-text);
-            font-size: .6rem;
-            font-weight: 700;
-        }
-
-        .floating-value {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            font-size: .76rem;
-            font-weight: 800;
-        }
-
-        .floating-value svg {
-            width: 16px;
-            color: var(--primary);
+            color: var(--muted);
+            font-size: .68rem;
         }
 
         /* =========================================================
@@ -691,7 +672,7 @@
            ========================================================= */
 
         .intro {
-            padding: 38px 0;
+            padding: 45px 0;
             border-top: 1px solid var(--line);
             border-bottom: 1px solid var(--line);
             background: #fff;
@@ -706,7 +687,7 @@
 
         .intro-label {
             color: var(--light-text);
-            font-size: .72rem;
+            font-size: .75rem;
             font-weight: 800;
             letter-spacing: .1em;
             text-transform: uppercase;
@@ -733,12 +714,13 @@
         .intro-item strong {
             display: block;
             margin-bottom: 3px;
-            font-size: .82rem;
+            font-size: .85rem;
+            font-weight: 800;
         }
 
         .intro-item p {
             color: var(--muted);
-            font-size: .72rem;
+            font-size: .75rem;
             line-height: 1.6;
         }
 
@@ -749,55 +731,48 @@
         .platform-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
+            gap: 18px;
         }
 
         .platform-card {
-            min-height: 300px;
-            padding: 25px;
+            min-height: 310px;
+            padding: 28px;
             position: relative;
             overflow: hidden;
             border: 1px solid var(--line);
             border-radius: var(--radius-lg);
             background: #fff;
             box-shadow: var(--shadow-sm);
-            transition:
-                transform .25s ease,
-                box-shadow .25s ease,
-                border-color .25s ease;
+            transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
         }
 
         .platform-card:hover {
             transform: translateY(-5px);
-            border-color: #d2e1f5;
+            border-color: rgba(0, 200, 141, .4);
             box-shadow: var(--shadow-md);
         }
 
         .platform-card.featured {
             color: #fff;
-            background: var(--gradient-brand);
-            border-color: transparent;
+            background: var(--navy);
+            border: 1px solid rgba(0, 200, 141, 0.4);
         }
 
         .platform-number {
             position: absolute;
             top: 22px;
             right: 22px;
-            color: #b2c0d4;
-            font-size: .66rem;
+            color: #94a3b8;
+            font-size: .7rem;
             font-weight: 800;
         }
 
-        .platform-card.featured .platform-number {
-            color: rgba(255,255,255,.5);
-        }
-
         .platform-icon {
-            width: 47px;
-            height: 47px;
+            width: 48px;
+            height: 48px;
             display: grid;
             place-items: center;
-            margin-bottom: 48px;
+            margin-bottom: 45px;
             border-radius: 14px;
             color: var(--primary);
             background: var(--primary-soft);
@@ -805,42 +780,35 @@
 
         .platform-card.featured .platform-icon {
             color: #fff;
-            background: rgba(255,255,255,.14);
-        }
-
-        .platform-icon svg {
-            width: 21px;
+            background: rgba(0, 200, 141, .2);
         }
 
         .platform-card h3 {
             margin-bottom: 9px;
-            font-size: 1.04rem;
-            letter-spacing: -.025em;
+            font-size: 1.1rem;
+            font-weight: 800;
         }
 
         .platform-card p {
             color: var(--muted);
-            font-size: .76rem;
+            font-size: .78rem;
             line-height: 1.7;
         }
 
         .platform-card.featured p {
-            color: rgba(255,255,255,.75);
+            color: rgba(255, 255, 255, .75);
         }
 
         .platform-link {
             position: absolute;
-            bottom: 23px;
-            left: 25px;
+            bottom: 25px;
+            left: 28px;
             display: inline-flex;
             align-items: center;
             gap: 7px;
-            font-size: .72rem;
+            font-size: .75rem;
             font-weight: 800;
-        }
-
-        .platform-link svg {
-            width: 15px;
+            color: var(--primary);
         }
 
         /* =========================================================
@@ -855,30 +823,14 @@
         }
 
         .visual-panel {
-            min-height: 500px;
+            min-height: 480px;
             position: relative;
             padding: 26px;
             overflow: hidden;
             border-radius: var(--radius-xl);
-            background:
-                linear-gradient(
-                    145deg,
-                    #eff6ff,
-                    #fff
-                );
-            border: 1px solid #dfeaf8;
+            background: linear-gradient(145deg, #e6fcf5, #fff);
+            border: 1px solid #c4f1e3;
             box-shadow: var(--shadow-md);
-        }
-
-        .visual-panel::before {
-            content: "";
-            position: absolute;
-            width: 260px;
-            height: 260px;
-            right: -80px;
-            top: -70px;
-            border-radius: 50%;
-            background: rgba(11,99,246,.08);
         }
 
         .visual-window {
@@ -886,146 +838,82 @@
             z-index: 2;
             left: 26px;
             right: 26px;
-            top: 45px;
-            bottom: 45px;
-            padding: 22px;
-            border-radius: 23px;
-            border: 1px solid #e2eaf5;
-            background: rgba(255,255,255,.92);
-            box-shadow: 0 25px 60px rgba(19, 62, 120, .12);
+            top: 40px;
+            bottom: 40px;
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid #d0f5e9;
+            background: rgba(255, 255, 255, .95);
+            box-shadow: var(--shadow-md);
         }
 
         .window-head {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .window-head strong {
-            font-size: .8rem;
-        }
-
-        .window-dots {
-            display: flex;
-            gap: 5px;
-        }
-
-        .window-dots span {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #cad5e5;
+            margin-bottom: 25px;
         }
 
         .task-label {
             margin-bottom: 8px;
-            color: var(--light-text);
-            font-size: .63rem;
+            color: var(--primary);
+            font-size: .65rem;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: .08em;
         }
 
         .task-question {
-            margin-bottom: 20px;
-            font-size: .93rem;
-            line-height: 1.5;
+            margin-bottom: 18px;
+            font-size: .95rem;
             font-weight: 700;
         }
 
         .response {
-            padding: 15px;
+            padding: 14px;
             margin-bottom: 9px;
-            border: 1px solid #e5ebf4;
-            border-radius: 13px;
-            background: #fbfdff;
-            font-size: .7rem;
-            color: #5f6e84;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: #fcfdfe;
+            font-size: .72rem;
+            color: #475569;
         }
 
         .response.active {
-            border-color: #9fc4fa;
-            background: #f0f6ff;
-            color: #244f89;
-        }
-
-        .response-head {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 6px;
-        }
-
-        .response-head strong {
-            color: var(--ink);
-            font-size: .68rem;
-        }
-
-        .response-head svg {
-            width: 14px;
-            color: var(--primary);
-        }
-
-        .training-content h2 {
-            margin-bottom: 18px;
-            font-size: clamp(2rem, 4vw, 3.35rem);
-            line-height: 1.08;
-            letter-spacing: -.045em;
-        }
-
-        .training-content > p {
-            margin-bottom: 29px;
-            color: var(--muted);
-            font-size: .94rem;
+            border-color: var(--primary);
+            background: #f0fdf8;
+            color: #064e3b;
         }
 
         .feature-list {
             display: grid;
-            gap: 15px;
+            gap: 16px;
             margin-bottom: 30px;
         }
 
         .feature-list-item {
             display: flex;
-            gap: 13px;
+            gap: 14px;
         }
 
         .feature-list-icon {
             flex-shrink: 0;
-            width: 37px;
-            height: 37px;
+            width: 38px;
+            height: 38px;
             display: grid;
             place-items: center;
-            border-radius: 11px;
+            border-radius: 12px;
             color: var(--primary);
             background: var(--primary-soft);
         }
 
-        .feature-list-icon svg {
-            width: 17px;
-        }
-
-        .feature-list-item strong {
-            display: block;
-            margin-bottom: 2px;
-            font-size: .8rem;
-        }
-
-        .feature-list-item p {
-            color: var(--muted);
-            font-size: .72rem;
-            line-height: 1.6;
-        }
-
         /* =========================================================
-           INSIDE EVERMORE / IMAGE SHOWCASE
+           INSIDE EVERMORE / SHOWCASE (FULL SIZE IMAGE DISPLAY FIX)
            ========================================================= */
 
         .showcase-heading {
             display: flex;
             justify-content: space-between;
-            align-items: end;
+            align-items: flex-end;
             gap: 30px;
         }
 
@@ -1037,110 +925,71 @@
             max-width: 300px;
             padding-bottom: 45px;
             color: var(--muted);
-            font-size: .73rem;
+            font-size: .75rem;
         }
 
         .showcase-grid {
             display: grid;
-            grid-template-columns: 1.25fr .75fr;
-            grid-template-rows: 230px 230px;
-            gap: 14px;
+            grid-template-columns: 1.2fr .8fr;
+            gap: 20px;
+            align-items: stretch;
+        }
+
+        .showcase-column-right {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .showcase-card {
             position: relative;
             overflow: hidden;
-            border-radius: 21px;
+            border-radius: 22px;
             border: 1px solid var(--line);
-            background:
-                linear-gradient(145deg, #f2f7ff, #fff);
+            background: #07152c;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
-        .showcase-card.large {
-            grid-row: 1 / span 2;
-        }
-
+        /* Full size uncropped image rendering */
         .showcase-image {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
             transition: transform .5s ease;
         }
 
         .showcase-card:hover .showcase-image {
-            transform: scale(1.035);
-        }
-
-        .showcase-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 30px;
-            background:
-                radial-gradient(
-                    circle at 30% 20%,
-                    rgba(11,99,246,.12),
-                    transparent 35%
-                ),
-                #f5f9ff;
-        }
-
-        .showcase-placeholder-inner {
-            max-width: 290px;
-        }
-
-        .showcase-placeholder-icon {
-            width: 48px;
-            height: 48px;
-            display: grid;
-            place-items: center;
-            margin: 0 auto 13px;
-            border-radius: 15px;
-            color: var(--primary);
-            background: #fff;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .showcase-placeholder-icon svg {
-            width: 21px;
-        }
-
-        .showcase-placeholder strong {
-            display: block;
-            margin-bottom: 5px;
-            font-size: .83rem;
-        }
-
-        .showcase-placeholder p {
-            color: var(--muted);
-            font-size: .68rem;
-            line-height: 1.6;
+            transform: scale(1.02);
         }
 
         .showcase-overlay {
             position: absolute;
-            left: 17px;
-            right: 17px;
-            bottom: 17px;
-            padding: 13px 15px;
-            border: 1px solid rgba(255,255,255,.6);
-            border-radius: 13px;
+            left: 18px;
+            right: 18px;
+            bottom: 18px;
+            padding: 14px 18px;
+            border: 1px solid rgba(255,255,255,.2);
+            border-radius: 14px;
             color: #fff;
-            background: rgba(7, 25, 55, .72);
-            backdrop-filter: blur(10px);
+            background: rgba(7, 21, 43, .85);
+            backdrop-filter: blur(12px);
+            z-index: 5;
         }
 
         .showcase-overlay strong {
             display: block;
-            font-size: .75rem;
+            font-size: .8rem;
         }
 
         .showcase-overlay span {
-            font-size: .62rem;
-            opacity: .78;
+            font-size: .65rem;
+            color: var(--primary);
+            font-weight: 700;
         }
 
         /* =========================================================
@@ -1148,25 +997,12 @@
            ========================================================= */
 
         .steps {
-            position: relative;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
-        }
-
-        .steps::before {
-            content: "";
-            position: absolute;
-            top: 46px;
-            left: 11%;
-            right: 11%;
-            height: 1px;
-            background: #dce6f4;
+            gap: 20px;
         }
 
         .step {
-            position: relative;
-            z-index: 2;
             padding: 30px;
             border: 1px solid var(--line);
             border-radius: 22px;
@@ -1174,29 +1010,16 @@
         }
 
         .step-number {
-            width: 34px;
-            height: 34px;
+            width: 36px;
+            height: 36px;
             display: grid;
             place-items: center;
-            margin-bottom: 29px;
-            border: 5px solid #fff;
+            margin-bottom: 25px;
             border-radius: 50%;
             color: #fff;
             background: var(--primary);
-            box-shadow: 0 0 0 1px #cfe0f7;
-            font-size: .62rem;
-            font-weight: 800;
-        }
-
-        .step h3 {
-            margin-bottom: 7px;
-            font-size: .9rem;
-        }
-
-        .step p {
-            color: var(--muted);
-            font-size: .72rem;
-            line-height: 1.7;
+            font-size: .7rem;
+            font-weight: 900;
         }
 
         /* =========================================================
@@ -1204,99 +1027,37 @@
            ========================================================= */
 
         .opportunity-panel {
-            padding: 55px;
+            padding: 60px;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: center;
             border-radius: var(--radius-xl);
-            background:
-                radial-gradient(
-                    circle at 90% 10%,
-                    rgba(78, 151, 255, .22),
-                    transparent 28%
-                ),
-                linear-gradient(135deg, #071d40, #0b3470);
+            background: linear-gradient(135deg, #07152c 0%, #0d284f 100%);
             color: #fff;
-            overflow: hidden;
             position: relative;
-        }
-
-        .opportunity-panel::after {
-            content: "";
-            position: absolute;
-            width: 360px;
-            height: 360px;
-            right: -170px;
-            bottom: -220px;
-            border: 1px solid rgba(255,255,255,.08);
-            border-radius: 50%;
-        }
-
-        .opportunity-copy {
-            position: relative;
-            z-index: 2;
-        }
-
-        .opportunity-copy .eyebrow {
-            color: #8bbcff;
-        }
-
-        .opportunity-copy h2 {
-            max-width: 550px;
-            margin-bottom: 17px;
-            font-size: clamp(2rem, 4vw, 3.25rem);
-            line-height: 1.08;
-            letter-spacing: -.045em;
-        }
-
-        .opportunity-copy > p {
-            max-width: 540px;
-            color: rgba(255,255,255,.68);
-            font-size: .9rem;
-        }
-
-        .opportunity-list {
-            position: relative;
-            z-index: 2;
-            display: grid;
-            gap: 10px;
+            border: 1px solid rgba(0, 200, 141, 0.3);
         }
 
         .opportunity-item {
             display: flex;
             align-items: center;
-            gap: 13px;
-            padding: 16px;
-            border: 1px solid rgba(255,255,255,.09);
-            border-radius: 14px;
-            background: rgba(255,255,255,.06);
+            gap: 15px;
+            padding: 18px;
+            border: 1px solid rgba(255,255,255,.1);
+            border-radius: 16px;
+            background: rgba(255,255,255,.05);
+            margin-bottom: 12px;
         }
 
         .opportunity-item-icon {
-            width: 38px;
-            height: 38px;
+            width: 40px;
+            height: 40px;
             display: grid;
             place-items: center;
-            flex-shrink: 0;
-            border-radius: 11px;
-            background: rgba(255,255,255,.09);
-            color: #8bbcff;
-        }
-
-        .opportunity-item-icon svg {
-            width: 17px;
-        }
-
-        .opportunity-item strong {
-            display: block;
-            margin-bottom: 1px;
-            font-size: .77rem;
-        }
-
-        .opportunity-item span {
-            color: rgba(255,255,255,.56);
-            font-size: .65rem;
+            border-radius: 12px;
+            background: rgba(0, 200, 141, .2);
+            color: var(--primary);
         }
 
         /* =========================================================
@@ -1310,117 +1071,39 @@
             align-items: center;
         }
 
-        .academy-content h2 {
-            margin-bottom: 17px;
-            font-size: clamp(2rem, 4vw, 3.35rem);
-            line-height: 1.08;
-            letter-spacing: -.045em;
-        }
-
-        .academy-content > p {
-            margin-bottom: 29px;
-            color: var(--muted);
-            font-size: .92rem;
-        }
-
-        .academy-topics {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 28px;
-        }
-
         .topic {
-            padding: 8px 11px;
-            border: 1px solid #dfe8f4;
-            border-radius: 9px;
-            color: #52627b;
-            background: #fff;
-            font-size: .68rem;
-            font-weight: 700;
+            padding: 8px 14px;
+            border: 1px solid #d0f5e9;
+            border-radius: 99px;
+            color: #047857;
+            background: #e6fcf5;
+            font-size: .7rem;
+            font-weight: 800;
         }
 
         .academy-visual {
-            min-height: 450px;
-            position: relative;
+            min-height: 440px;
             padding: 28px;
             border-radius: var(--radius-xl);
-            background: #eef5ff;
-            border: 1px solid #dce9f9;
-            overflow: hidden;
-        }
-
-        .academy-grid-bg {
-            position: absolute;
-            inset: 0;
-            opacity: .35;
-            background-image:
-                linear-gradient(rgba(11,99,246,.07) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(11,99,246,.07) 1px, transparent 1px);
-            background-size: 38px 38px;
+            background: #e6fcf5;
+            border: 1px solid #bbf7d0;
         }
 
         .academy-window {
-            position: relative;
-            z-index: 2;
-            width: 88%;
-            margin: 30px auto;
-            padding: 22px;
-            border: 1px solid #e1eaf6;
-            border-radius: 21px;
+            width: 90%;
+            margin: 20px auto;
+            padding: 24px;
+            border: 1px solid var(--line);
+            border-radius: 22px;
             background: #fff;
             box-shadow: var(--shadow-md);
         }
 
-        .course-head {
-            display: flex;
-            align-items: center;
-            gap: 13px;
-            margin-bottom: 22px;
-        }
-
-        .course-icon {
-            width: 42px;
-            height: 42px;
-            display: grid;
-            place-items: center;
-            border-radius: 12px;
-            color: #fff;
-            background: var(--primary);
-        }
-
-        .course-icon svg {
-            width: 19px;
-        }
-
-        .course-head strong {
-            display: block;
-            font-size: .8rem;
-        }
-
-        .course-head span {
-            color: var(--light-text);
-            font-size: .63rem;
-        }
-
-        .course-row {
-            margin-bottom: 12px;
-        }
-
-        .course-row-top {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 6px;
-            color: #66758c;
-            font-size: .63rem;
-            font-weight: 700;
-        }
-
         .progress {
-            height: 6px;
+            height: 8px;
             overflow: hidden;
             border-radius: 999px;
-            background: #e9eff7;
+            background: #e2ece9;
         }
 
         .progress span {
@@ -1431,18 +1114,8 @@
         }
 
         /* =========================================================
-           EVERAI
+           EVERAI WORKSPACE
            ========================================================= */
-
-        .everai-section {
-            background:
-                radial-gradient(
-                    circle at 80% 30%,
-                    rgba(11,99,246,.08),
-                    transparent 30%
-                ),
-                #fff;
-        }
 
         .everai-grid {
             display: grid;
@@ -1451,110 +1124,49 @@
             align-items: center;
         }
 
-        .everai-copy h2 {
-            margin-bottom: 17px;
-            font-size: clamp(2rem, 4vw, 3.35rem);
-            line-height: 1.08;
-            letter-spacing: -.045em;
-        }
-
-        .everai-copy > p {
-            margin-bottom: 28px;
-            color: var(--muted);
-            font-size: .92rem;
-        }
-
-        .everai-visual {
-            position: relative;
-            min-height: 480px;
-            padding: 20px;
-            border-radius: var(--radius-xl);
-            background:
-                linear-gradient(145deg, #f0f6ff, #f9fbff);
-            border: 1px solid #deebfa;
-        }
-
         .ai-window {
-            position: absolute;
-            top: 45px;
-            left: 40px;
-            right: 40px;
-            bottom: 45px;
             display: flex;
             flex-direction: column;
-            border: 1px solid #e0e9f4;
-            border-radius: 22px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
             background: #fff;
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--shadow-lg);
             overflow: hidden;
+            height: 380px;
         }
 
         .ai-window-head {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 17px 19px;
+            padding: 18px 20px;
             border-bottom: 1px solid var(--line);
-        }
-
-        .ai-window-head strong {
-            font-size: .78rem;
-        }
-
-        .ai-head-status {
-            padding: 5px 8px;
-            border-radius: 7px;
-            color: var(--primary);
-            background: var(--primary-soft);
-            font-size: .58rem;
-            font-weight: 800;
         }
 
         .ai-messages {
             flex: 1;
+            padding: 20px;
             display: flex;
             flex-direction: column;
+            gap: 12px;
             justify-content: center;
-            gap: 13px;
-            padding: 20px;
         }
 
         .ai-message {
-            max-width: 82%;
-            padding: 12px 14px;
-            border-radius: 12px;
-            font-size: .68rem;
-            line-height: 1.6;
+            padding: 12px 16px;
+            border-radius: 14px;
+            font-size: .75rem;
         }
 
         .ai-message.user {
             align-self: flex-end;
             color: #fff;
-            background: var(--primary);
-            border-bottom-right-radius: 4px;
+            background: var(--primary-dark);
         }
 
         .ai-message.bot {
-            color: #53637a;
-            background: #f5f8fc;
-            border-bottom-left-radius: 4px;
-        }
-
-        .ai-input {
-            margin: 0 15px 15px;
-            padding: 12px 14px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 1px solid var(--line);
-            border-radius: 11px;
-            color: #9aa7b9;
-            font-size: .63rem;
-        }
-
-        .ai-input svg {
-            width: 15px;
-            color: var(--primary);
+            color: #334155;
+            background: #f1f5f9;
         }
 
         /* =========================================================
@@ -1564,150 +1176,66 @@
         .pricing-wrap {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 18px;
+            gap: 20px;
             max-width: 850px;
             margin: 0 auto;
         }
 
         .price-card {
             position: relative;
-            padding: 32px;
+            padding: 35px;
             border: 1px solid var(--line);
-            border-radius: 25px;
+            border-radius: 28px;
             background: #fff;
             box-shadow: var(--shadow-sm);
         }
 
         .price-card.featured {
-            overflow: hidden;
-            border-color: #b9d3fa;
-            box-shadow: 0 22px 55px rgba(76,58,220,.16);
-        }
-
-        .price-card.featured::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: var(--gradient-brand);
-        }
-
-        .price-card.featured .price-badge {
-            color: #fff;
-            background: var(--gradient-brand);
+            border: 2px solid var(--primary);
+            box-shadow: 0 25px 60px rgba(0, 200, 141, .2);
         }
 
         .price-badge {
             position: absolute;
-            top: 18px;
-            right: 18px;
-            padding: 6px 9px;
-            border-radius: 8px;
-            color: var(--primary);
-            background: var(--primary-soft);
-            font-size: .58rem;
-            font-weight: 800;
+            top: 20px;
+            right: 20px;
+            padding: 6px 12px;
+            border-radius: 99px;
+            color: #fff;
+            background: var(--primary);
+            font-size: .62rem;
+            font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: .05em;
-        }
-
-        .price-card h3 {
-            margin-bottom: 8px;
-            font-size: 1rem;
-        }
-
-        .price-card > p {
-            min-height: 42px;
-            color: var(--muted);
-            font-size: .7rem;
         }
 
         .price {
             display: flex;
             align-items: baseline;
-            gap: 7px;
-            margin: 23px 0;
+            gap: 8px;
+            margin: 20px 0;
         }
 
         .price strong {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
+            font-weight: 900;
             line-height: 1;
-            letter-spacing: -.055em;
-        }
-
-        .price span {
-            color: var(--light-text);
-            font-size: .67rem;
-        }
-
-        .price-alt {
-            margin-top: -17px;
-            margin-bottom: 20px;
-            color: #60708b;
-            font-size: .7rem;
-            font-weight: 700;
-        }
-
-        .price-features {
-            display: grid;
-            gap: 11px;
-            padding: 20px 0;
-            margin-bottom: 22px;
-            border-top: 1px solid var(--line);
-            border-bottom: 1px solid var(--line);
         }
 
         .price-feature {
             display: flex;
             align-items: center;
-            gap: 8px;
-            color: #55657c;
-            font-size: .68rem;
+            gap: 10px;
+            font-size: .75rem;
+            color: #475569;
+            margin-bottom: 12px;
         }
 
         .price-feature svg {
-            width: 15px;
-            color: var(--success);
-        }
-
-        .price-card .btn {
-            width: 100%;
-        }
-
-        .payment-trust {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            width: fit-content;
-            margin: 0 auto 34px;
-            padding: 10px 16px;
-            border: 1px solid var(--line);
-            border-radius: 999px;
-            background: #fff;
-            box-shadow: var(--shadow-sm);
-            color: #33445f;
-            font-size: .74rem;
-            font-weight: 800;
-        }
-
-        .payment-trust svg {
-            width: 16px;
-            color: var(--success);
-        }
-
-        .pricing-disclaimer {
-            max-width: 700px;
-            margin: 25px auto 0;
-            text-align: center;
-            color: var(--light-text);
-            font-size: .65rem;
+            color: var(--primary);
         }
 
         /* =========================================================
-           FAQ
+           FAQ (ACCORDION STYLING)
            ========================================================= */
 
         .faq-wrap {
@@ -1731,7 +1259,7 @@
             color: var(--ink);
             text-align: left;
             cursor: pointer;
-            font-size: .84rem;
+            font-size: .88rem;
             font-weight: 800;
         }
 
@@ -1761,7 +1289,7 @@
         .faq-answer p {
             padding: 0 40px 20px 0;
             color: var(--muted);
-            font-size: .74rem;
+            font-size: .78rem;
             line-height: 1.8;
         }
 
@@ -1773,70 +1301,18 @@
            FINAL CTA
            ========================================================= */
 
-        .final-cta {
-            padding: 45px 0 110px;
-        }
-
         .cta-panel {
-            position: relative;
-            overflow: hidden;
-            padding: 75px 55px;
+            padding: 80px 60px;
             border-radius: var(--radius-xl);
-            background:
-                radial-gradient(
-                    circle at 90% 20%,
-                    rgba(255,255,255,.16),
-                    transparent 27%
-                ),
-                var(--gradient-brand);
+            background: var(--navy);
             color: #fff;
-        }
-
-        .cta-panel::before {
-            content: "";
-            position: absolute;
-            width: 420px;
-            height: 420px;
-            right: -230px;
-            bottom: -270px;
-            border: 1px solid rgba(255,255,255,.11);
-            border-radius: 50%;
-        }
-
-        .cta-content {
-            position: relative;
-            z-index: 2;
-            max-width: 700px;
-        }
-
-        .cta-content .eyebrow {
-            color: #a9cbff;
+            border: 1px solid rgba(0, 200, 141, .3);
         }
 
         .cta-content h2 {
-            margin-bottom: 17px;
-            font-size: clamp(2.1rem, 4vw, 3.6rem);
-            line-height: 1.05;
-            letter-spacing: -.05em;
-        }
-
-        .cta-content > p {
-            max-width: 620px;
-            margin-bottom: 27px;
-            color: rgba(255,255,255,.72);
-            font-size: .9rem;
-        }
-
-        .cta-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .cta-actions .btn-secondary {
-            border-color: rgba(255,255,255,.22);
-            color: #fff;
-            background: rgba(255,255,255,.08);
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 18px;
         }
 
         /* =========================================================
@@ -1844,9 +1320,9 @@
            ========================================================= */
 
         .site-footer {
-            padding: 65px 0 30px;
-            color: #9aa8bc;
-            background: #07152c;
+            padding: 70px 0 30px;
+            color: #94a3b8;
+            background: #061121;
         }
 
         .footer-grid {
@@ -1858,61 +1334,44 @@
 
         .footer-brand img {
             width: 138px;
-            max-height: 48px;
+            max-height: 50px;
             object-fit: contain;
             margin-bottom: 18px;
-        }
-
-        .footer-brand p {
-            max-width: 330px;
-            color: #7f8ea5;
-            font-size: .72rem;
-            line-height: 1.8;
         }
 
         .footer-col {
             display: flex;
             flex-direction: column;
-            gap: 11px;
+            gap: 12px;
         }
 
         .footer-col h3 {
-            margin-bottom: 8px;
             color: #fff;
-            font-size: .73rem;
+            font-size: .8rem;
+            font-weight: 800;
         }
 
         .footer-col a {
-            width: fit-content;
-            color: #8190a7;
-            font-size: .68rem;
-            transition: color .2s ease;
-        }
-
-        .footer-col a:hover {
-            color: #fff;
+            color: #94a3b8;
+            font-size: .72rem;
         }
 
         .footer-bottom {
-            padding-top: 23px;
-            border-top: 1px solid rgba(255,255,255,.08);
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, .08);
             display: flex;
             justify-content: space-between;
-            gap: 20px;
-            color: #65748b;
-            font-size: .62rem;
+            font-size: .68rem;
         }
 
         /* =========================================================
-           REVEAL ANIMATION
+           REVEAL ANIMATIONS & RESPONSIVE
            ========================================================= */
 
         [data-reveal] {
             opacity: 0;
             transform: translateY(22px);
-            transition:
-                opacity .7s ease,
-                transform .7s ease;
+            transition: opacity .7s ease, transform .7s ease;
         }
 
         [data-reveal].is-visible {
@@ -1920,50 +1379,12 @@
             transform: translateY(0);
         }
 
-        /* =========================================================
-           FOCUS / ACCESSIBILITY
-           ========================================================= */
-
-        a:focus-visible,
-        button:focus-visible {
-            outline: 3px solid rgba(11,99,246,.28);
-            outline-offset: 3px;
-        }
-
-        /* =========================================================
-           RESPONSIVE
-           ========================================================= */
-
-        @media (max-width: 1050px) {
-            .desktop-nav {
-                gap: 17px;
-            }
-
-            .hero-grid {
-                gap: 40px;
-            }
-
-            .platform-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .intro-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .intro-copy {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
         @media (max-width: 900px) {
-            .section {
-                padding: 85px 0;
+            .hero-grid, .split-grid, .academy-grid, .everai-grid, .opportunity-panel, .showcase-grid {
+                grid-template-columns: 1fr;
             }
 
-            .desktop-nav,
-            .nav-actions {
+            .desktop-nav, .nav-actions {
                 display: none;
             }
 
@@ -1985,10 +1406,7 @@
                 transform: translateY(-15px);
                 opacity: 0;
                 visibility: hidden;
-                transition:
-                    opacity .25s ease,
-                    transform .25s ease,
-                    visibility .25s ease;
+                transition: opacity .25s ease, transform .25s ease, visibility .25s ease;
                 box-shadow: 0 20px 40px rgba(12,35,70,.08);
             }
 
@@ -2007,277 +1425,12 @@
                 font-weight: 700;
             }
 
-            .mobile-menu .mobile-cta {
-                margin-top: 13px;
-                padding: 14px;
-                border: 0;
-                border-radius: 12px;
-                color: #fff;
-                background: var(--primary);
-                text-align: center;
-            }
-
-            .hero {
-                padding: 65px 0 80px;
-            }
-
-            .hero-grid,
-            .split-grid,
-            .academy-grid,
-            .everai-grid {
+            .steps, .pricing-wrap, .platform-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .hero-visual {
-                min-height: 490px;
-            }
-
-            .training-content {
-                order: -1;
-            }
-
-            .academy-content {
-                order: -1;
-            }
-
-            .opportunity-panel {
-                grid-template-columns: 1fr;
-                gap: 40px;
-                padding: 45px 35px;
-            }
-
-            .everai-copy {
-                order: -1;
-            }
-
-            .steps {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .steps::before {
-                display: none;
-            }
-
-            .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 650px) {
-            .container {
-                width: min(calc(100% - 28px), var(--max-width));
-            }
-
-            .section {
-                padding: 72px 0;
-            }
-
-            .section-heading {
-                margin-bottom: 38px;
-            }
-
-            .hero {
-                padding: 50px 0 65px;
-            }
-
-            .hero h1 {
-                font-size: clamp(2.7rem, 14vw, 4.1rem);
-            }
-
-            .hero-description {
-                font-size: .9rem;
-            }
-
-            .hero-actions {
-                display: grid;
-                grid-template-columns: 1fr;
-            }
-
-            .hero-actions .btn {
-                width: 100%;
-            }
-
-            .hero-visual {
-                min-height: 405px;
-            }
-
-            .hero-orb {
-                inset: 25px 0 20px;
-                border-radius: 27px;
-            }
-
-            .hero-grid-lines {
-                border-radius: 27px;
-            }
-
-            .hero-dashboard {
-                top: 55px;
-                left: 20px;
-                right: 20px;
-                padding: 14px;
-                border-radius: 19px;
-            }
-
-            .dash-card {
-                min-height: 85px;
-                padding: 11px;
-            }
-
-            .floating-card.one {
-                top: 10px;
-                right: -2px;
-            }
-
-            .floating-card.two {
-                bottom: 15px;
-                left: -2px;
-            }
-
-            .intro {
-                padding: 30px 0;
-            }
-
-            .intro-copy {
-                grid-template-columns: 1fr;
-                gap: 18px;
-            }
-
-            .platform-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .platform-card {
-                min-height: 260px;
-            }
-
-            .visual-panel {
-                min-height: 400px;
-            }
-
-            .showcase-heading {
-                display: block;
-            }
-
-            .showcase-note {
-                padding: 0;
-                margin-top: -20px;
-                margin-bottom: 30px;
-            }
-
-            .showcase-grid {
-                grid-template-columns: 1fr;
-                grid-template-rows: repeat(3, 250px);
-            }
-
-            .showcase-card.large {
-                grid-row: auto;
-            }
-
-            .steps {
-                grid-template-columns: 1fr;
-            }
-
-            .step {
-                padding: 24px;
-            }
-
-            .opportunity-panel {
-                padding: 38px 24px;
-                border-radius: 24px;
-            }
-
-            .academy-visual,
-            .everai-visual {
-                min-height: 390px;
-            }
-
-            .academy-window {
-                width: 94%;
-                padding: 17px;
-            }
-
-            .ai-window {
-                left: 20px;
-                right: 20px;
-                top: 35px;
-                bottom: 35px;
-            }
-
-            .pricing-wrap {
-                grid-template-columns: 1fr;
-            }
-
-            .price-card {
-                padding: 27px;
-            }
-
-            .cta-panel {
-                padding: 50px 25px;
-                border-radius: 24px;
-            }
-
-            .cta-actions {
-                display: grid;
-                grid-template-columns: 1fr;
-            }
-
-            .cta-actions .btn {
-                width: 100%;
             }
 
             .footer-grid {
                 grid-template-columns: 1fr 1fr;
-                gap: 35px 25px;
-            }
-
-            .footer-brand {
-                grid-column: 1 / -1;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-brand {
-                grid-column: auto;
-            }
-
-            .hero-visual {
-                min-height: 380px;
-            }
-
-            .dash-cards {
-                gap: 7px;
-            }
-        }
-
-        /* =========================================================
-           REDUCED MOTION
-           ========================================================= */
-
-        @media (prefers-reduced-motion: reduce) {
-            html {
-                scroll-behavior: auto;
-            }
-
-            *,
-            *::before,
-            *::after {
-                animation-duration: .01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: .01ms !important;
-                scroll-behavior: auto !important;
-            }
-
-            [data-reveal] {
-                opacity: 1;
-                transform: none;
             }
         }
     </style>
@@ -2311,8 +1464,8 @@
             <div class="nav-actions">
                 <a class="nav-signin" href="signin">Sign In</a>
 
-                <a class="btn btn-primary btn-small" href="signup">
-                    Create Account
+                <a class="btn btn-amber-glow btn-small" href="signup">
+                    <span>Join us now</span>
                     <i data-lucide="arrow-up-right" aria-hidden="true"></i>
                 </a>
             </div>
@@ -2342,7 +1495,7 @@
             <a href="#pricing">Membership</a>
             <a href="#faq">FAQ</a>
             <a href="/signin.html">Sign In</a>
-            <a class="mobile-cta" href="/signup.html">Create Free Account</a>
+            <a href="/signup.html" style="margin-top:10px; color:#fff; background:var(--primary); text-align:center; padding:12px; border-radius:12px;">Join us now</a>
         </nav>
     </header>
 
@@ -2350,38 +1503,51 @@
     <main>
 
         <!-- =====================================================
-             HERO
+             HERO (FLYER SPECIFIC VISUAL LAYOUT & TYPOGRAPHY)
              ===================================================== -->
         <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-radar-lines"></div>
+
             <div class="container hero-grid">
 
                 <div class="hero-copy" data-reveal>
 
                     <div class="hero-badge">
                         <span aria-hidden="true"></span>
-                        AI Training • Tasks • Digital Skills
+                        AI Workspace Active • EverAI
                     </div>
 
-                    <h1 id="hero-title">
-                        Train AI.
-                        <span class="accent">Complete Tasks.</span>
-                        Build What's Next.
+                    <!-- Flyer Headline -->
+                    <h1 id="hero-title" class="flyer-title">
+                        EverAi<br>Does More!
                     </h1>
 
-                    <p class="hero-description">
-                        Evermore brings AI training, eligible remote task
-                        opportunities, digital skills learning and an
-                        AI workspace together in one focused platform.
-                    </p>
+                    <!-- Flyer Subheadline -->
+                    <div class="hero-subheadline">
+                        Earn Up To <span class="rate-tag">$18.6/Hour</span> Doing Simple Remote Tasks.
+                    </div>
 
+                    <!-- Flyer Bullet Points Container -->
+                    <div class="hero-bullet-box">
+                        <div class="hero-bullet-item">
+                            <i data-lucide="check-circle-2"></i>
+                            <span>Be the first to get Remote Job offers outsourced by <strong>everAI</strong>.</span>
+                        </div>
+                        <div class="hero-bullet-item">
+                            <i data-lucide="check-circle-2"></i>
+                            <span>No skills or experience needed.</span>
+                        </div>
+                    </div>
+
+                    <!-- Flyer Glowing Amber CTA Button -->
                     <div class="hero-actions">
-                        <a class="btn btn-primary" href="/signup.html">
-                            Create Free Account
-                            <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+                        <a class="btn btn-amber-glow" href="/signup.html">
+                            Join us now
+                            <i data-lucide="arrow-right" aria-hidden="true"></i>
                         </a>
 
-                        <a class="btn btn-secondary" href="/signin.html">
-                            Sign In
+                        <a class="btn btn-secondary" href="#platform">
+                            Explore Platform
                         </a>
                     </div>
 
@@ -2394,87 +1560,49 @@
 
                 <div class="hero-visual" data-reveal>
 
-                    <div class="hero-orb">
-                        <div class="hero-grid-lines"></div>
-                    </div>
-
-                    <div class="floating-card one">
-                        <span class="floating-label">Workspace</span>
-                        <span class="floating-value">
-                            <i data-lucide="sparkles" aria-hidden="true"></i>
-                            EverAI
-                        </span>
-                    </div>
-
                     <div class="hero-dashboard">
 
                         <div class="dash-top">
                             <div class="dash-brand">
                                 <span class="dash-brand-dot">
-                                    <i data-lucide="layers" aria-hidden="true"></i>
+                                    <i data-lucide="sparkles" aria-hidden="true"></i>
                                 </span>
-                                Evermore
+                                EverAI Workspace
                             </div>
 
                             <div class="dash-status">
                                 <span></span>
-                                Platform
+                                Live Tasks Active
                             </div>
                         </div>
 
-                        <div class="dash-body">
-                            <span class="dash-kicker">
-                                Your digital workspace
-                            </span>
-
-                            <h2 class="dash-title">
-                                Learn. Explore. Grow.
-                            </h2>
-
-                            <div class="dash-cards">
-
-                                <div class="dash-card">
-                                    <div class="dash-card-icon">
-                                        <i data-lucide="brain" aria-hidden="true"></i>
-                                    </div>
-                                    <strong>AI Training</strong>
-                                    <small>Develop practical AI skills</small>
-                                </div>
-
-                                <div class="dash-card">
-                                    <div class="dash-card-icon">
-                                        <i data-lucide="list-checks" aria-hidden="true"></i>
-                                    </div>
-                                    <strong>Tasks</strong>
-                                    <small>Explore eligible activities</small>
-                                </div>
-
-                                <div class="dash-card">
-                                    <div class="dash-card-icon">
-                                        <i data-lucide="graduation-cap" aria-hidden="true"></i>
-                                    </div>
-                                    <strong>Academy</strong>
-                                    <small>Build digital skills</small>
-                                </div>
-
-                                <div class="dash-card">
-                                    <div class="dash-card-icon">
-                                        <i data-lucide="bot" aria-hidden="true"></i>
-                                    </div>
-                                    <strong>EverAI</strong>
-                                    <small>AI workspace</small>
-                                </div>
-
-                            </div>
+                        <!-- Full Size Image Display -->
+                        <div class="hero-dashboard-img-wrap">
+                            <img 
+                                src="assets/company-image-1.jpeg" 
+                                alt="Evermore Platform Experience" 
+                            >
                         </div>
-                    </div>
 
-                    <div class="floating-card two">
-                        <span class="floating-label">Learning path</span>
-                        <span class="floating-value">
-                            <i data-lucide="graduation-cap" aria-hidden="true"></i>
-                            Skills Academy
-                        </span>
+                        <div class="dash-cards">
+
+                            <div class="dash-card">
+                                <div class="dash-card-icon">
+                                    <i data-lucide="brain" aria-hidden="true"></i>
+                                </div>
+                                <strong>AI Training</strong>
+                                <small>Develop practical AI skills</small>
+                            </div>
+
+                            <div class="dash-card">
+                                <div class="dash-card-icon">
+                                    <i data-lucide="list-checks" aria-hidden="true"></i>
+                                </div>
+                                <strong>Remote Tasks</strong>
+                                <small>Earn up to $18.6/hr</small>
+                            </div>
+
+                        </div>
                     </div>
 
                 </div>
@@ -2659,12 +1787,6 @@
 
                         <div class="window-head">
                             <strong>AI Training Activity</strong>
-
-                            <div class="window-dots">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
                         </div>
 
                         <div class="task-label">
@@ -2677,31 +1799,13 @@
                         </div>
 
                         <div class="response active">
-                            <div class="response-head">
-                                <strong>Response A</strong>
-                                <i data-lucide="check-circle-2"></i>
-                            </div>
-
-                            Clear, relevant and directly addresses
-                            the user's request.
+                            <strong>Response A</strong><br>
+                            Clear, relevant and directly addresses the user's request.
                         </div>
 
                         <div class="response">
-                            <div class="response-head">
-                                <strong>Response B</strong>
-                            </div>
-
-                            Provides some useful information but
-                            does not fully address the request.
-                        </div>
-
-                        <div class="response">
-                            <div class="response-head">
-                                <strong>Review</strong>
-                            </div>
-
-                            Compare quality, relevance and usefulness
-                            before submitting your evaluation.
+                            <strong>Response B</strong><br>
+                            Provides some useful information but does not fully address the request.
                         </div>
 
                     </div>
@@ -2779,6 +1883,9 @@
         </section>
 
 
+        <!-- =====================================================
+             INSIDE EVERMORE / SHOWCASE (FULL SIZE UNCROPPED IMAGES)
+             ===================================================== -->
         <section class="section" id="showcase" aria-labelledby="showcase-title">
             <div class="container">
 
@@ -2807,12 +1914,12 @@
 
                 <div class="showcase-grid">
 
-                    <!-- FEATURED COMPANY IMAGE -->
-                    <article class="showcase-card large" data-reveal>
+                    <!-- FEATURED COMPANY IMAGE (FULL SIZE) -->
+                    <article class="showcase-card" data-reveal>
 
                         <img
                             class="showcase-image"
-                            src="assets/company-image-1.jpg"
+                            src="assets/company-image-1.jpeg"
                             alt="Evermore platform experience"
                             loading="lazy"
                             decoding="async"
@@ -2826,42 +1933,46 @@
                     </article>
 
 
-                    <!-- COMPANY FLYER 1 -->
-                    <article class="showcase-card" data-reveal>
+                    <div class="showcase-column-right">
 
-                        <img
-                            class="showcase-image"
-                            src="assets/company-flyer-1.jpg"
-                            alt="Evermore promotional flyer"
-                            loading="lazy"
-                            decoding="async"
-                        >
+                        <!-- COMPANY FLYER 1 (FULL SIZE) -->
+                        <article class="showcase-card" data-reveal>
 
-                        <div class="showcase-overlay">
-                            <strong>Evermore Update</strong>
-                            <span>Featured campaign graphic</span>
-                        </div>
+                            <img
+                                class="showcase-image"
+                                src="assets/company-flyer-1.jpg"
+                                alt="Evermore promotional flyer"
+                                loading="lazy"
+                                decoding="async"
+                            >
 
-                    </article>
+                            <div class="showcase-overlay">
+                                <strong>Evermore Update</strong>
+                                <span>Featured campaign graphic</span>
+                            </div>
+
+                        </article>
 
 
-                    <!-- COMPANY FLYER 2 -->
-                    <article class="showcase-card" data-reveal>
+                        <!-- COMPANY FLYER 2 (FULL SIZE) -->
+                        <article class="showcase-card" data-reveal>
 
-                        <img
-                            class="showcase-image"
-                            src="assets/company-flyer-2.jpg"
-                            alt="Evermore campaign flyer"
-                            loading="lazy"
-                            decoding="async"
-                        >
+                            <img
+                                class="showcase-image"
+                                src="assets/company-flyer-2.jpg"
+                                alt="Evermore campaign flyer"
+                                loading="lazy"
+                                decoding="async"
+                            >
 
-                        <div class="showcase-overlay">
-                            <strong>Evermore Campaign</strong>
-                            <span>Community &amp; platform update</span>
-                        </div>
+                            <div class="showcase-overlay">
+                                <strong>Evermore Campaign</strong>
+                                <span>Community &amp; platform update</span>
+                            </div>
 
-                    </article>
+                        </article>
+
+                    </div>
 
                 </div>
             </div>
@@ -2968,7 +2079,7 @@
 
                     <div class="opportunity-copy">
 
-                        <span class="eyebrow">
+                        <span class="eyebrow" style="color: #6ee7b7;">
                             Remote opportunities
                         </span>
 
@@ -2993,13 +2104,10 @@
                             </div>
 
                             <div>
-                                <strong>AI-related activities</strong>
-                                <span>
-                                    Explore eligible AI training and evaluation tasks.
-                                </span>
+                                <strong>AI-related activities</strong><br>
+                                <span style="font-size: .72rem; opacity: .8;">Explore eligible AI training and evaluation tasks.</span>
                             </div>
                         </div>
-
 
                         <div class="opportunity-item">
                             <div class="opportunity-item-icon">
@@ -3007,13 +2115,10 @@
                             </div>
 
                             <div>
-                                <strong>Response review</strong>
-                                <span>
-                                    Participate in available review and evaluation workflows.
-                                </span>
+                                <strong>Response review</strong><br>
+                                <span style="font-size: .72rem; opacity: .8;">Participate in available review and evaluation workflows.</span>
                             </div>
                         </div>
-
 
                         <div class="opportunity-item">
                             <div class="opportunity-item-icon">
@@ -3021,13 +2126,10 @@
                             </div>
 
                             <div>
-                                <strong>Surveys and tasks</strong>
-                                <span>
-                                    Find eligible activities when they are available.
-                                </span>
+                                <strong>Surveys and tasks</strong><br>
+                                <span style="font-size: .72rem; opacity: .8;">Find eligible activities when they are available.</span>
                             </div>
                         </div>
-
 
                         <div class="opportunity-item">
                             <div class="opportunity-item-icon">
@@ -3035,10 +2137,8 @@
                             </div>
 
                             <div>
-                                <strong>Opportunity discovery</strong>
-                                <span>
-                                    Explore opportunities that match your access and eligibility.
-                                </span>
+                                <strong>Opportunity discovery</strong><br>
+                                <span style="font-size: .72rem; opacity: .8;">Explore opportunities that match your access and eligibility.</span>
                             </div>
                         </div>
 
@@ -3074,7 +2174,7 @@
                         continue improving their capabilities.
                     </p>
 
-                    <div class="academy-topics">
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 25px;">
                         <span class="topic">AI Skills</span>
                         <span class="topic">Digital Skills</span>
                         <span class="topic">Technology</span>
@@ -3092,59 +2192,23 @@
 
                 <div class="academy-visual" data-reveal>
 
-                    <div class="academy-grid-bg"></div>
-
                     <div class="academy-window">
+                        <strong>Skills Academy Progress</strong>
 
-                        <div class="course-head">
-
-                            <div class="course-icon">
-                                <i data-lucide="graduation-cap" aria-hidden="true"></i>
-                            </div>
-
-                            <div>
-                                <strong>Skills Academy</strong>
-                                <span>Continue your learning journey</span>
-                            </div>
-
+                        <div style="margin-top: 15px;">
+                            <span style="font-size: .72rem; font-weight: 700;">AI Foundations</span>
+                            <div class="progress"><span style="width:72%;"></span></div>
                         </div>
 
-
-                        <div class="course-row">
-                            <div class="course-row-top">
-                                <span>AI foundations</span>
-                                <span>Explore</span>
-                            </div>
-
-                            <div class="progress">
-                                <span style="width:72%;"></span>
-                            </div>
+                        <div style="margin-top: 12px;">
+                            <span style="font-size: .72rem; font-weight: 700;">Digital Skills</span>
+                            <div class="progress"><span style="width:54%;"></span></div>
                         </div>
 
-
-                        <div class="course-row">
-                            <div class="course-row-top">
-                                <span>Digital skills</span>
-                                <span>Learn</span>
-                            </div>
-
-                            <div class="progress">
-                                <span style="width:54%;"></span>
-                            </div>
+                        <div style="margin-top: 12px;">
+                            <span style="font-size: .72rem; font-weight: 700;">Remote Work Readiness</span>
+                            <div class="progress"><span style="width:41%;"></span></div>
                         </div>
-
-
-                        <div class="course-row">
-                            <div class="course-row-top">
-                                <span>Remote work readiness</span>
-                                <span>Develop</span>
-                            </div>
-
-                            <div class="progress">
-                                <span style="width:41%;"></span>
-                            </div>
-                        </div>
-
                     </div>
 
                 </div>
@@ -3154,49 +2218,32 @@
 
 
         <!-- =====================================================
-             EVERAI
+             EVERAI WORKSPACE
              ===================================================== -->
         <section
-            class="section everai-section"
+            class="section"
             id="everai"
             aria-labelledby="everai-title"
         >
             <div class="container everai-grid">
 
-                <div class="everai-visual" data-reveal aria-hidden="true">
-
-                    <div class="ai-window">
-
-                        <div class="ai-window-head">
-                            <strong>EverAI Workspace</strong>
-                            <span class="ai-head-status">AI workspace</span>
-                        </div>
-
-                        <div class="ai-messages">
-
-                            <div class="ai-message bot">
-                                Welcome to your EverAI workspace.
-                            </div>
-
-                            <div class="ai-message user">
-                                Help me organise what I should learn next.
-                            </div>
-
-                            <div class="ai-message bot">
-                                Start with a skill you want to improve,
-                                then explore relevant learning resources
-                                and activities available to your account.
-                            </div>
-
-                        </div>
-
-                        <div class="ai-input">
-                            <span>Ask EverAI...</span>
-                            <i data-lucide="arrow-up" aria-hidden="true"></i>
-                        </div>
-
+                <div class="ai-window" data-reveal>
+                    <div class="ai-window-head">
+                        <strong>EverAI Workspace</strong>
+                        <span style="font-size: .65rem; color: var(--primary); font-weight: 800;">ACTIVE</span>
                     </div>
 
+                    <div class="ai-messages">
+                        <div class="ai-message bot">
+                            Welcome to your EverAI workspace.
+                        </div>
+                        <div class="ai-message user">
+                            Help me organise what I should learn next.
+                        </div>
+                        <div class="ai-message bot">
+                            Start with a skill you want to improve, then explore relevant learning resources and activities available to your account.
+                        </div>
+                    </div>
                 </div>
 
 
@@ -3223,13 +2270,9 @@
 
                             <div>
                                 <strong>AI interaction</strong>
-                                <p>
-                                    Work with an AI-focused interface
-                                    designed for everyday exploration.
-                                </p>
+                                <p>Work with an AI-focused interface designed for everyday exploration.</p>
                             </div>
                         </div>
-
 
                         <div class="feature-list-item">
                             <div class="feature-list-icon">
@@ -3238,10 +2281,7 @@
 
                             <div>
                                 <strong>Part of one platform</strong>
-                                <p>
-                                    EverAI sits alongside training,
-                                    tasks, opportunities and skills learning.
-                                </p>
+                                <p>EverAI sits alongside training, tasks, opportunities and skills learning.</p>
                             </div>
                         </div>
 
@@ -3282,8 +2322,8 @@
                     </p>
                 </div>
 
-                <div class="payment-trust">
-                    <i data-lucide="shield-check" aria-hidden="true"></i>
+                <div style="display: flex; align-items: center; justify-content: center; gap: 8px; width: fit-content; margin: 0 auto 34px; padding: 10px 16px; border: 1px solid var(--line); border-radius: 999px; background: #fff; box-shadow: var(--shadow-sm); color: #33445f; font-size: .74rem; font-weight: 800;">
+                    <i data-lucide="shield-check" style="color:var(--primary);"></i>
                     Payments secured by Kora Pay
                 </div>
 
@@ -3293,53 +2333,28 @@
                     <!-- Crown Premium -->
                     <article class="price-card featured" data-reveal>
 
-                        <span class="price-badge">
-                            Crown Premium
-                        </span>
+                        <span class="price-badge">Crown Premium</span>
 
                         <h3>Crown Premium</h3>
 
-                        <p>
-                            Extended access for users who want to
-                            explore the Evermore ecosystem.
-                        </p>
+                        <p>Extended access for users who want to explore the Evermore ecosystem.</p>
 
                         <div class="price">
                             <strong>$10</strong>
                             <span>/ 12 months</span>
                         </div>
 
-                        <div class="price-alt">
+                        <div style="font-weight: 800; color: var(--primary); font-size: .8rem; margin-bottom: 20px;">
                             ₦14,000 • 12 months
                         </div>
 
-                        <div class="price-features">
+                        <div class="price-feature"><i data-lucide="check"></i> 12-month package duration</div>
+                        <div class="price-feature"><i data-lucide="check"></i> Access according to package terms</div>
+                        <div class="price-feature"><i data-lucide="check"></i> Explore available platform features</div>
+                        <div class="price-feature"><i data-lucide="check"></i> Learning and opportunity ecosystem</div>
 
-                            <div class="price-feature">
-                                <i data-lucide="check" aria-hidden="true"></i>
-                                12-month package duration
-                            </div>
-
-                            <div class="price-feature">
-                                <i data-lucide="check" aria-hidden="true"></i>
-                                Access according to package terms
-                            </div>
-
-                            <div class="price-feature">
-                                <i data-lucide="check" aria-hidden="true"></i>
-                                Explore available platform features
-                            </div>
-
-                            <div class="price-feature">
-                                <i data-lucide="check" aria-hidden="true"></i>
-                                Learning and opportunity ecosystem
-                            </div>
-
-                        </div>
-
-                        <a class="btn btn-primary" href="/signup">
+                        <a class="btn btn-amber-glow" href="/signup" style="width: 100%; margin-top: 15px;">
                             Get Started
-                            <i data-lucide="arrow-up-right" aria-hidden="true"></i>
                         </a>
 
                     </article>
@@ -3350,59 +2365,32 @@
 
                         <h3>Trial Package</h3>
 
-                        <p>
-                            A shorter package for users who want
-                            to begin exploring Evermore.
-                        </p>
+                        <p>A shorter package for users who want to begin exploring Evermore.</p>
 
                         <div class="price">
                             <strong>$5</strong>
                             <span>/ 2 months</span>
                         </div>
 
-                        <div class="price-alt">
+                        <div style="font-weight: 800; color: var(--muted); font-size: .8rem; margin-bottom: 20px;">
                             ₦7,000 • 2 months
                         </div>
 
-                        <div class="price-features">
+                        <div class="price-feature"><i data-lucide="check"></i> 2-month package duration</div>
+                        <div class="price-feature"><i data-lucide="check"></i> Access according to package terms</div>
+                        <div class="price-feature"><i data-lucide="check"></i> Explore available platform features</div>
+                        <div class="price-feature"><i data-lucide="check"></i> Learning and opportunity ecosystem</div>
 
-                            <div class="price-feature">
-                                <i data-lucide="check" aria-hidden="true"></i>
-                                2-month package duration
-                            </div>
-
-                            <div class="price-feature">
-                                <i data-lucide="check" aria-hidden="true"></i>
-                                Access according to package terms
-                            </div>
-
-                            <div class="price-feature">
-                                <i data-lucide="check" aria-hidden="true"></i>
-                                Explore available platform features
-                            </div>
-
-                            <div class="price-feature">
-                                <i data-lucide="check" aria-hidden="true"></i>
-                                Learning and opportunity ecosystem
-                            </div>
-
-                        </div>
-
-                        <a class="btn btn-secondary" href="/signup">
+                        <a class="btn btn-secondary" href="/signup" style="width: 100%; margin-top: 15px;">
                             Get Started
-                            <i data-lucide="arrow-up-right" aria-hidden="true"></i>
                         </a>
 
                     </article>
 
                 </div>
 
-
-                <p class="pricing-disclaimer">
-                    Pricing and access are subject to Evermore's applicable
-                    package terms. Task availability and opportunity access
-                    may vary by user and activity. All payments are processed
-                    securely through Kora Pay.
+                <p style="max-width: 700px; margin: 25px auto 0; text-align: center; color: var(--light-text); font-size: .65rem;">
+                    Pricing and access are subject to Evermore's applicable package terms. Task availability and opportunity access may vary by user and activity. All payments are processed securely through Kora Pay.
                 </p>
 
             </div>
@@ -3410,7 +2398,7 @@
 
 
         <!-- =====================================================
-             FAQ
+             FAQ (FULL ORIGINAL 8 ITEMS RESTORED 100%)
              ===================================================== -->
         <section
             class="section"
@@ -3435,6 +2423,7 @@
 
                 <div class="faq-wrap">
 
+                    <!-- FAQ 1 -->
                     <div class="faq-item" data-reveal>
                         <button
                             class="faq-question"
@@ -3458,6 +2447,7 @@
                     </div>
 
 
+                    <!-- FAQ 2 -->
                     <div class="faq-item" data-reveal>
                         <button
                             class="faq-question"
@@ -3481,6 +2471,7 @@
                     </div>
 
 
+                    <!-- FAQ 3 -->
                     <div class="faq-item" data-reveal>
                         <button
                             class="faq-question"
@@ -3504,6 +2495,7 @@
                     </div>
 
 
+                    <!-- FAQ 4 -->
                     <div class="faq-item" data-reveal>
                         <button
                             class="faq-question"
@@ -3527,6 +2519,7 @@
                     </div>
 
 
+                    <!-- FAQ 5 -->
                     <div class="faq-item" data-reveal>
                         <button
                             class="faq-question"
@@ -3550,6 +2543,7 @@
                     </div>
 
 
+                    <!-- FAQ 6 -->
                     <div class="faq-item" data-reveal>
                         <button
                             class="faq-question"
@@ -3573,6 +2567,7 @@
                     </div>
 
 
+                    <!-- FAQ 7 -->
                     <div class="faq-item" data-reveal>
                         <button
                             class="faq-question"
@@ -3586,7 +2581,7 @@
                         <div class="faq-answer">
                             <div class="faq-answer-inner">
                                 <p>
-                                    Select "Create Free Account" anywhere
+                                    Select "Join us now" anywhere
                                     on this page or visit the existing
                                     <strong>/signup</strong> registration route.
                                 </p>
@@ -3595,6 +2590,7 @@
                     </div>
 
 
+                    <!-- FAQ 8 -->
                     <div class="faq-item" data-reveal>
                         <button
                             class="faq-question"
@@ -3623,14 +2619,14 @@
         <!-- =====================================================
              FINAL CTA
              ===================================================== -->
-        <section class="final-cta" aria-labelledby="cta-title">
+        <section class="section" aria-labelledby="cta-title">
             <div class="container">
 
                 <div class="cta-panel" data-reveal>
 
                     <div class="cta-content">
 
-                        <span class="eyebrow">
+                        <span class="eyebrow" style="color: #00c88d;">
                             Your next step
                         </span>
 
@@ -3638,16 +2634,15 @@
                             Build your place in the AI-powered digital world.
                         </h2>
 
-                        <p>
+                        <p style="margin-bottom: 25px; opacity: .8;">
                             Create your Evermore account, explore the platform
-                            and discover the learning and opportunity features
-                            available to you.
+                            and discover available remote opportunities.
                         </p>
 
-                        <div class="cta-actions">
+                        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
 
-                            <a class="btn btn-primary" href="signup">
-                                Create Free Account
+                            <a class="btn btn-amber-glow" href="signup">
+                                Join us now
                                 <i data-lucide="arrow-up-right" aria-hidden="true"></i>
                             </a>
 
@@ -3790,216 +2785,57 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
 
-            /* -----------------------------------------------------
-               LUCIDE ICONS
-               ----------------------------------------------------- */
+            /* Lucide Icons Initialization */
             if (window.lucide) {
                 window.lucide.createIcons();
             }
 
-
-            /* -----------------------------------------------------
-               MOBILE NAVIGATION
-               ----------------------------------------------------- */
-
+            /* Mobile Navigation Toggle */
             const menuButton = document.querySelector(".mobile-toggle");
             const mobileMenu = document.getElementById("mobile-menu");
 
-            function refreshIcons() {
-                if (window.lucide) {
-                    window.lucide.createIcons();
-                }
-            }
-
-            function closeMobileMenu() {
-                if (!menuButton || !mobileMenu) return;
-
-                mobileMenu.classList.remove("is-open");
-
-                menuButton.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-                menuButton.setAttribute(
-                    "aria-label",
-                    "Open navigation menu"
-                );
-
-                document.body.classList.remove("menu-open");
-
-                menuButton.innerHTML =
-                    '<i data-lucide="menu" aria-hidden="true"></i>';
-
-                refreshIcons();
-            }
-
             if (menuButton && mobileMenu) {
-
                 menuButton.addEventListener("click", function () {
-
-                    const isOpen =
-                        mobileMenu.classList.toggle("is-open");
-
-                    menuButton.setAttribute(
-                        "aria-expanded",
-                        String(isOpen)
-                    );
-
-                    menuButton.setAttribute(
-                        "aria-label",
-                        isOpen
-                            ? "Close navigation menu"
-                            : "Open navigation menu"
-                    );
-
-                    document.body.classList.toggle(
-                        "menu-open",
-                        isOpen
-                    );
-
-                    menuButton.innerHTML = isOpen
-                        ? '<i data-lucide="x" aria-hidden="true"></i>'
-                        : '<i data-lucide="menu" aria-hidden="true"></i>';
-
-                    refreshIcons();
+                    const isOpen = mobileMenu.classList.toggle("is-open");
+                    menuButton.setAttribute("aria-expanded", String(isOpen));
                 });
+            }
 
+            /* FAQ Accordion Toggle */
+            const faqButtons = document.querySelectorAll(".faq-question");
+            faqButtons.forEach(function (button) {
+                button.addEventListener("click", function () {
+                    const item = button.closest(".faq-item");
+                    const alreadyOpen = item.classList.contains("is-open");
 
-                mobileMenu
-                    .querySelectorAll("a")
-                    .forEach(function (link) {
-
-                        link.addEventListener(
-                            "click",
-                            closeMobileMenu
-                        );
-
+                    document.querySelectorAll(".faq-item").forEach(function (otherItem) {
+                        otherItem.classList.remove("is-open");
                     });
 
-
-                window.addEventListener(
-                    "resize",
-                    function () {
-
-                        if (window.innerWidth > 900) {
-                            closeMobileMenu();
-                        }
-
-                    }
-                );
-
-            }
-
-
-            /* -----------------------------------------------------
-               FAQ ACCORDION
-               ----------------------------------------------------- */
-
-            const faqButtons =
-                document.querySelectorAll(".faq-question");
-
-            faqButtons.forEach(function (button) {
-
-                button.addEventListener("click", function () {
-
-                    const item =
-                        button.closest(".faq-item");
-
-                    const alreadyOpen =
-                        item.classList.contains("is-open");
-
-
-                    document
-                        .querySelectorAll(".faq-item")
-                        .forEach(function (otherItem) {
-
-                            otherItem.classList.remove("is-open");
-
-                            const otherButton =
-                                otherItem.querySelector(
-                                    ".faq-question"
-                                );
-
-                            if (otherButton) {
-                                otherButton.setAttribute(
-                                    "aria-expanded",
-                                    "false"
-                                );
-                            }
-
-                        });
-
-
                     if (!alreadyOpen) {
-
                         item.classList.add("is-open");
-
-                        button.setAttribute(
-                            "aria-expanded",
-                            "true"
-                        );
-
                     }
-
                 });
-
             });
 
-
-            /* -----------------------------------------------------
-               SCROLL REVEAL
-               ----------------------------------------------------- */
-
-            const revealItems =
-                document.querySelectorAll("[data-reveal]");
-
-
-            if (
-                "IntersectionObserver" in window &&
-                !window.matchMedia(
-                    "(prefers-reduced-motion: reduce)"
-                ).matches
-            ) {
-
-                const observer =
-                    new IntersectionObserver(
-                        function (entries, observerInstance) {
-
-                            entries.forEach(function (entry) {
-
-                                if (entry.isIntersecting) {
-
-                                    entry.target.classList.add(
-                                        "is-visible"
-                                    );
-
-                                    observerInstance.unobserve(
-                                        entry.target
-                                    );
-
-                                }
-
-                            });
-
-                        },
-                        {
-                            threshold: 0.12,
-                            rootMargin: "0px 0px -35px 0px"
+            /* Scroll Reveal Observer */
+            const revealItems = document.querySelectorAll("[data-reveal]");
+            if ("IntersectionObserver" in window) {
+                const observer = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("is-visible");
                         }
-                    );
-
+                    });
+                }, { threshold: 0.1 });
 
                 revealItems.forEach(function (item) {
                     observer.observe(item);
                 });
-
             } else {
-
                 revealItems.forEach(function (item) {
                     item.classList.add("is-visible");
                 });
-
             }
 
         });
