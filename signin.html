@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO -->
-    <title>Sign In | Evermore</title>
+    <title>Sign In | Evermore — AI Training &amp; Remote Workspace</title>
     <meta
         name="description"
         content="Sign in to your Evermore account to access your workspace, AI training, digital skills and qualified opportunities."
@@ -15,11 +15,15 @@
     <!-- Authentication pages should not appear in Google search -->
     <meta name="robots" content="noindex, follow">
 
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#00c88d">
     <meta name="format-detection" content="telephone=no">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://www.evermoreonline.com.ng/signin">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/evermore-logo.png">
+    <link rel="apple-touch-icon" href="assets/evermore-logo.png">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
@@ -39,991 +43,523 @@
             theme: {
                 extend: {
                     colors: {
-                        evermore: {
-                            blue: '#2563EB',
-                            purple: '#6D28D9',
-                            green: '#10B981',
-                            dark: '#0B1020',
-                            text: '#111827',
-                            muted: '#64748B'
+                        navy: {
+                            DEFAULT: '#07152b',
+                            card: '#0d1f3d'
+                        },
+                        emerald: {
+                            brand: '#00c88d',
+                            dark: '#00996b',
+                            soft: '#e6fcf5'
+                        },
+                        cyan: {
+                            brand: '#06b6d4'
                         }
                     },
-
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif']
+                        sans: ['Plus Jakarta Sans', 'Manrope', 'sans-serif']
                     }
                 }
             }
         };
     </script>
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Font -->
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        :root {
+            --primary: #00c88d;
+            --primary-dark: #00996b;
+            --primary-soft: #e6fcf5;
+            --cyan-accent: #06b6d4;
+            --navy: #07152b;
+            --gradient-flyer-headline: linear-gradient(135deg, #00e699 0%, #00b37e 60%, #06b6d4 100%);
+            --gradient-cta-amber: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
+        }
 
         * {
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            margin: 0;
-            font-family: 'Inter', sans-serif;
-            color: #111827;
-
-            background:
-                linear-gradient(rgba(37, 99, 235, 0.055) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(37, 99, 235, 0.055) 1px, transparent 1px),
-                linear-gradient(135deg, #ffffff 0%, #f8fbff 55%, #f7f5ff 100%);
-
-            background-size:
-                46px 46px,
-                46px 46px,
-                100% 100%;
-
+            font-family: 'Plus Jakarta Sans', 'Manrope', sans-serif;
+            color: #0a1628;
+            background: 
+                radial-gradient(circle at 85% 15%, rgba(0, 200, 141, 0.15) 0%, transparent 45%),
+                radial-gradient(circle at 15% 85%, rgba(6, 182, 212, 0.12) 0%, transparent 40%),
+                linear-gradient(180deg, #f0fdfa 0%, #ffffff 100%);
             min-height: 100vh;
-            overflow-x: hidden;
         }
 
-        body::before {
-            content: "";
-
-            position: fixed;
-
-            width: 420px;
-            height: 420px;
-
-            top: 120px;
-            right: -180px;
-
-            background: rgba(59, 130, 246, 0.10);
-
-            filter: blur(100px);
-            border-radius: 50%;
-
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        body::after {
-            content: "";
-
-            position: fixed;
-
-            width: 380px;
-            height: 380px;
-
-            bottom: -150px;
-            left: -150px;
-
-            background: rgba(124, 58, 237, 0.08);
-
-            filter: blur(100px);
-            border-radius: 50%;
-
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .gradient-text {
-            background: linear-gradient(
-                90deg,
-                #2563eb 0%,
-                #4f46e5 55%,
-                #7c3aed 100%
-            );
-
+        .flyer-title {
+            background: var(--gradient-flyer-headline);
             -webkit-background-clip: text;
             background-clip: text;
-
             color: transparent;
         }
 
-        .main-card {
-            background: rgba(255, 255, 255, 0.92);
-
-            border: 1px solid rgba(148, 163, 184, 0.25);
-
-            box-shadow:
-                0 30px 80px rgba(15, 23, 42, 0.08),
-                0 8px 30px rgba(37, 99, 235, 0.05);
-
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-
         .input-field {
-            transition:
-                border-color 0.2s ease,
-                box-shadow 0.2s ease,
-                background 0.2s ease;
+            transition: all 0.2s ease;
         }
 
         .input-field:focus {
-            border-color: #2563eb;
-
+            border-color: #00c88d;
             background: #ffffff;
-
-            box-shadow:
-                0 0 0 4px rgba(37, 99, 235, 0.08);
-
+            box-shadow: 0 0 0 4px rgba(0, 200, 141, 0.12);
             outline: none;
         }
 
-        .primary-button {
-            background: #070b1a;
-
-            transition:
-                transform 0.2s ease,
-                box-shadow 0.2s ease,
-                background 0.2s ease;
+        .btn-amber-glow {
+            color: #ffffff;
+            background: var(--gradient-cta-amber);
+            border: 2px solid #fbbf24;
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            transition: all 0.22s ease;
         }
 
-        .primary-button:hover {
-            transform: translateY(-2px);
-
-            box-shadow:
-                0 15px 35px rgba(15, 23, 42, 0.18);
-
-            background: #111827;
+        .btn-amber-glow:hover {
+            box-shadow: 0 0 35px rgba(245, 158, 11, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            transform: translateY(-1px);
         }
 
-        .primary-button:active {
-            transform: translateY(0);
-        }
-
-        .primary-button:disabled {
-            cursor: not-allowed;
+        .btn-amber-glow:disabled {
             transform: none;
-        }
-
-        .feature-pill {
-            background: rgba(255, 255, 255, 0.8);
-
-            border: 1px solid rgba(148, 163, 184, 0.25);
-        }
-
-        .status-dot {
-            box-shadow:
-                0 0 0 6px rgba(16, 185, 129, 0.10);
-        }
-
-        .fade-up {
-            animation: fadeUp 0.7s ease both;
-        }
-
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(16px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 640px) {
-            body {
-                background-size:
-                    34px 34px,
-                    34px 34px,
-                    100% 100%;
-            }
+            box-shadow: none;
+            opacity: 0.7;
+            cursor: not-allowed;
         }
     </style>
 </head>
 
-<body>
+<body class="antialiased text-slate-900 flex flex-col min-h-screen">
 
     <!-- ================= HEADER ================= -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-emerald-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[76px] flex items-center justify-between">
 
-    <header class="bg-white/90 backdrop-blur-md border-b border-slate-200/70">
-
-        <div class="max-w-7xl mx-auto px-5 sm:px-8 h-[88px] flex items-center justify-between">
-
-            <a
-                href="/"
-                class="flex items-center"
-                aria-label="Evermore Home"
-            >
+            <a href="/" class="flex items-center" aria-label="Evermore Home">
                 <img
                     src="assets/evermore-logo.png"
                     alt="Evermore"
-                    class="h-14 sm:h-16 w-auto object-contain"
+                    class="h-12 sm:h-14 w-auto object-contain"
                 >
             </a>
 
-            <a
-                href="/signup"
-                class="sm:hidden font-bold text-blue-600 text-sm"
-            >
-                Sign Up
-            </a>
+            <div class="flex items-center gap-3">
+                <span class="hidden sm:inline-block text-xs font-bold text-slate-500 uppercase tracking-wider">New to Evermore?</span>
+                <a 
+                    href="/signup" 
+                    class="px-4 py-2 rounded-full border border-emerald-200 text-xs sm:text-sm font-extrabold text-slate-800 hover:border-emerald-400 hover:text-emerald-600 transition"
+                >
+                    Create Account
+                </a>
+            </div>
 
         </div>
-
     </header>
 
-
     <!-- ================= MAIN ================= -->
-
-    <main class="min-h-[calc(100vh-88px)] px-5 sm:px-8 py-12 sm:py-20">
+    <main class="flex-grow relative py-8 sm:py-14 px-4 sm:px-6">
 
         <div class="max-w-xl mx-auto">
 
-            <!-- ================= INTRO ================= -->
+            <!-- Page Intro Header -->
+            <div class="text-center max-w-lg mx-auto mb-8 sm:mb-10">
 
-            <div class="text-center fade-up">
-
-                <div
-                    class="inline-flex items-center gap-2 px-4 py-2 rounded-full feature-pill text-sm font-semibold text-slate-600 mb-6"
-                >
-
-                    <span
-                        class="status-dot w-2.5 h-2.5 bg-emerald-500 rounded-full"
-                        aria-hidden="true"
-                    ></span>
-
-                    <span>Welcome back to Evermore</span>
-
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-extrabold text-emerald-800 uppercase tracking-widest mb-4">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span>Welcome Back • EverAI</span>
                 </div>
 
-
-                <h1 class="text-[38px] sm:text-5xl font-black tracking-tight text-slate-950 leading-[1.08]">
-
-                    Sign in and
-
-                    <span class="gradient-text">
-                        keep moving.
-                    </span>
-
+                <h1 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight text-slate-950">
+                    Sign in and <span class="flyer-title">keep moving.</span>
                 </h1>
 
-
-                <p class="mt-5 text-base sm:text-lg leading-8 text-slate-500 max-w-lg mx-auto">
-
-                    Access your Evermore workspace, digital skills,
-                    AI training and qualified opportunities.
-
+                <p class="mt-3 text-sm sm:text-base leading-relaxed text-slate-600 font-medium">
+                    Access your Evermore workspace, digital skills, AI training and remote opportunities.
                 </p>
 
             </div>
 
+            <!-- ================= CARD CONTAINER ================= -->
+            <div class="bg-white/95 backdrop-blur-xl rounded-3xl border-2 border-emerald-100 shadow-xl overflow-hidden">
 
-            <!-- ================= LOGIN CARD ================= -->
+                <!-- Top Accent Bar -->
+                <div class="h-2 bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-500"></div>
 
-            <div class="main-card rounded-[28px] mt-10 sm:mt-12 p-6 sm:p-10 fade-up">
+                <div class="p-6 sm:p-10">
 
-                <!-- Gradient line -->
-
-                <div
-                    class="h-1.5 w-full rounded-full bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600 mb-8"
-                    aria-hidden="true"
-                ></div>
-
-
-                <!-- ================= ERROR ================= -->
-
-                <div
-                    id="error-alert"
-                    class="hidden mb-6 rounded-2xl border border-red-200 bg-red-50 p-4 text-sm text-red-600"
-                    role="alert"
-                    aria-live="assertive"
-                >
-
-                    <div class="flex items-start gap-3">
-
-                        <i
-                            data-lucide="alert-circle"
-                            class="w-5 h-5 flex-shrink-0 mt-0.5"
-                            aria-hidden="true"
-                        ></i>
-
-                        <span id="error-message">
-                            Incorrect email or password.
-                        </span>
-
+                    <!-- ================= ERROR ALERT ================= -->
+                    <div
+                        id="error-alert"
+                        class="hidden mb-6 rounded-2xl border border-rose-300 bg-rose-50 p-4 text-xs sm:text-sm text-rose-800 font-semibold"
+                        role="alert"
+                        aria-live="assertive"
+                    >
+                        <div class="flex items-start gap-3">
+                            <i
+                                data-lucide="alert-circle"
+                                class="w-5 h-5 text-rose-600 flex-shrink-0 mt-0.5"
+                                aria-hidden="true"
+                            ></i>
+                            <span id="error-message">
+                                Incorrect email or password.
+                            </span>
+                        </div>
                     </div>
 
-                </div>
-
-
-                <!-- ================= SUCCESS ================= -->
-
-                <div
-                    id="success-alert"
-                    class="hidden mb-6 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-700"
-                    role="status"
-                    aria-live="polite"
-                >
-
-                    <div class="flex items-center gap-3">
-
-                        <i
-                            data-lucide="check-circle"
-                            class="w-5 h-5 flex-shrink-0"
-                            aria-hidden="true"
-                        ></i>
-
-                        <span id="success-text">
-                            Sign in successful! Redirecting...
-                        </span>
-
+                    <!-- ================= SUCCESS ALERT ================= -->
+                    <div
+                        id="success-alert"
+                        class="hidden mb-6 rounded-2xl border border-emerald-300 bg-emerald-50 p-4 text-xs sm:text-sm text-emerald-900 font-semibold"
+                        role="status"
+                        aria-live="polite"
+                    >
+                        <div class="flex items-center gap-3">
+                            <i
+                                data-lucide="check-circle"
+                                class="w-5 h-5 text-emerald-600 flex-shrink-0"
+                                aria-hidden="true"
+                            ></i>
+                            <span id="success-text">
+                                Sign in successful! Redirecting...
+                            </span>
+                        </div>
                     </div>
 
-                </div>
+                    <!-- ================= FORM ================= -->
+                    <form
+                        id="signin-form"
+                        novalidate
+                        onsubmit="handleSignin(event)"
+                        class="space-y-5"
+                    >
 
-
-                <!-- ================= FORM ================= -->
-
-                <form
-                    id="signin-form"
-                    novalidate
-                    onsubmit="handleSignin(event)"
-                    class="space-y-6"
-                >
-
-                    <!-- Email -->
-
-                    <div>
-
-                        <label
-                            for="signin-email"
-                            class="block text-sm font-bold text-slate-800 mb-2"
-                        >
-                            Email Address
-                        </label>
-
-                        <input
-                            type="email"
-                            id="signin-email"
-                            name="email"
-                            required
-                            autocomplete="email"
-                            placeholder="name@example.com"
-                            class="input-field w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-sm text-slate-900 placeholder-slate-400"
-                        >
-
-                    </div>
-
-
-                    <!-- Password -->
-
-                    <div>
-
-                        <div class="flex items-center justify-between mb-2">
-
+                        <!-- Email -->
+                        <div>
                             <label
-                                for="signin-password"
-                                class="block text-sm font-bold text-slate-800"
+                                for="signin-email"
+                                class="block text-xs font-extrabold text-slate-800 uppercase tracking-wider mb-2"
                             >
-                                Password
+                                Email Address
                             </label>
-
-                            <a
-                                href="#"
-                                onclick="forgotPassword(event)"
-                                class="text-xs sm:text-sm font-semibold text-blue-600 hover:text-purple-600 transition"
-                            >
-                                Forgot password?
-                            </a>
-
-                        </div>
-
-
-                        <div class="relative">
-
                             <input
-                                type="password"
-                                id="signin-password"
-                                name="password"
+                                type="email"
+                                id="signin-email"
+                                name="email"
                                 required
-                                autocomplete="current-password"
-                                placeholder="Enter your password"
-                                class="input-field w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 pr-14 text-sm text-slate-900 placeholder-slate-400"
+                                autocomplete="email"
+                                placeholder="name@example.com"
+                                class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-xs sm:text-sm text-slate-900 font-medium placeholder:text-slate-400"
                             >
-
-
-                            <button
-                                type="button"
-                                id="toggle-password"
-                                class="absolute right-0 top-0 h-full px-4 text-slate-400 hover:text-blue-600 transition"
-                                aria-label="Show password"
-                                aria-pressed="false"
-                            >
-
-                                <i
-                                    data-lucide="eye"
-                                    id="toggle-icon"
-                                    class="w-5 h-5"
-                                ></i>
-
-                            </button>
-
                         </div>
 
+                        <!-- Password -->
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <label
+                                    for="signin-password"
+                                    class="block text-xs font-extrabold text-slate-800 uppercase tracking-wider"
+                                >
+                                    Password
+                                </label>
+                                <a
+                                    href="#"
+                                    onclick="forgotPassword(event)"
+                                    class="text-xs font-extrabold text-emerald-600 hover:underline transition"
+                                >
+                                    Forgot password?
+                                </a>
+                            </div>
+
+                            <div class="relative">
+                                <input
+                                    type="password"
+                                    id="signin-password"
+                                    name="password"
+                                    required
+                                    autocomplete="current-password"
+                                    placeholder="Enter your password"
+                                    class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3.5 pr-12 text-xs sm:text-sm text-slate-900 font-medium placeholder:text-slate-400"
+                                >
+
+                                <button
+                                    type="button"
+                                    id="toggle-password"
+                                    class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 p-2"
+                                    aria-label="Show password"
+                                    aria-pressed="false"
+                                >
+                                    <i
+                                        data-lucide="eye"
+                                        id="toggle-icon"
+                                        class="w-4 h-4"
+                                    ></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Remember Device -->
+                        <div class="flex items-center gap-3 pt-1">
+                            <input
+                                type="checkbox"
+                                id="remember"
+                                class="w-4 h-4 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500 cursor-pointer"
+                            >
+                            <label
+                                for="remember"
+                                class="text-xs sm:text-sm font-medium text-slate-600 cursor-pointer"
+                            >
+                                Remember this device
+                            </label>
+                        </div>
+
+                        <!-- Glowing Amber CTA Button -->
+                        <button
+                            type="submit"
+                            id="signin-btn"
+                            class="btn-amber-glow w-full rounded-full py-4 px-6 font-black text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg mt-2"
+                        >
+                            <span>Sign In to Evermore</span>
+                            <i
+                                data-lucide="arrow-right"
+                                class="w-4 h-4"
+                            ></i>
+                        </button>
+
+                    </form>
+
+                    <!-- Divider -->
+                    <div class="flex items-center gap-4 my-6">
+                        <div class="h-px bg-slate-200 flex-1"></div>
+                        <span class="text-xs text-slate-400 font-extrabold uppercase tracking-widest">OR</span>
+                        <div class="h-px bg-slate-200 flex-1"></div>
                     </div>
 
-
-                    <!-- Remember Device -->
-
-                    <div class="flex items-center gap-3">
-
-                        <input
-                            type="checkbox"
-                            id="remember"
-                            class="w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                    <!-- Create Account Card Link -->
+                    <div class="rounded-2xl bg-emerald-50/60 border border-emerald-200/80 p-4 text-center">
+                        <p class="text-xs sm:text-sm text-slate-600 font-medium">
+                            Don't have an Evermore account yet?
+                        </p>
+                        <a
+                            href="/signup"
+                            class="inline-flex items-center gap-1.5 mt-2 text-xs sm:text-sm font-extrabold text-emerald-600 hover:underline transition"
                         >
-
-                        <label
-                            for="remember"
-                            class="text-sm text-slate-500"
-                        >
-                            Remember this device
-                        </label>
-
+                            <span>Create your account now</span>
+                            <i
+                                data-lucide="arrow-up-right"
+                                class="w-4 h-4"
+                            ></i>
+                        </a>
                     </div>
 
-
-                    <!-- Submit -->
-
-                    <button
-                        type="submit"
-                        id="signin-btn"
-                        class="primary-button w-full rounded-2xl py-4 px-6 text-white font-bold text-base flex items-center justify-center gap-3"
-                    >
-
-                        <span>
-                            Sign In to Evermore
-                        </span>
-
-                        <i
-                            data-lucide="arrow-right"
-                            class="w-5 h-5"
-                        ></i>
-
-                    </button>
-
-                </form>
-
-
-                <!-- ================= DIVIDER ================= -->
-
-                <div class="flex items-center gap-4 my-8">
-
-                    <div class="h-px bg-slate-200 flex-1"></div>
-
-                    <span class="text-xs text-slate-400 font-medium">
-                        OR
-                    </span>
-
-                    <div class="h-px bg-slate-200 flex-1"></div>
-
                 </div>
-
-
-                <!-- ================= SIGNUP ================= -->
-
-                <div class="rounded-2xl bg-slate-50 border border-slate-200 p-5 text-center">
-
-                    <p class="text-sm text-slate-500">
-                        New to Evermore?
-                    </p>
-
-                    <a
-                        href="/signup"
-                        class="inline-flex items-center gap-2 mt-2 text-sm font-bold text-blue-600 hover:text-purple-600 transition"
-                    >
-
-                        Create your account
-
-                        <i
-                            data-lucide="arrow-up-right"
-                            class="w-4 h-4"
-                        ></i>
-
-                    </a>
-
-                </div>
-
             </div>
 
-
-            <!-- ================= FEATURES ================= -->
-
-            <div class="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm text-slate-500">
-
-                <div class="flex items-center gap-2">
-
-                    <span
-                        class="w-2 h-2 rounded-full bg-emerald-500"
-                        aria-hidden="true"
-                    ></span>
-
+            <!-- Feature Pills -->
+            <div class="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-3 text-xs font-extrabold text-slate-600 uppercase tracking-wider">
+                <div class="flex items-center gap-2 bg-white px-3 py-1.5 rounded-full border border-slate-200 shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500" aria-hidden="true"></span>
                     AI Workspace
-
                 </div>
-
-
-                <div class="flex items-center gap-2">
-
-                    <span
-                        class="w-2 h-2 rounded-full bg-blue-500"
-                        aria-hidden="true"
-                    ></span>
-
+                <div class="flex items-center gap-2 bg-white px-3 py-1.5 rounded-full border border-slate-200 shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-cyan-500" aria-hidden="true"></span>
                     Skills Academy
-
                 </div>
-
-
-                <div class="flex items-center gap-2">
-
-                    <span
-                        class="w-2 h-2 rounded-full bg-purple-500"
-                        aria-hidden="true"
-                    ></span>
-
+                <div class="flex items-center gap-2 bg-white px-3 py-1.5 rounded-full border border-slate-200 shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-amber-500" aria-hidden="true"></span>
                     Opportunity Hub
-
                 </div>
-
             </div>
 
-
-            <!-- ================= SUPPORT ================= -->
-
-            <p class="text-center text-xs text-slate-400 mt-8">
-
+            <!-- Support Link -->
+            <p class="text-center text-xs font-medium text-slate-500 mt-8">
                 Need help accessing your account?
-
                 <a
                     href="https://t.me/Evermore_team"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="font-semibold text-slate-600 hover:text-blue-600 transition"
+                    class="font-extrabold text-slate-900 underline hover:text-emerald-600 transition"
                 >
                     Contact Support
                 </a>
-
             </p>
 
         </div>
 
     </main>
 
-
     <!-- ================= FOOTER ================= -->
-
-    <footer class="border-t border-slate-200/70 bg-white/70 backdrop-blur-sm">
-
-        <div class="max-w-7xl mx-auto px-5 sm:px-8 py-7">
-
+    <footer class="border-t border-emerald-100 bg-white/80 backdrop-blur-sm mt-auto">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 py-6">
             <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-
-                <div class="text-xs text-slate-400 text-center sm:text-left">
-
-                    © 2026 Evermore. All rights reserved.
-
+                <div class="text-xs text-slate-500 font-medium text-center sm:text-left">
+                    Evermore — Build. Learn. Earn. Evolve.<br>
+                    &copy; 2026 Evermore Enterprise. All rights reserved.
                 </div>
 
-
-                <div class="flex items-center gap-5 text-xs text-slate-400">
-
-                    <a
-                        href="/"
-                        class="hover:text-blue-600 transition"
-                    >
-                        Home
-                    </a>
-
-                    <a
-                        href="/signup"
-                        class="hover:text-blue-600 transition"
-                    >
-                        Sign Up
-                    </a>
-
-                    <a
-                        href="https://t.me/Evermore_team"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="hover:text-blue-600 transition"
-                    >
-                        Support
-                    </a>
-
+                <div class="flex items-center gap-5 text-xs font-bold text-slate-600">
+                    <a href="/" class="hover:text-emerald-600 transition">Home</a>
+                    <a href="/signup" class="hover:text-emerald-600 transition">Sign Up</a>
+                    <a href="https://t.me/Evermore_team" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-600 transition">Support</a>
                 </div>
-
             </div>
-
         </div>
-
     </footer>
 
-
     <!-- ================= JAVASCRIPT ================= -->
-
     <script>
-
-        /* ================= LUCIDE ================= */
-
+        /* Lucide Icons Initialization */
         lucide.createIcons();
 
-
-        /* ================= PASSWORD VISIBILITY ================= */
-
-        const togglePasswordBtn =
-            document.getElementById('toggle-password');
-
-        const passwordInput =
-            document.getElementById('signin-password');
-
+        /* Password Visibility Toggle */
+        const togglePasswordBtn = document.getElementById('toggle-password');
+        const passwordInput = document.getElementById('signin-password');
 
         togglePasswordBtn.addEventListener('click', function () {
+            const isPassword = passwordInput.type === 'password';
+            passwordInput.type = isPassword ? 'text' : 'password';
 
-            const isPassword =
-                passwordInput.type === 'password';
+            togglePasswordBtn.innerHTML = isPassword
+                ? '<i data-lucide="eye-off" class="w-4 h-4"></i>'
+                : '<i data-lucide="eye" class="w-4 h-4"></i>';
 
-            passwordInput.type =
-                isPassword ? 'text' : 'password';
-
-
-            togglePasswordBtn.innerHTML =
-                isPassword
-                    ? '<i data-lucide="eye-off" class="w-5 h-5"></i>'
-                    : '<i data-lucide="eye" class="w-5 h-5"></i>';
-
-
-            togglePasswordBtn.setAttribute(
-                'aria-label',
-                isPassword
-                    ? 'Hide password'
-                    : 'Show password'
-            );
-
-
-            togglePasswordBtn.setAttribute(
-                'aria-pressed',
-                isPassword ? 'true' : 'false'
-            );
-
+            togglePasswordBtn.setAttribute('aria-label', isPassword ? 'Hide password' : 'Show password');
+            togglePasswordBtn.setAttribute('aria-pressed', isPassword ? 'true' : 'false');
 
             lucide.createIcons();
-
         });
 
-
-        /* ================= SIGN IN API ================= */
-
+        /* Sign In API Submission */
         async function handleSignin(e) {
-
             e.preventDefault();
 
+            const emailInput = document.getElementById('signin-email').value.trim();
+            const passInput = document.getElementById('signin-password').value;
+            const signinBtn = document.getElementById('signin-btn');
+            const errorAlert = document.getElementById('error-alert');
+            const successAlert = document.getElementById('success-alert');
+            const errorMessage = document.getElementById('error-message');
+            const successText = document.getElementById('success-text');
+            const remember = document.getElementById('remember').checked;
 
-            const emailInput =
-                document.getElementById('signin-email').value.trim();
-
-            const passInput =
-                document.getElementById('signin-password').value;
-
-            const signinBtn =
-                document.getElementById('signin-btn');
-
-            const errorAlert =
-                document.getElementById('error-alert');
-
-            const successAlert =
-                document.getElementById('success-alert');
-
-            const errorMessage =
-                document.getElementById('error-message');
-
-            const successText =
-                document.getElementById('success-text');
-
-            const remember =
-                document.getElementById('remember').checked;
-
-
-            /* Reset alerts */
-
+            /* Reset Alerts */
             errorAlert.classList.add('hidden');
             successAlert.classList.add('hidden');
 
-
-            /* ================= EMAIL VALIDATION ================= */
-
-            const emailRegex =
-                /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-
+            /* Email Validation */
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(emailInput)) {
-
-                errorMessage.textContent =
-                    'Please enter a valid email address.';
-
+                errorMessage.textContent = 'Please enter a valid email address.';
                 errorAlert.classList.remove('hidden');
-
                 return;
             }
 
-
-            /* ================= PASSWORD VALIDATION ================= */
-
+            /* Password Validation */
             if (!passInput) {
-
-                errorMessage.textContent =
-                    'Please enter your password.';
-
+                errorMessage.textContent = 'Please enter your password.';
                 errorAlert.classList.remove('hidden');
-
                 return;
             }
 
-
-            /* ================= LOADING STATE ================= */
-
+            /* Loading State */
             signinBtn.disabled = true;
-
-            signinBtn.style.opacity = '0.65';
-
             signinBtn.innerHTML = `
                 <span>Signing you in...</span>
-
-                <i
-                    data-lucide="loader-circle"
-                    class="w-5 h-5 animate-spin"
-                ></i>
+                <i data-lucide="loader-circle" class="w-4 h-4 animate-spin"></i>
             `;
-
             lucide.createIcons();
 
-
             try {
+                const API_BASE_URL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+                    ? 'http://localhost:5000'
+                    : 'https://evermore-backend-y83h.onrender.com';
 
-                /* ================= API CONFIG ================= */
-
-                const API_BASE_URL =
-                    window.location.hostname === 'localhost' ||
-                    window.location.hostname === '127.0.0.1'
-
-                        ? 'http://localhost:5000'
-
-                        : 'https://evermore-backend-y83h.onrender.com';
-
-
-                /* ================= API REQUEST ================= */
-
-                const response = await fetch(
-                    `${API_BASE_URL}/api/signin`,
-                    {
-                        method: 'POST',
-
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-
-                        body: JSON.stringify({
-                            email: emailInput,
-                            password: passInput
-                        })
-                    }
-                );
-
-
-                /* ================= RESPONSE ================= */
+                const response = await fetch(`${API_BASE_URL}/api/signin`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: emailInput,
+                        password: passInput
+                    })
+                });
 
                 let data;
-
                 try {
-
                     data = await response.json();
-
                 } catch {
-
-                    throw new Error(
-                        'The server returned an invalid response. Please try again.'
-                    );
-
+                    throw new Error('The server returned an invalid response. Please try again.');
                 }
-
-
-                /* ================= API ERROR ================= */
 
                 if (!response.ok) {
-
-                    throw new Error(
-                        data.message ||
-                        'Invalid email or password.'
-                    );
-
+                    throw new Error(data.message || 'Invalid email or password.');
                 }
 
-
-                /* ================= SAVE USER ================= */
-
-                localStorage.setItem(
-                    'evermore_user',
-                    JSON.stringify(data.user)
-                );
-
-
-                /*
-                 * Preserve the existing session behavior.
-                 * If "Remember this device" is unchecked,
-                 * also create a sessionStorage copy.
-                 */
+                /* Save User Object */
+                localStorage.setItem('evermore_user', JSON.stringify(data.user));
 
                 if (!remember) {
-
-                    sessionStorage.setItem(
-                        'evermore_user',
-                        JSON.stringify(data.user)
-                    );
-
+                    sessionStorage.setItem('evermore_user', JSON.stringify(data.user));
                 }
 
-
-                /* ================= ACCOUNT STATUS ================= */
-
-                const isActivated =
-                    Boolean(
-                        data.user &&
-                        (
-                            data.user.account_status === 'active' ||
-                            data.user.subscription_status === 'active'
-                        )
-                    );
-
-
-                /* ================= ACTIVATED ================= */
+                /* Check Account Status */
+                const isActivated = Boolean(
+                    data.user &&
+                    (data.user.account_status === 'active' || data.user.subscription_status === 'active')
+                );
 
                 if (isActivated) {
-
-                    localStorage.setItem(
-                        'evermore_activated',
-                        'true'
-                    );
-
-                    localStorage.setItem(
-                        'evermore_account_status',
-                        'active'
-                    );
-
-                    successText.textContent =
-                        'Sign in successful! Redirecting to dashboard...';
-
+                    localStorage.setItem('evermore_activated', 'true');
+                    localStorage.setItem('evermore_account_status', 'active');
+                    successText.textContent = 'Sign in successful! Redirecting to dashboard...';
+                } else {
+                    localStorage.setItem('evermore_activated', 'false');
+                    localStorage.setItem('evermore_account_status', 'pending');
+                    successText.textContent = 'Sign in successful! Redirecting to payment...';
                 }
-
-
-                /* ================= NOT ACTIVATED ================= */
-
-                else {
-
-                    localStorage.setItem(
-                        'evermore_activated',
-                        'false'
-                    );
-
-                    localStorage.setItem(
-                        'evermore_account_status',
-                        'pending'
-                    );
-
-                    successText.textContent =
-                        'Sign in successful! Redirecting to payment...';
-
-                }
-
-
-                /* ================= SUCCESS ================= */
 
                 successAlert.classList.remove('hidden');
 
-
-                /* ================= REDIRECT ================= */
-
                 setTimeout(function () {
-
-                    window.location.href =
-                        isActivated
-                            ? '/dashboard.html'
-                            : '/payment.html';
-
+                    window.location.href = isActivated ? '/dashboard.html' : '/payment.html';
                 }, 1000);
 
-
             } catch (error) {
-
-                console.error(
-                    'Sign in error:',
-                    error
-                );
-
-
-                errorMessage.textContent =
-                    error?.message ||
-                    'Unable to sign in. Please try again.';
-
+                console.error('Sign in error:', error);
+                errorMessage.textContent = error?.message || 'Unable to sign in. Please try again.';
                 errorAlert.classList.remove('hidden');
 
-
-                /* Restore button */
-
+                /* Restore Button */
                 signinBtn.disabled = false;
-
-                signinBtn.style.opacity = '1';
-
                 signinBtn.innerHTML = `
                     <span>Sign In to Evermore</span>
-
-                    <i
-                        data-lucide="arrow-right"
-                        class="w-5 h-5"
-                    ></i>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
                 `;
-
                 lucide.createIcons();
-
             }
-
         }
 
-
-        /* ================= FORGOT PASSWORD ================= */
-
+        /* Forgot Password Handler */
         function forgotPassword(event) {
-
             event.preventDefault();
 
+            const errorAlert = document.getElementById('error-alert');
+            const errorMessage = document.getElementById('error-message');
 
-            const errorAlert =
-                document.getElementById('error-alert');
-
-            const errorMessage =
-                document.getElementById('error-message');
-
-
-            errorMessage.textContent =
-                'Password recovery will be available through Evermore Support.';
-
-
+            errorMessage.textContent = 'Password recovery will be available through Evermore Support.';
             errorAlert.classList.remove('hidden');
 
-
             lucide.createIcons();
-
         }
-
     </script>
 
 </body>

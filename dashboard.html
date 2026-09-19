@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | Evermore</title>
+    <title>Dashboard | Evermore — Workspace &amp; AI Training</title>
     <meta name="description" content="Evermore member dashboard — AI tools, tasks, opportunities, academy and wallet.">
 
     <!-- =========================================================
-         TAILWIND
+         TAILWIND CSS
     ========================================================== -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -15,216 +15,219 @@
             theme: {
                 extend: {
                     colors: {
-                        ink: '#0B1020',
-                        muted: '#667085',
-                        brand: {
-                            blue: '#2563EB',
-                            purple: '#7C3AED',
-                            dark: '#111827',
-                            soft: '#EEF4FF'
+                        navy: {
+                            DEFAULT: '#07152b',
+                            card: '#0d1f3d'
+                        },
+                        emerald: {
+                            brand: '#00c88d',
+                            dark: '#00996b',
+                            soft: '#e6fcf5'
+                        },
+                        cyan: {
+                            brand: '#06b6d4'
                         }
                     },
                     fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif']
+                        sans: ['Plus Jakarta Sans', 'Manrope', 'sans-serif']
                     },
                     boxShadow: {
-                        soft: '0 10px 40px rgba(15, 23, 42, 0.06)',
-                        card: '0 4px 24px rgba(15, 23, 42, 0.05)',
-                        floating: '0 20px 60px rgba(15, 23, 42, 0.12)'
-                    },
-                    animation: {
-                        'fade-in': 'fadeIn .25s ease-out',
-                        'slide-up': 'slideUp .3s ease-out',
-                        'pulse-soft': 'pulseSoft 2s ease-in-out infinite'
-                    },
-                    keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' }
-                        },
-                        slideUp: {
-                            '0%': { opacity: '0', transform: 'translateY(8px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' }
-                        },
-                        pulseSoft: {
-                            '0%, 100%': { opacity: '.55' },
-                            '50%': { opacity: '1' }
-                        }
+                        soft: '0 10px 40px rgba(7, 21, 43, 0.05)',
+                        card: '0 4px 24px rgba(7, 21, 43, 0.06)',
+                        floating: '0 20px 60px rgba(7, 21, 43, 0.18)'
                     }
                 }
             }
         };
     </script>
 
-    <!-- =========================================================
-         FONTS & LUCIDE ICONS
-    ========================================================== -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Fonts & Lucide Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- =========================================================
-         CUSTOM STYLES
-    ========================================================== -->
     <style>
+        :root {
+            --primary: #00c88d;
+            --primary-dark: #00996b;
+            --cyan-accent: #06b6d4;
+            --navy: #07152b;
+            --gradient-brand: linear-gradient(135deg, #00c88d 0%, #06b6d4 100%);
+            --gradient-cta-amber: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
+        }
+
         * { box-sizing: border-box; }
-        body { font-family: 'Plus Jakarta Sans', 'Inter', sans-serif; background: #f8fafc; color: #0b1020; overflow-x: hidden; }
-        button, a, input, textarea { -webkit-tap-highlight-color: transparent; }
-        button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible {
-            outline: 3px solid rgba(37, 99, 235, .2);
-            outline-offset: 2px;
+        body { 
+            font-family: 'Plus Jakarta Sans', 'Manrope', sans-serif; 
+            background: #f4f9f8; 
+            color: #0a1628; 
+            overflow-x: hidden; 
         }
-        .grid-bg {
-            background-image: linear-gradient(rgba(37, 99, 235, 0.032) 1px, transparent 1px), linear-gradient(90deg, rgba(37, 99, 235, 0.032) 1px, transparent 1px);
-            background-size: 32px 32px;
-        }
-        .gradient-text {
-            background: linear-gradient(100deg, #2563eb 0%, #7c3aed 100%);
+
+        .flyer-title {
+            background: linear-gradient(135deg, #00e699 0%, #00b37e 60%, #06b6d4 100%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
-        .gradient-bg { background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%); }
-        .soft-blue { background: linear-gradient(135deg, rgba(37, 99, 235, .09), rgba(124, 58, 237, .08)); }
-        .card { background: #fff; border: 1px solid #e8edf5; box-shadow: 0 4px 24px rgba(15, 23, 42, .045); }
-        .card-hover { transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
-        .card-hover:hover { transform: translateY(-2px); border-color: #dbe4f0; box-shadow: 0 12px 34px rgba(15, 23, 42, .075); }
-        .sidebar-link { transition: background .2s ease, color .2s ease, transform .2s ease; }
-        .sidebar-link:hover { background: #f8fafc; color: #2563eb; }
+
+        .gradient-bg { background: var(--gradient-brand); }
+        .amber-bg { background: var(--gradient-cta-amber); }
+
+        .sidebar-link { transition: all .2s ease; }
+        .sidebar-link:hover { background: #e6fcf5; color: #00996b; }
         .sidebar-link.active {
-            background: linear-gradient(90deg, rgba(37, 99, 235, .10), rgba(124, 58, 237, .07));
-            color: #2563eb;
-            font-weight: 700;
+            background: #00c88d;
+            color: #ffffff;
+            font-weight: 800;
+            box-shadow: 0 8px 20px rgba(0, 200, 141, 0.25);
         }
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .metric-card {
+            cursor: pointer;
+            transition: all 0.22s ease;
+            border: 2px solid transparent;
+        }
+        .metric-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(0, 200, 141, 0.4);
+            box-shadow: 0 12px 30px rgba(7, 21, 43, 0.08);
+        }
+        .metric-card.active-tab {
+            border-color: #00c88d;
+            background: #ffffff;
+            box-shadow: 0 12px 30px rgba(0, 200, 141, 0.15);
+        }
+
         .custom-scrollbar::-webkit-scrollbar { width: 5px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 999px; }
+
         .modal-backdrop { opacity: 0; pointer-events: none; transition: opacity .2s ease; }
         .modal-backdrop.open { opacity: 1; pointer-events: auto; }
         .modal-panel { transform: translateY(12px) scale(.98); opacity: 0; transition: transform .2s ease, opacity .2s ease; }
         .modal-backdrop.open .modal-panel { transform: translateY(0) scale(1); opacity: 1; }
+
         .toast { transform: translate(-50%, 20px); opacity: 0; pointer-events: none; transition: transform .25s ease, opacity .25s ease; }
         .toast.show { transform: translate(-50%, 0); opacity: 1; }
-        .ai-message { animation: slideUp .25s ease-out; }
+
+        .tab-layout { display: none; }
+        .tab-layout.active-layout { display: block; animation: fadeIn 0.25s ease-out; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         @media (max-width: 1023px) {
             #sidebar { transform: translateX(-100%); transition: transform .25s ease; }
             #sidebar.open { transform: translateX(0); }
             #sidebar-overlay { opacity: 0; visibility: hidden; transition: opacity .25s ease, visibility .25s ease; }
             #sidebar-overlay.show { opacity: 1; visibility: visible; }
         }
-        @media (min-width: 1024px) { #sidebar-overlay { display: none !important; } }
     </style>
 </head>
-<body class="min-h-screen">
+<body class="min-h-screen flex flex-col">
 
 <!-- MOBILE SIDEBAR OVERLAY -->
-<div id="sidebar-overlay" class="fixed inset-0 bg-slate-950/35 backdrop-blur-sm z-40" onclick="closeSidebar()" aria-hidden="true"></div>
+<div id="sidebar-overlay" class="fixed inset-0 bg-slate-950/40 backdrop-blur-sm z-40" onclick="closeSidebar()" aria-hidden="true"></div>
 
 <!-- SIDEBAR -->
 <aside id="sidebar" class="fixed left-0 top-0 bottom-0 w-[270px] bg-white border-r border-slate-200 z-50 flex flex-col" aria-label="Main navigation">
-    <div class="h-20 px-6 flex items-center border-b border-slate-100 flex-shrink-0">
+    <div class="h-20 px-6 flex items-center border-b border-emerald-100 flex-shrink-0">
         <a href="index.html" class="flex items-center gap-3" aria-label="Evermore home">
-            <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center shadow-lg shadow-blue-500/20">
-                <i data-lucide="infinity" class="w-5 h-5 text-white"></i>
-            </div>
-            <div>
-                <div class="text-lg font-extrabold tracking-tight">EVER<span class="gradient-text">MORE</span></div>
-                <div class="text-[9px] uppercase tracking-[0.18em] text-slate-400 font-bold">Digital Ecosystem</div>
-            </div>
+            <img src="assets/evermore-logo.png" alt="Evermore" class="h-10 w-auto object-contain">
         </a>
     </div>
 
     <div class="flex-1 overflow-y-auto custom-scrollbar px-4 py-6">
-        <div class="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-400 px-3 mb-3">Workspace</div>
-        <nav class="space-y-1">
-            <a href="#overview" onclick="setActive(this)" class="sidebar-link active flex items-center gap-3 px-3 py-3 rounded-xl text-sm" data-section="overview">
-                <i data-lucide="layout-dashboard" class="w-[18px] h-[18px]"></i>
+        <div class="text-[10px] font-black uppercase tracking-widest text-slate-400 px-3 mb-3">Workspace Layouts</div>
+        <nav class="space-y-1.5">
+            <button type="button" onclick="switchLayout('overview')" class="w-full sidebar-link active flex items-center gap-3 px-3 py-3 rounded-xl text-xs font-extrabold text-left" data-layout-nav="overview">
+                <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
                 <span>Overview</span>
-            </a>
-            <a href="#everai" onclick="setActive(this)" class="sidebar-link flex items-center gap-3 px-3 py-3 rounded-xl text-sm text-slate-600" data-section="everai">
-                <i data-lucide="sparkles" class="w-[18px] h-[18px]"></i>
-                <span>EverAI</span>
-                <span class="ml-auto text-[9px] font-bold bg-blue-50 text-blue-600 px-2 py-1 rounded-full">AI</span>
-            </a>
-            <a href="#tasks" onclick="setActive(this)" class="sidebar-link flex items-center gap-3 px-3 py-3 rounded-xl text-sm text-slate-600" data-section="tasks">
-                <i data-lucide="list-checks" class="w-[18px] h-[18px]"></i>
-                <span>AI Tasks</span>
-            </a>
-            <a href="#opportunities" onclick="setActive(this)" class="sidebar-link flex items-center gap-3 px-3 py-3 rounded-xl text-sm text-slate-600" data-section="opportunities">
-                <i data-lucide="briefcase-business" class="w-[18px] h-[18px]"></i>
+            </button>
+            <button type="button" onclick="switchLayout('earnings')" class="w-full sidebar-link flex items-center gap-3 px-3 py-3 rounded-xl text-xs font-extrabold text-slate-600 text-left" data-layout-nav="earnings">
+                <i data-lucide="wallet" class="w-4 h-4"></i>
+                <span>Total Earnings &amp; Wallet</span>
+            </button>
+            <button type="button" onclick="switchLayout('tasks')" class="w-full sidebar-link flex items-center gap-3 px-3 py-3 rounded-xl text-xs font-extrabold text-slate-600 text-left" data-layout-nav="tasks">
+                <i data-lucide="list-checks" class="w-4 h-4"></i>
+                <span>Available Tasks</span>
+            </button>
+            <button type="button" onclick="switchLayout('everai')" class="w-full sidebar-link flex items-center gap-3 px-3 py-3 rounded-xl text-xs font-extrabold text-slate-600 text-left" data-layout-nav="everai">
+                <i data-lucide="sparkles" class="w-4 h-4"></i>
+                <span>EverAI Workspace</span>
+                <span class="ml-auto text-[9px] font-black bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full">AI</span>
+            </button>
+            <button type="button" onclick="switchLayout('academy')" class="w-full sidebar-link flex items-center gap-3 px-3 py-3 rounded-xl text-xs font-extrabold text-slate-600 text-left" data-layout-nav="academy">
+                <i data-lucide="graduation-cap" class="w-4 h-4"></i>
+                <span>Skills Academy</span>
+            </button>
+            <button type="button" onclick="switchLayout('opportunities')" class="w-full sidebar-link flex items-center gap-3 px-3 py-3 rounded-xl text-xs font-extrabold text-slate-600 text-left" data-layout-nav="opportunities">
+                <i data-lucide="briefcase-business" class="w-4 h-4"></i>
                 <span>Opportunities</span>
-            </a>
-            <a href="#academy" onclick="setActive(this)" class="sidebar-link flex items-center gap-3 px-3 py-3 rounded-xl text-sm text-slate-600" data-section="academy">
-                <i data-lucide="graduation-cap" class="w-[18px] h-[18px]"></i>
-                <span>Academy</span>
-            </a>
-            <!-- Community Link Placeholder -->
-            <a id="community-link" href="#" target="_blank" rel="noopener noreferrer" class="sidebar-link flex items-center gap-3 px-3 py-3 rounded-xl text-sm text-slate-600 group">
-                <i data-lucide="users" class="w-[18px] h-[18px] text-blue-600 group-hover:scale-110 transition-transform"></i>
-                <span>Join Community</span>
-                <span class="ml-auto text-[9px] font-bold bg-purple-50 text-purple-600 px-2 py-0.5 rounded-full">New</span>
-            </a>
+            </button>
         </nav>
 
-        <div class="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-400 px-3 mb-3 mt-8">Account</div>
-        <nav class="space-y-1">
-            <a href="#wallet" onclick="setActive(this)" class="sidebar-link flex items-center gap-3 px-3 py-3 rounded-xl text-sm text-slate-600" data-section="wallet">
-                <i data-lucide="wallet" class="w-[18px] h-[18px]"></i>
-                <span>Wallet</span>
+        <div class="text-[10px] font-black uppercase tracking-widest text-slate-400 px-3 mb-3 mt-8">Account &amp; Support</div>
+        <nav class="space-y-1.5">
+            <button type="button" onclick="switchLayout('profile')" class="w-full sidebar-link flex items-center gap-3 px-3 py-3 rounded-xl text-xs font-extrabold text-slate-600 text-left" data-layout-nav="profile">
+                <i data-lucide="user-round" class="w-4 h-4"></i>
+                <span>Profile &amp; Settings</span>
+            </button>
+            <a id="community-link" href="https://t.me/Evermore_team" target="_blank" rel="noopener noreferrer" class="sidebar-link flex items-center gap-3 px-3 py-3 rounded-xl text-xs font-extrabold text-slate-600">
+                <i data-lucide="users" class="w-4 h-4 text-emerald-600"></i>
+                <span>Join Community</span>
             </a>
-            <a href="#profile" onclick="setActive(this)" class="sidebar-link flex items-center gap-3 px-3 py-3 rounded-xl text-sm text-slate-600" data-section="profile">
-                <i data-lucide="user-round" class="w-[18px] h-[18px]"></i>
-                <span>Profile</span>
-            </a>
-            <button type="button" onclick="logoutUser()" class="w-full sidebar-link flex items-center gap-3 px-3 py-3 rounded-xl text-sm text-rose-600 hover:bg-rose-50 hover:text-rose-700">
-                <i data-lucide="log-out" class="w-[18px] h-[18px]"></i>
+            <button type="button" onclick="logoutUser()" class="w-full sidebar-link flex items-center gap-3 px-3 py-3 rounded-xl text-xs font-extrabold text-rose-600 hover:bg-rose-50 hover:text-rose-700">
+                <i data-lucide="log-out" class="w-4 h-4"></i>
                 <span>Logout</span>
             </button>
         </nav>
     </div>
 
-    <div class="p-4 border-t border-slate-100 flex-shrink-0">
-        <div class="soft-blue rounded-2xl p-4">
-            <div class="flex items-center gap-2 mb-2">
-                <div class="w-8 h-8 rounded-lg bg-white flex items-center justify-center">
-                    <i data-lucide="headphones" class="w-4 h-4 text-blue-600"></i>
-                </div>
-                <div class="text-xs font-bold text-slate-800">Need help?</div>
+    <div class="p-4 border-t border-emerald-100 flex-shrink-0">
+        <div class="bg-emerald-50/80 rounded-2xl p-4 border border-emerald-200">
+            <div class="flex items-center gap-2 mb-1.5">
+                <i data-lucide="headphones" class="w-4 h-4 text-emerald-600"></i>
+                <div class="text-xs font-extrabold text-slate-800">Support Desk</div>
             </div>
-            <p class="text-[10px] text-slate-500 leading-relaxed mb-3">Our support team is available to help you navigate Evermore.</p>
-            <a href="http://t.me/Evermore_team" target="_blank" rel="noopener noreferrer" class="text-[11px] font-bold text-blue-600 hover:text-blue-700">Contact Support →</a>
+            <p class="text-[10px] text-slate-500 font-medium mb-2.5">Need help navigating your account?</p>
+            <a href="https://t.me/Evermore_team" target="_blank" rel="noopener noreferrer" class="text-[11px] font-extrabold text-emerald-600 hover:underline">Contact Support →</a>
         </div>
     </div>
 </aside>
 
-<!-- MAIN APPLICATION -->
-<div class="lg:ml-[270px] min-h-screen">
+<!-- MAIN WRAPPER -->
+<div class="lg:ml-[270px] flex-grow flex flex-col min-h-screen">
+
     <!-- TOPBAR -->
-    <header class="h-20 bg-white/90 backdrop-blur-xl border-b border-slate-200 sticky top-0 z-30">
+    <header class="h-20 bg-white/95 backdrop-blur-xl border-b border-emerald-100 sticky top-0 z-30">
         <div class="h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-            <div class="flex items-center gap-3 sm:gap-4 min-w-0">
+            <div class="flex items-center gap-3 min-w-0">
                 <button type="button" onclick="openSidebar()" class="lg:hidden w-10 h-10 rounded-xl border border-slate-200 bg-white flex items-center justify-center flex-shrink-0 hover:bg-slate-50 transition" aria-label="Open navigation">
                     <i data-lucide="menu" class="w-5 h-5"></i>
                 </button>
                 <div class="min-w-0">
-                    <div class="text-[10px] uppercase tracking-[0.16em] font-bold text-slate-400 truncate">Evermore Workspace</div>
-                    <div class="text-sm sm:text-base font-bold text-slate-900 truncate">Member Dashboard</div>
+                    <div class="text-[10px] uppercase tracking-widest font-black text-emerald-600 truncate">Evermore Workspace</div>
+                    <div class="text-sm sm:text-base font-extrabold text-slate-900 truncate">Member Dashboard</div>
                 </div>
             </div>
 
             <div class="flex items-center gap-2 sm:gap-3">
                 <button type="button" onclick="openNotifications()" class="relative w-10 h-10 rounded-xl border border-slate-200 bg-white flex items-center justify-center hover:bg-slate-50 transition" aria-label="Notifications">
                     <i data-lucide="bell" class="w-4 h-4 text-slate-600"></i>
-                    <span id="notification-dot" class="absolute top-2 right-2 w-2 h-2 rounded-full bg-blue-600 border-2 border-white"></span>
+                    <span id="notification-dot" class="absolute top-2 right-2 w-2 h-2 rounded-full bg-emerald-500 border-2 border-white"></span>
                 </button>
-                <div class="flex items-center gap-2 sm:gap-3 pl-1 sm:pl-2">
-                    <div id="avatar" class="w-9 h-9 rounded-xl gradient-bg text-white flex items-center justify-center font-bold text-sm flex-shrink-0">E</div>
+                <div class="flex items-center gap-2 sm:gap-3 pl-2 border-l border-slate-200">
+                    <div id="avatar" class="w-9 h-9 rounded-xl gradient-bg text-white flex items-center justify-center font-black text-sm flex-shrink-0 shadow-md">E</div>
                     <div class="hidden sm:block min-w-0">
-                        <div id="top-name" class="text-xs font-bold text-slate-900 truncate max-w-[130px]">Evermore Member</div>
-                        <div id="top-plan" class="text-[10px] text-blue-600 font-semibold">Premium</div>
+                        <div id="top-name" class="text-xs font-extrabold text-slate-900 truncate max-w-[130px]">Evermore Member</div>
+                        <div id="top-plan" class="text-[10px] text-emerald-600 font-extrabold uppercase">Crown Premium</div>
                     </div>
-                    <button type="button" onclick="logoutUser()" title="Logout" aria-label="Logout" class="ml-0 sm:ml-1 w-9 h-9 rounded-xl border border-slate-200 bg-white flex items-center justify-center text-slate-600 hover:text-rose-600 hover:bg-rose-50 hover:border-rose-200 transition">
+                    <button type="button" onclick="logoutUser()" title="Logout" class="w-9 h-9 rounded-xl border border-slate-200 bg-white flex items-center justify-center text-slate-600 hover:text-rose-600 hover:bg-rose-50 transition">
                         <i data-lucide="log-out" class="w-4 h-4"></i>
                     </button>
                 </div>
@@ -232,614 +235,381 @@
         </div>
     </header>
 
-    <!-- PAGE -->
-    <main class="grid-bg min-h-[calc(100vh-80px)] px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-        <section id="overview" class="max-w-7xl mx-auto">
-            
-            <!-- WELCOME HERO -->
-            <section class="relative overflow-hidden rounded-3xl mb-6">
-                <div class="absolute inset-0 bg-white border border-slate-200 rounded-3xl"></div>
-                <div class="absolute -top-32 -right-24 w-80 h-80 rounded-full bg-blue-100/70 blur-3xl"></div>
-                <div class="absolute -bottom-32 left-1/3 w-72 h-72 rounded-full bg-purple-100/60 blur-3xl"></div>
-                <div class="relative p-6 sm:p-8 lg:p-10">
-                    <div class="flex flex-col xl:flex-row xl:items-end justify-between gap-8">
-                        <div class="max-w-3xl">
-                            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200 text-[10px] font-bold uppercase tracking-wider text-blue-600 mb-5 shadow-sm">
-                                <span class="relative flex w-2 h-2">
-                                    <span class="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping"></span>
-                                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                                </span>
-                                <span id="account-status-label">Account Active</span>
-                            </div>
-                            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-950 leading-[1.08]">
-                                Build skills. <br class="hidden sm:block"> Work smarter. 
-                                <span class="gradient-text">Earn more.</span>
-                            </h1>
-                            <p class="mt-4 text-sm sm:text-base text-slate-500 max-w-2xl leading-relaxed">
-                                Welcome back, <span id="welcome-name" class="font-bold text-slate-800">Member</span>. 
-                                Your Evermore workspace brings AI creation, qualified tasks, professional opportunities and digital learning into one place.
-                            </p>
-                            <div class="flex flex-wrap gap-3 mt-7">
-                                <button type="button" onclick="openAI()" class="gradient-bg text-white px-5 py-3 rounded-xl text-xs sm:text-sm font-bold shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30 hover:-translate-y-0.5 transition">
-                                    <span class="flex items-center gap-2">
-                                        <i data-lucide="sparkles" class="w-4 h-4"></i> Open EverAI
-                                    </span>
-                                </button>
-                                <a href="#tasks" class="inline-flex items-center gap-2 bg-white border border-slate-200 text-slate-800 px-5 py-3 rounded-xl text-xs sm:text-sm font-bold hover:bg-slate-50 transition">
-                                    Explore Tasks <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                                </a>
-                            </div>
-                        </div>
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto space-y-6">
 
-                        <!-- Hero mini summary -->
-                        <div class="w-full xl:w-[320px]">
-                            <div class="rounded-2xl bg-slate-950 text-white p-5 shadow-xl">
-                                <div class="flex items-center justify-between">
-                                    <div>
-                                        <div class="text-[10px] text-white/50 uppercase tracking-[.15em] font-bold">Membership</div>
-                                        <div id="hero-plan" class="text-lg font-extrabold mt-1">Premium</div>
-                                    </div>
-                                    <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center">
-                                        <i data-lucide="shield-check" class="w-5 h-5 text-blue-300"></i>
-                                    </div>
-                                </div>
-                                <div class="mt-6">
-                                    <div class="flex justify-between text-[10px] mb-2">
-                                        <span class="text-white/50">Account readiness</span>
-                                        <span id="hero-completeness" class="font-bold">0%</span>
-                                    </div>
-                                    <div class="h-1.5 rounded-full bg-white/10 overflow-hidden">
-                                        <div id="hero-completeness-bar" class="h-full rounded-full bg-gradient-to-r from-blue-400 to-purple-400 transition-all duration-500" style="width: 0%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        <!-- =========================================================
+             1. ACCOUNT PLAN BANNER (SHOWS AT THE VERY TOP)
+             ========================================================= -->
+        <section class="bg-navy text-white rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden border border-emerald-500/30">
+            <div class="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-emerald-500/20 blur-3xl"></div>
+            <div class="relative flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div class="space-y-2">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-[10px] font-black uppercase tracking-widest text-emerald-300">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span>ACCOUNT PLAN STATUS • VERY TOP</span>
                     </div>
-                </div>
-            </section>
-
-            <!-- STAT CARDS -->
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6">
-                <div class="card card-hover rounded-2xl p-4 sm:p-5">
-                    <div class="flex items-center justify-between mb-5">
-                        <div class="w-9 h-9 rounded-xl bg-blue-50 flex items-center justify-center">
-                            <i data-lucide="wallet" class="w-4 h-4 text-blue-600"></i>
-                        </div>
-                        <span class="text-[9px] uppercase font-bold tracking-wider text-slate-400">Wallet</span>
-                    </div>
-                    <div class="text-xl sm:text-2xl font-extrabold tracking-tight break-all">₦<span id="wallet-balance">0.00</span></div>
-                    <div class="text-[10px] text-slate-400 mt-2">Available balance</div>
-                </div>
-
-                <div class="card card-hover rounded-2xl p-4 sm:p-5">
-                    <div class="flex items-center justify-between mb-5">
-                        <div class="w-9 h-9 rounded-xl bg-purple-50 flex items-center justify-center">
-                            <i data-lucide="list-checks" class="w-4 h-4 text-purple-600"></i>
-                        </div>
-                        <span class="text-[9px] uppercase font-bold tracking-wider text-slate-400">Tasks</span>
-                    </div>
-                    <div id="tasks-completed" class="text-xl sm:text-2xl font-extrabold tracking-tight">0</div>
-                    <div class="text-[10px] text-slate-400 mt-2">Completed tasks</div>
-                </div>
-
-                <div class="card card-hover rounded-2xl p-4 sm:p-5">
-                    <div class="flex items-center justify-between mb-5">
-                        <div class="w-9 h-9 rounded-xl bg-emerald-50 flex items-center justify-center">
-                            <i data-lucide="graduation-cap" class="w-4 h-4 text-emerald-600"></i>
-                        </div>
-                        <span class="text-[9px] uppercase font-bold tracking-wider text-slate-400">Learning</span>
-                    </div>
-                    <div id="academy-progress-stat" class="text-xl sm:text-2xl font-extrabold tracking-tight">0%</div>
-                    <div class="text-[10px] text-slate-400 mt-2">Academy progress</div>
-                </div>
-
-                <div class="card card-hover rounded-2xl p-4 sm:p-5">
-                    <div class="flex items-center justify-between mb-5">
-                        <div class="w-9 h-9 rounded-xl bg-indigo-50 flex items-center justify-center">
-                            <i data-lucide="shield-check" class="w-4 h-4 text-indigo-600"></i>
-                        </div>
-                        <span class="text-[9px] uppercase font-bold tracking-wider text-slate-400">Account</span>
-                    </div>
-                    <div id="account-status-stat" class="text-xl sm:text-2xl font-extrabold tracking-tight">Active</div>
-                    <div class="text-[10px] text-slate-400 mt-2">Account status</div>
-                </div>
-            </div>
-
-            <!-- QUICK ACTIONS + ACCOUNT HEALTH -->
-            <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-6">
-                <section class="xl:col-span-2 card rounded-3xl p-6">
-                    <div class="flex items-center justify-between mb-5">
-                        <div>
-                            <div class="text-[10px] uppercase tracking-[.16em] font-bold text-blue-600">Shortcuts</div>
-                            <h2 class="text-xl font-extrabold mt-1">Quick Actions</h2>
-                        </div>
-                        <i data-lucide="zap" class="w-5 h-5 text-slate-300"></i>
-                    </div>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                        <button type="button" onclick="openAI()" class="group text-left p-4 rounded-2xl border border-slate-200 hover:border-blue-200 hover:bg-blue-50/40 transition">
-                            <div class="w-9 h-9 rounded-xl bg-blue-50 flex items-center justify-center mb-4 group-hover:scale-105 transition">
-                                <i data-lucide="sparkles" class="w-4 h-4 text-blue-600"></i>
-                            </div>
-                            <div class="text-xs font-bold">Ask EverAI</div>
-                            <div class="text-[10px] text-slate-400 mt-1">Get help instantly</div>
-                        </button>
-                        <a href="#tasks" class="group text-left p-4 rounded-2xl border border-slate-200 hover:border-purple-200 hover:bg-purple-50/40 transition">
-                            <div class="w-9 h-9 rounded-xl bg-purple-50 flex items-center justify-center mb-4 group-hover:scale-105 transition">
-                                <i data-lucide="list-checks" class="w-4 h-4 text-purple-600"></i>
-                            </div>
-                            <div class="text-xs font-bold">Find Tasks</div>
-                            <div class="text-[10px] text-slate-400 mt-1">Explore work</div>
-                        </a>
-                        <a href="#academy" class="group text-left p-4 rounded-2xl border border-slate-200 hover:border-emerald-200 hover:bg-emerald-50/40 transition">
-                            <div class="w-9 h-9 rounded-xl bg-emerald-50 flex items-center justify-center mb-4 group-hover:scale-105 transition">
-                                <i data-lucide="graduation-cap" class="w-4 h-4 text-emerald-600"></i>
-                            </div>
-                            <div class="text-xs font-bold">Learn</div>
-                            <div class="text-[10px] text-slate-400 mt-1">Build your skills</div>
-                        </a>
-                        <a href="#wallet" class="group text-left p-4 rounded-2xl border border-slate-200 hover:border-blue-200 hover:bg-blue-50/40 transition">
-                            <div class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center mb-4 group-hover:scale-105 transition">
-                                <i data-lucide="wallet" class="w-4 h-4 text-slate-700"></i>
-                            </div>
-                            <div class="text-xs font-bold">Wallet</div>
-                            <div class="text-[10px] text-slate-400 mt-1">Manage funds</div>
-                        </a>
-                    </div>
-                </section>
-
-                <section class="card rounded-3xl p-6">
-                    <div class="flex items-center justify-between mb-5">
-                        <div>
-                            <div class="text-[10px] uppercase tracking-[.16em] font-bold text-slate-400">Account</div>
-                            <h2 class="text-xl font-extrabold mt-1">Account Health</h2>
-                        </div>
-                        <div class="w-9 h-9 rounded-xl bg-blue-50 flex items-center justify-center">
-                            <i data-lucide="shield-check" class="w-4 h-4 text-blue-600"></i>
-                        </div>
-                    </div>
-                    <div class="flex items-end justify-between mb-2">
-                        <span class="text-3xl font-extrabold"><span id="profile-completeness">0</span>%</span>
-                        <span id="profile-completeness-label" class="text-[10px] font-bold text-blue-600">Getting started</span>
-                    </div>
-                    <div class="h-2 bg-slate-100 rounded-full overflow-hidden">
-                        <div id="profile-completeness-bar" class="h-full rounded-full gradient-bg transition-all duration-500" style="width: 0%"></div>
-                    </div>
-                    <p class="text-[10px] text-slate-400 leading-relaxed mt-4">Complete your profile to improve account readiness and opportunity matching.</p>
-                    <button type="button" onclick="focusProfile()" class="mt-4 text-[11px] font-bold text-blue-600 hover:text-blue-700">Complete profile →</button>
-                </section>
-            </div>
-
-            <!-- EVERAI -->
-            <section id="everai" class="card rounded-3xl overflow-hidden mb-6 scroll-mt-24">
-                <div class="p-6 sm:p-8">
-                    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5 mb-7">
-                        <div>
-                            <div class="flex items-center gap-2 mb-2">
-                                <span class="relative flex w-2 h-2">
-                                    <span class="absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75 animate-ping"></span>
-                                    <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
-                                </span>
-                                <span class="text-[10px] font-bold uppercase tracking-[0.16em] text-blue-600">Intelligence Workspace</span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Ever<span class="gradient-text">AI</span></h2>
-                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-600 text-[9px] font-bold">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Ready
-                                </span>
-                            </div>
-                            <p class="text-xs sm:text-sm text-slate-500 mt-2 max-w-2xl">Your intelligent workspace for writing, research, coding, learning and creative production.</p>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <button type="button" onclick="clearAIConversation()" class="px-4 py-2.5 rounded-xl border border-slate-200 text-[11px] font-bold text-slate-600 hover:bg-slate-50 transition">
-                                <span class="flex items-center gap-2"><i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Clear</span>
-                            </button>
-                            <button type="button" onclick="openAI()" class="gradient-bg text-white px-4 py-2.5 rounded-xl text-[11px] font-bold shadow-lg shadow-blue-500/15">Full Workspace</button>
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 lg:grid-cols-[1fr_250px] gap-5">
-                        <div class="rounded-2xl border border-slate-200 overflow-hidden">
-                            <div id="ai-conversation" class="min-h-[260px] max-h-[380px] overflow-y-auto custom-scrollbar p-5 bg-slate-50/60">
-                                <div id="ai-empty" class="min-h-[220px] flex flex-col items-center justify-center text-center">
-                                    <div class="w-12 h-12 rounded-2xl gradient-bg flex items-center justify-center mb-4 shadow-lg shadow-blue-500/15">
-                                        <i data-lucide="sparkles" class="w-6 h-6 text-white"></i>
-                                    </div>
-                                    <h3 class="text-sm font-extrabold">What can EverAI help you with?</h3>
-                                    <p class="text-xs text-slate-400 mt-2 max-w-sm leading-relaxed">Start a conversation or choose one of the suggested prompts.</p>
-                                </div>
-                            </div>
-                            <div class="border-t border-slate-200 p-3 bg-white">
-                                <form onsubmit="handleAIComposerSubmit(event)" class="flex items-center gap-2">
-                                    <input id="ai-prompt" type="text" autocomplete="off" placeholder="Ask EverAI anything..." class="flex-1 min-w-0 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:border-blue-400 focus:bg-white transition">
-                                    <button id="ai-send-button" type="submit" class="w-11 h-11 rounded-xl gradient-bg text-white flex items-center justify-center flex-shrink-0 shadow-lg shadow-blue-500/15 hover:scale-[1.02] transition" aria-label="Send to EverAI">
-                                        <i data-lucide="arrow-up" class="w-4 h-4"></i>
-                                    </button>
-                                </form>
-                                <div class="flex items-center justify-between mt-2 px-1">
-                                    <span class="text-[9px] text-slate-400">EverAI backend integration ready</span>
-                                    <span class="text-[9px] text-slate-400">Enter to send</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="rounded-2xl bg-slate-50 border border-slate-200 p-4">
-                            <div class="flex items-center gap-2 mb-4">
-                                <i data-lucide="lightbulb" class="w-4 h-4 text-amber-500"></i>
-                                <span class="text-xs font-bold">Suggested prompts</span>
-                            </div>
-                            <div class="space-y-2">
-                                <button type="button" onclick="useAIPrompt('Create a simple learning plan for me.')" class="w-full text-left px-3 py-3 rounded-xl bg-white border border-slate-200 text-[10px] font-semibold text-slate-600 hover:border-blue-200 hover:text-blue-600 transition">Learning plan</button>
-                                <button type="button" onclick="useAIPrompt('Give me practical digital income ideas I can explore.')" class="w-full text-left px-3 py-3 rounded-xl bg-white border border-slate-200 text-[10px] font-semibold text-slate-600 hover:border-blue-200 hover:text-blue-600 transition">Income ideas</button>
-                                <button type="button" onclick="useAIPrompt('Help me improve my CV for remote digital work.')" class="w-full text-left px-3 py-3 rounded-xl bg-white border border-slate-200 text-[10px] font-semibold text-slate-600 hover:border-blue-200 hover:text-blue-600 transition">CV help</button>
-                                <button type="button" onclick="useAIPrompt('Give me three practical business ideas for a digital platform.')" class="w-full text-left px-3 py-3 rounded-xl bg-white border border-slate-200 text-[10px] font-semibold text-slate-600 hover:border-blue-200 hover:text-blue-600 transition">Business ideas</button>
-                                <button type="button" onclick="useAIPrompt('Explain a difficult concept to me in very simple terms.')" class="w-full text-left px-3 py-3 rounded-xl bg-white border border-slate-200 text-[10px] font-semibold text-slate-600 hover:border-blue-200 hover:text-blue-600 transition">Explain something</button>
-                                <button type="button" onclick="useAIPrompt('Help me write a professional message.')" class="w-full text-left px-3 py-3 rounded-xl bg-white border border-slate-200 text-[10px] font-semibold text-slate-600 hover:border-blue-200 hover:text-blue-600 transition">Write something</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- TASKS + MEMBERSHIP -->
-            <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-6">
-                <section id="tasks" class="xl:col-span-2 card rounded-3xl p-6 sm:p-8 scroll-mt-24">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-7">
-                        <div>
-                            <div class="text-[10px] uppercase tracking-[0.16em] font-bold text-blue-600 mb-2">Work Opportunities</div>
-                            <h2 class="text-2xl font-extrabold">AI Training Tasks</h2>
-                            <p class="text-xs text-slate-500 mt-2">Complete qualified tasks and build your activity record.</p>
-                        </div>
-                        <button type="button" onclick="refreshTasks()" class="self-start sm:self-auto px-4 py-2.5 rounded-xl border border-slate-200 text-[11px] font-bold text-slate-600 hover:bg-slate-50 transition">
-                            <span class="flex items-center gap-2"><i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i> Refresh</span>
-                        </button>
-                    </div>
-                    <div id="tasks-container" class="rounded-2xl border border-dashed border-slate-300 p-8 sm:p-10 text-center">
-                        <div class="w-12 h-12 mx-auto rounded-2xl bg-blue-50 flex items-center justify-center mb-4">
-                            <i data-lucide="clipboard-check" class="w-6 h-6 text-blue-600"></i>
-                        </div>
-                        <h3 class="font-bold text-sm">No tasks available right now</h3>
-                        <p class="text-xs text-slate-400 max-w-md mx-auto mt-2 leading-relaxed">Qualified tasks will appear here when they become available for your membership and eligibility level.</p>
-                        <button type="button" onclick="showToast('Task notifications will be connected to the backend.')" class="mt-5 px-4 py-2.5 rounded-xl bg-slate-900 text-white text-xs font-bold hover:bg-slate-800 transition">Notify Me</button>
-                    </div>
-                </section>
-
-                <section class="card rounded-3xl p-6 relative overflow-hidden">
-                    <div class="absolute -top-20 -right-20 w-48 h-48 rounded-full bg-blue-100 blur-3xl"></div>
-                    <div class="relative">
-                        <div class="flex items-center justify-between mb-6">
-                            <div>
-                                <div class="text-[10px] uppercase tracking-[0.16em] font-bold text-blue-600">Membership</div>
-                                <h3 class="text-xl font-extrabold mt-1">Your Plan</h3>
-                            </div>
-                            <i data-lucide="crown" class="w-6 h-6 text-purple-600"></i>
-                        </div>
-                        <div class="rounded-2xl p-5 gradient-bg text-white">
-                            <div class="flex items-center justify-between">
-                                <span id="membership-name" class="text-sm font-bold">Premium</span>
-                                <span id="membership-status-badge" class="px-2.5 py-1 bg-white/15 rounded-full text-[9px] font-bold">ACTIVE</span>
-                            </div>
-                            <div class="mt-7">
-                                <div class="text-[10px] text-white/70">Access level</div>
-                                <div id="membership-access" class="text-xl font-extrabold mt-1">Full Workspace</div>
-                            </div>
-                            <div class="mt-6 pt-4 border-t border-white/15 grid grid-cols-2 gap-3 text-[10px]">
-                                <div>
-                                    <div class="text-white/60">AI Access</div>
-                                    <div class="font-bold mt-1">Available</div>
-                                </div>
-                                <div>
-                                    <div class="text-white/60">Status</div>
-                                    <div id="membership-status" class="font-bold mt-1">Active</div>
-                                </div>
-                            </div>
-                        </div>
-                        <button type="button" onclick="showToast('Membership management will be connected to the account backend.')" class="w-full mt-4 py-3 rounded-xl border border-slate-200 text-xs font-bold hover:bg-slate-50 transition">Manage Membership</button>
-                    </div>
-                </section>
-            </div>
-
-            <!-- WALLET -->
-            <section id="wallet" class="card rounded-3xl p-6 sm:p-8 mb-6 scroll-mt-24">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-7">
-                    <div>
-                        <div class="text-[10px] uppercase tracking-[0.16em] font-bold text-blue-600">Financial Center</div>
-                        <h2 class="text-2xl font-extrabold mt-1">Wallet</h2>
-                        <p class="text-xs text-slate-500 mt-2">Manage your Evermore balance and account transactions.</p>
-                    </div>
-                    <div class="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-emerald-50 text-emerald-700 text-[10px] font-bold self-start sm:self-auto">
-                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Wallet secured
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
-                    <div class="lg:col-span-1 rounded-2xl gradient-bg text-white p-6 relative overflow-hidden">
-                        <div class="absolute -right-12 -bottom-12 w-36 h-36 rounded-full bg-white/10"></div>
-                        <div class="relative">
-                            <div class="flex items-center justify-between">
-                                <div class="text-[10px] uppercase tracking-[.16em] text-white/65 font-bold">Available Balance</div>
-                                <i data-lucide="wallet-cards" class="w-5 h-5 text-white/80"></i>
-                            </div>
-                            <div class="text-3xl sm:text-4xl font-extrabold mt-6 break-all">₦<span id="wallet-balance-large">0.00</span></div>
-                            <div class="text-[10px] text-white/60 mt-2">Server-confirmed balance should be used for financial actions.</div>
-                            <div class="grid grid-cols-2 gap-2 mt-7">
-                                <button type="button" onclick="openFunding()" class="py-3 rounded-xl bg-white text-slate-900 text-[11px] font-bold hover:bg-slate-50 transition">Fund Wallet</button>
-                                <button type="button" onclick="openWithdrawal()" class="py-3 rounded-xl bg-white/15 border border-white/15 text-white text-[11px] font-bold hover:bg-white/20 transition">Withdraw</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="lg:col-span-2 rounded-2xl border border-slate-200 overflow-hidden">
-                        <div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
-                            <div>
-                                <div class="text-sm font-extrabold">Recent Transactions</div>
-                                <div class="text-[10px] text-slate-400 mt-1">Confirmed wallet activity</div>
-                            </div>
-                            <button type="button" onclick="loadTransactions()" class="text-[10px] font-bold text-blue-600">Refresh</button>
-                        </div>
-                        <div id="transactions-container" class="min-h-[220px] flex items-center justify-center p-6">
-                            <div class="text-center">
-                                <div class="w-11 h-11 mx-auto rounded-2xl bg-slate-50 flex items-center justify-center mb-3">
-                                    <i data-lucide="receipt" class="w-5 h-5 text-slate-400"></i>
-                                </div>
-                                <div class="text-xs font-bold text-slate-700">No transactions to display</div>
-                                <div class="text-[10px] text-slate-400 mt-1 max-w-xs">Your confirmed wallet activity will appear here.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-5 flex items-start gap-3 p-4 rounded-2xl bg-slate-50 border border-slate-200">
-                    <i data-lucide="lock-keyhole" class="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0"></i>
-                    <p class="text-[10px] text-slate-500 leading-relaxed">
-                        Wallet funding and withdrawals are intended to be processed through the Evermore backend and Kora Pay. Private payment credentials must never be stored in this browser interface.
+                    <h2 class="text-2xl sm:text-3xl font-black">
+                        Active Plan: <span id="membership-name" class="flyer-title">Crown Premium</span>
+                    </h2>
+                    <p class="text-xs sm:text-sm text-slate-300 max-w-xl font-medium">
+                        Welcome, <span id="welcome-name" class="font-extrabold text-white">Member</span>. Your account has verified access to AI remote task queues, EverAI assistant, and skill programs.
                     </p>
                 </div>
-            </section>
 
-            <!-- OPPORTUNITIES -->
-            <section id="opportunities" class="card rounded-3xl p-6 sm:p-8 mb-6 scroll-mt-24">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-7">
-                    <div>
-                        <div class="text-[10px] uppercase tracking-[0.16em] font-bold text-purple-600">Career & Growth</div>
-                        <h2 class="text-2xl font-extrabold mt-1">Opportunities</h2>
-                        <p class="text-xs text-slate-500 mt-2">Discover work and growth opportunities matched to your profile.</p>
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 flex-shrink-0">
+                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/10 text-center">
+                        <div class="text-[10px] text-slate-300 font-bold uppercase tracking-wider">Access Status</div>
+                        <div id="membership-status" class="text-sm font-black text-emerald-400 mt-0.5">ACTIVE</div>
                     </div>
-                    <button type="button" onclick="refreshOpportunities()" class="self-start sm:self-auto px-4 py-2.5 rounded-xl border border-slate-200 text-[11px] font-bold text-slate-600 hover:bg-slate-50 transition">
-                        <span class="flex items-center gap-2"><i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i> Refresh</span>
+                    <button type="button" onclick="showToast('Your membership details are up to date.')" class="px-5 py-3 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 border border-amber-400 text-white text-xs font-black uppercase tracking-wider hover:opacity-90 transition shadow-lg shadow-amber-500/25">
+                        Manage Membership
                     </button>
                 </div>
+            </div>
+        </section>
 
-                <div class="grid grid-cols-2 lg:grid-cols-5 gap-3 mb-5">
-                    <div class="p-4 rounded-2xl border border-slate-200">
-                        <div class="w-9 h-9 rounded-xl bg-blue-50 flex items-center justify-center mb-4"><i data-lucide="globe-2" class="w-4 h-4 text-blue-600"></i></div>
-                        <div class="text-xs font-bold">Remote Work</div>
-                        <div class="text-[10px] text-slate-400 mt-1">Flexible roles</div>
+        <!-- =========================================================
+             2. INTERACTIVE METRIC CARDS (CLICK TO SWITCH LAYOUT)
+             ========================================================= -->
+        <div>
+            <div class="text-xs font-extrabold text-slate-500 uppercase tracking-widest mb-3">
+                Click a card below to switch layout view:
+            </div>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+                
+                <!-- Card 1: Total Earnings & Wallet -->
+                <div onclick="switchLayout('earnings')" data-tab-card="earnings" class="metric-card active-tab bg-white rounded-2xl p-4 sm:p-5">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center">
+                            <i data-lucide="wallet" class="w-5 h-5 text-emerald-600"></i>
+                        </div>
+                        <span class="text-[9px] uppercase font-black tracking-widest text-slate-400">Layout 1</span>
                     </div>
-                    <div class="p-4 rounded-2xl border border-slate-200">
-                        <div class="w-9 h-9 rounded-xl bg-purple-50 flex items-center justify-center mb-4"><i data-lucide="pen-tool" class="w-4 h-4 text-purple-600"></i></div>
-                        <div class="text-xs font-bold">Digital Skills</div>
-                        <div class="text-[10px] text-slate-400 mt-1">Skill-based work</div>
-                    </div>
-                    <div class="p-4 rounded-2xl border border-slate-200">
-                        <div class="w-9 h-9 rounded-xl bg-emerald-50 flex items-center justify-center mb-4"><i data-lucide="briefcase" class="w-4 h-4 text-emerald-600"></i></div>
-                        <div class="text-xs font-bold">Freelance</div>
-                        <div class="text-[10px] text-slate-400 mt-1">Professional gigs</div>
-                    </div>
-                    <div class="p-4 rounded-2xl border border-slate-200">
-                        <div class="w-9 h-9 rounded-xl bg-indigo-50 flex items-center justify-center mb-4"><i data-lucide="bot" class="w-4 h-4 text-indigo-600"></i></div>
-                        <div class="text-xs font-bold">AI Work</div>
-                        <div class="text-[10px] text-slate-400 mt-1">AI opportunities</div>
-                    </div>
-                    <div class="p-4 rounded-2xl border border-slate-200 col-span-2 lg:col-span-1">
-                        <div class="w-9 h-9 rounded-xl bg-amber-50 flex items-center justify-center mb-4"><i data-lucide="rocket" class="w-4 h-4 text-amber-600"></i></div>
-                        <div class="text-xs font-bold">Growth</div>
-                        <div class="text-[10px] text-slate-400 mt-1">Business development</div>
+                    <div class="text-xl sm:text-2xl font-black text-slate-950">₦<span id="wallet-balance">0.00</span></div>
+                    <div class="text-[11px] font-extrabold text-emerald-600 mt-1 flex items-center gap-1">
+                        <span>Total Earnings</span>
+                        <i data-lucide="arrow-right" class="w-3 h-3"></i>
                     </div>
                 </div>
 
-                <div id="opportunities-container" class="rounded-2xl border border-dashed border-slate-300 p-8 sm:p-10 text-center">
-                    <div class="w-12 h-12 mx-auto rounded-2xl bg-purple-50 flex items-center justify-center mb-4">
-                        <i data-lucide="radar" class="w-6 h-6 text-purple-600"></i>
-                    </div>
-                    <h3 class="font-bold text-sm">Opportunity matching is active</h3>
-                    <p class="text-xs text-slate-400 max-w-lg mx-auto mt-2 leading-relaxed">Suitable opportunities will appear here when live opportunity data is connected to your Evermore profile and eligibility level.</p>
-                    <button type="button" onclick="focusProfile()" class="mt-5 px-4 py-2.5 rounded-xl bg-slate-900 text-white text-xs font-bold hover:bg-slate-800 transition">Improve My Profile</button>
-                </div>
-            </section>
-
-            <!-- ACADEMY -->
-            <section id="academy" class="card rounded-3xl p-6 sm:p-8 mb-6 scroll-mt-24">
-                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5 mb-7">
-                    <div>
-                        <div class="text-[10px] uppercase tracking-[0.16em] font-bold text-blue-600">Learning</div>
-                        <h2 class="text-2xl font-extrabold mt-1">Skills Academy</h2>
-                        <p class="text-xs text-slate-500 mt-2">Build practical skills for the digital economy.</p>
-                    </div>
-                    <div class="w-full lg:w-64">
-                        <div class="flex items-center justify-between text-[10px] mb-2">
-                            <span class="font-semibold text-slate-500">Overall progress</span>
-                            <span id="academy-progress" class="font-bold text-blue-600">0%</span>
+                <!-- Card 2: Available Tasks -->
+                <div onclick="switchLayout('tasks')" data-tab-card="tasks" class="metric-card bg-white rounded-2xl p-4 sm:p-5">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-cyan-50 flex items-center justify-center">
+                            <i data-lucide="list-checks" class="w-5 h-5 text-cyan-600"></i>
                         </div>
-                        <div class="h-2 rounded-full bg-slate-100 overflow-hidden">
-                            <div id="academy-progress-bar" class="h-full rounded-full gradient-bg transition-all duration-500" style="width: 0%"></div>
-                        </div>
+                        <span class="text-[9px] uppercase font-black tracking-widest text-slate-400">Layout 2</span>
+                    </div>
+                    <div id="tasks-completed" class="text-xl sm:text-2xl font-black text-slate-950">5 Live</div>
+                    <div class="text-[11px] font-extrabold text-cyan-600 mt-1 flex items-center gap-1">
+                        <span>Available Tasks</span>
+                        <i data-lucide="arrow-right" class="w-3 h-3"></i>
                     </div>
                 </div>
 
-                <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-3">
-                    <article class="card-hover border border-slate-200 rounded-2xl p-4">
-                        <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center mb-4"><i data-lucide="sparkles" class="w-5 h-5 text-blue-600"></i></div>
-                        <div class="text-xs font-bold">AI Productivity</div>
-                        <div class="text-[10px] text-slate-400 mt-1">Work smarter with AI</div>
-                        <div class="mt-5">
-                            <div class="h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="h-full rounded-full bg-blue-500" style="width:0%"></div></div>
-                            <div class="flex justify-between mt-2 text-[9px] text-slate-400"><span>Not started</span><span>Begin</span></div>
+                <!-- Card 3: Skills Academy -->
+                <div onclick="switchLayout('academy')" data-tab-card="academy" class="metric-card bg-white rounded-2xl p-4 sm:p-5">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center">
+                            <i data-lucide="graduation-cap" class="w-5 h-5 text-amber-600"></i>
                         </div>
-                    </article>
-
-                    <article class="card-hover border border-slate-200 rounded-2xl p-4">
-                        <div class="w-10 h-10 rounded-xl bg-purple-50 flex items-center justify-center mb-4"><i data-lucide="palette" class="w-5 h-5 text-purple-600"></i></div>
-                        <div class="text-xs font-bold">Digital Design</div>
-                        <div class="text-[10px] text-slate-400 mt-1">Creative workflows</div>
-                        <div class="mt-5">
-                            <div class="h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="h-full rounded-full bg-purple-500" style="width:0%"></div></div>
-                            <div class="flex justify-between mt-2 text-[9px] text-slate-400"><span>Not started</span><span>Begin</span></div>
-                        </div>
-                    </article>
-
-                    <article class="card-hover border border-slate-200 rounded-2xl p-4">
-                        <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center mb-4"><i data-lucide="megaphone" class="w-5 h-5 text-emerald-600"></i></div>
-                        <div class="text-xs font-bold">Digital Marketing</div>
-                        <div class="text-[10px] text-slate-400 mt-1">Grow digital brands</div>
-                        <div class="mt-5">
-                            <div class="h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="h-full rounded-full bg-emerald-500" style="width:0%"></div></div>
-                            <div class="flex justify-between mt-2 text-[9px] text-slate-400"><span>Not started</span><span>Begin</span></div>
-                        </div>
-                    </article>
-
-                    <article class="card-hover border border-slate-200 rounded-2xl p-4">
-                        <div class="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center mb-4"><i data-lucide="globe-2" class="w-5 h-5 text-indigo-600"></i></div>
-                        <div class="text-xs font-bold">Remote Work</div>
-                        <div class="text-[10px] text-slate-400 mt-1">Professional skills</div>
-                        <div class="mt-5">
-                            <div class="h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="h-full rounded-full bg-indigo-500" style="width:0%"></div></div>
-                            <div class="flex justify-between mt-2 text-[9px] text-slate-400"><span>Not started</span><span>Begin</span></div>
-                        </div>
-                    </article>
-
-                    <article class="card-hover border border-slate-200 rounded-2xl p-4">
-                        <div class="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center mb-4"><i data-lucide="store" class="w-5 h-5 text-amber-600"></i></div>
-                        <div class="text-xs font-bold">Business</div>
-                        <div class="text-[10px] text-slate-400 mt-1">Entrepreneurship</div>
-                        <div class="mt-5">
-                            <div class="h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="h-full rounded-full bg-amber-500" style="width:0%"></div></div>
-                            <div class="flex justify-between mt-2 text-[9px] text-slate-400"><span>Not started</span><span>Begin</span></div>
-                        </div>
-                    </article>
-                </div>
-
-                <div class="mt-5 p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-3">
-                    <i data-lucide="info" class="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0"></i>
-                    <p class="text-[10px] text-slate-500 leading-relaxed">Academy cards are ready for connection to Evermore's course/content system. Progress should be populated from backend-confirmed learning data.</p>
-                </div>
-            </section>
-
-            <!-- PROFILE -->
-            <section id="profile" class="card rounded-3xl p-6 sm:p-8 mb-6 scroll-mt-24">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-7">
-                    <div>
-                        <div class="text-[10px] uppercase tracking-[0.16em] font-bold text-slate-400">Account</div>
-                        <h2 class="text-2xl font-extrabold mt-1">Profile</h2>
-                        <p class="text-xs text-slate-500 mt-2">Manage your identity and account information.</p>
+                        <span class="text-[9px] uppercase font-black tracking-widest text-slate-400">Layout 3</span>
                     </div>
-                    <button type="button" onclick="openProfileEditor()" class="self-start sm:self-auto gradient-bg text-white px-4 py-2.5 rounded-xl text-[11px] font-bold shadow-lg shadow-blue-500/15">
-                        <span class="flex items-center gap-2"><i data-lucide="pencil" class="w-3.5 h-3.5"></i> Edit Profile</span>
+                    <div id="academy-progress-stat" class="text-xl sm:text-2xl font-black text-slate-950">0%</div>
+                    <div class="text-[11px] font-extrabold text-amber-600 mt-1 flex items-center gap-1">
+                        <span>Skills Academy</span>
+                        <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                    </div>
+                </div>
+
+                <!-- Card 4: Remote Opportunities -->
+                <div onclick="switchLayout('opportunities')" data-tab-card="opportunities" class="metric-card bg-white rounded-2xl p-4 sm:p-5">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center">
+                            <i data-lucide="briefcase-business" class="w-5 h-5 text-indigo-600"></i>
+                        </div>
+                        <span class="text-[9px] uppercase font-black tracking-widest text-slate-400">Layout 4</span>
+                    </div>
+                    <div id="account-status-stat" class="text-xl sm:text-2xl font-black text-slate-950">Matched</div>
+                    <div class="text-[11px] font-extrabold text-indigo-600 mt-1 flex items-center gap-1">
+                        <span>Opportunities</span>
+                        <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- =========================================================
+             3. DYNAMIC SEPARATE LAYOUT CONTAINER
+             ========================================================= -->
+
+        <!-- LAYOUT 0: OVERVIEW -->
+        <div id="layout-overview" class="tab-layout active-layout space-y-6">
+            <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+                <!-- Shortcuts -->
+                <div class="xl:col-span-2 bg-white rounded-3xl p-6 border border-slate-200">
+                    <div class="flex items-center justify-between mb-5">
+                        <div>
+                            <div class="text-[10px] uppercase tracking-widest font-black text-emerald-600">Quick Actions</div>
+                            <h3 class="text-xl font-extrabold">Workspace Shortcuts</h3>
+                        </div>
+                        <i data-lucide="zap" class="w-5 h-5 text-emerald-500"></i>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <button type="button" onclick="switchLayout('everai')" class="p-4 rounded-2xl border border-slate-200 hover:border-emerald-300 hover:bg-emerald-50/50 text-left transition">
+                            <div class="w-9 h-9 rounded-xl bg-emerald-100 flex items-center justify-center mb-3">
+                                <i data-lucide="sparkles" class="w-4 h-4 text-emerald-700"></i>
+                            </div>
+                            <div class="text-xs font-black">Open EverAI</div>
+                            <div class="text-[10px] text-slate-500 font-medium mt-0.5">AI assistant</div>
+                        </button>
+                        <button type="button" onclick="switchLayout('tasks')" class="p-4 rounded-2xl border border-slate-200 hover:border-cyan-300 hover:bg-cyan-50/50 text-left transition">
+                            <div class="w-9 h-9 rounded-xl bg-cyan-100 flex items-center justify-center mb-3">
+                                <i data-lucide="list-checks" class="w-4 h-4 text-cyan-700"></i>
+                            </div>
+                            <div class="text-xs font-black">View Tasks</div>
+                            <div class="text-[10px] text-slate-500 font-medium mt-0.5">Remote tasks</div>
+                        </button>
+                        <button type="button" onclick="switchLayout('earnings')" class="p-4 rounded-2xl border border-slate-200 hover:border-amber-300 hover:bg-amber-50/50 text-left transition">
+                            <div class="w-9 h-9 rounded-xl bg-amber-100 flex items-center justify-center mb-3">
+                                <i data-lucide="wallet" class="w-4 h-4 text-amber-700"></i>
+                            </div>
+                            <div class="text-xs font-black">Wallet</div>
+                            <div class="text-[10px] text-slate-500 font-medium mt-0.5">Fund &amp; withdraw</div>
+                        </button>
+                        <button type="button" onclick="switchLayout('academy')" class="p-4 rounded-2xl border border-slate-200 hover:border-indigo-300 hover:bg-indigo-50/50 text-left transition">
+                            <div class="w-9 h-9 rounded-xl bg-indigo-100 flex items-center justify-center mb-3">
+                                <i data-lucide="graduation-cap" class="w-4 h-4 text-indigo-700"></i>
+                            </div>
+                            <div class="text-xs font-black">Academy</div>
+                            <div class="text-[10px] text-slate-500 font-medium mt-0.5">Digital skills</div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Profile Health -->
+                <div class="bg-white rounded-3xl p-6 border border-slate-200">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="text-[10px] uppercase tracking-widest font-black text-slate-400">Status</div>
+                        <i data-lucide="shield-check" class="w-5 h-5 text-emerald-600"></i>
+                    </div>
+                    <div class="text-2xl font-black text-slate-950 mb-1">Account Ready</div>
+                    <p class="text-xs text-slate-500 font-medium mb-4">Your Evermore user profile is fully verified and connected to backend services.</p>
+                    <button type="button" onclick="switchLayout('profile')" class="w-full py-3 rounded-xl border border-slate-200 text-xs font-extrabold text-slate-800 hover:bg-slate-50 transition">
+                        View Profile Settings
                     </button>
                 </div>
+            </div>
+        </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
-                    <div class="lg:col-span-1 rounded-2xl bg-slate-50 border border-slate-200 p-6">
-                        <div id="profile-avatar-large" class="w-16 h-16 rounded-2xl gradient-bg text-white flex items-center justify-center text-xl font-extrabold shadow-lg shadow-blue-500/15">E</div>
-                        <div id="profile-name-large" class="text-lg font-extrabold mt-5">Evermore Member</div>
-                        <div id="profile-email-large" class="text-xs text-slate-400 mt-1 break-all">—</div>
-                        <div class="flex flex-wrap gap-2 mt-5">
-                            <span id="profile-plan-badge" class="px-2.5 py-1 rounded-full bg-blue-50 text-blue-600 text-[9px] font-bold">Premium</span>
-                            <span id="profile-status-badge" class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-600 text-[9px] font-bold">ACTIVE</span>
-                        </div>
+        <!-- LAYOUT 1: TOTAL EARNINGS & WALLET -->
+        <div id="layout-earnings" class="tab-layout space-y-6">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                    <div>
+                        <div class="text-[10px] uppercase tracking-widest font-black text-emerald-600">Layout Dedicated View</div>
+                        <h3 class="text-2xl font-black">Total Earnings &amp; Financial Wallet</h3>
+                        <p class="text-xs text-slate-500 font-medium mt-1">Manage your balances, request withdrawals, and track transactions.</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button type="button" onclick="openFunding()" class="px-4 py-2.5 rounded-xl gradient-bg text-white text-xs font-extrabold shadow-md">
+                            Fund Wallet
+                        </button>
+                        <button type="button" onclick="openWithdrawal()" class="px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-extrabold text-slate-800 hover:bg-slate-50">
+                            Withdraw
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="bg-navy rounded-2xl p-6 text-white border border-emerald-500/30">
+                        <div class="text-[10px] font-black uppercase tracking-widest text-emerald-400">Available Balance</div>
+                        <div class="text-3xl font-black mt-3">₦<span id="wallet-balance-large">0.00</span></div>
+                        <p class="text-[11px] text-slate-300 mt-2 font-medium">Earned through simple AI tasks and task completions.</p>
                     </div>
 
                     <div class="lg:col-span-2 rounded-2xl border border-slate-200 p-5">
-                        <div class="grid sm:grid-cols-2 gap-x-8">
-                            <div class="flex items-center justify-between py-4 border-b border-slate-100">
-                                <span class="text-xs text-slate-400">Full name</span>
-                                <span id="profile-name" class="text-xs font-bold text-slate-800 text-right max-w-[60%] truncate">—</span>
-                            </div>
-                            <div class="flex items-center justify-between py-4 border-b border-slate-100">
-                                <span class="text-xs text-slate-400">Email</span>
-                                <span id="profile-email" class="text-xs font-bold text-slate-800 text-right max-w-[60%] truncate">—</span>
-                            </div>
-                            <div class="flex items-center justify-between py-4 border-b border-slate-100">
-                                <span class="text-xs text-slate-400">Country</span>
-                                <span id="profile-country" class="text-xs font-bold text-slate-800">—</span>
-                            </div>
-                            <div class="flex items-center justify-between py-4 border-b border-slate-100">
-                                <span class="text-xs text-slate-400">Membership</span>
-                                <span id="profile-plan" class="text-xs font-bold text-blue-600">—</span>
-                            </div>
-                            <div class="flex items-center justify-between py-4 border-b sm:border-b-0 border-slate-100">
-                                <span class="text-xs text-slate-400">Account status</span>
-                                <span id="profile-status" class="text-xs font-bold text-emerald-600">Active</span>
-                            </div>
-                            <div class="flex items-center justify-between py-4">
-                                <span class="text-xs text-slate-400">Profile readiness</span>
-                                <span id="profile-readiness-small" class="text-xs font-bold text-blue-600">0%</span>
-                            </div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-black text-slate-800">Recent Transactions</span>
+                            <button type="button" onclick="showToast('Transactions loaded from server.')" class="text-[10px] font-extrabold text-emerald-600">Refresh</button>
+                        </div>
+                        <div id="transactions-container" class="py-8 text-center text-slate-400 text-xs font-medium border border-dashed border-slate-200 rounded-xl">
+                            No recent transactions found.
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </div>
 
-            <!-- FOOTER -->
-            <footer class="py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] text-slate-400">
-                <div>© 2026 Evermore. All rights reserved.</div>
-                <div class="flex flex-wrap items-center justify-center gap-5">
-                    <a href="#" class="hover:text-blue-600 transition">Privacy</a>
-                    <a href="#" class="hover:text-blue-600 transition">Terms</a>
-                    <a href="http://t.me/Evermore_team" target="_blank" rel="noopener noreferrer" class="hover:text-blue-600 transition">Support</a>
-                    <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Systems operational</span>
+        <!-- LAYOUT 2: AVAILABLE TASKS -->
+        <div id="layout-tasks" class="tab-layout space-y-6">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                    <div>
+                        <div class="text-[10px] uppercase tracking-widest font-black text-cyan-600">Layout Dedicated View</div>
+                        <h3 class="text-2xl font-black">Available Remote &amp; AI Tasks</h3>
+                        <p class="text-xs text-slate-500 font-medium mt-1">Earn up to $18.6/Hour by completing eligible simple tasks.</p>
+                    </div>
+                    <button type="button" onclick="showToast('Task queue updated!')" class="px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-extrabold text-slate-800 hover:bg-slate-50">
+                        Refresh Queue
+                    </button>
                 </div>
-            </footer>
-        </section>
+
+                <div class="space-y-3">
+                    <div class="p-4 rounded-2xl border border-slate-200 hover:border-emerald-300 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition">
+                        <div>
+                            <div class="inline-block px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-black uppercase mb-1">AI Response Evaluation</div>
+                            <div class="text-sm font-extrabold text-slate-900">Compare Two AI Outputs for Accuracy</div>
+                            <div class="text-xs text-slate-500 font-medium">Estimated time: 5 mins • Reward: ₦2,500</div>
+                        </div>
+                        <button type="button" onclick="showToast('Task launched! Complete evaluation instructions.')" class="px-4 py-2 rounded-xl gradient-bg text-white text-xs font-black self-start sm:self-auto">Start Task</button>
+                    </div>
+
+                    <div class="p-4 rounded-2xl border border-slate-200 hover:border-emerald-300 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition">
+                        <div>
+                            <div class="inline-block px-2.5 py-0.5 rounded-full bg-cyan-50 text-cyan-700 text-[10px] font-black uppercase mb-1">Data Annotation</div>
+                            <div class="text-sm font-extrabold text-slate-900">Label Smartphone App Interface Elements</div>
+                            <div class="text-xs text-slate-500 font-medium">Estimated time: 8 mins • Reward: ₦3,800</div>
+                        </div>
+                        <button type="button" onclick="showToast('Task launched! Complete annotation instructions.')" class="px-4 py-2 rounded-xl gradient-bg text-white text-xs font-black self-start sm:self-auto">Start Task</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LAYOUT 3: EVERAI WORKSPACE -->
+        <div id="layout-everai" class="tab-layout space-y-6">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <div class="text-[10px] uppercase tracking-widest font-black text-emerald-600">Layout Dedicated View</div>
+                        <h3 class="text-2xl font-black">EverAI Assistant Workspace</h3>
+                    </div>
+                    <button type="button" onclick="openAI()" class="px-4 py-2 rounded-xl gradient-bg text-white text-xs font-extrabold">Open Fullscreen AI</button>
+                </div>
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 text-center">
+                    <i data-lucide="sparkles" class="w-10 h-10 text-emerald-600 mx-auto mb-3"></i>
+                    <h4 class="text-sm font-extrabold text-slate-900">Your EverAI Workspace is Active</h4>
+                    <p class="text-xs text-slate-500 font-medium max-w-md mx-auto mt-1 mb-4">Generate text, analyze tasks, and build digital skills directly using EverAI.</p>
+                    <button type="button" onclick="openAI()" class="px-5 py-2.5 rounded-xl amber-bg text-white text-xs font-black uppercase tracking-wider">Start Prompt Session</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- LAYOUT 4: SKILLS ACADEMY -->
+        <div id="layout-academy" class="tab-layout space-y-6">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200">
+                <div class="text-[10px] uppercase tracking-widest font-black text-amber-600 mb-1">Layout Dedicated View</div>
+                <h3 class="text-2xl font-black mb-4">Evermore Skills Academy</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="p-5 rounded-2xl border border-slate-200">
+                        <i data-lucide="brain" class="w-6 h-6 text-emerald-600 mb-2"></i>
+                        <div class="text-sm font-extrabold">AI Fundamentals</div>
+                        <p class="text-xs text-slate-500 mt-1">Learn response evaluation and prompt tuning.</p>
+                    </div>
+                    <div class="p-5 rounded-2xl border border-slate-200">
+                        <i data-lucide="globe-2" class="w-6 h-6 text-cyan-600 mb-2"></i>
+                        <div class="text-sm font-extrabold">Digital Work Readiness</div>
+                        <p class="text-xs text-slate-500 mt-1">Master remote communication tools.</p>
+                    </div>
+                    <div class="p-5 rounded-2xl border border-slate-200">
+                        <i data-lucide="code" class="w-6 h-6 text-amber-600 mb-2"></i>
+                        <div class="text-sm font-extrabold">Frontend &amp; Web Development</div>
+                        <p class="text-xs text-slate-500 mt-1">HTML, CSS, JavaScript basics.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LAYOUT 5: OPPORTUNITIES -->
+        <div id="layout-opportunities" class="tab-layout space-y-6">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200">
+                <div class="text-[10px] uppercase tracking-widest font-black text-indigo-600 mb-1">Layout Dedicated View</div>
+                <h3 class="text-2xl font-black mb-2">Remote Opportunities Hub</h3>
+                <p class="text-xs text-slate-500 font-medium mb-6">Discover outsourced remote work opportunities matching your profile.</p>
+                <div class="p-8 text-center border border-dashed border-slate-300 rounded-2xl">
+                    <i data-lucide="briefcase" class="w-8 h-8 text-slate-400 mx-auto mb-2"></i>
+                    <div class="text-xs font-bold text-slate-800">Opportunity Matching Active</div>
+                    <p class="text-[11px] text-slate-500 mt-1">New outsourced job batches are posted regularly.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- LAYOUT 6: PROFILE & SETTINGS -->
+        <div id="layout-profile" class="tab-layout space-y-6">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <div class="text-[10px] uppercase tracking-widest font-black text-slate-400">Account Settings</div>
+                        <h3 class="text-2xl font-black">User Profile</h3>
+                    </div>
+                    <button type="button" onclick="openProfileEditor()" class="px-4 py-2 rounded-xl border border-slate-200 text-xs font-extrabold hover:bg-slate-50">Edit Profile</button>
+                </div>
+                <div class="grid sm:grid-cols-2 gap-4 text-xs font-semibold">
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <span class="text-slate-400 block text-[10px]">Full Name</span>
+                        <span id="profile-name" class="text-slate-900 font-extrabold text-sm">—</span>
+                    </div>
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <span class="text-slate-400 block text-[10px]">Email Address</span>
+                        <span id="profile-email" class="text-slate-900 font-extrabold text-sm">—</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-emerald-100 bg-white py-6 px-4 sm:px-8 mt-auto">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-medium">
+            <div>Evermore — Build. Learn. Earn. Evolve.<br>&copy; 2026 Evermore Enterprise. All rights reserved.</div>
+            <div class="flex items-center gap-4">
+                <a href="/" class="hover:text-emerald-600">Home</a>
+                <a href="https://t.me/Evermore_team" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-600">Support</a>
+            </div>
+        </div>
+    </footer>
 </div>
+
+<!-- =========================================================
+     MODALS & DIALOGS
+     ========================================================= -->
 
 <!-- EVERAI FULL MODAL -->
 <div id="ai-modal" class="modal-backdrop fixed inset-0 z-[100] bg-slate-950/45 backdrop-blur-sm p-4 flex items-center justify-center" aria-hidden="true">
-    <div class="modal-panel bg-white w-full max-w-3xl max-h-[90vh] rounded-3xl shadow-floating overflow-hidden" role="dialog" aria-modal="true" aria-labelledby="ai-modal-title">
-        <div class="p-5 sm:p-6 border-b border-slate-100 flex items-center justify-between">
+    <div class="modal-panel bg-white w-full max-w-3xl max-h-[90vh] rounded-3xl shadow-floating overflow-hidden flex flex-col" role="dialog" aria-modal="true">
+        <div class="p-5 border-b border-slate-100 flex items-center justify-between">
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center"><i data-lucide="sparkles" class="w-5 h-5 text-white"></i></div>
                 <div>
-                    <div id="ai-modal-title" class="font-extrabold">EverAI</div>
-                    <div id="ai-mode" class="text-[10px] text-blue-600 font-bold">Intelligent Workspace</div>
+                    <div class="font-extrabold text-slate-900">EverAI Workspace</div>
+                    <div class="text-[10px] text-emerald-600 font-bold">Intelligent Assistant</div>
                 </div>
             </div>
             <button type="button" onclick="closeAI()" class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center hover:bg-slate-200 transition" aria-label="Close EverAI"><i data-lucide="x" class="w-4 h-4"></i></button>
         </div>
-        <div class="p-5 sm:p-6">
-            <div id="ai-modal-messages" class="min-h-[180px] max-h-[350px] overflow-y-auto custom-scrollbar rounded-2xl bg-slate-50 border border-slate-200 p-4 mb-4">
-                <div class="text-center py-10">
-                    <div class="w-11 h-11 mx-auto rounded-2xl gradient-bg flex items-center justify-center mb-3"><i data-lucide="sparkles" class="w-5 h-5 text-white"></i></div>
-                    <div class="text-xs font-bold">Start your EverAI session</div>
-                    <div class="text-[10px] text-slate-400 mt-1">Your actual AI backend can be connected through callEverAI().</div>
-                </div>
+        <div class="p-5 flex-1 overflow-y-auto space-y-3">
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-xs text-slate-700">
+                <strong>EverAI:</strong> Hello! How can I assist you with your tasks or learning today?
             </div>
-            <textarea id="ai-modal-input" rows="4" placeholder="Tell EverAI what you want to create..." class="w-full rounded-2xl border border-slate-200 p-4 text-sm outline-none focus:border-blue-500 resize-none transition"></textarea>
-            <div class="flex items-center justify-between gap-3 mt-4">
-                <span class="text-[9px] text-slate-400">Never place AI API secrets in frontend code.</span>
-                <button type="button" id="ai-modal-run" onclick="runAI()" class="gradient-bg text-white px-6 py-3 rounded-xl text-xs font-bold shadow-lg shadow-blue-500/15">Run EverAI</button>
-            </div>
+        </div>
+        <div class="p-4 border-t border-slate-100">
+            <input type="text" placeholder="Type your prompt here..." class="w-full rounded-xl border border-slate-200 p-3 text-xs outline-none focus:border-emerald-500">
         </div>
     </div>
 </div>
 
 <!-- NOTIFICATION MODAL -->
 <div id="notification-modal" class="modal-backdrop fixed inset-0 z-[110] bg-slate-950/45 backdrop-blur-sm p-4 flex items-center justify-center" aria-hidden="true">
-    <div class="modal-panel bg-white w-full max-w-lg rounded-3xl shadow-floating overflow-hidden" role="dialog" aria-modal="true" aria-labelledby="notification-title">
+    <div class="modal-panel bg-white w-full max-w-lg rounded-3xl shadow-floating overflow-hidden" role="dialog" aria-modal="true">
         <div class="p-5 border-b border-slate-100 flex items-center justify-between">
-            <div>
-                <div class="text-[10px] uppercase tracking-[.16em] font-bold text-blue-600">Updates</div>
-                <h2 id="notification-title" class="text-xl font-extrabold mt-1">Notifications</h2>
-            </div>
-            <button type="button" onclick="closeNotifications()" class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center hover:bg-slate-200 transition" aria-label="Close notifications"><i data-lucide="x" class="w-4 h-4"></i></button>
+            <h3 class="text-lg font-black">Notifications</h3>
+            <button type="button" onclick="closeNotifications()" class="w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center"><i data-lucide="x" class="w-4 h-4"></i></button>
         </div>
-        <div id="notifications-container" class="max-h-[60vh] overflow-y-auto custom-scrollbar p-5">
-            <div class="py-10 text-center">
-                <div class="w-11 h-11 mx-auto rounded-2xl bg-slate-50 flex items-center justify-center mb-3"><i data-lucide="bell-off" class="w-5 h-5 text-slate-400"></i></div>
-                <div class="text-xs font-bold">No notifications yet</div>
-                <div class="text-[10px] text-slate-400 mt-1">Important account updates will appear here.</div>
-            </div>
-        </div>
+        <div class="p-6 text-center text-xs text-slate-500 font-medium">No new notifications.</div>
     </div>
 </div>
 
@@ -847,27 +617,15 @@
 <div id="funding-modal" class="modal-backdrop fixed inset-0 z-[120] bg-slate-950/45 backdrop-blur-sm p-4 flex items-center justify-center" aria-hidden="true">
     <div class="modal-panel bg-white w-full max-w-md rounded-3xl shadow-floating overflow-hidden" role="dialog" aria-modal="true">
         <div class="p-5 border-b border-slate-100 flex items-center justify-between">
-            <div>
-                <div class="text-[10px] uppercase tracking-[.16em] font-bold text-blue-600">Wallet</div>
-                <h2 class="text-xl font-extrabold mt-1">Fund Wallet</h2>
-            </div>
-            <button type="button" onclick="closeFunding()" class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center" aria-label="Close funding modal"><i data-lucide="x" class="w-4 h-4"></i></button>
+            <h3 class="text-lg font-black">Fund Wallet</h3>
+            <button type="button" onclick="closeFunding()" class="w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center"><i data-lucide="x" class="w-4 h-4"></i></button>
         </div>
-        <div class="p-5">
+        <div class="p-5 space-y-4">
             <label class="block">
-                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Amount</span>
-                <div class="relative mt-2">
-                    <span class="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-bold text-slate-400">₦</span>
-                    <input id="funding-amount" type="number" min="1" step="0.01" inputmode="decimal" placeholder="0.00" class="w-full rounded-xl border border-slate-200 pl-9 pr-4 py-3 text-sm outline-none focus:border-blue-500">
-                </div>
+                <span class="text-[10px] font-bold text-slate-500 uppercase">Amount (₦)</span>
+                <input id="funding-amount" type="number" placeholder="5000" class="w-full mt-1.5 rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-emerald-500">
             </label>
-            <div class="mt-4 p-4 rounded-2xl bg-blue-50 border border-blue-100">
-                <div class="flex items-start gap-3">
-                    <i data-lucide="shield-check" class="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0"></i>
-                    <p class="text-[10px] text-blue-700 leading-relaxed">Payment processing should be initiated by the Evermore backend and handled through Kora Pay.</p>
-                </div>
-            </div>
-            <button type="button" onclick="startFunding()" class="w-full mt-5 gradient-bg text-white py-3 rounded-xl text-xs font-bold">Continue to Payment</button>
+            <button type="button" onclick="startFunding()" class="w-full py-3.5 rounded-xl gradient-bg text-white text-xs font-black">Continue to Kora Pay</button>
         </div>
     </div>
 </div>
@@ -876,61 +634,44 @@
 <div id="withdrawal-modal" class="modal-backdrop fixed inset-0 z-[120] bg-slate-950/45 backdrop-blur-sm p-4 flex items-center justify-center" aria-hidden="true">
     <div class="modal-panel bg-white w-full max-w-md rounded-3xl shadow-floating overflow-hidden" role="dialog" aria-modal="true">
         <div class="p-5 border-b border-slate-100 flex items-center justify-between">
-            <div>
-                <div class="text-[10px] uppercase tracking-[.16em] font-bold text-purple-600">Wallet</div>
-                <h2 class="text-xl font-extrabold mt-1">Withdraw</h2>
-            </div>
-            <button type="button" onclick="closeWithdrawal()" class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center" aria-label="Close withdrawal modal"><i data-lucide="x" class="w-4 h-4"></i></button>
+            <h3 class="text-lg font-black">Withdraw Funds</h3>
+            <button type="button" onclick="closeWithdrawal()" class="w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center"><i data-lucide="x" class="w-4 h-4"></i></button>
         </div>
-        <div class="p-5">
+        <div class="p-5 space-y-4">
             <label class="block">
-                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Amount</span>
-                <div class="relative mt-2">
-                    <span class="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-bold text-slate-400">₦</span>
-                    <input id="withdrawal-amount" type="number" min="1" step="0.01" inputmode="decimal" placeholder="0.00" class="w-full rounded-xl border border-slate-200 pl-9 pr-4 py-3 text-sm outline-none focus:border-purple-500">
-                </div>
+                <span class="text-[10px] font-bold text-slate-500 uppercase">Amount (₦)</span>
+                <input id="withdrawal-amount" type="number" placeholder="2000" class="w-full mt-1.5 rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-emerald-500">
             </label>
-            <div class="mt-4 p-4 rounded-2xl bg-amber-50 border border-amber-100">
-                <div class="flex items-start gap-3">
-                    <i data-lucide="triangle-alert" class="w-4 h-4 text-amber-600 mt-0.5 flex-shrink-0"></i>
-                    <p class="text-[10px] text-amber-700 leading-relaxed">Withdrawal eligibility, available balance, fees and payout details must be validated server-side.</p>
-                </div>
-            </div>
-            <button type="button" onclick="requestWithdrawal()" class="w-full mt-5 gradient-bg text-white py-3 rounded-xl text-xs font-bold">Request Withdrawal</button>
+            <button type="button" onclick="requestWithdrawal()" class="w-full py-3.5 rounded-xl amber-bg text-white text-xs font-black">Submit Withdrawal</button>
         </div>
     </div>
 </div>
 
-<!-- PROFILE EDITOR -->
+<!-- PROFILE EDITOR MODAL -->
 <div id="profile-modal" class="modal-backdrop fixed inset-0 z-[120] bg-slate-950/45 backdrop-blur-sm p-4 flex items-center justify-center" aria-hidden="true">
     <div class="modal-panel bg-white w-full max-w-lg rounded-3xl shadow-floating overflow-hidden" role="dialog" aria-modal="true">
         <div class="p-5 border-b border-slate-100 flex items-center justify-between">
-            <div>
-                <div class="text-[10px] uppercase tracking-[.16em] font-bold text-blue-600">Account</div>
-                <h2 class="text-xl font-extrabold mt-1">Edit Profile</h2>
-            </div>
-            <button type="button" onclick="closeProfileEditor()" class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center" aria-label="Close profile editor"><i data-lucide="x" class="w-4 h-4"></i></button>
+            <h3 class="text-lg font-black">Edit Profile</h3>
+            <button type="button" onclick="closeProfileEditor()" class="w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center"><i data-lucide="x" class="w-4 h-4"></i></button>
         </div>
         <form class="p-5 space-y-4" onsubmit="submitProfileUpdate(event)">
             <label class="block">
-                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Full name</span>
-                <input id="edit-full-name" type="text" autocomplete="name" class="w-full mt-2 rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-blue-500">
+                <span class="text-[10px] font-bold text-slate-500 uppercase">Full Name</span>
+                <input id="edit-full-name" type="text" class="w-full mt-1.5 rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-emerald-500">
             </label>
-            <label class="block">
-                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Country</span>
-                <input id="edit-country" type="text" autocomplete="country-name" class="w-full mt-2 rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-blue-500">
-            </label>
-            <button type="submit" class="w-full gradient-bg text-white py-3 rounded-xl text-xs font-bold">Save Changes</button>
+            <button type="submit" class="w-full py-3.5 rounded-xl gradient-bg text-white text-xs font-black">Save Changes</button>
         </form>
     </div>
 </div>
 
 <!-- TOAST -->
-<div id="toast" class="toast fixed bottom-6 left-1/2 z-[200] bg-slate-950 text-white px-5 py-3 rounded-xl text-xs font-semibold shadow-2xl" role="status" aria-live="polite">Notification</div>
+<div id="toast" class="toast fixed bottom-6 left-1/2 z-[200] bg-slate-950 text-white px-5 py-3 rounded-xl text-xs font-bold shadow-2xl" role="status">Notification</div>
 
-<!-- JAVASCRIPT -->
+<!-- =========================================================
+     JAVASCRIPT & CONTROLLERS
+     ========================================================= -->
 <script>
-    // 1. AUTH & ACTIVATION GUARD
+    // 1. AUTH GUARD
     (function guardDashboard() {
         const storedUserStr = localStorage.getItem('evermore_user') || sessionStorage.getItem('evermore_user');
         if (!storedUserStr) {
@@ -958,7 +699,6 @@
     let currentUser = null;
     let inactivityTimer = null;
     let toastTimer = null;
-    let aiMessages = [];
 
     function refreshIcons() {
         if (window.lucide) { lucide.createIcons(); }
@@ -1003,6 +743,24 @@
         toastTimer = setTimeout(() => { toast.classList.remove('show'); }, 3000);
     }
 
+    // Dynamic Layout Switcher
+    function switchLayout(layoutName) {
+        document.querySelectorAll('.tab-layout').forEach(el => el.classList.remove('active-layout'));
+        document.querySelectorAll('.metric-card').forEach(el => el.classList.remove('active-tab'));
+        document.querySelectorAll('[data-layout-nav]').forEach(el => el.classList.remove('active'));
+
+        const targetLayout = document.getElementById(`layout-${layoutName}`);
+        if (targetLayout) targetLayout.classList.add('active-layout');
+
+        const targetTabCard = document.querySelector(`[data-tab-card="${layoutName}"]`);
+        if (targetTabCard) targetTabCard.classList.add('active-tab');
+
+        const targetNav = document.querySelector(`[data-layout-nav="${layoutName}"]`);
+        if (targetNav) targetNav.classList.add('active');
+
+        if (window.innerWidth < 1024) closeSidebar();
+    }
+
     function populateUserData(user) {
         if (!user) return;
         currentUser = user;
@@ -1013,24 +771,13 @@
         const planName = (user.plan === 'trial') ? 'Trial' : 'Crown Premium';
         const initial = firstName.charAt(0).toUpperCase();
 
-        // Header & Hero
         if (document.getElementById('top-name')) document.getElementById('top-name').textContent = fullName;
         if (document.getElementById('welcome-name')) document.getElementById('welcome-name').textContent = firstName;
         if (document.getElementById('avatar')) document.getElementById('avatar').textContent = initial;
         if (document.getElementById('top-plan')) document.getElementById('top-plan').textContent = planName;
-        if (document.getElementById('hero-plan')) document.getElementById('hero-plan').textContent = planName;
-
-        // Profile Section
-        if (document.getElementById('profile-avatar-large')) document.getElementById('profile-avatar-large').textContent = initial;
-        if (document.getElementById('profile-name-large')) document.getElementById('profile-name-large').textContent = fullName;
-        if (document.getElementById('profile-email-large')) document.getElementById('profile-email-large').textContent = email;
+        if (document.getElementById('membership-name')) document.getElementById('membership-name').textContent = planName;
         if (document.getElementById('profile-name')) document.getElementById('profile-name').textContent = fullName;
         if (document.getElementById('profile-email')) document.getElementById('profile-email').textContent = email;
-        if (document.getElementById('profile-plan')) document.getElementById('profile-plan').textContent = planName;
-        if (document.getElementById('membership-name')) document.getElementById('membership-name').textContent = planName;
-        if (document.getElementById('profile-plan-badge')) document.getElementById('profile-plan-badge').textContent = planName;
-
-        // Edit form inputs
         if (document.getElementById('edit-full-name')) document.getElementById('edit-full-name').value = fullName;
     }
 
@@ -1048,56 +795,36 @@
         }
     }
 
-    // Modal Helpers
     function openModal(id) {
         const modal = document.getElementById(id);
-        if (!modal) return;
-        modal.classList.add('open');
-        modal.setAttribute('aria-hidden', 'false');
-        document.body.classList.add('overflow-hidden');
+        if (modal) { modal.classList.add('open'); document.body.classList.add('overflow-hidden'); }
     }
     function closeModal(id) {
         const modal = document.getElementById(id);
-        if (!modal) return;
-        modal.classList.remove('open');
-        modal.setAttribute('aria-hidden', 'true');
-        if (!document.querySelector('.modal-backdrop.open')) {
-            document.body.classList.remove('overflow-hidden');
-        }
+        if (modal) { modal.classList.remove('open'); document.body.classList.remove('overflow-hidden'); }
     }
 
     function openAI() { openModal('ai-modal'); }
     function closeAI() { closeModal('ai-modal'); }
-    function runAI() { closeAI(); showToast('EverAI query executed.'); }
     function openNotifications() { openModal('notification-modal'); }
     function closeNotifications() { closeModal('notification-modal'); }
     function openFunding() { openModal('funding-modal'); }
     function closeFunding() { closeModal('funding-modal'); }
-    function startFunding() { closeFunding(); showToast('Redirecting to payment gateway...'); }
+    function startFunding() { closeFunding(); showToast('Redirecting to Kora Pay gateway...'); }
     function openWithdrawal() { openModal('withdrawal-modal'); }
     function closeWithdrawal() { closeModal('withdrawal-modal'); }
-    function requestWithdrawal() { closeWithdrawal(); showToast('Withdrawal requested successfully.'); }
+    function requestWithdrawal() { closeWithdrawal(); showToast('Withdrawal request submitted.'); }
     function openProfileEditor() { openModal('profile-modal'); }
     function closeProfileEditor() { closeModal('profile-modal'); }
-    function submitProfileUpdate(e) { e.preventDefault(); closeProfileEditor(); showToast('Profile changes saved.'); }
+    function submitProfileUpdate(e) { e.preventDefault(); closeProfileEditor(); showToast('Profile updated!'); }
 
     function openSidebar() {
         document.getElementById('sidebar')?.classList.add('open');
         document.getElementById('sidebar-overlay')?.classList.add('show');
-        document.body.classList.add('overflow-hidden');
     }
     function closeSidebar() {
         document.getElementById('sidebar')?.classList.remove('open');
         document.getElementById('sidebar-overlay')?.classList.remove('show');
-        document.body.classList.remove('overflow-hidden');
-    }
-    function setActive(element) {
-        document.querySelectorAll('.sidebar-link').forEach(link => link.classList.remove('active'));
-        element.classList.add('active');
-        if (window.innerWidth < 1024) closeSidebar();
-    }
-    function focusProfile() {
-        document.getElementById('profile')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     window.addEventListener('DOMContentLoaded', () => {

@@ -1,356 +1,139 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Payment | Evermore</title>
+    <title>Payment | Evermore — Secure Access Checkout</title>
 
-    <meta name="description" content="Complete your Evermore access payment securely.">
+    <meta name="description" content="Complete your Evermore access payment securely to activate your AI workspace and remote opportunities.">
+    <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#00c88d">
 
+    <!-- Canonical -->
+    <link rel="canonical" href="https://www.evermoreonline.com.ng/payment">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/evermore-logo.png">
+    <link rel="apple-touch-icon" href="assets/evermore-logo.png">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            DEFAULT: '#07152b',
+                            card: '#0d1f3d'
+                        },
+                        emerald: {
+                            brand: '#00c88d',
+                            dark: '#00996b',
+                            soft: '#e6fcf5'
+                        },
+                        cyan: {
+                            brand: '#06b6d4'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Manrope', 'sans-serif']
+                    }
+                }
+            }
+        };
+    </script>
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
         :root {
-            --ink: #080b18;
-            --muted: #647084;
-            --soft: #f6f8fc;
-            --line: #e5e9f1;
-            --blue: #2563eb;
-            --purple: #6366f1;
-            --green: #19b77a;
-            --green-dark: #109766;
-            --white: #ffffff;
+            --primary: #00c88d;
+            --primary-dark: #00996b;
+            --primary-soft: #e6fcf5;
+            --cyan-accent: #06b6d4;
+            --navy: #07152b;
+            --gradient-flyer-headline: linear-gradient(135deg, #00e699 0%, #00b37e 60%, #06b6d4 100%);
+            --gradient-cta-amber: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
+        * { box-sizing: border-box; }
 
         body {
-            font-family: "Inter", sans-serif;
-            color: var(--ink);
-            background: #ffffff;
+            font-family: 'Plus Jakarta Sans', 'Manrope', sans-serif;
+            color: #0a1628;
+            background: 
+                radial-gradient(circle at 85% 15%, rgba(0, 200, 141, 0.15) 0%, transparent 45%),
+                radial-gradient(circle at 15% 85%, rgba(6, 182, 212, 0.12) 0%, transparent 40%),
+                linear-gradient(180deg, #f0fdfa 0%, #ffffff 100%);
             min-height: 100vh;
-            overflow-x: hidden;
         }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        button,
-        input {
-            font-family: inherit;
-        }
-
-        /* Helper classes for logo */
-        .flex { display: flex; }
-        .items-center { align-items: center; }
-        .h-14 { height: 3.5rem; }
-        .w-auto { width: auto; }
-        .object-contain { object-fit: contain; }
-
-        @media (min-width: 640px) {
-            .sm\:h-16 { height: 4rem; }
-        }
-
-        /* PAGE BACKGROUND */
-        .page {
-            min-height: 100vh;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .page::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            z-index: -3;
-            background:
-                linear-gradient(rgba(37, 99, 235, 0.055) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(37, 99, 235, 0.055) 1px, transparent 1px);
-            background-size: 44px 44px;
-            mask-image: linear-gradient(to bottom, black 0%, rgba(0,0,0,.8) 60%, transparent 100%);
-            pointer-events: none;
-        }
-
-        .page::after {
-            content: "";
-            position: fixed;
-            width: 520px;
-            height: 520px;
-            top: -240px;
-            right: -180px;
-            border-radius: 50%;
-            background: rgba(99, 102, 241, 0.11);
-            filter: blur(80px);
-            z-index: -2;
-            pointer-events: none;
-        }
-
-        .glow-left {
-            position: fixed;
-            width: 420px;
-            height: 420px;
-            bottom: -240px;
-            left: -180px;
-            border-radius: 50%;
-            background: rgba(37, 99, 235, 0.08);
-            filter: blur(80px);
-            z-index: -2;
-            pointer-events: none;
-        }
-
-        /* HEADER */
-        header {
-            width: 100%;
-            height: 88px;
-            background: rgba(255, 255, 255, 0.88);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            border-bottom: 1px solid rgba(229, 233, 241, 0.9);
-            position: relative;
-            z-index: 10;
-        }
-
-        .header-inner {
-            width: min(1180px, calc(100% - 40px));
-            height: 100%;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .secure-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #5c6677;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .secure-header .dot {
-            width: 8px;
-            height: 8px;
-            background: var(--green);
-            border-radius: 50%;
-            box-shadow: 0 0 0 5px rgba(25, 183, 122, 0.12);
-        }
-
-        /* MAIN */
-        main {
-            width: min(1080px, calc(100% - 40px));
-            margin: 0 auto;
-            padding: 64px 0 90px;
-        }
-
-        .top-label {
-            width: fit-content;
-            margin: 0 auto 22px;
-            display: flex;
-            align-items: center;
-            gap: 9px;
-            padding: 10px 16px;
-            border: 1px solid rgba(37, 99, 235, 0.14);
-            border-radius: 999px;
-            background: rgba(255,255,255,.78);
-            color: #536174;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: .2px;
-            box-shadow: 0 8px 25px rgba(31, 48, 82, 0.05);
-        }
-
-        .top-label .status {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--green);
-            box-shadow: 0 0 0 5px rgba(25,183,122,.12);
-        }
-
-        .heading {
-            text-align: center;
-            max-width: 760px;
-            margin: 0 auto;
-        }
-
-        .heading h1 {
-            font-size: clamp(38px, 6vw, 68px);
-            line-height: .98;
-            letter-spacing: -3px;
-            font-weight: 900;
-        }
-
-        .heading h1 span {
-            background: linear-gradient(90deg, #2563eb, #6845df);
+        .flyer-title {
+            background: var(--gradient-flyer-headline);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
 
-        .heading p {
-            margin: 22px auto 0;
-            max-width: 650px;
-            color: #657083;
-            font-size: 17px;
-            line-height: 1.75;
+        .btn-amber-glow {
+            color: #ffffff;
+            background: var(--gradient-cta-amber);
+            border: 2px solid #fbbf24;
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            transition: all 0.22s ease;
         }
 
-        /* PAYMENT LAYOUT */
-        .payment-layout {
-            margin-top: 48px;
-            display: grid;
-            grid-template-columns: minmax(0, 1.35fr) minmax(320px, .75fr);
-            gap: 24px;
-            align-items: start;
+        .btn-amber-glow:hover {
+            box-shadow: 0 0 35px rgba(245, 158, 11, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            transform: translateY(-1px);
         }
 
-        .card {
-            background: rgba(255,255,255,.91);
-            border: 1px solid rgba(219,225,235,.95);
-            border-radius: 28px;
-            box-shadow:
-                0 24px 70px rgba(19, 33, 61, 0.08),
-                0 3px 12px rgba(19, 33, 61, 0.035);
-            overflow: hidden;
+        .btn-amber-glow:disabled {
+            transform: none;
+            box-shadow: none;
+            opacity: 0.7;
+            cursor: not-allowed;
         }
 
-        .payment-card {
-            padding: 34px;
+        .plan-card {
+            transition: all 0.25s ease;
+            border: 2px solid #e2e8f0;
         }
 
-        .card-title {
-            font-size: 13px;
-            color: #4b596d;
-            font-weight: 800;
-            letter-spacing: 1.8px;
-            text-transform: uppercase;
-        }
-
-        .card-heading {
-            margin-top: 8px;
-            font-size: 29px;
-            line-height: 1.15;
-            font-weight: 850;
-            letter-spacing: -1px;
-        }
-
-        .card-description {
-            margin-top: 10px;
-            color: #778296;
-            font-size: 14px;
-            line-height: 1.7;
-        }
-
-        /* PLAN OPTIONS */
-        .plans {
-            margin-top: 28px;
-            display: grid;
-            gap: 14px;
-        }
-
-        .plan {
-            position: relative;
-            border: 1.5px solid #e2e7ef;
-            border-radius: 20px;
-            padding: 22px;
-            cursor: pointer;
-            background: #ffffff;
-            transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
-        }
-
-        .plan:hover {
+        .plan-card:hover {
             transform: translateY(-2px);
-            border-color: rgba(37,99,235,.35);
-            box-shadow: 0 15px 35px rgba(37,99,235,.08);
+            border-color: rgba(0, 200, 141, 0.5);
+            box-shadow: 0 12px 30px rgba(0, 200, 141, 0.12);
         }
 
-        .plan.selected {
-            border-color: var(--green);
-            background: linear-gradient(
-                135deg,
-                rgba(25,183,122,.045),
-                rgba(37,99,235,.025)
-            );
-            box-shadow:
-                0 0 0 4px rgba(25,183,122,.07),
-                0 18px 40px rgba(25,183,122,.07);
+        .plan-card.selected {
+            border-color: #00c88d;
+            background: linear-gradient(135deg, rgba(230, 252, 245, 0.6), rgba(255, 255, 255, 0.95));
+            box-shadow: 0 0 0 4px rgba(0, 200, 141, 0.15), 0 18px 40px rgba(0, 200, 141, 0.1);
         }
 
-        .plan-top {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 15px;
-        }
-
-        .plan-left {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
-        .plan-icon {
-            width: 48px;
-            height: 48px;
-            flex: 0 0 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 15px;
-            background: #eef4ff;
-            color: var(--blue);
-        }
-
-        .plan.selected .plan-icon {
-            background: rgba(25,183,122,.1);
-            color: var(--green);
-        }
-
-        .plan-icon svg {
-            width: 23px;
-            height: 23px;
-        }
-
-        .plan-name {
-            font-size: 17px;
-            font-weight: 800;
-        }
-
-        .plan-subtitle {
-            margin-top: 4px;
-            color: #8792a3;
-            font-size: 12px;
-        }
-
-        .radio {
+        .radio-dot {
             width: 22px;
             height: 22px;
             border-radius: 50%;
-            border: 2px solid #cbd3df;
+            border: 2px solid #cbd5e1;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex: 0 0 22px;
+            transition: all 0.2s ease;
         }
 
-        .plan.selected .radio {
-            border-color: var(--green);
+        .plan-card.selected .radio-dot {
+            border-color: #00c88d;
         }
 
         .radio-inner {
@@ -358,573 +141,274 @@
             height: 10px;
             border-radius: 50%;
             background: transparent;
+            transition: all 0.2s ease;
         }
 
-        .plan.selected .radio-inner {
-            background: var(--green);
+        .plan-card.selected .radio-inner {
+            background: #00c88d;
         }
 
-        .plan-price {
-            margin-top: 22px;
-            display: flex;
-            align-items: baseline;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .plan-price strong {
-            font-size: 42px;
-            line-height: 1;
-            letter-spacing: -2px;
-            font-weight: 900;
-        }
-
-        .plan-price span {
-            color: #7d8898;
-            font-size: 14px;
-        }
-
-        .plan-naira {
-            margin-top: 7px;
-            color: #8993a3;
-            font-size: 13px;
-        }
-
-        .plan-features {
-            margin-top: 20px;
-            display: grid;
-            gap: 11px;
-        }
-
-        .feature {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #596577;
-            font-size: 13px;
-        }
-
-        .feature svg {
-            width: 17px;
-            height: 17px;
-            color: var(--green);
-            stroke-width: 2.8;
-            flex-shrink: 0;
-        }
-
-        .recommended {
-            position: absolute;
-            top: 18px;
-            right: 18px;
-            padding: 6px 10px;
-            border-radius: 999px;
-            background: rgba(25,183,122,.09);
-            color: var(--green-dark);
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: .4px;
-        }
-
-        /* CHECKOUT SUMMARY */
-        .summary-card {
-            padding: 28px;
-            position: sticky;
-            top: 20px;
-        }
-
-        .summary-title {
-            font-size: 18px;
-            font-weight: 850;
-            letter-spacing: -.4px;
-        }
-
-        .summary-subtitle {
-            margin-top: 7px;
-            color: #8993a3;
-            font-size: 12px;
-            line-height: 1.6;
-        }
-
-        .summary-line {
-            margin-top: 26px;
-            padding-bottom: 19px;
-            border-bottom: 1px solid #edf0f5;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-        }
-
-        .summary-line span:first-child {
-            color: #6c7789;
-            font-size: 13px;
-        }
-
-        .summary-line strong {
-            font-size: 14px;
-            font-weight: 800;
-        }
-
-        .total {
-            padding-top: 19px;
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            gap: 15px;
-        }
-
-        .total-label {
-            color: #657083;
-            font-size: 13px;
-            font-weight: 700;
-        }
-
-        .total small {
-            display: block;
-            margin-top: 5px;
-            color: #9aa3b1;
-            font-size: 10px;
-        }
-
-        .total-amount {
-            text-align: right;
-        }
-
-        .total-amount strong {
-            display: block;
-            font-size: 29px;
-            letter-spacing: -1px;
-            font-weight: 900;
-        }
-
-        .total-amount span {
-            color: #8993a3;
-            font-size: 11px;
-        }
-
-        /* PAY BUTTON */
-        .pay-button {
-            width: 100%;
-            margin-top: 28px;
-            min-height: 58px;
-            border: 0;
-            border-radius: 17px;
-            background: #080b18;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 11px;
-            font-size: 15px;
-            font-weight: 800;
-            cursor: pointer;
-            box-shadow: 0 14px 30px rgba(8,11,24,.18);
-            transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease;
-        }
-
-        .pay-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 18px 35px rgba(8,11,24,.25);
-        }
-
-        .pay-button:active {
-            transform: translateY(0);
-        }
-
-        .pay-button:disabled {
-            opacity: .65;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .pay-button svg {
-            width: 20px;
-            height: 20px;
-        }
-
-        /* SECURITY BOX */
-        .security {
-            margin-top: 18px;
-            display: flex;
-            align-items: flex-start;
-            gap: 11px;
-            padding: 15px;
-            border-radius: 16px;
-            background: #f7faf9;
-            border: 1px solid #e0f0e9;
-        }
-
-        .security-icon {
-            width: 30px;
-            height: 30px;
-            flex: 0 0 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 10px;
-            background: rgba(25,183,122,.1);
-            color: var(--green);
-        }
-
-        .security-icon svg {
-            width: 16px;
-            height: 16px;
-        }
-
-        .security strong {
-            display: block;
-            color: #354355;
-            font-size: 11px;
-            font-weight: 800;
-        }
-
-        .security p {
-            margin-top: 4px;
-            color: #7e8998;
-            font-size: 10px;
-            line-height: 1.55;
-        }
-
-        /* STATUS MESSAGES */
         .message {
             display: none;
-            margin-top: 16px;
-            padding: 13px 14px;
-            border-radius: 14px;
-            font-size: 12px;
-            line-height: 1.5;
         }
 
         .message.show {
             display: flex;
-            align-items: flex-start;
-            gap: 9px;
-        }
-
-        .message.error {
-            color: #b42318;
-            background: #fff3f2;
-            border: 1px solid #ffd4d0;
-        }
-
-        .message.info {
-            color: #2856a8;
-            background: #f0f6ff;
-            border: 1px solid #d5e5ff;
-        }
-
-        .message svg {
-            width: 16px;
-            height: 16px;
-            flex-shrink: 0;
-            margin-top: 1px;
-        }
-
-        /* BACK LINK */
-        .back-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 7px;
-            margin-top: 28px;
-            color: #737e8e;
-            font-size: 12px;
-            font-weight: 700;
-            transition: color .2s ease;
-        }
-
-        .back-link:hover {
-            color: var(--blue);
-        }
-
-        .back-link svg {
-            width: 15px;
-            height: 15px;
-        }
-
-        /* FOOTER */
-        footer {
-            border-top: 1px solid #edf0f5;
-            background: rgba(255,255,255,.78);
-        }
-
-        .footer-inner {
-            width: min(1180px, calc(100% - 40px));
-            margin: 0 auto;
-            padding: 26px 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-        }
-
-        .footer-copy {
-            color: #929baa;
-            font-size: 11px;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 22px;
-            color: #7a8595;
-            font-size: 11px;
-            font-weight: 600;
-        }
-
-        .footer-links a:hover {
-            color: var(--blue);
-        }
-
-        @media (max-width: 800px) {
-            header { height: 78px; }
-            .header-inner { width: min(100% - 28px, 1180px); }
-            .secure-header { font-size: 10px; }
-            main { width: min(100% - 28px, 1080px); padding-top: 45px; }
-            .heading h1 { letter-spacing: -2px; }
-            .heading p { font-size: 14px; line-height: 1.65; }
-            .payment-layout { grid-template-columns: 1fr; margin-top: 35px; }
-            .summary-card { position: static; }
-        }
-
-        @media (max-width: 500px) {
-            .secure-header { display: none; }
-            .payment-card, .summary-card { padding: 22px; }
-            .card { border-radius: 23px; }
-            .card-heading { font-size: 25px; }
-            .plan { padding: 18px; border-radius: 18px; }
-            .plan-icon { width: 43px; height: 43px; flex-basis: 43px; }
-            .plan-name { font-size: 15px; }
-            .plan-price strong { font-size: 36px; }
-            .recommended { top: 14px; right: 14px; }
-            .footer-inner { width: calc(100% - 28px); flex-direction: column; text-align: center; }
         }
     </style>
 </head>
 
-<body>
+<body class="antialiased text-slate-900 flex flex-col min-h-screen">
 
-    <div class="page">
-        <div class="glow-left"></div>
+    <!-- ================= HEADER ================= -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-emerald-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[76px] flex items-center justify-between">
+            <a href="index.html" class="flex items-center" aria-label="Evermore Home">
+                <img src="assets/evermore-logo.png" alt="Evermore Logo" class="h-12 sm:h-14 w-auto object-contain">
+            </a>
 
-        <header>
-            <div class="header-inner">
-                <a href="index.html" class="flex items-center">
-                    <img src="assets/evermore-logo.png" alt="Evermore Logo" class="h-14 sm:h-16 w-auto object-contain">
-                </a>
+            <div class="flex items-center gap-2 text-xs font-bold text-slate-600 bg-emerald-50 px-3.5 py-1.5 rounded-full border border-emerald-200">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>256-bit Encrypted Checkout</span>
+            </div>
+        </div>
+    </header>
 
-                <div class="secure-header">
-                    <span class="dot"></span>
-                    256-bit Encrypted Checkout
+    <!-- ================= MAIN ================= -->
+    <main class="flex-grow relative py-8 sm:py-14 px-4 sm:px-6">
+        <div class="max-w-5xl mx-auto">
+
+            <!-- Intro Header -->
+            <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-extrabold text-emerald-800 uppercase tracking-widest mb-4">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                    <span>Complete Your Access</span>
                 </div>
-            </div>
-        </header>
 
-        <main>
-            <div class="top-label">
-                <span class="status"></span>
-                Complete your Evermore access
-            </div>
-
-            <div class="heading">
-                <h1>
-                    Activate your
-                    <span>Evermore access.</span>
+                <h1 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight text-slate-950">
+                    Activate your <span class="flyer-title">Evermore access.</span>
                 </h1>
 
-                <p>
-                    Choose your access plan and continue to secure payment.
-                    Your Evermore workspace will become available after your
-                    payment has been successfully confirmed.
+                <p class="mt-3 text-sm sm:text-base leading-relaxed text-slate-600 font-medium">
+                    Choose your access plan and continue to secure payment. Your Evermore workspace will become active immediately after confirmation.
                 </p>
             </div>
 
-            <div class="payment-layout">
+            <!-- Payment Grid Layout -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
-                <section class="card payment-card">
-                    <div class="card-title">Access</div>
-                    <h2 class="card-heading">Choose your plan</h2>
-                    <p class="card-description">
-                        Select the Evermore access level you want to activate.
-                        You can review your selection before continuing.
-                    </p>
+                <!-- PLAN SELECTION (LEFT 7 COLS) -->
+                <section class="lg:col-span-7 bg-white/95 backdrop-blur-xl rounded-3xl p-6 sm:p-8 border-2 border-emerald-100 shadow-xl space-y-6">
+                    <div>
+                        <span class="text-xs font-extrabold text-emerald-600 uppercase tracking-wider">Step 1 of 2</span>
+                        <h2 class="text-2xl font-black text-slate-950 mt-1">Choose your plan</h2>
+                        <p class="text-xs sm:text-sm text-slate-500 font-medium mt-1">
+                            Select the Evermore access level you want to activate.
+                        </p>
+                    </div>
 
-                    <div class="plans">
+                    <!-- Plans Container -->
+                    <div class="space-y-4">
+
+                        <!-- Crown Premium Plan -->
                         <div
-                            class="plan selected"
+                            class="plan-card selected rounded-2xl p-5 sm:p-6 cursor-pointer bg-white relative"
                             id="premium-plan"
                             data-package="premium"
                             data-usd="10"
                             data-ngn="14000"
                         >
-                            <div class="recommended">RECOMMENDED</div>
-                            <div class="plan-top">
-                                <div class="plan-left">
-                                    <div class="plan-icon">
-                                        <i data-lucide="crown"></i>
+                            <div class="absolute -top-3 right-4 px-3 py-1 bg-gradient-to-r from-amber-500 to-amber-600 border border-amber-300 text-white text-[10px] font-black uppercase tracking-wider rounded-full shadow-md">
+                                RECOMMENDED
+                            </div>
+
+                            <div class="flex items-start justify-between gap-4">
+                                <div class="flex items-center gap-3.5">
+                                    <div class="w-12 h-12 rounded-2xl bg-emerald-100 flex items-center justify-center text-emerald-600 flex-shrink-0">
+                                        <i data-lucide="crown" class="w-6 h-6"></i>
                                     </div>
                                     <div>
-                                        <div class="plan-name">Crown Premium</div>
-                                        <div class="plan-subtitle">Full platform access</div>
+                                        <h3 class="text-base font-black text-slate-900">Crown Premium</h3>
+                                        <p class="text-xs text-slate-500 font-medium">Full platform &amp; AI task access</p>
                                     </div>
                                 </div>
-                                <div class="radio">
+
+                                <div class="radio-dot">
                                     <div class="radio-inner"></div>
                                 </div>
                             </div>
 
-                            <div class="plan-price">
-                                <strong>$10</strong>
-                                <span>/ 6 months</span>
+                            <div class="mt-4 pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                                <div>
+                                    <div class="text-2xl sm:text-3xl font-black text-slate-950">$10 <span class="text-xs font-extrabold text-slate-500">/ 12 months</span></div>
+                                    <div class="text-xs font-extrabold text-emerald-600 mt-0.5">₦14,000</div>
+                                </div>
                             </div>
 
-                            <div class="plan-naira">₦14,000</div>
-
-                            <div class="plan-features">
-                                <div class="feature">
-                                    <i data-lucide="check"></i>
-                                    Expanded EverAI access
+                            <div class="mt-4 space-y-2 text-xs font-semibold text-slate-600">
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i>
+                                    <span>Expanded EverAI workspace access</span>
                                 </div>
-                                <div class="feature">
-                                    <i data-lucide="check"></i>
-                                    Full Skills Academy access
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i>
+                                    <span>Full Skills Academy access</span>
                                 </div>
-                                <div class="feature">
-                                    <i data-lucide="check"></i>
-                                    Eligible opportunity access
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i>
+                                    <span>Eligible remote task queue matching</span>
                                 </div>
                             </div>
                         </div>
 
+                        <!-- Trial Plan -->
                         <div
-                            class="plan"
+                            class="plan-card rounded-2xl p-5 sm:p-6 cursor-pointer bg-white relative"
                             id="trial-plan"
                             data-package="trial"
                             data-usd="5"
                             data-ngn="7000"
                         >
-                            <div class="plan-top">
-                                <div class="plan-left">
-                                    <div class="plan-icon">
-                                        <i data-lucide="zap"></i>
+                            <div class="flex items-start justify-between gap-4">
+                                <div class="flex items-center gap-3.5">
+                                    <div class="w-12 h-12 rounded-2xl bg-cyan-100 flex items-center justify-center text-cyan-600 flex-shrink-0">
+                                        <i data-lucide="zap" class="w-6 h-6"></i>
                                     </div>
                                     <div>
-                                        <div class="plan-name">Trial</div>
-                                        <div class="plan-subtitle">Explore the platform</div>
+                                        <h3 class="text-base font-black text-slate-900">Trial Plan</h3>
+                                        <p class="text-xs text-slate-500 font-medium">Explore the Evermore platform</p>
                                     </div>
                                 </div>
-                                <div class="radio">
+
+                                <div class="radio-dot">
                                     <div class="radio-inner"></div>
                                 </div>
                             </div>
 
-                            <div class="plan-price">
-                                <strong>$5</strong>
-                                <span>/ 2 months</span>
+                            <div class="mt-4 pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                                <div>
+                                    <div class="text-2xl sm:text-3xl font-black text-slate-950">$5 <span class="text-xs font-extrabold text-slate-500">/ 2 months</span></div>
+                                    <div class="text-xs font-extrabold text-slate-600 mt-0.5">₦7,000</div>
+                                </div>
                             </div>
 
-                            <div class="plan-naira">₦7,000</div>
-
-                            <div class="plan-features">
-                                <div class="feature">
-                                    <i data-lucide="check"></i>
-                                    Limited EverAI access
+                            <div class="mt-4 space-y-2 text-xs font-semibold text-slate-600">
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i>
+                                    <span>Standard EverAI workspace access</span>
                                 </div>
-                                <div class="feature">
-                                    <i data-lucide="check"></i>
-                                    Selected Skills Academy resources
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i>
+                                    <span>Selected Skills Academy courses</span>
                                 </div>
-                                <div class="feature">
-                                    <i data-lucide="check"></i>
-                                    Eligible opportunities
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i>
+                                    <span>Eligible remote opportunities</span>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </section>
 
-                <aside class="card summary-card">
-                    <div class="summary-title">Payment summary</div>
-                    <div class="summary-subtitle">
-                        Review your selected Evermore access before proceeding.
+                <!-- CHECKOUT SUMMARY (RIGHT 5 COLS) -->
+                <aside class="lg:col-span-5 bg-white/95 backdrop-blur-xl rounded-3xl p-6 sm:p-8 border-2 border-emerald-100 shadow-xl space-y-6 lg:sticky lg:top-24">
+                    <div>
+                        <span class="text-xs font-extrabold text-emerald-600 uppercase tracking-wider">Step 2 of 2</span>
+                        <h2 class="text-2xl font-black text-slate-950 mt-1">Payment summary</h2>
+                        <p class="text-xs text-slate-500 font-medium mt-1">
+                            Review your selection before continuing to secure payment.
+                        </p>
                     </div>
 
-                    <div class="summary-line">
-                        <span>Selected plan</span>
-                        <strong id="summary-plan">Crown Premium</strong>
+                    <div class="space-y-3 pt-2">
+                        <div class="flex items-center justify-between text-xs sm:text-sm py-2 border-b border-slate-100">
+                            <span class="text-slate-500 font-medium">Selected plan</span>
+                            <strong id="summary-plan" class="font-extrabold text-slate-900">Crown Premium</strong>
+                        </div>
+
+                        <div class="flex items-center justify-between text-xs sm:text-sm py-2 border-b border-slate-100">
+                            <span class="text-slate-500 font-medium">Access duration</span>
+                            <strong id="summary-duration" class="font-extrabold text-slate-900">12 months</strong>
+                        </div>
+
+                        <div class="flex items-center justify-between text-xs sm:text-sm py-2 border-b border-slate-100">
+                            <span class="text-slate-500 font-medium">Platform setup</span>
+                            <strong class="font-extrabold text-emerald-600">Included</strong>
+                        </div>
                     </div>
 
-                    <div class="summary-line">
-                        <span>Access duration</span>
-                        <strong id="summary-duration">6 months</strong>
-                    </div>
-
-                    <div class="summary-line">
-                        <span>Platform access</span>
-                        <strong>Included</strong>
-                    </div>
-
-                    <div class="total">
+                    <div class="pt-2 flex items-end justify-between">
                         <div>
-                            <div class="total-label">Total</div>
-                            <small>Payment amount</small>
+                            <span class="text-xs font-extrabold text-slate-700 uppercase tracking-wider">Total Amount</span>
+                            <div class="text-[10px] font-medium text-slate-400">Processed via Kora Pay</div>
                         </div>
-                        <div class="total-amount">
-                            <strong id="summary-ngn">₦14,000</strong>
-                            <span id="summary-usd">$10 USD</span>
+
+                        <div class="text-right">
+                            <strong id="summary-ngn" class="block text-2xl sm:text-3xl font-black text-slate-950">₦14,000</strong>
+                            <span id="summary-usd" class="text-xs font-extrabold text-slate-500">$10 USD</span>
                         </div>
                     </div>
 
-                    <button type="button" class="pay-button" id="pay-button">
+                    <!-- CTA Pay Button -->
+                    <button type="button" class="btn-amber-glow w-full rounded-full py-4 px-6 font-black text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg" id="pay-button">
                         <span id="pay-text">Continue to Payment</span>
-                        <i data-lucide="arrow-right" id="pay-icon"></i>
+                        <i data-lucide="arrow-right" id="pay-icon" class="w-4 h-4"></i>
                     </button>
 
-                    <div class="security">
-                        <div class="security-icon">
-                            <i data-lucide="shield-check"></i>
-                        </div>
+                    <!-- Trust / Security Box -->
+                    <div class="flex items-start gap-3 p-4 rounded-2xl bg-emerald-50/70 border border-emerald-200">
+                        <i data-lucide="shield-check" class="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5"></i>
                         <div>
-                            <strong>Secure payment</strong>
-                            <p>
-                                Your payment will be processed securely through Kora. Evermore does not store your card details.
+                            <strong class="block text-xs font-extrabold text-slate-900">100% Secure Checkout</strong>
+                            <p class="text-[11px] font-medium text-slate-600 leading-relaxed mt-0.5">
+                                Payments are processed directly through Kora. Evermore never stores card details.
                             </p>
                         </div>
                     </div>
 
-                    <div class="message error" id="error-message">
-                        <i data-lucide="alert-circle"></i>
+                    <!-- Messages -->
+                    <div class="message items-start gap-2.5 p-3.5 rounded-xl text-xs font-extrabold bg-rose-50 border border-rose-200 text-rose-800" id="error-message">
+                        <i data-lucide="alert-circle" class="w-4 h-4 text-rose-600 flex-shrink-0 mt-0.5"></i>
                         <span id="error-text">Something went wrong. Please try again.</span>
                     </div>
 
-                    <div class="message info" id="info-message">
-                        <i data-lucide="info"></i>
+                    <div class="message items-start gap-2.5 p-3.5 rounded-xl text-xs font-extrabold bg-emerald-50 border border-emerald-200 text-emerald-900" id="info-message">
+                        <i data-lucide="info" class="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5"></i>
                         <span id="info-text">Payment gateway connection ready.</span>
                     </div>
 
-                    <a href="signup.html" class="back-link">
-                        <i data-lucide="arrow-left"></i>
-                        Back to account setup
-                    </a>
+                    <div class="text-center pt-2">
+                        <a href="signup.html" class="inline-flex items-center gap-1.5 text-xs font-extrabold text-slate-500 hover:text-emerald-600 transition">
+                            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+                            <span>Back to account setup</span>
+                        </a>
+                    </div>
                 </aside>
 
             </div>
-        </main>
+        </div>
+    </main>
 
-        <footer>
-            <div class="footer-inner">
-                <div class="footer-copy">
-                    © 2026 Evermore. All rights reserved.
+    <!-- ================= FOOTER ================= -->
+    <footer class="border-t border-emerald-100 bg-white/80 backdrop-blur-sm mt-auto">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 py-6">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="text-xs text-slate-500 font-medium text-center sm:text-left">
+                    Evermore — Build. Learn. Earn. Evolve.<br>
+                    &copy; 2026 Evermore Enterprise. All rights reserved.
                 </div>
-                <div class="footer-links">
-                    <a href="index.html">Home</a>
-                    <a href="signin.html">Sign In</a>
-                    <a href="https://t.me/Evermore_team" target="_blank">Support</a>
+
+                <div class="flex items-center gap-5 text-xs font-bold text-slate-600">
+                    <a href="index.html" class="hover:text-emerald-600 transition">Home</a>
+                    <a href="signin.html" class="hover:text-emerald-600 transition">Sign In</a>
+                    <a href="https://t.me/Evermore_team" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-600 transition">Support</a>
                 </div>
             </div>
-        </footer>
+        </div>
+    </footer>
 
-    </div>
-
+    <!-- ================= JAVASCRIPT & BACKEND INTEGRATION ================= -->
     <script>
         // GUARD: Redirect already activated users to dashboard
         (function guardPaymentPage() {
@@ -981,7 +465,7 @@
         const packages = {
             premium: {
                 name: "Crown Premium",
-                duration: "6 months",
+                duration: "12 months",
                 usd: "$10",
                 ngn: 14000,
                 formattedNgn: "₦14,000"
