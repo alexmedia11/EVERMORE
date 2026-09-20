@@ -146,7 +146,7 @@
                         </label>
                         <textarea 
                             id="messageText" 
-                            rows="8" 
+                            rows="7" 
                             placeholder="Hello Evermore Member,&#10;&#10;We're excited to let you know that Evermore is now fully operational!&#10;&#10;With Evermore, you can explore:&#10;• EverAI — AI-powered workspace&#10;• AI Training Tasks & Remote Opportunities&#10;• Skills Academy Modules&#10;• Wallet & Earnings&#10;&#10;Ready to continue your journey?" 
                             required 
                             oninput="updatePreview()"
@@ -157,16 +157,43 @@
                     <!-- Highlight Box / Tip -->
                     <div>
                         <label for="tip" class="flex items-center gap-2 text-xs font-extrabold text-slate-800 uppercase tracking-wider mb-2">
-                            <i data-lucide="lightbulb" class="w-4 h-4 text-amber-500"></i> Highlight Box / Daily Tip
+                            <i data-lucide="lightbulb" class="w-4 h-4 text-amber-500"></i> Highlight Box / Daily Tip <span class="text-[10px] text-slate-500 font-normal">(Optional)</span>
                         </label>
                         <textarea 
                             id="tip" 
                             rows="2" 
                             placeholder="Check your dashboard today for updated task listings and new academy resources." 
-                            required 
                             oninput="updatePreview()"
                             class="w-full rounded-xl border border-slate-300 bg-white p-3.5 text-xs sm:text-sm text-slate-900 font-medium placeholder:text-slate-400 outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 resize-none transition custom-scrollbar"
                         ></textarea>
+                    </div>
+
+                    <!-- Action Button Settings (Grid) -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="ctaText" class="flex items-center gap-2 text-xs font-extrabold text-slate-800 uppercase tracking-wider mb-2">
+                                <i data-lucide="mouse-pointer-click" class="w-4 h-4 text-amber-600"></i> Button Text
+                            </label>
+                            <input 
+                                type="text" 
+                                id="ctaText" 
+                                placeholder="Open Workspace Dashboard" 
+                                oninput="updatePreview()"
+                                class="w-full rounded-xl border border-slate-300 bg-white p-3 text-xs text-slate-900 font-medium outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition"
+                            >
+                        </div>
+                        <div>
+                            <label for="ctaUrl" class="flex items-center gap-2 text-xs font-extrabold text-slate-800 uppercase tracking-wider mb-2">
+                                <i data-lucide="link" class="w-4 h-4 text-amber-600"></i> Button Link URL
+                            </label>
+                            <input 
+                                type="url" 
+                                id="ctaUrl" 
+                                placeholder="https://www.evermoreonline.com.ng/dashboard.html" 
+                                oninput="updatePreview()"
+                                class="w-full rounded-xl border border-slate-300 bg-white p-3 text-xs text-slate-900 font-medium outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition"
+                            >
+                        </div>
                     </div>
 
                     <!-- Submit Button -->
@@ -190,7 +217,7 @@
                     <span class="text-[10px] text-emerald-700 font-extrabold bg-emerald-100 px-2 py-0.5 rounded">Light Theme</span>
                 </div>
 
-                <!-- EMAIL CLIENT CONTAINER (FLYER MATCHED) -->
+                <!-- EMAIL CLIENT CONTAINER -->
                 <div class="bg-gradient-to-br from-[#e6fffa] via-[#f0fdfa] to-[#e0f2fe] text-slate-900 rounded-2xl p-6 sm:p-8 shadow-xl border-2 border-emerald-200">
                     
                     <!-- Flyer Banner Header -->
@@ -218,7 +245,7 @@
                     <div class="bg-white p-6 rounded-xl border border-emerald-200 space-y-4 text-xs sm:text-sm text-slate-800 leading-relaxed shadow-sm">
                         
                         <h2 id="preview-greeting" class="text-sm sm:text-base font-extrabold text-slate-900">
-                            Good evening, Gabriel! 🌙
+                            Good morning, Gabriel! ☀️
                         </h2>
 
                         <!-- Banner Image Preview -->
@@ -240,7 +267,7 @@ With Evermore, you can explore:
 Ready to continue your journey?</div>
 
                         <!-- Tip Box -->
-                        <div class="bg-emerald-50 border-l-4 border-emerald-500 p-3.5 rounded-r-lg my-4">
+                        <div id="preview-tip-wrapper" class="bg-emerald-50 border-l-4 border-emerald-500 p-3.5 rounded-r-lg my-4">
                             <h4 class="text-[11px] font-bold text-emerald-900 flex items-center gap-1.5 mb-1 uppercase tracking-wider">
                                 💡 Today's Productivity Tip
                             </h4>
@@ -249,8 +276,8 @@ Ready to continue your journey?</div>
 
                         <!-- CTA Button -->
                         <div class="pt-2">
-                            <a href="#" class="btn-amber-glow inline-block text-white font-black text-xs uppercase tracking-wider px-6 py-3 rounded-full shadow-lg">
-                                Open Workspace
+                            <a href="#" id="preview-cta-btn" class="btn-amber-glow inline-block text-white font-black text-xs uppercase tracking-wider px-6 py-3 rounded-full shadow-lg">
+                                Open Workspace Dashboard →
                             </a>
                         </div>
 
@@ -258,8 +285,7 @@ Ready to continue your journey?</div>
 
                     <!-- Email Footer -->
                     <div class="pt-5 text-center text-[11px] text-slate-600 font-bold">
-                        Evermore — Build. Learn. Earn. Evolve.<br>
-                        &copy; 2026 Evermore. All rights reserved.
+                        Evermore — Build. Learn. Earn. Evolve.<br>&copy; 2026 Evermore. All rights reserved.
                     </div>
 
                 </div>
@@ -277,14 +303,23 @@ Ready to continue your journey?</div>
             const messageText = document.getElementById('messageText').value.trim();
             const tip = document.getElementById('tip').value.trim();
             const imageUrl = document.getElementById('imageUrl').value.trim();
+            const ctaText = document.getElementById('ctaText').value.trim();
 
             if (subject) document.getElementById('preview-subject').textContent = subject;
             if (messageText) document.getElementById('preview-body').textContent = messageText;
-            if (tip) document.getElementById('preview-tip').textContent = tip;
+            
+            // Tip Box toggle
+            const tipWrapper = document.getElementById('preview-tip-wrapper');
+            if (tip) {
+                document.getElementById('preview-tip').textContent = tip;
+                tipWrapper.classList.remove('hidden');
+            } else {
+                tipWrapper.classList.add('hidden');
+            }
 
+            // Image Preview toggle
             const imageWrapper = document.getElementById('preview-image-wrapper');
             const previewImg = document.getElementById('preview-image');
-
             if (imageUrl) {
                 previewImg.src = imageUrl;
                 imageWrapper.classList.remove('hidden');
@@ -292,6 +327,10 @@ Ready to continue your journey?</div>
                 imageWrapper.classList.add('hidden');
                 previewImg.src = '';
             }
+
+            // CTA Button Text
+            const ctaBtn = document.getElementById('preview-cta-btn');
+            ctaBtn.textContent = (ctaText || "Open Workspace Dashboard") + " →";
         }
 
         async function handleSendBroadcast(event) {
@@ -305,52 +344,8 @@ Ready to continue your journey?</div>
             const messageText = document.getElementById('messageText').value.trim();
             const tip = document.getElementById('tip').value.trim();
             const imageUrl = document.getElementById('imageUrl').value.trim();
-
-            // Format multiline input into explicit HTML paragraphs so email clients preserve line spacing
-            const formattedParagraphs = messageText
-                .split('\n')
-                .map(line => line.trim())
-                .map(line => line ? `<p style="margin: 0 0 12px 0; line-height: 1.6; color: #334155; font-size: 14px;">${line}</p>` : `<br>`)
-                .join('');
-
-            const fullHtmlEmail = `
-            <!DOCTYPE html>
-            <html>
-            <head>
-                <meta charset="utf-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            </head>
-            <body style="margin:0; padding:20px; background-color:#e6fffa; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
-                <table width="100%" border="0" cellspacing="0" cellpadding="0" style="max-width:600px; margin:0 auto; background:linear-gradient(135deg, #e6fffa 0%, #f0fdfa 50%, #e0f2fe 100%); border-radius:18px; padding:32px; border:2px solid #a7f3d0;">
-                    <tr>
-                        <td align="left" style="padding-bottom:15px;">
-                            <img src="https://www.evermoreonline.com.ng/assets/evermore-logo.png" alt="Evermore" style="height:32px; width:auto;">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="padding-bottom:15px;">
-                            <h1 style="margin:0; font-size:28px; font-weight:900; color:#059669; line-height:1.1;">EverAi Does More!</h1>
-                            <p style="margin:4px 0 0 0; font-size:16px; font-weight:800; color:#0f172a;">Earn Up To <span style="color:#10b981;">$18.6/Hour</span> Doing Simple Tasks.</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="background-color:#ffffff; border-radius:14px; padding:28px; border:1px solid #bbf7d0;">
-                            ${imageUrl ? `<div style="text-align:center; margin-bottom:20px;"><img src="${imageUrl}" style="max-width:100%; height:auto; border-radius:12px;" /></div>` : ''}
-                            ${formattedParagraphs}
-                            ${tip ? `<div style="background-color:#ecfdf5; border-left:4px solid #10b981; padding:14px; border-radius:0 8px 8px 0; margin:20px 0;"><strong style="color:#065f46; font-size:12px; text-transform:uppercase;">💡 TODAY'S PRODUCTIVITY TIP</strong><p style="margin:4px 0 0 0; color:#047857; font-size:13px;">${tip}</p></div>` : ''}
-                            <div style="margin-top:24px; text-align:left;">
-                                <a href="https://www.evermoreonline.com.ng/signup" style="background:linear-gradient(180deg, #f59e0b 0%, #d97706 100%); color:#ffffff; font-weight:800; text-transform:uppercase; text-decoration:none; padding:12px 28px; border-radius:99px; display:inline-block; font-size:12px; border:2px solid #fbbf24;">Open Workspace &rarr;</a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="center" style="padding-top:24px; color:#047857; font-size:11px; font-weight:700;">
-                            Evermore &mdash; Build. Learn. Earn. Evolve.<br>&copy; 2026 Evermore. All rights reserved.
-                        </td>
-                    </tr>
-                </table>
-            </body>
-            </html>`;
+            const ctaText = document.getElementById('ctaText').value.trim();
+            const ctaUrl = document.getElementById('ctaUrl').value.trim();
 
             alert.className = "hidden";
             sendBtn.disabled = true;
@@ -369,9 +364,10 @@ Ready to continue your journey?</div>
                         targetStatus, 
                         subject, 
                         messageText, 
-                        htmlMessage: fullHtmlEmail, 
                         tip, 
-                        imageUrl 
+                        imageUrl,
+                        ctaText,
+                        ctaUrl
                     })
                 });
 
