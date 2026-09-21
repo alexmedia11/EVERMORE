@@ -68,9 +68,9 @@
             </div>
 
             <div class="flex items-center gap-2">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-800 text-[11px] font-extrabold">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    Flyer Theme Engine
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 border border-amber-300 text-amber-900 text-[11px] font-extrabold">
+                    <i data-lucide="shield-alert" class="w-3.5 h-3.5 text-amber-600"></i>
+                    Resend Quota: Max 100/Day
                 </span>
             </div>
         </div>
@@ -84,7 +84,7 @@
                 Compose <span class="flyer-title-gradient">Broadcast Email</span>
             </h1>
             <p class="text-xs sm:text-sm font-semibold text-slate-600 mt-1">
-                Draft and dispatch email broadcasts styled with the Evermore light mint visual theme.
+                Dispatch custom email batches while preventing duplicates and respecting Resend daily limits.
             </p>
         </div>
 
@@ -98,16 +98,75 @@
             <div class="lg:col-span-6 bg-white/90 backdrop-blur-md border border-emerald-200/80 rounded-2xl p-6 sm:p-8 shadow-xl shadow-emerald-500/5">
                 <form id="broadcast-form" onsubmit="handleSendBroadcast(event)" class="space-y-5">
                     
-                    <!-- Target Audience -->
-                    <div>
-                        <label for="targetStatus" class="flex items-center gap-2 text-xs font-extrabold text-slate-800 uppercase tracking-wider mb-2">
-                            <i data-lucide="users" class="w-4 h-4 text-emerald-600"></i> Target Audience
-                        </label>
-                        <select id="targetStatus" class="w-full rounded-xl border border-slate-300 bg-white p-3.5 text-xs sm:text-sm font-semibold text-slate-900 outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition">
-                            <option value="all">All Accounts (Active & Pending)</option>
-                            <option value="active">Active Members Only</option>
-                            <option value="pending">Pending Accounts Only</option>
-                        </select>
+                    <!-- TARGET AUDIENCE & LIMIT CONTROLS CARD -->
+                    <div class="bg-emerald-50/80 p-4 rounded-2xl border border-emerald-200/90 space-y-4">
+                        <div class="text-xs font-extrabold text-emerald-900 uppercase tracking-wider flex items-center justify-between">
+                            <span class="flex items-center gap-2">
+                                <i data-lucide="sliders" class="w-4 h-4 text-emerald-600"></i> Audience & Batching Controls
+                            </span>
+                        </div>
+
+                        <!-- Target Audience & Checkbox -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 items-center">
+                            <div>
+                                <label for="targetStatus" class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">
+                                    Account Status
+                                </label>
+                                <select id="targetStatus" class="w-full rounded-xl border border-slate-300 bg-white p-2.5 text-xs font-semibold text-slate-900 outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition">
+                                    <option value="all">All Accounts (Active & Pending)</option>
+                                    <option value="pending" selected>Pending Accounts Only</option>
+                                    <option value="active">Active Members Only</option>
+                                </select>
+                            </div>
+
+                            <div class="pt-4">
+                                <label class="flex items-center gap-2 cursor-pointer select-none">
+                                    <input type="checkbox" id="onlyUnsent" checked class="w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500">
+                                    <span class="text-xs font-extrabold text-emerald-900">Exclude already sent users</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Exact Limit, Offset & Priority Grid -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <div>
+                                <label for="limit" class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">
+                                    Send Count Limit
+                                </label>
+                                <input 
+                                    type="number" 
+                                    id="limit" 
+                                    value="50" 
+                                    min="1" 
+                                    max="100" 
+                                    required 
+                                    class="w-full rounded-xl border border-slate-300 bg-white p-2.5 text-xs font-bold text-slate-900 outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition"
+                                >
+                            </div>
+
+                            <div>
+                                <label for="offset" class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">
+                                    Skip Count (Offset)
+                                </label>
+                                <input 
+                                    type="number" 
+                                    id="offset" 
+                                    value="0" 
+                                    min="0" 
+                                    class="w-full rounded-xl border border-slate-300 bg-white p-2.5 text-xs font-bold text-slate-900 outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition"
+                                >
+                            </div>
+
+                            <div>
+                                <label for="sortBy" class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">
+                                    Signup Order
+                                </label>
+                                <select id="sortBy" class="w-full rounded-xl border border-slate-300 bg-white p-2.5 text-xs font-semibold text-slate-900 outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition">
+                                    <option value="newest" selected>Newest First</option>
+                                    <option value="oldest">Oldest First</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Email Subject -->
@@ -133,7 +192,7 @@
                         <input 
                             type="url" 
                             id="imageUrl" 
-                            placeholder="https://www.evermoreonline.com.ng/assets/company-image-1.jpg" 
+                            placeholder="https://www.evermoreonline.com.ng/assets/company-image-1.jpeg" 
                             oninput="updatePreview()"
                             class="w-full rounded-xl border border-slate-300 bg-white p-3.5 text-xs sm:text-sm text-slate-900 font-medium placeholder:text-slate-400 outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition"
                         >
@@ -168,7 +227,7 @@
                         ></textarea>
                     </div>
 
-                    <!-- Action Button Settings (Grid) -->
+                    <!-- Action Button Settings -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label for="ctaText" class="flex items-center gap-2 text-xs font-extrabold text-slate-800 uppercase tracking-wider mb-2">
@@ -177,7 +236,7 @@
                             <input 
                                 type="text" 
                                 id="ctaText" 
-                                placeholder="Open Workspace Dashboard" 
+                                placeholder="Complete Account Activation" 
                                 oninput="updatePreview()"
                                 class="w-full rounded-xl border border-slate-300 bg-white p-3 text-xs text-slate-900 font-medium outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition"
                             >
@@ -189,7 +248,7 @@
                             <input 
                                 type="url" 
                                 id="ctaUrl" 
-                                placeholder="https://www.evermoreonline.com.ng/dashboard.html" 
+                                placeholder="https://www.evermoreonline.com.ng/payment.html" 
                                 oninput="updatePreview()"
                                 class="w-full rounded-xl border border-slate-300 bg-white p-3 text-xs text-slate-900 font-medium outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition"
                             >
@@ -253,7 +312,7 @@
                             <img id="preview-image" src="" alt="Banner Preview" class="w-full h-auto rounded-lg border border-slate-200 max-h-48 object-cover mx-auto" />
                         </div>
 
-                        <!-- Message Text with preserved breaks -->
+                        <!-- Message Text -->
                         <div id="preview-body" class="preserve-breaks text-slate-700 font-medium">Hello Evermore Member,
 
 We're excited to let you know that Evermore is now fully operational!
@@ -277,7 +336,7 @@ Ready to continue your journey?</div>
                         <!-- CTA Button -->
                         <div class="pt-2">
                             <a href="#" id="preview-cta-btn" class="btn-amber-glow inline-block text-white font-black text-xs uppercase tracking-wider px-6 py-3 rounded-full shadow-lg">
-                                Open Workspace Dashboard →
+                                Complete Account Activation →
                             </a>
                         </div>
 
@@ -330,7 +389,7 @@ Ready to continue your journey?</div>
 
             // CTA Button Text
             const ctaBtn = document.getElementById('preview-cta-btn');
-            ctaBtn.textContent = (ctaText || "Open Workspace Dashboard") + " →";
+            ctaBtn.textContent = (ctaText || "Complete Account Activation") + " →";
         }
 
         async function handleSendBroadcast(event) {
@@ -340,6 +399,11 @@ Ready to continue your journey?</div>
             const alert = document.getElementById('status-alert');
 
             const targetStatus = document.getElementById('targetStatus').value;
+            const onlyUnsent = document.getElementById('onlyUnsent').checked;
+            const limit = document.getElementById('limit').value;
+            const offset = document.getElementById('offset').value;
+            const sortBy = document.getElementById('sortBy').value;
+            
             const subject = document.getElementById('subject').value.trim();
             const messageText = document.getElementById('messageText').value.trim();
             const tip = document.getElementById('tip').value.trim();
@@ -362,6 +426,10 @@ Ready to continue your journey?</div>
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ 
                         targetStatus, 
+                        onlyUnsent,
+                        limit,
+                        offset,
+                        sortBy,
                         subject, 
                         messageText, 
                         tip, 
@@ -375,7 +443,7 @@ Ready to continue your journey?</div>
 
                 if (response.ok && data.success) {
                     alert.className = "mb-6 p-4 rounded-xl text-xs font-semibold bg-emerald-100 border border-emerald-300 text-emerald-800 block";
-                    alert.innerHTML = `✅ Broadcast email sent successfully to <strong>${data.details?.count || 0}</strong> recipient(s).`;
+                    alert.innerHTML = `✅ Broadcast dispatched successfully to <strong>${data.details?.count || 0}</strong> user(s).`;
                 } else {
                     throw new Error(data.message || 'Failed to send broadcast emails.');
                 }
